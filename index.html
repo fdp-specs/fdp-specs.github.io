@@ -133,9 +133,9 @@
 		 <p>Many different repositories and their digital objects should interoperate in order to allow increasingly complex questions to be answered. These repositories and their content should be interoperable in order for client applications to autonomously (re)use them. However, interoperability happens at different level, including syntactical and semantical interoperabilities. The FDP aims at addressing these interoperability issues by providing:</p>
 		 <ul>
 			 <li>A common interface to access information (metadata) about digital objects;</li>
-			 <li>A common representation format (<a href="https://www.w3.org/TR/rdf11-concepts/">RDF</a>) to express the metadata in a machine-actionable manner;</li>
+			 <li>A common representation format <a href="#biblio-rdf">[RDF]</a> to express the metadata in a machine-actionable manner;</li>
 			 <li>A common approach to inform to clients how to navigate through the FDP's metadata structure;</li>
-			 <li>A common representation format (<a href="https://www.w3.org/TR/shacl/">SHACL</a>) to represent each metadata record's schema.</li>
+			 <li>A common representation format <a href="#biblio-shacl">[SHACL]</a> to represent each metadata record's schema.</li>
 		 </ul>
 		 <p>The main goal of the FDP is to establish a common method for metadata provisioning and accessing and, as a consequence, provide to client applications a predictable way of accessing and interacting with metadata content. To fulfill this goal, this document contains a set of specifications to help developers to extend the functionality of their applications so these applications can also behave as a FAIR Data Point.</p>
 		 
@@ -145,19 +145,7 @@
 		 <h3 id="conventions"><span class="secno">1.2 </span>Document conventions</h3>
 		 <p>Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology. The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",  "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC 2119. However, for readability, these words do not appear in all uppercase letters in this specification. </p>
 		 <p>All of the text of this specification is normative except sections explicitly marked as non-normative, examples, and notes. <a href="#biblio-rfc2119">[RFC2119]</a></p>
-		 <p>Examples in this specification are introduced with the words "for example" or are set apart from the normative text with <code>class="example"</code>, like this: </p>
-		 
-		 <div class="example" id="example-f839f6c8">
-			 <p>This is an example of an informative example.</p>
-		 </div>
-		 
-		 <p>Informative notes begin with the word "Note" and are set apart from the normative text with <code>class="note"</code>, like this: </p>
-		 <p role="note">Note, this is an informative note.</p>
-		 
-		 <p>Advisements are normative sections styled to evoke special attention and are set apart from other normative text with <code>&lt;p class="advisement"&gt;</code> or <code>&lt;strong class="advisement"&gt; </code>, like this: <strong class="advisement"> UAs MUST provide an accessible alternative. </strong> </p>
-		 
-		 <p>Data tables are formatted with horizontal and vertical rules and text-alignment based on their markup (using <code>class="data"</code>). This requires appropriate use of <code>&lt;thead&gt;</code> for the table header, <code>&lt;th&gt;</code> for header cells, <code>&lt;tbody&gt;</code> for row groups, <code>&lt;th scope=row&gt;</code> for row header cells, and <code>&lt;colgroup&gt;</code> for column groups.</p>
-		 
+		 		 
 		 <h2 id="overalldescription"><span class="secno">2</span> Overall Description</h2>
 		 
 		 <p>The basis for any infrastructure is its suitability to the issues it should address. Therefore, the first step is to identify these issues. One common approach for this identification is to investigate current practices that could benefit from a supporting infrastructure. Once we analyse these practices, we can elicit the requirements for the infrastructure. In this document we list a number of data usage scenarios that represent regular practices in data-intensive domains. These usage scenarios have been gathered through interactions with a variety of representative stakeholders in different domains. These stakeholders represent data producers, data consumers and providers of both infrastructure and services for supporting data activities.</p>
@@ -877,8 +865,15 @@
 		 <dl>
 			 <dt id="biblio-dcat">[DCAT]</dt>
 			 <dd>Riccardo Albertone; et al. <a href="https://www.w3.org/TR/vocab-dcat-2/">Data Catalog Vocabulary (DCAT) - Version 2</a>. 4 February 2020. REC. URL: <a href="https://www.w3.org/TR/vocab-dcat-2/">https://www.w3.org/TR/vocab-dcat-2/</a></dd>
+			 
+			 <dt id="biblio-rdf">[RDF]</dt>
+			 <dd>Frank Manola; Eric Millher <a href="https://www.w3.org/TR/rdf11-primer/">RDF 1.1 Primer</a>. 24 June 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a></dd>
+			 
 			 <dt id="biblio-rfc2119">[RFC2119]</dt>
 			 <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a></dd>
+			 
+			 <dt id="biblio-shacl">[SHACL]</dt>
+			 <dd>Holger Knublauch; Dimitris Kontokostas. <a href="https://www.w3.org/TR/shacl/">Shapes Constraint Language (SHACL)</a>. 20 July 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/shacl/">https://www.w3.org/TR/shacl/</a></dd>
 		 </dl>
 		 <h3 class="no-num heading settled" id="informative">Informative References</h3>
 		 <dl>
