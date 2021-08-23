@@ -159,7 +159,7 @@
 		 
 		 <h4 id="datadiscovery"><span class="secno">2.1.1</span> Data discovery</h4>
 		 
-		 <p>A researcher needs to find datasets containing data about a given subject, e.g., proteins that are activated in specific tissues, polution level in a given region or infrared observation of a particular galaxy; integrated the discovered data with other pre-selected datasets and analyse them. In another situation, the researcher needs to know which biobanks carry a given type of biosample (e.g., blood samples) from patients possessing a specific phenotype (e.g., Alzheimer's disease) taken from a patient registry whose onset age was lower than 45 year-old. These data users need to use a straightforward search application that allows them to find the required information. However, the search application first needs to have indexed information about existing datasets wherever their location.</p>
+		 <p>A researcher needs to find datasets containing data about a given subject, e.g., proteins that are activated in specific tissues, polution level in a given region or infrared observation of a particular galaxy; integrated the discovered data with other pre-selected datasets and analyse them. In another situation, the researcher needs to know which biobanks carry a given type of biosample (e.g., blood samples) from patients possessing a specific disease (e.g., Alzheimer's disease) taken from a patient registry whose onset age was lower than 45 year-old. These data users need to use a straightforward search application that allows them to find the required information. However, the search application first needs to have indexed information about existing datasets wherever their location.</p>
 		 
 		 <h4 id="dataaccess"><span class="secno">2.1.2</span> Data access</h4>
 		 
@@ -195,7 +195,7 @@
 		 <ul>
 			 <li><strong>Metadata Provider</strong> - responsible for the provisioning of the metadata content available in the FDP;</li>
 			 <li><strong>Access Control</strong> - reponsible for controlling the access to the metadata content. In general, metadata can be openly accessible for reading but is expected that only a selected number of people have access to add, delete or edit the metadata content. Moreover, in some situations, metadata or part of the metadata may also have access restrictions for reading. The Access Control component makes sure that these restrictions are enforced;</li>
-			 <li><strong>RDF Metadata Source</strong> - The FDP <em class="rfc2119">MUST</em> present its metadata content <code>RDF</code> and, more specifically, in, at least, <code>turtle</code> and <code>JSON-LD</code> syntaxes. Therefore, these metadata should be stored in a RDF Metadata Source. The FDP reference implementation support native in-memory or in-disk storage as well as the connection with existing triple stores such as GraphDB, Allegro Graph, Blazegraph, etc. If one is extending an existing application based on this FDP specification, the RDF metadata can be provided using different implementation strategies. For instance, metadata stored in other representation formats can be dynamically converted to RDF through a conversion compoenent that serves as the RDF Metadata Source.</li>
+			 <li><strong>RDF Metadata Source</strong> - The FDP <em class="rfc2119">MUST</em> present its metadata content <code>RDF</code> and, more specifically, in, at least, <code>turtle</code> and <code>JSON-LD</code> syntaxes. Therefore, these metadata can be stored in a RDF Metadata Source. The FDP reference implementation support native in-memory or in-disk storage as well as the connection with existing triple stores such as GraphDB, Allegro Graph, Blazegraph, etc. If one is extending an existing application based on this FDP specification, the RDF metadata can be provided using different implementation strategies. For instance, metadata stored in other representation formats can be dynamically converted to RDF through a conversion compoenent that serves as the RDF Metadata Source.</li>
 			 <li><strong>Metadata Schemas</strong> - the FDP exposes metadata about different types of digital objects, e.g., repositories, content catalogs and datasets, among others. These metadata should comply with schemas defined by their related communities. In the FDP, the metadata schemas <em class="rfc2119">MUST</em> be represented in <code>SHACL</code>. The FDP reference implementation is shipped with four basics metadata schemas for the the FDP itself as a (metadata) repository, for catalogs, for datasets and for datasets' distributions. These schemas allow the FDP to check and validate metadata content that is added. Addition of metadata schemas for other types of digital objects or extension to the base schemas are supported by the FDP reference implementation;</li>
 		 </ul>
 		 
@@ -259,11 +259,11 @@
 				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1 .</code><br/>				        
 			 </p>
 		 </div>
-		 <p>In the metadata record, the FDP (<code>f:app</code>) has the relation <code>fdp-o:metadataCatalog</code> with the its catalogs. This is the parent-child relation that should be followed by a client that wants to navigate the FDP metadata structure. To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a container identified as <code>f:app/catalog/</code> is the container for the <code>f:app</code> (the object of the <code>ldp:membershipResource</code>) and it relates to its contained members using the relation <code>r3d:dataCatalog</code>.</p>
+		 <p>In the metadata record, the FDP (<code>f:app</code>) has the relation <code>fdp-o:metadataCatalog</code> with the its catalogs. This is the parent-child relation that should be followed by a client that wants to navigate the FDP metadata structure. To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a container identified as <code>f:app/catalog/</code> is the container for the <code>f:app</code> (the object of the <code>ldp:membershipResource</code>) and it relates to its contained members using the relation <code>fdp-o:metadataCatalog</code>.</p>
 		 
 		 <h3 id="metadataschemas"><span class="secno">4.2</span> Metadata schemas</h3>
 		 
-		 <h4 id="repositorymetadata"><span class="secno">4.2.1</span> Repository metadata</h4>
+		 <h4 id="repositorymetadata"><span class="secno">4.2.1</span> FAIR Data Point metadata</h4>
 		 <table class="propdef def">
 			 <caption>Repository metadata schema</caption>
 			 <thead>
@@ -281,7 +281,7 @@
 					 <td>rdf:type</td>
 					 <td>IRI</td>
 					 <td>1</td>
-					 <td>The type of the object described by the metadata record which, in this case, is a repository. The value shoud be or type <code>r3d:Repository</code> or <code>fdp-o:FairDataPoint</code>.</td>
+					 <td>The type of the object described by the metadata record which, in this case, is a repository. The value <em class="rfc2119">MUST</em> be <code>fdp-o:FairDataPoint</code>.</td>
 				 </tr>
 				 <tr>
 					 <td>DC terms</td>
@@ -295,21 +295,21 @@
 					 <td>dct:description</td>
 					 <td>String</td>
 					 <td>0..*</td>
-					 <td>Description of the repository with the language tag. Equivalent to <code>r3d:description</code>.</td>
+					 <td>Description of the repository with the language tag.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dct:publisher</td>
 					 <td><code>foaf:Agent</code></td>
 					 <td>1..*</td>
-					 <td>The entity(ies) (person or organization) responsible for the repository. Equivalent to <code>r3d:institution</code>.</td>
+					 <td>The entity(ies) (person or organization) responsible for the repository.</code>.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dct:language</td>
 					 <td>IRI</td>
 					 <td>0..*</td>
-					 <td>The language(s) used in the repository. Equivalent to <code>r3d:repositoryLanguage</code>.</td>
+					 <td>The language(s) used in the repository.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
@@ -493,9 +493,6 @@
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path dct:language ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:IRI ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path r3d:repositoryLanguage ; <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:IRI ; <br/>
-					 &nbsp;&nbsp;], [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path dct:license ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:IRI ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:minCount 1; <br/>
@@ -525,7 +522,6 @@
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:IRI ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:maxCount 1 ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:minCount 1 ; <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:equals r3d:repositoryURL ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path fdp-o:startDate ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:datatype xsd:date ; <br/>
@@ -765,7 +761,6 @@
 					 @prefix dcat: &lt;http://www.w3.org/ns/dcat#&gt; . <br/>
 					 @prefix &nbsp;dct: &lt;http://purl.org/dc/terms/&gt; . <br/>
 					 @prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; . <br/>
-					 @prefix &nbsp;r3d: &lt;http://www/re3data.org/schema/3-0#&gt; . <br/>
 					 @prefix &nbsp;&nbsp;sh: &lt;http://www.w3.org/ns/shacl#&gt; . <br/>
 					 @prefix &nbsp;xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .<br/>
 					 <br/>
@@ -782,16 +777,13 @@
 					 &nbsp;&nbsp;], [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path dct:description ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:Literal ; <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:equals r3d:description ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path dct:publisher ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:node :AgentShape ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:minCount 1; <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:equals r3d:institution ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path dct:language ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:IRI ; <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:equals r3d:repositoryLanguage ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path dct:license ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:IRI ; <br/>
@@ -822,13 +814,12 @@
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:IRI ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:maxCount 1 ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:minCount 1 ; <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:equals r3d:repositoryURL ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path r3d:startDate ; <br/>
+					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path fdp-o:startDate ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:datatype xsd:date ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:maxCount 1 ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path r3d:endDate ; <br/>
+					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path fdp-o:endDate ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:datatype xsd:date ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:maxCount 1 ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
