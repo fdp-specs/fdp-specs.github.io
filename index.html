@@ -26,7 +26,8 @@
 			 </a>
 	   </p>
 		 <h1 id="title">FAIR Data Point</h1>
-		 <h2 id="subtitle">Working Draft, <time class="dt-updated" datetime="2020-04-05">01 October 2020</time></h2>
+		 <h2 id="subtitle">Working Draft, <time class="dt-updated" datetime="2020-04-05">01 Septermber 2021</time>
+		 </h2>
 		 <div>
 			 <dl>
 				 <dt>This version:</dt>
@@ -39,13 +40,13 @@
 				 <dd><a href="https://github.com/FAIRDataTeam/FAIRDataPoint-Spec/blob/master/spec.md" rel="previous">https://github.com/FAIRDataTeam/FAIRDataPoint-Spec/blob/master/spec.md</a></dd>
 				 <dt>Feedback:</dt>
 				 <dd><span><a href="mailto:l.o.bonino@utwente.nl?subject=%5Bfdof-spec%5D%20YOUR%20TOPIC%20HERE">l.o.boninodasilvasantos@utwente.nl</a></span></dd>
-				 <dt>Test Suite:</dt>
+				 <dt>Reference Implementation:</dt>
 				 <dd><a href="https://github.com/FAIRDataTeam/FAIRDataPoint/">https://github.com/FAIRDataTeam/FAIRDataPoint/</a></dd>
 				 <dt>Issue Tracking:</dt>
 				 <dd><a href="https://github.com/FAIRDataTeam/FAIRDataPoint/issues">GitHub</a></dd>
 				 <dt class="editor">Editors:</dt>
 				 <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="mailto:l.o.bonino@utwente.nl">Luiz Olavo Bonino</a> (<span class="p-org org">University of Twente, Leiden University Medical Center, GO FAIR International Support and Coordination Office</span>)</dd>
-				 <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="mailto:kees.burger@dtls.nl">Kees Burger</a> (<span class="p-org org">Dutch Techcenter for Life Sciences</span>)</dd>
+				 <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="mailto:kees.burger@dtls.nl">Kees Burger</a> (<span class="p-org org">Leiden University Medical Center</span>)</dd>
 				 <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="mailto:r.kaliyaperumal@lumc.nl">Rajaram Kaliyaperumal</a> (<span class="p-org org">Leiden University Medical Center</span>)</dd>
 			 </dl>
 		 </div>
@@ -55,7 +56,7 @@
 	 </div>
 	 <h2 id="abstract">Abstract</h2>
 	 <div>
-		 <p>This document provides specifications for the FAIR Data Point (FDP). The document includes architecture of the core component, metadata structure and schema and API.&nbsp;</p>
+		 <p>This document provides specifications for the FAIR Data Point (FDP). The document includes architecture of the core component, metadata structure and schema,  API and validation rules.&nbsp;</p>
 	 </div>
 	 <h2 id="status">Status of this document</h2>
 	 <div>
@@ -116,7 +117,9 @@
 				 </ol>
 			 </ol>
 			 
-			 <li><a href="#intro"><span class="secno">5</span>Application Programming Interface (API)</a></li>
+			 <li><a href="#api"><span class="secno">5</span>Application Programming Interface (API)</a></li>
+			 
+			 <li><a href="#compliance"><span class="secno">6</span>FDP Specification Compliance</a></li>
 
 			 <li><a href="#references"><span class="secno">A</span>References</a></li>
 			 <ol>
@@ -194,7 +197,6 @@
 			 <li><strong>Access Control</strong> - reponsible for controlling the access to the metadata content. In general, metadata can be openly accessible for reading but is expected that only a selected number of people have access to add, delete or edit the metadata content. Moreover, in some situations, metadata or part of the metadata may also have access restrictions for reading. The Access Control component makes sure that these restrictions are enforced;</li>
 			 <li><strong>RDF Metadata Source</strong> - The FDP <em class="rfc2119">MUST</em> present its metadata content <code>RDF</code> and, more specifically, in, at least, <code>turtle</code> and <code>JSON-LD</code> syntaxes. Therefore, these metadata should be stored in a RDF Metadata Source. The FDP reference implementation support native in-memory or in-disk storage as well as the connection with existing triple stores such as GraphDB, Allegro Graph, Blazegraph, etc. If one is extending an existing application based on this FDP specification, the RDF metadata can be provided using different implementation strategies. For instance, metadata stored in other representation formats can be dynamically converted to RDF through a conversion compoenent that serves as the RDF Metadata Source.</li>
 			 <li><strong>Metadata Schemas</strong> - the FDP exposes metadata about different types of digital objects, e.g., repositories, content catalogs and datasets, among others. These metadata should comply with schemas defined by their related communities. In the FDP, the metadata schemas <em class="rfc2119">MUST</em> be represented in <code>SHACL</code>. The FDP reference implementation is shipped with four basics metadata schemas for the the FDP itself as a (metadata) repository, for catalogs, for datasets and for datasets' distributions. These schemas allow the FDP to check and validate metadata content that is added. Addition of metadata schemas for other types of digital objects or extension to the base schemas are supported by the FDP reference implementation;</li>
-			 <li><strong>Navigation information</strong> -</li>
 		 </ul>
 		 
 		 <h2 id="metadata"><span class="secno">4</span> Metadata</h2>
@@ -218,7 +220,7 @@
 		 
 		 <h3 id="navigationinformation"><span class="secno">4.1</span> Navigation information</h3>
 		 
-		 <p>Since the FDP supports the provisioning of metadata about different types of digital objects and the relations among these metadata records can be customized, each FDP installation may have a different structure. For instance, the FDP reference implementation is pre-loaded with the structure of metadata about FairDataPoint → Catalog → Dataset → Distribution. Another FDP could have a different metadata structure: FairDataPoint → Catalog → Semantic Artefact. With this flexibility, a client application would not know how to navigate the FDP metadata content unless it follows all URIs in the metadata, which may be extensive. Therefore, the FDP MUST describe its own navigation structure. This navigtaion information MUST be provided by using the Linked Data Platform (LDP) containment predicates ldp:contains or ldp:hasMemberRelation. This information MUST be present in every metadata record that leads to other metadata records.</p>
+		 <p>Since the FDP supports the provisioning of metadata about different types of digital objects and the relations among these metadata records can be customized, each FDP installation may have a different structure. For instance, the FDP reference implementation is pre-loaded with the structure of metadata about FAIR Data Point → Catalog → Dataset → Distribution. Another FDP could have a different metadata structure: FAIR Data Point → Catalog → Semantic Artefact. With this flexibility, a client application would not know how to navigate the FDP metadata content unless it follows all URIs in the metadata, which may be extensive. Therefore, the FDP <em class="rfc2119">MUST</em> describe its own navigation structure. This navigtaion information MUST be provided by using the Linked Data Platform (LDP) containment predicates ldp:contains or ldp:hasMemberRelation. This information <em class="rfc2119">MUST</em> be present in every metadata record that leads to other metadata records.</p>
 		 
 		 <p>The following RDF turtle code shows an example of Repository metadata record with navigation information.</p>
 		 
@@ -605,7 +607,7 @@
 			 </p>
 		 </div>
 		 
-		 <h4 id="catalogmetadata"><span class="secno">4.1.2</span> Catalog metadata</h4>
+		 <h4 id="catalogmetadata"><span class="secno">4.2.2</span> Catalog metadata</h4>
 		 <table class="propdef def">
 			 <caption>Catalog metadata schema</caption>
 			 <thead>
@@ -867,6 +869,13 @@
 				 </code>
 			 </p>
 		 </div>
+		 <p>Since only the Repository and Catalog metadata are mandatory in a FDP, from the catalog on, the metadata structure of the FDP will vary from deployment to deployment. Since the FDP is mostly used to provide metadata of datasets, FDP's reference implementation follows the DCAT model and bundles two more metadata schemas, namely, the Dataset and Distribution metadata schemas. If the administrator of the FDP wishes, can just remove these two schemas and define custom schemas as long as they are subclasses of the DCAT Resource class.</p>
+		 
+		 <h3 id="resourceextensions"><span class="secno">4.3</span> Resource extensions</h3>
+		 
+		 <h2 id="api"><span class="secno">5</span> API</h2>
+		 
+		 <h2 id="compliance"><span class="secno">6</span> FDP Specification Compliance</h2>
 		 
 		 <h2 class="no-num heading settled" id="references">References</h2>
 		 <h3 class="no-num heading settled" id="normative">Normative References</h3>
