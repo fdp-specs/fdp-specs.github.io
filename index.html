@@ -230,33 +230,34 @@
 				 <code>@prefix dct: &nbsp;&nbsp;&lt;http://purl.org/dc/terms/&gt; .</code><br/>
 				 <code>@prefix fdp-o: &lt;http://purl.org/fdp/fdp-o#&gt; .</code><br/>
 				 <code>@prefix ldp: &nbsp;&nbsp;&lt;http://www.w3.org/ns/ldp#&gt; .</code><br/>
-				 <code>f:app a fdp-o:FairDataPoint</code><br/>
+                 <code>@prefix cat: &nbsp;&nbsp;&lt;http://purl.org/fairdatapoint/app/catalog/&gt; .</code></br>
+				 <code>f:app a fdp-o:FairDataPoint ;</code><br/>
 				 <code>&nbsp;&nbsp;dct:title "Demonstration FAIR Data Point";</code><br/>
 				 <code>&nbsp;&nbsp;dct:conformsTo &lt;https://www.purl.org/fairtools/fdp/schema/0.1/fdpMetadata&gt;;</code><br/>
 				 <code>&nbsp;&nbsp;dct:description "This FAIR Data Point deployment is used for demonstration of the application and to allow the navigation through its metadata content. The metadata presented here is also for demonstration purposes only and not necessarily describe properly their related resources.";</code><br/>
 				 <code>&nbsp;&nbsp;dct:hasVersion "1.0" ;</code><br/>
-				 <code>&nbsp;&nbsp;dct:license &lt;http://rdflicense.appspot.com/rdflicense/cc-by-nc-nd4.0&gt;;</code><br/>
-				 <code>&nbsp;&nbsp;dct:publisher f:app#publisher ;</code><br/>
-				 <code>&nbsp;&nbsp;fdp-o:metadataIdentifier f:app#identifier ;</code><br/>
+				 <code>&nbsp;&nbsp;dct:license &lt;http://purl.org/NET/rdflicense/cc-by-nc-nd4.0&gt; ;</code><br/>
+				 <code>&nbsp;&nbsp;dct:publisher &lt;http://purl.org/fairdatapoint/app#publisher&gt; ;</code><br/>
+				 <code>&nbsp;&nbsp;fdp-o:metadataIdentifier &lt;http://purl.org/fairdatapoint/app#identifier&gt; ;</code><br/>
 				 <code>&nbsp;&nbsp;fdp-o:metadataIssued "2020-05-29T09:55:08.580Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt;;</code><br/>
 				 <code>&nbsp;&nbsp;fdp-o:metadataModified "2020-09-30T11:17:43.008Z"^^&lt;http://www.w3.org/2001/XMLSchema#dateTime&gt;;</code><br/>
 				 <code>&nbsp;&nbsp;fdp-o:metadataCatalog </code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8 ,</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/508d3c96-8106-49d2-910c-13706aca75e3 ,</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af ,</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47 ,</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1 .</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:3dde263d-0a7c-4f2a-9813-ccb3a51f70a8 ,</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:508d3c96-8106-49d2-910c-13706aca75e3 ,</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:6e43c568-c6fa-41c8-a88a-7ee4c85035af ,</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:a46aa445-3be0-4db8-8968-3338d1061a47 ,</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:a91d3db7-fe83-4de1-b678-fe1b0c82f2f1 .</code><br/>
 				 <br/>
 				 <code>&lt;https://purl.org/fairdatapoint/app/catalog/&gt; a ldp:DirectContainer ;</code><br/>
 				 <code>&nbsp;&nbsp;dct:title "Catalogs" ;</code><br/>
 				 <code>&nbsp;&nbsp;ldp:membershipResource f:app ;</code><br/>
 				 <code>&nbsp;&nbsp;ldp:hasMemberRelation fdp-o:metadataCatalog ;</code><br/>
 				 <code>&nbsp;&nbsp;ldp:contains</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8 ,</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/508d3c96-8106-49d2-910c-13706aca75e3 ,</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af ,</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47 ,</code><br/>
-				 <code>&nbsp;&nbsp;&nbsp;&nbsp;f:app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1 .</code><br/>				        
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:3dde263d-0a7c-4f2a-9813-ccb3a51f70a8 ,</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:508d3c96-8106-49d2-910c-13706aca75e3 ,</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:6e43c568-c6fa-41c8-a88a-7ee4c85035af ,</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:a46aa445-3be0-4db8-8968-3338d1061a47 ,</code><br/>
+				 <code>&nbsp;&nbsp;&nbsp;&nbsp;cat:a91d3db7-fe83-4de1-b678-fe1b0c82f2f1 .</code><br/>				        
 			 </p>
 		 </div>
 		 <p>In the metadata record, the FDP (<code>f:app</code>) has the relation <code>fdp-o:metadataCatalog</code> with the its catalogs. This is the parent-child relation that should be followed by a client that wants to navigate the FDP metadata structure. To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a container identified as <code>f:app/catalog/</code> is the container for the <code>f:app</code> (the object of the <code>ldp:membershipResource</code>) and it relates to its contained members using the relation <code>r3d:dataCatalog</code>.</p>
