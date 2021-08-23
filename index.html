@@ -106,7 +106,7 @@
 				 <li><a href="#metadataschemas"><span class="secno">4.2</span>Metadata schemas</a></li>
 				 <ol>
 					 <li>
-						 <a href="#repositorymetadata"><span class="secno">4.2.1</span>Repository metadata</a>
+						 <a href="#repositorymetadata"><span class="secno">4.2.1</span>Metadata Service metadata</a>
 					 </li>
 					 <li>
 						 <a href="#catalogmetadata"><span class="secno">4.2.2</span>Catalog metadata</a>
@@ -131,7 +131,7 @@
 	 <main>
 		 <h2 id="intro"><span class="secno">1 </span> Introduction</h2>
 		 
-		 <p>FAIR Data Point (FDP) is a metadata repository that provides access to metadata following the FAIR principles <a href="#biblio-fairprinciples">[FAIR-principles]</a>. FDP uses a REST API for creating, storing and serving FAIR metadata. FDP is a software that, from one side, allows digital objects owners/publishers to expose the metadata of their digital objects in a FAIR manner and, for another side, allows digital objects' consumers to discover information (metadata) about offered digital objects. Commonly, the FAIR Data Point is used to expose metadata of datasets but metadata of other types of digital objects can also be exposed such as ontologies, repositories, analysis algorithms, websites, etc.</p>
+		 <p>FAIR Data Point (FDP) is a metadata service that provides access to metadata following the FAIR principles <a href="#biblio-fairprinciples">[FAIR-principles]</a>. FDP uses a REST API for creating, storing and serving FAIR metadata. FDP is a software that, from one side, allows digital objects owners/publishers to expose the metadata of their digital objects in a FAIR manner and, for another side, allows digital objects' consumers to discover information (metadata) about offered digital objects. Commonly, the FAIR Data Point is used to expose metadata of datasets but metadata of other types of digital objects can also be exposed such as ontologies, repositories, analysis algorithms, websites, etc.</p>
 		 
 		 <p>Many different repositories and their digital objects should interoperate in order to allow increasingly complex questions to be answered. These repositories and their content should be interoperable in order for client applications to autonomously (re)use them. However, interoperability happens at different level, including syntactical and semantical interoperabilities. The FDP aims at addressing these interoperability issues by providing:</p>
 		 <ul>
@@ -196,7 +196,7 @@
 			 <li><strong>Metadata Provider</strong> - responsible for the provisioning of the metadata content available in the FDP;</li>
 			 <li><strong>Access Control</strong> - reponsible for controlling the access to the metadata content. In general, metadata can be openly accessible for reading but is expected that only a selected number of people have access to add, delete or edit the metadata content. Moreover, in some situations, metadata or part of the metadata may also have access restrictions for reading. The Access Control component makes sure that these restrictions are enforced;</li>
 			 <li><strong>RDF Metadata Source</strong> - The FDP <em class="rfc2119">MUST</em> present its metadata content <code>RDF</code> and, more specifically, in, at least, <code>turtle</code> and <code>JSON-LD</code> syntaxes. Therefore, these metadata can be stored in a RDF Metadata Source. The FDP reference implementation support native in-memory or in-disk storage as well as the connection with existing triple stores such as GraphDB, Allegro Graph, Blazegraph, etc. If one is extending an existing application based on this FDP specification, the RDF metadata can be provided using different implementation strategies. For instance, metadata stored in other representation formats can be dynamically converted to RDF through a conversion compoenent that serves as the RDF Metadata Source.</li>
-			 <li><strong>Metadata Schemas</strong> - the FDP exposes metadata about different types of digital objects, e.g., repositories, content catalogs and datasets, among others. These metadata should comply with schemas defined by their related communities. In the FDP, the metadata schemas <em class="rfc2119">MUST</em> be represented in <code>SHACL</code>. The FDP reference implementation is shipped with four basics metadata schemas for the the FDP itself as a (metadata) repository, for catalogs, for datasets and for datasets' distributions. These schemas allow the FDP to check and validate metadata content that is added. Addition of metadata schemas for other types of digital objects or extension to the base schemas are supported by the FDP reference implementation;</li>
+			 <li><strong>Metadata Schemas</strong> - the FDP exposes metadata about different types of digital objects, e.g., repositories, content catalogs and datasets, among others. These metadata should comply with schemas defined by their related communities. In the FDP, the metadata schemas <em class="rfc2119">MUST</em> be represented in <code>SHACL</code>. The FDP reference implementation is shipped with four basics metadata schemas for the the FDP itself as a metadata service, for catalogs, for datasets and for datasets' distributions. These schemas allow the FDP to check and validate metadata content that is added. Addition of metadata schemas for other types of digital objects or extension to the base schemas are supported by the FDP reference implementation;</li>
 		 </ul>
 		 
 		 <h2 id="metadata"><span class="secno">4</span> Metadata</h2>
@@ -212,17 +212,17 @@
 		 
 		 <p>In DCAT, <code>Resource</code> represents entities that can be described by a metadata record. Since it has been defined as an abstract class, it it not intended to be used directly. We should used one of its subclasses, such as <code>Dataset</code> or <code>Data Service</code> instead. <code>Dataset</code> represents a collection of data while <code>Data Service</code> represents services accessible through an interface (API) that serve datasets. <code>Catalog</code> a subclass of <code>Dataset</code> represents aggregations of metadata records about digital objects. For instance, a <code>Catalog</code> may contain references to the metadata records of <code>Datasets</code>.</p>
 		 
-		 <p>The FDP extendes the DCAT model by adding the concept of <code>FairDataPoint</code> as an specific type of data service that serves catalogs of metadata records. The DCAT extensions and other FDP-specific concepts and relations are defined in the FDP ontology (using the namespace prefix <code>fdp-o</code>). In the FDP ontology, the concept of <code>FairDataPoint</code> is similar to the concept of <code>Repository</code> from the RE3Data schema. Since <code>FairDataPoint</code> is a sub-class of <code>dcat:DataService</code>, which is a sub-class of <code>dcat:Resource</code>, Figure 4.1 only depicts the properties that are not already inherited from <code>Data Service</code> and <code>Resource</code>.</p>
+		 <p>The FDP extendes the DCAT model by adding the concept of <code>FairDataPoint</code> as an specific type of data service that serves catalogs of metadata records. The DCAT extensions and other FDP-specific concepts and relations are defined in the FDP ontology (using the namespace prefix <code>fdp-o</code>). In the FDP ontology, the FAIR Data Point is represented by the concept of <code>MetadataService</code>. Since <code>MetadataService</code> is a sub-class of <code>dcat:DataService</code>, which is a sub-class of <code>dcat:Resource</code>, Figure 4.1 only depicts the properties that are not already inherited from <code>Data Service</code> and <code>Resource</code>.</p>
 		 
-		 <p>With the definition of the FDP as a type of repository that serves metadata catalogs, the relation between the <code>FairDataPoint</code> and <code>dcat:Catalog</code> is represented by the predicate <code>fdp-o-metadataCatalog</code>. Following the DCAT approach of providing qualified relations between resources, the <code>fdp-o-metadataCatalog</code> is defined as a sub-property of <code>dcat:Relationship</code> having <code>fdp-o:FairDataPoint</code> as its domain and <code>dcat:Catalog</code> as its range.</p>
+		 <p>With the definition of the FDP as a type of metadata service that serves metadata catalogs, the relation between the <code>Metadata Service</code> and <code>dcat:Catalog</code> is represented by the predicate <code>fdp-o-metadataCatalog</code>. Following the DCAT approach of providing qualified relations between resources, the <code>fdp-o-metadataCatalog</code> is defined as a sub-property of <code>dcat:Relationship</code> having <code>fdp-o:MetadataService</code> as its domain and <code>dcat:Catalog</code> as its range.</p>
 		 
-		 <p class="advisement">An implementation of the FDP specifications <em class="rfc2119">MUST</em> minimally provide the metadata records of the <code>Repository</code> and of at least one <code>Catalog</code>.</p>
+		 <p class="advisement">An implementation of the FDP specifications <em class="rfc2119">MUST</em> minimally provide the metadata records of the <code>MetadataService</code> and of at least one <code>Catalog</code>.</p>
 		 
 		 <h3 id="navigationinformation"><span class="secno">4.1</span> Navigation information</h3>
 		 
 		 <p>Since the FDP supports the provisioning of metadata about different types of digital objects and the relations among these metadata records can be customized, each FDP installation may have a different structure. For instance, the FDP reference implementation is pre-loaded with the structure of metadata about FAIR Data Point → Catalog → Dataset → Distribution. Another FDP could have a different metadata structure: FAIR Data Point → Catalog → Semantic Artefact. With this flexibility, a client application would not know how to navigate the FDP metadata content unless it follows all URIs in the metadata, which may be extensive. Therefore, the FDP <em class="rfc2119">MUST</em> describe its own navigation structure. This navigtaion information MUST be provided by using the Linked Data Platform (LDP) containment predicates ldp:contains or ldp:hasMemberRelation. This information <em class="rfc2119">MUST</em> be present in every metadata record that leads to other metadata records.</p>
 		 
-		 <p>The following RDF turtle code shows an example of Repository metadata record with navigation information.</p>
+		 <p>The following RDF turtle code shows an example of Metadata Service metadata record with navigation information.</p>
 		 
 		 <div class="example" id="example-repositorywithldp">
 			 <p>
@@ -263,9 +263,9 @@
 		 
 		 <h3 id="metadataschemas"><span class="secno">4.2</span> Metadata schemas</h3>
 		 
-		 <h4 id="repositorymetadata"><span class="secno">4.2.1</span> FAIR Data Point metadata</h4>
+		 <h4 id="repositorymetadata"><span class="secno">4.2.1</span> Metadata Service metadata</h4>
 		 <table class="propdef def">
-			 <caption>Repository metadata schema</caption>
+			 <caption>Metadata Service metadata schema</caption>
 			 <thead>
 				 <tr>
 					 <th>Ontology</th>
@@ -281,49 +281,49 @@
 					 <td>rdf:type</td>
 					 <td>IRI</td>
 					 <td>1</td>
-					 <td>The type of the object described by the metadata record which, in this case, is a repository. The value <em class="rfc2119">MUST</em> be <code>fdp-o:FairDataPoint</code>.</td>
+					 <td>The type of the object described by the metadata record which, in this case, is a metadata service. The value <em class="rfc2119">MUST</em> be <code>fdp-o:MetadataService</code>.</td>
 				 </tr>
 				 <tr>
 					 <td>DC terms</td>
 					 <td>dct:title</td>
 					 <td>String</td>
 					 <td>1..*</td>
-					 <td>Name of the repository with the language tag.</td>
+					 <td>Name of the metadata service with the language tag.</td>
 				 </tr>				 
 				 <tr>
 					 <td></td>
 					 <td>dct:description</td>
 					 <td>String</td>
 					 <td>0..*</td>
-					 <td>Description of the repository with the language tag.</td>
+					 <td>Description of the metadata service with the language tag.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dct:publisher</td>
 					 <td><code>foaf:Agent</code></td>
 					 <td>1..*</td>
-					 <td>The entity(ies) (person or organization) responsible for the repository.</code>.</td>
+					 <td>The entity(ies) (person or organization) responsible for the metadata service.</code>.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dct:language</td>
 					 <td>IRI</td>
 					 <td>0..*</td>
-					 <td>The language(s) used in the repository.</td>
+					 <td>The language(s) used in the metadata record.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dct:license</td>
 					 <td>IRI</td>
 					 <td>1</td>
-					 <td>The reference to the usage license of the repository.</td>
+					 <td>The reference to the usage license of the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dct:conformsTo</td>
 					 <td>IRI</td>
 					 <td>1</td>
-					 <td>The specification of the repository metadata schema (in <code>SHACL</code>).</td>
+					 <td>The specification of the metadata service's metadata schema (in <code>SHACL</code>).</td>
 				 </tr>
 				 <tr>
 					 <td></td>
@@ -344,21 +344,21 @@
 					 <td>dcat:contactPoint</td>
 					 <td><code>vCard</code></td>
 					 <td>0..*</td>
-					 <td>Relevant contact information for the repository.</td>
+					 <td>Relevant contact information for the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dcat:keyword</td>
 					 <td>String</td>
 					 <td>0..*</td>
-					 <td>Keyword(s) describing the repository.</td>
+					 <td>Keyword(s) describing the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dcat:theme</td>
 					 <td><code>skos:subject</code></td>
 					 <td>0..*</td>
-					 <td>Main category(ies) of the repository.</td>
+					 <td>Main category(ies) of the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
@@ -400,28 +400,28 @@
 					 <td>fdp-o:startDate</td>
 					 <td>xsd:date</td>
 					 <td>0..1</td>
-					 <td>Date when the repository started its operations.</td>
+					 <td>Date when the metadata service started its operations.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>fdp-o:endDate</td>
 					 <td>xsd:date</td>
 					 <td>0..1</td>
-					 <td>Date when the repository ended its operations.</td>
+					 <td>Date when the metadata service ended its operations.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
-					 <td>fdp-o:repositoryLanguage</td>
+					 <td>fdp-o:uiLanguage</td>
 					 <td>IRI</td>
-					 <td>0..1</td>
-					 <td>The user interface language(s) of the repository, which is different from the <code>dcat:Resource</code> property of <code>dct:language</code> that relates to the language of the metadata record.</td>
+					 <td>0..*</td>
+					 <td>The user interface language(s) of the metadata service, which is different from the <code>dcat:Resource</code> property of <code>dct:language</code> that relates to the language of the metadata record.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>fdp-o:hasSoftwareVersion</td>
 					 <td>String</td>
 					 <td>0..1</td>
-					 <td>Version of the repository software that exposes the FDP behaviour.</td>
+					 <td>Version of the metadata service software that exposes the FDP behaviour.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
@@ -454,7 +454,7 @@
 			 </tbody>
 		 </table>
 		 
-		 <p>Below we have repository metadata schema defined in <code>SHACL</code>.</p>
+		 <p>Below we have metadata service metadata schema defined in <code>SHACL</code>.</p>
 		 
 		 <div class="advisement" id="repository-shacl">
 			 <p>
@@ -469,7 +469,7 @@
 					 @prefix &nbsp;&nbsp;xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .<br/>
 					 <br/>
 					 :FAIRDataPointShape a sh:NodeShape ; <br/>
-					 &nbsp;&nbsp;sh:targetClass fdp-o:FairDataPoint ; <br/>
+					 &nbsp;&nbsp;sh:targetClass fdp-o:MetadataService ; <br/>
 					 &nbsp;&nbsp;sh:property [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path dct:title ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:Literal ; <br/>
@@ -712,7 +712,7 @@
 					 <td>dct:isPartOf</td>
 					 <td>IRI</td>
 					 <td>1</td>
-					 <td>Relation to the parent metadata. In this case the repository metadata.</td>
+					 <td>Relation to the parent metadata. In this case the metadata service metadata.</td>
 				 </tr>
 				 <tr>
 					 <td>DCAT</td>
@@ -860,7 +860,7 @@
 				 </code>
 			 </p>
 		 </div>
-		 <p>Since only the Repository and Catalog metadata are mandatory in a FDP, from the catalog on, the metadata structure of the FDP will vary from deployment to deployment. Since the FDP is mostly used to provide metadata of datasets, FDP's reference implementation follows the DCAT model and bundles two more metadata schemas, namely, the Dataset and Distribution metadata schemas. If the administrator of the FDP wishes, can just remove these two schemas and define custom schemas as long as they are subclasses of the DCAT Resource class.</p>
+		 <p>Since only the Metadata Service and Catalog metadata are mandatory in a FDP, from the catalog on, the metadata structure of the FDP will vary from deployment to deployment. Since the FDP is mostly used to provide metadata of datasets, FDP's reference implementation follows the DCAT model and bundles two more metadata schemas, namely, the Dataset and Distribution metadata schemas. If the administrator of the FDP wishes, can just remove these two schemas and define custom schemas as long as they are subclasses of the DCAT Resource class.</p>
 		 
 		 <h3 id="resourceextensions"><span class="secno">4.3</span> Resource extensions</h3>
 		 
