@@ -871,7 +871,16 @@
 		 
 		 <h2 id="compliance"><span class="secno">6</span> FDP Specification Compliance</h2>
 		 
-		 	<p></p>
+		 	<p>The aim of this specification is to guide developers in implementing their own FAIR Data Points or in extending existing application with the FDP behaviours and, therefore, exposing their metadata in a FAIR way.</p>
+		 	<p>In order to verify whether and application behaves as a FAIR Data Point according to these specifications, the following characteristics must be present:</p>
+
+		 	<ul>
+			  	<li>Its root API URL <em class="rfc2119">MUST</em> provide the Metadata Service metadata;</li>
+				<li>The metadata content <em class="rfc2119">MUST</em> be present in, at least, RDF Turtle and JSON-LD syntaxes. Other format such as XML, JSON and other RDF syntaxes are allowed through content negotiation but the default media type for the HTTP request <em class="rfc2119">MUST</em> be RDF Turtle.</li>
+				<li>Each metadata record <em class="rfc2119">SHOULD</em> have a reference to its own profile which, on its turn, <em class="rfc2119">MUST</em> point to the metadata schema expressed in <a href="biblio-shacal">SHACL</a>;</li>
+				<li>The metadata schema expressed in <a href="biblio-shacal">SHACL</a> <em class="rfc2119">MUST</em> have as its target class a sub-class of <code>dcat:Resource</code>;</li>
+				<li>The information about how to navigate the metadata content structure of the FDP <em class="rfc2119">MUST</em> be provided in each metadata record using the Linked Data Platform (LDP) containment structure (<code>ldp:hasMemberRelation</code>) - see <a href="#navigationinformation">Section 4.1</a>.</li>
+			</ul>
 		 
 		 <h2 class="no-num heading settled" id="references">References</h2>
 		 <h3 class="no-num heading settled" id="normative">Normative References</h3>
