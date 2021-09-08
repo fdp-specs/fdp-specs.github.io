@@ -262,6 +262,8 @@
 		 
 		 <h3 id="metadataschemas"><span class="secno">4.2</span> Metadata schemas</h3>
 		 
+		 <p>In the metadata record, the FDP (<code>f:app</code>) has the relation <code>fdp-o:metadataCatalog</code> with the its catalogs. This is the parent-child relation that should be followed by a client that wants to navigate the FDP metadata structure. To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a container identified as <code>https://purl.org/fairdatapoint/app/catalog/</code> is the container for the <code>https://purl.org/fairdatapoint/app</code> (the object of the <code>ldp:membershipResource</code>) and it relates to its contained members using the relation <code>fdp-o:metadataCatalog</code>.</p>
+		 
 		 <h4 id="repositorymetadata"><span class="secno">4.2.1</span> Metadata Service metadata</h4>
 		 <table class="propdef def">
 			 <caption>Metadata Service metadata schema</caption>
@@ -876,7 +878,7 @@
 
 		 	<ul>
 			  	<li>Its root API URL <em class="rfc2119">MUST</em> provide the Metadata Service metadata;</li>
-				<li>The metadata content <em class="rfc2119">MUST</em> be present in, at least, RDF Turtle and JSON-LD syntaxes. Other format such as XML, JSON and other RDF syntaxes are allowed through content negotiation but the default media type for the HTTP request <em class="rfc2119">MUST</em> be RDF Turtle.</li>
+				<li>The metadata content <em class="rfc2119">MUST</em> be presented in, at least, RDF Turtle and JSON-LD syntaxes. Other format such as XML, JSON and other RDF syntaxes are allowed through content negotiation but the default media type for the HTTP(S) request <em class="rfc2119">MUST</em> be RDF Turtle.</li>
 				<li>Each metadata record <em class="rfc2119">SHOULD</em> have a reference to its own profile which, on its turn, <em class="rfc2119">MUST</em> point to the metadata schema expressed in <a href="biblio-shacal">SHACL</a>;</li>
 				<li>The metadata schema expressed in <a href="biblio-shacal">SHACL</a> <em class="rfc2119">MUST</em> have as its target class a sub-class of <code>dcat:Resource</code>;</li>
 				<li>The information about how to navigate the metadata content structure of the FDP <em class="rfc2119">MUST</em> be provided in each metadata record using the Linked Data Platform (LDP) containment structure (<code>ldp:hasMemberRelation</code>) - see <a href="#navigationinformation">Section 4.1</a>.</li>
