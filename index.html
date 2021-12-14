@@ -1,22 +1,32 @@
 <!doctype html><html lang="en">
  <head>
-  <meta charset="utf-8">
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>FAIR Data Point specifications</title>
-  <link rel="stylesheet" href="style/base.css">
-  <style>
-  .example::before {
-    content: "Example";
-    content: "Example " counter(example);
-  }
-  #example + p + p.example::before {
-    content: "";
-  }
-  .overlarge {
-    margin: 0 !important;
-  }
-  </style>
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-02P0PEJSS7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-02P0PEJSS7');
+    </script>
+     
+    <meta charset="utf-8">
+      <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>FAIR Data Point specifications</title>
+      <link rel="stylesheet" href="style/base.css">
+      <style>
+      .example::before {
+        content: "Example";
+        content: "Example " counter(example);
+      }
+      #example + p + p.example::before {
+        content: "";
+      }
+      .overlarge {
+        margin: 0 !important;
+      }
+      </style>
  </head>
  <body class="h-entry">
 	 <div class="head">
@@ -878,7 +888,7 @@
 
 		 	<ul>
 			  	<li>Its root API URL <em class="rfc2119">MUST</em> provide the Metadata Service metadata;</li>
-				<li>The metadata content <em class="rfc2119">MUST</em> be presented in, at least, RDF Turtle and JSON-LD syntaxes. Other format such as XML, JSON and other RDF syntaxes are allowed through content negotiation but the default media type for the HTTP(S) request <em class="rfc2119">MUST</em> be RDF Turtle.</li>
+				<li>The metadata content <em class="rfc2119">MUST</em> be presented in, at least, RDF Turtle and JSON-LD syntaxes. Other formats such as XML, JSON and other RDF syntaxes are allowed through content negotiation but the default media type for the HTTP(S) request <em class="rfc2119">MUST</em> be RDF Turtle.</li>
 				<li>Each metadata record <em class="rfc2119">SHOULD</em> have a reference to its own profile which, on its turn, <em class="rfc2119">MUST</em> point to the metadata schema expressed in <a href="biblio-shacal">SHACL</a>;</li>
 				<li>The metadata schema expressed in <a href="biblio-shacal">SHACL</a> <em class="rfc2119">MUST</em> have as its target class a sub-class of <code>dcat:Resource</code>;</li>
 				<li>The information about how to navigate the metadata content structure of the FDP <em class="rfc2119">MUST</em> be provided in each metadata record using the Linked Data Platform (LDP) containment structure (<code>ldp:hasMemberRelation</code>) - see <a href="#navigationinformation">Section 4.1</a>.</li>
