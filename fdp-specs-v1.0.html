@@ -36,18 +36,18 @@
 			 </a>
 	   </p>
 		 <h1 id="title">FAIR Data Point</h1>
-		 <h2 id="subtitle">Working Draft, <time class="dt-updated" datetime="2020-04-05">29 June 2022</time>
+		 <h2 id="subtitle">Working Draft, <time class="dt-updated" datetime="2020-04-05">23 August 2021</time>
 		 </h2>
 		 <div>
 			 <dl>
 				 <dt>This version:</dt>
 				 <dd>
-					 <a class="u-url" href="https://specs.fairdatapoint.org">https://specs.fairdatapoint.org/v1.1</a>
+					 <a class="u-url" href="https://specs.fairdatapoint.org">https://specs.fairdatapoint.org/v1.0</a>
 				 </dd>
 				 <dt>Latest version:</dt>
 				 <dd><a href="https://specs.fairdatapoint.org">https://specs.fairdatapoint.org</a></dd>
 				 <dt>Previous Versions:</dt>
-				 <dd><a href="fdp-specs-v1.0.html">FDP specs v1.0</a></dd>
+				 <dd><a href="https://github.com/FAIRDataTeam/FAIRDataPoint-Spec/blob/master/spec.md" rel="previous">https://github.com/FAIRDataTeam/FAIRDataPoint-Spec/blob/master/spec.md</a></dd>
 				 <dt>Feedback:</dt>
 				 <dd><span><a href="mailto:l.o.bonino@utwente.nl?subject=%5Bfdof-spec%5D%20YOUR%20TOPIC%20HERE">l.o.boninodasilvasantos@utwente.nl</a></span></dd>
 				 <dt>Reference Implementation:</dt>
@@ -272,17 +272,11 @@
 		 
 		 <h3 id="metadataschemas"><span class="secno">4.2</span> Metadata schemas</h3>
 		 
-		 <p>The FAIR Data Point suppors the user-definition of metadata schemas. This follows the acknowledgment that every application scenario may require different sets of properties to properly describe a given digital object. Moreover, the metadata records may have some relevant relationships that connect one to other. For instance, it seems straightforward to argue that, a FAIR Data Point, as a metadata service have a number of catalogs, that are used to organise the metadata records of other types of digital object, for instance, datasets.</p>
-         
-         <p>Therefore, to improve interoperability and provide a minimal level of predictability and organisation of different FDPs, the metadata structure of the FDP starts with the metadata of itself (as a metadata service), following by the catalogs that it contains. And each catalog contains the metadata of given types of digital objects.</p>
-         
-         <p>Below we present the metadata schemas of these two types of digital objects that are mandatory to each FDP, the FAIR Data Point and Catalog.</p>
-         
-         <p class="note">In the FDP Ontology the FAIR Data Point is defined as a subclass of Metadata Service, which is a sub-class of dcat:Data Service.</p>
+		 <p>In the metadata record, the FDP (<code>f:app</code>) has the relation <code>fdp-o:metadataCatalog</code> with the its catalogs. This is the parent-child relation that should be followed by a client that wants to navigate the FDP metadata structure. To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a container identified as <code>https://purl.org/fairdatapoint/app/catalog/</code> is the container for the <code>https://purl.org/fairdatapoint/app</code> (the object of the <code>ldp:membershipResource</code>) and it relates to its contained members using the relation <code>fdp-o:metadataCatalog</code>.</p>
 		 
-		 <h4 id="repositorymetadata"><span class="secno">4.2.1</span> FAIR Data Point metadata</h4>
+		 <h4 id="repositorymetadata"><span class="secno">4.2.1</span> Metadata Service metadata</h4>
 		 <table class="propdef def">
-			 <caption>FAIR Data Point metadata schema</caption>
+			 <caption>Metadata Service metadata schema</caption>
 			 <thead>
 				 <tr>
 					 <th>Ontology</th>
@@ -298,28 +292,28 @@
 					 <td>rdf:type</td>
 					 <td>IRI</td>
 					 <td>1</td>
-					 <td>The type of the object described by the metadata record which, in this case, is a FAIR Data Point. The value <em class="rfc2119">MUST</em> be <code>fdp-o:FAIRDataPoint</code>.</td>
+					 <td>The type of the object described by the metadata record which, in this case, is a metadata service. The value <em class="rfc2119">MUST</em> be <code>fdp-o:MetadataService</code>.</td>
 				 </tr>
 				 <tr>
 					 <td>DC terms</td>
 					 <td>dct:title</td>
 					 <td>String</td>
 					 <td>1..*</td>
-					 <td>Name of the FAIR Data Point with the language tag.</td>
+					 <td>Name of the metadata service with the language tag.</td>
 				 </tr>				 
 				 <tr>
 					 <td></td>
 					 <td>dct:description</td>
 					 <td>String</td>
 					 <td>0..*</td>
-					 <td>Description of the FAIR Data Point with the language tag.</td>
+					 <td>Description of the metadata service with the language tag.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dct:publisher</td>
 					 <td><code>foaf:Agent</code></td>
 					 <td>1..*</td>
-					 <td>The entity(ies) (person or organization) responsible for the FAIR Data Point.</td>
+					 <td>The entity(ies) (person or organization) responsible for the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
@@ -333,14 +327,14 @@
 					 <td>dct:license</td>
 					 <td>IRI</td>
 					 <td>1</td>
-					 <td>The reference to the usage license of the FAIR Data Point.</td>
+					 <td>The reference to the usage license of the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dct:conformsTo</td>
 					 <td>IRI</td>
 					 <td>1</td>
-					 <td>This property points to a profile that contains the specification of the FAIR Data Point's metadata schema (in <code>SHACL</code>).</td>
+					 <td>The specification of the metadata service's metadata schema (in <code>SHACL</code>).</td>
 				 </tr>
 				 <tr>
 					 <td></td>
@@ -361,21 +355,21 @@
 					 <td>dcat:contactPoint</td>
 					 <td><code>vCard</code></td>
 					 <td>0..*</td>
-					 <td>Relevant contact information for the FAIR Data Point.</td>
+					 <td>Relevant contact information for the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dcat:keyword</td>
 					 <td>String</td>
 					 <td>0..*</td>
-					 <td>Keyword(s) describing the FAIR Data Point.</td>
+					 <td>Keyword(s) describing the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
 					 <td>dcat:theme</td>
 					 <td><code>skos:subject</code></td>
 					 <td>0..*</td>
-					 <td>Main concept(s) related to the FAIR Data Point. In DCAT, the themes are similar to keywords in the sense of representing concepts that are related to the entity whereas keywords are natural language terms (for human consumption) and themes are concepts defined in ontologies/vocabularies, for machine consumption.</td>
+					 <td>Main category(ies) of the metadata service.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
@@ -431,7 +425,7 @@
 					 <td>fdp-o:uiLanguage</td>
 					 <td>IRI</td>
 					 <td>0..*</td>
-					 <td>The user interface language(s) of the FAIR Data Point, which is different from the <code>dcat:Resource</code> property of <code>dct:language</code> that relates to the language of the metadata record.</td>
+					 <td>The user interface language(s) of the metadata service, which is different from the <code>dcat:Resource</code> property of <code>dct:language</code> that relates to the language of the metadata record.</td>
 				 </tr>
 				 <tr>
 					 <td></td>
@@ -447,62 +441,31 @@
 					 <td>1</td>
 					 <td>The relation should point to an URI that contains the version of the FDP specifications for which this instance of the FDP conforms to.</td>
 				 </tr>
-			 </tbody>
-		 </table>
-         
-         <p>The navigation information for the FAIR Data Point metadata record is defined below:</p>
-         
-         <table class="propdef def">
-			 <caption>FAIR Data Point metadata's navigation information schema</caption>
-			 <thead>
-				 <tr>
-					 <th>Ontology</th>
-					 <th>Property name</th>
-					 <th>Datatype</th>
-					 <th>Cardinality</th>
-					 <th>Description</th>
-				 </tr>
-			 </thead>
-			 <tbody>
-				 <tr>
-					 <td>RDF</td>
-					 <td>rdf:type</td>
-					 <td>IRI</td>
-					 <td>1</td>
-					 <td>The type of the object described by the navigation information metadata segment which, in this case, is a Direct Container. The value <em class="rfc2119">MUST</em> be <code>ldp:DirectContainer</code>.</td>
-				 </tr>
-				 <tr>
-					 <td>DC terms</td>
-					 <td>dct:title</td>
-					 <td>String</td>
-					 <td>1..*</td>
-					 <td>Name of the container.</td>
-				 </tr>				 
 				 <tr>
 					 <td>LDP</td>
-					 <td>ldp:contains</td>
+					 <td>ldp:DirectContainer</td>
 					 <td><code>IRI</code></td>
-					 <td>1..*</td>
-					 <td>Identifier of the resources contained in this container. In this case, the identifiers of the catalogs available in this FAIR Data Point. The object of this property <em class="rdc2119">MUST</em> be an instance of <code>dcat:Catalog</code> or a sub-class of it.</td>
+					 <td>1</td>
+					 <td>Identifier of the metadata entry.</td>
 				 </tr>
 				 <tr>
-					 <td>LDP</td>
-					 <td>ldp:hasMemberRelation</td>
-					 <td><code>IRI</code></td>
+					 <td></td>
+					 <td>fdp-o:metadataIssued</td>
+					 <td><code>xsd:dateTime</code></td>
 					 <td>1</td>
-					 <td>This relation points to the URI of the custom relation/predicate used to relate the FAIR Data Point with its member catalogs. The object of this property <em class="rdc2119">MUST</em> be <code>fdp-o:metadataCatalog</code>.</td>
+					 <td>Creation data of the metadata entry.</td>
 				 </tr>
-                 <tr>
-					 <td>LDP</td>
-					 <td>ldp:membershipResource</td>
-					 <td><code>IRI</code></td>
+				 <tr>
+					 <td></td>
+					 <td>fdp-o:metadataModified</td>
+					 <td><code>xsd:dateTime</code></td>
 					 <td>1</td>
-					 <td>This relation points to the identifier of the FAIR Data Point that is related to this container. The object of this property <em class="rdc2119">MUST</em> be an instance of <code>fdp-o:FAIR Data Point</code>.</td>
+					 <td>Last modified data of the metadata entry.</td>
 				 </tr>
 			 </tbody>
 		 </table>
 		 
-		 <p>Below we have the FAIR Data Point metadata schema defined in <code>SHACL</code>.</p>
+		 <p>Below we have metadata service metadata schema defined in <code>SHACL</code>.</p>
 		 
 		 <div class="advisement" id="repository-shacl">
 			 <p>
@@ -517,7 +480,7 @@
 					 @prefix &nbsp;&nbsp;xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .<br/>
 					 <br/>
 					 :FAIRDataPointShape a sh:NodeShape ; <br/>
-					 &nbsp;&nbsp;sh:targetClass fdp-o:FAIRDataPoint ; <br/>
+					 &nbsp;&nbsp;sh:targetClass fdp-o:MetadataService ; <br/>
 					 &nbsp;&nbsp;sh:property [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path dct:title ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind sh:Literal ; <br/>
@@ -631,9 +594,8 @@
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:name "membership resource" ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:description "" ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:path ldp:membershipResource ; <br/>
-					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind fdp-o:FAIRDataPoint ; <br/>
+					 &nbsp;&nbsp;&nbsp;&nbsp;sh:nodeKind fdp-o:FairDataPoint ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:maxCount 1 ; <br/>
-                     &nbsp;&nbsp;&nbsp;&nbsp;sh:minCount 1 ; <br/>
 					 &nbsp;&nbsp;], [ <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:name "has member relation" ; <br/>
 					 &nbsp;&nbsp;&nbsp;&nbsp;sh:description "The predicate used in the metadata to relate the FAIR Data Point with its member catalogs." ; <br/>
@@ -909,12 +871,9 @@
 				 </code>
 			 </p>
 		 </div>
-		 <p>Since only the Metadata Service and Catalog metadata are mandatory in a FDP, from the catalog on, the metadata structure of the FDP will vary from deployment to deployment. However, as the FDP is most commonly used to provide metadata of datasets, FDP's reference implementation follows the DCAT model and bundles two more metadata schemas, namely, the Dataset and Distribution metadata schemas. If the administrator of the FDP wishes, he/she can just remove these two schemas and define custom schemas as long as they are subclasses of the DCAT Resource class.</p>
-         
-         <p>If other types of digital objects beside dcat:Dataset are used in the FAIR Data Point, the catalog metadata should contain the navigation information from the catalog to the digital object metadata, similar to the one defined between the FAIR Data Point and catalog presented in <a href="#repositorymetadata">section4.2.1</a>.</p>
+		 <p>Since only the Metadata Service and Catalog metadata are mandatory in a FDP, from the catalog on, the metadata structure of the FDP will vary from deployment to deployment. Since the FDP is mostly used to provide metadata of datasets, FDP's reference implementation follows the DCAT model and bundles two more metadata schemas, namely, the Dataset and Distribution metadata schemas. If the administrator of the FDP wishes, can just remove these two schemas and define custom schemas as long as they are subclasses of the DCAT Resource class.</p>
 		 
-         
-		 <!--<h3 id="resourceextensions"><span class="secno">4.3</span> Resource extensions</h3>-->
+		 <h3 id="resourceextensions"><span class="secno">4.3</span> Resource extensions</h3>
 		 
 		 <h2 id="api"><span class="secno">5</span> API</h2>
 
