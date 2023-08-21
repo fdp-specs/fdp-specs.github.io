@@ -1,0 +1,29 @@
+name: Specs Issue
+description: Create a report to help us improve the specification
+title: "Issue"
+labels: ["Issue"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this issue report! Please check [existing issues](https://github.com/fdp-specs/fdp-specs.github.io/issues) to avoid duplication.
+  - type: dropdown
+    id: browser
+    attributes:
+      label: What type(s) of issue is this?
+      multiple: true
+      options:
+        - Typo
+        - Inconsistency
+        - Ambiguity
+        - Incompleteness
+        - Other (specify in text)
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What is the issue?
+      description: Please describe what problem have you identified, where it is located and eventually how it could be fixed.
+    validations:
+      required: true
+    
