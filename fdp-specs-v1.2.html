@@ -130,9 +130,9 @@
 						 <a href="#catalogmetadata"><span class="secno">4.2.2</span>Catalog metadata</a>
 					 </li>
 				 </ol>
-				 <ol>
-					 <li><a href="#resourceextensions"><span class="secno">4.3</span>Resource extensions</a></li>
-				 </ol>
+<!--				 <ol>-->
+<!--					 <li><a href="#resourceextensions"><span class="secno">4.3</span>Resource extensions</a></li>-->
+<!--				 </ol>-->
 			 </ol>
 			 
 			 <li><a href="#api"><span class="secno">5</span>Application Programming Interface (API)</a></li>
@@ -279,7 +279,7 @@
 		 <p>In the metadata record, the FDP (<code>f:app</code>) has the relation <code>fdp-o:metadataCatalog</code> with its catalogs. This is the parent-child relation that should be followed by a client that wants to navigate the FDP metadata structure. To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a container, identified as <code>https://purl.org/fairdatapoint/app/catalog/</code>, which is the container for the <code>https://purl.org/fairdatapoint/app</code> (the object of the <code>ldp:membershipResource</code>) and it relates to its contained members using the relation <code>fdp-o:metadataCatalog</code>.</p>
 		 
 		 <h3 id="metadataschemas"><span class="secno">4.2</span> Metadata schemas</h3>
-		 
+
 		 <p>The FAIR Data Point supports user defined metadata schemas. This follows the acknowledgment that every application scenario may require different sets of properties to properly describe a given digital object. Moreover, the metadata records may have some relevant relationships that connect one to other. For instance, it seems straightforward to argue that a FAIR Data Point, as a metadata service, may have a number of catalogs that are used to organise the metadata records of other types of digital object, for instance, datasets.</p>
          
          <p>Therefore, to improve interoperability and provide a minimal level of predictability and organisation of different FDPs, the metadata structure of the FDP starts with the metadata of itself (as a metadata service), followed by the catalogs that it contains, and each catalog contains the metadata of given types of digital objects.</p>
@@ -917,13 +917,14 @@
 				 </code>
 			 </p>
 		 </div>
-		 <p>Since only the <code>MetadataService</code> and <code>Catalog</code> metadata are mandatory in an FDP, from the catalog on, the metadata structure of the FDP will vary from deployment to deployment. However, as the FDP is most commonly used to provide metadata of datasets, the FDP reference implementation follows the DCAT model and bundles two more metadata schemas, namely, the <code>Dataset</code> and <code>Distribution</code> metadata schemas. If the administrator of the FDP wishes, he/she can just remove these two schemas and define custom schemas as, long as they are subclasses of the DCAT <code>Resource</code> class.</p>
+
+		 <p>Since only the <code>MetadataService</code> and <code>Catalog</code> metadata are mandatory in an FDP, from the catalog on, the metadata structure of the FDP will vary from deployment to deployment. However, as the FDP is most commonly used to provide metadata of datasets, the FDP reference implementation follows the DCAT model and bundles two more metadata schemas, namely, the <code>Dataset</code> and <code>Distribution</code> metadata schemas. If the administrator of the FDP wishes, he/she can just remove these two schemas and define custom schemas, as long as they are subclasses of the DCAT <code>Resource</code> class.</p>
          
-         <p>If other types of digital objects beside <code>dcat:Dataset</code> are used in the FAIR Data Point, the catalog metadata should contain the navigation information from the catalog to the digital object metadata, similar to the one defined between the FAIR Data Point and catalog presented in <a href="#repositorymetadata">section4.2.1</a>.</p>
-		 
-         
+         <p>If other types of digital objects beside <code>dcat:Dataset</code> are used in the FAIR Data Point, the catalog metadata should contain the navigation information from the catalog to the digital object metadata, similar to that defined for the FAIR Data Point and catalog in <a href="#repositorymetadata">section4.2.1</a>.</p>
+
+
 		 <!--<h3 id="resourceextensions"><span class="secno">4.3</span> Resource extensions</h3>-->
-		 
+
 		 <h2 id="api"><span class="secno">5</span> API</h2>
 
 		 	<p>The API of the FDP follows the REST HATEOAS (Hypermedia as the Engine of Application State) guidelines by providing information so that the client is able to discover the available actions and access the resources it needs. Therefore, the client application is able to navigate through the API and its content from the information available from the content returned in each API call. This navigation information is provided through the Linked Data Platform (LDP) section as described in <a href="#navigationinformation">Section 4.1</a>.</p>
