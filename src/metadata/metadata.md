@@ -11,9 +11,12 @@ When a client interacts with a service, it should know what it is dealing with.
 Therefore, the FDP provides metadata about itself and, from that point on, the client can navigate its metadata content to discover the other metadata records.
 
 The FDP uses the W3C's Data Catalog Vocabulaire (DCAT) version 2 [[vocab-dcat-2 obsolete]] model as the basis for its metadata content.
-Figure 4.1 depicts the FDP extensions to the DCAT model.
+Figure 2 depicts the FDP extensions to the DCAT model.
 
-<!-- insert img -->
+<figure>
+    <img src="images/FDPmetadatadiagram.png">
+    <figcaption>FDP extensions to the DCAT model</figcaption>
+</figure>
 
 A DCAT `Resource` represents entities that can be described by a metadata record.
 Since `Resource` is defined as an abstract class, it is not intended to be used directly.
@@ -67,16 +70,391 @@ NOTE: In the FDP Ontology the `FAIR Data Point` is defined as a subclass of `Met
 
 ### FAIR Data Point metadata
 <table>
+    <caption>FAIR Data Point metadata schema</caption>
     <thead>
         <tr>
-            <td>Ontology</td>
-            <td>Property name</td>
-            <td>Datatype</td>
-            <td>Cardinality</td>
-            <td>Description</td>
+            <th>Ontology</th>
+            <th>Property name</th>
+            <th>Datatype</th>
+            <th>Cardinality</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
-        <tr></tr>
+        <tr>
+            <td>RDF</td>
+            <td>rdf:type</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The type of the object described by the metadata record, which, in this case, is a FAIR Data Point. The value <em class="rfc2119">MUST</em> be <code>fdp-o:FAIRDataPoint</code>.</td>
+        </tr>
+        <tr>
+            <td>DC terms</td>
+            <td>dct:title</td>
+            <td>String</td>
+            <td>1..*</td>
+            <td>Name of the FAIR Data Point with the language tag.</td>
+        </tr>               
+        <tr>
+            <td></td>
+            <td>dct:description</td>
+            <td>String</td>
+            <td>0..*</td>
+            <td>Description of the FAIR Data Point with the language tag.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:publisher</td>
+            <td><code>foaf:Agent</code></td>
+            <td>1..*</td>
+            <td>The entity or entities (person or organization) responsible for the FAIR Data Point.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:language</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td>The language(s) used in the metadata record.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:license</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The reference to the usage license of the FAIR Data Point.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:conformsTo</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>This property points to a profile that contains the specification of the FAIR Data Point's metadata schema (in <code>SHACL</code>).</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:rights</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:accessRights</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>DCAT</td>
+            <td>dcat:contactPoint</td>
+            <td><code>vCard</code></td>
+            <td>0..*</td>
+            <td>Relevant contact information for the FAIR Data Point.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcat:keyword</td>
+            <td>String</td>
+            <td>0..*</td>
+            <td>Keyword(s) describing the FAIR Data Point.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcat:theme</td>
+            <td><code>skos:subject</code></td>
+            <td>0..*</td>
+            <td>Main concept(s) related to the FAIR Data Point. DCAT themes are similar to keywords in the sense of representing concepts that are related to the entity. However, keywords are natural language terms, intended for human consumption, whereas themes are concepts defined in ontologies/vocabularies, for machine consumption.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcat:endPointURL</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The URL of the FDP API endpoint.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcat:endPointDescription</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td>The URL of the document describing the endpoint, its operations, services, parameters, etc. The description should be expressed in a machine-readable format, such as an OpenAPI or SmartAPI description.</td>
+        </tr>
+        <tr>
+            <td>FDP ontology</td>
+            <td>fdp-o:metadataIdentifier</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>Identifier of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:metadataIssued</td>
+            <td><code>xsd:dateTime</code></td>
+            <td>1</td>
+            <td>Creation data of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:metadataModified</td>
+            <td><code>xsd:dateTime</code></td>
+            <td>1</td>
+            <td>Last modified data of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:startDate</td>
+            <td>xsd:date</td>
+            <td>0..1</td>
+            <td>Date when the metadata service started its operations.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:endDate</td>
+            <td>xsd:date</td>
+            <td>0..1</td>
+            <td>Date when the metadata service ended its operations.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:uiLanguage</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td>The user interface language(s) of the FAIR Data Point, which is different from the <code>dcat:Resource</code> property of <code>dct:language</code> that relates to the language of the metadata record.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:hasSoftwareVersion</td>
+            <td>String</td>
+            <td>0..1</td>
+            <td>Version of the metadata service software that exposes the FDP behaviour.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:conformsToFdpSpec</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The relation should point to a URI that contains the version of the FDP specifications which this instance of the FDP conforms to.</td>
+        </tr>
     </tbody>
 </table>
+
+The navigation information for the FAIR Data Point metadata record is defined below:
+
+<table>
+    <caption>FAIR Data Point metadata's navigation information schema</caption>
+    <thead>
+        <tr>
+            <th>Ontology</th>
+            <th>Property name</th>
+            <th>Datatype</th>
+            <th>Cardinality</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RDF</td>
+            <td>rdf:type</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The type of the object described by the navigation information metadata segment which, in this case, is a Direct Container. The value <em class="rfc2119">MUST</em> be <code>ldp:DirectContainer</code>.</td>
+        </tr>
+        <tr>
+            <td>DC terms</td>
+            <td>dct:title</td>
+            <td>String</td>
+            <td>1..*</td>
+            <td>Name of the container.</td>
+        </tr>               
+        <tr>
+            <td>LDP</td>
+            <td>ldp:contains</td>
+            <td><code>IRI</code></td>
+            <td>1..*</td>
+            <td>Identifier of the resources contained in this container. In this case, the identifiers of the catalogs available in this FAIR Data Point. The object of this property <em class="rdc2119">MUST</em> be an instance of <code>dcat:Catalog</code> or a sub-class of it.</td>
+        </tr>
+        <tr>
+            <td>LDP</td>
+            <td>ldp:hasMemberRelation</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>This relation points to the URI of the custom relation/predicate used to relate the FAIR Data Point with its member catalogs. The object of this property <em class="rdc2119">MUST</em> be <code>fdp-o:metadataCatalog</code>.</td>
+        </tr>
+        <tr>
+            <td>LDP</td>
+            <td>ldp:membershipResource</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>This relation points to the identifier of the FAIR Data Point that is related to this container. The object of this property <em class="rdc2119">MUST</em> be an instance of <code>fdp-o:FAIRDataPoint</code>.</td>
+        </tr>
+    </tbody>
+</table>
+
+Below we have the FAIR Data Point metadata schema defined in `SHACL`.
+
+<pre class=include-code>
+path: src/metadata/shacl-fdp.ttl
+highlight: turtle
+</pre>
+
+### Catalog metadata
+<table>
+    <caption>Catalog metadata schema</caption>
+    <thead>
+        <tr>
+            <th>Ontology</th>
+            <th>Property name</th>
+            <th>Datatype</th>
+            <th>Cardinality</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RDF</td>
+            <td>rdf:type</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The type of the object described by the metadata record which, in this case, is a catalog. The value should be of type <code>dcat:Catalog</code>.</td>
+        </tr>
+        <tr>
+            <td>DC terms</td>
+            <td>dct:title</td>
+            <td>String</td>
+            <td>1..*</td>
+            <td>Name of the catalog with the language tag.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:hasVersion</td>
+            <td>String</td>
+            <td>0..1</td>
+            <td>Version of the catalog.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:description</td>
+            <td>String</td>
+            <td>0..*</td>
+            <td>Description of the catalog with the language tag.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:publisher</td>
+            <td><code>foaf:Agent</code></td>
+            <td>1..*</td>
+            <td>The entity or entities (person or organization) responsible for the catalog.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:language</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td>The language(s) used in the catalog.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:license</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The reference to the usage license of the catalog.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:issued</td>
+            <td>DateTime</td>
+            <td>0..1</td>
+            <td>The creation date of the catalog metadata record.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:modified</td>
+            <td>DateTime</td>
+            <td>0..1</td>
+            <td>The last modified date of the catalog metadata record.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:conformsTo</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The specification of the catalog metadata schema (in <code>SHACL</code>).</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:rights</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:accessRights</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:hasPart</td>
+            <td>IRI</td>
+            <td>1..*</td>
+            <td>The relation between the catalog and its items. This is the most general predicate for membership of a catalog. It is recommended to use more specific sub-properties such as <code>dcat:dataset</code>, <code>dcat:catalog</code>, <code>dcat:service</code>, or a custom sub-property.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:isPartOf</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>Relation to the parent metadata. In this case the metadata service metadata.</td>
+        </tr>
+        <tr>
+            <td>DCAT</td>
+            <td>dcat:themeTaxonomy</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>A knowledge organization system (KOS) used to classify the resources that are part of this catalog. It is recommended that the taxonomy is organized in a <code>skos:ConceptScheme</code>, <code>skos:Collection</code>, <code>owl:Ontology</code>, or similar.</td>
+        </tr>
+        <tr>
+            <td>FDP ontology</td>
+            <td>fdp-o:metadataIdentifier</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>Identifier of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:metadataIssued</td>
+            <td><code>xsd:dateTime</code></td>
+            <td>1</td>
+            <td>Creation date of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:metadataModified</td>
+            <td><code>xsd:dateTime</code></td>
+            <td>1</td>
+            <td>Last modified date of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td>FOAF</td>
+            <td>foaf:homepage</td>
+            <td>IRI</td>
+            <td>0..1</td>
+            <td>The URL of the catalog HTML version.</td>
+        </tr>
+    </tbody>
+</table>
+
+Below we have a catalog metadata schema defined in `SHACL`.
+
+<pre class=include-code>
+path: src/metadata/shacl-catalog.ttl
+highlight: turtle
+</pre>
+
+Since only the `MetadataService` and `Catalog` metadata are mandatory in an FDP, from the catalog on, the metadata structure of the FDP will vary from deployment to deployment.
+However, as the FDP is most commonly used to provide metadata of datasets, the FDP reference implementation follows the DCAT model and bundles two more metadata schemas, namely, the `Dataset` and `Distribution` metadata schemas.
+If the administrator of the FDP wishes, he/she can just remove these two schemas and define custom schemas, as long as they are subclasses of the DCAT Resource class.
+
+If other types of digital objects beside `dcat:Dataset` are used in the FAIR Data Point, the catalog metadata should contain the navigation information from the catalog to the digital object metadata, similar to that defined for the FAIR Data Point and catalog in [[#fair-data-point-metadata]].
