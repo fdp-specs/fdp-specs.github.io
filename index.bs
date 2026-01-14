@@ -10,6 +10,7 @@ Canonical URL: https://specs.fairdatapoint.org/
 Previous Version: https://specs.fairdatapoint.org/fdp-specs-v1.2.html
 Date: now
 Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
+Markup Shorthands: markdown yes
 </pre>
 
 <pre class=include>
@@ -18,4 +19,20 @@ path: src/introduction/intro.md
 
 <pre class=include>
 path: src/overall-description/overall.md
+</pre>
+
+<pre class=include>
+path: src/architecture/architecture.md
+</pre>
+
+<pre class=include>
+path: src/metadata/metadata.md
+</pre>
+
+<pre class=include>
+path: src/api/api.md
+</pre>
+
+<pre class=include>
+path: src/compliance/compliance.md
 </pre>

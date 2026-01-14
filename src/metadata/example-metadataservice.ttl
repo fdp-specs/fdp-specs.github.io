@@ -1,0 +1,30 @@
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix fdp-o: <https://w3id.org/fdp/fdp-o#> .
+@prefix ldp:   <http://www.w3.org/ns/ldp#> .
+<https://fairdatapoint.org/app> a fdp-o:FairDataPoint
+  dct:title "Demonstration FAIR Data Point";
+  dct:conformsTo <https://www.purl.org/fairtools/fdp/schema/0.1/fdpMetadata>;
+  dct:description "This FAIR Data Point deployment is used for demonstration of the application and to allow the navigation through its metadata content. The metadata presented here is also for demonstration purposes only and not necessarily describe properly their related resources.";
+  dct:hasVersion "1.0" ;
+  dct:license <http://rdflicense.appspot.com/rdflicense/cc-by-nc-nd4.0>;
+  dct:publisher <https://purl.org/fairdatapoint/app#publisher>;
+  fdp-o:metadataIdentifier <https://purl.org/fairdatapoint/app#identifier>;
+  fdp-o:metadataIssued "2020-05-29T09:55:08.580Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  fdp-o:metadataModified "2020-09-30T11:17:43.008Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  fdp-o:metadataCatalog
+    <https://purl.org/fairdatapoint/app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8>,
+    <https://purl.org/fairdatapoint/app/catalog/508d3c96-8106-49d2-910c-13706aca75e3> ,
+    <https://purl.org/fairdatapoint/app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af> ,
+    <https://purl.org/fairdatapoint/app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47> ,
+    <https://purl.org/fairdatapoint/app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1> .
+
+<https://purl.org/fairdatapoint/app/catalog/> a ldp:DirectContainer ;
+  dct:title "Catalogs" ;
+  ldp:membershipResource <https://fairdatapoint.org/app> ;
+  ldp:hasMemberRelation fdp-o:metadataCatalog ;
+  ldp:contains
+    <https://purl.org/fairdatapoint/app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8> ,
+    <https://purl.org/fairdatapoint/app/catalog/508d3c96-8106-49d2-910c-13706aca75e3> ,
+    <https://purl.org/fairdatapoint/app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af> ,
+    <https://purl.org/fairdatapoint/app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47> ,
+    <https://purl.org/fairdatapoint/app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1> .
