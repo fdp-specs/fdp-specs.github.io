@@ -15,7 +15,7 @@ Figure 4.1 depicts the FDP extensions to the DCAT model.
 
 <figure>
     <img src="images/FDPmetadatadiagram.png">
-    <figcaption>FDP extensions to the DCAT model</figcaption>
+    <figcaption class="no-marker">**Figure 4.1** FDP extensions to the DCAT model</figcaption>
 </figure>
 
 A DCAT `Resource` represents entities that can be described by a metadata record.

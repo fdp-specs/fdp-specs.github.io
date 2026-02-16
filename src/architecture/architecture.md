@@ -7,16 +7,16 @@ The FDP has the following goals:
 - Allow consumers/users to discover information about digital objects they are interested in.
 - Provide meaningful information about digital objects for both humans and software agents.
 
-Based on these goals, Figure 1 depicts the general architecture of an FDP.
+Based on these goals, Figure 3.1 depicts the general architecture of an FDP.
 In this architecture, the FDP exposes its functionality to the users through an application programming interface (API).
 In our reference implementation, besides the FDP itself we developed an FDP web client, which connects to the FDP API and allows human users to interact with the application through a web-based interface.
 
 <figure>
     <img alt="High-level architecture of the FAIR Data Point" src="images/FDParchitecture.png">
-    <figcaption>High-level architecture of the FAIR Data Point.</figcaption>
+    <figcaption class="no-marker">**Figure 3.1** High-level architecture of the FAIR Data Point.</figcaption>
 </figure>
 
-Figure 1 also depicts the FDP's internal components, namely the Metadata Provider, Access Control, Metadata Schemas and the RDF Metadata Store.
+Figure 3.1 also depicts the FDP's internal components, namely the Metadata Provider, Access Control, Metadata Schemas and the RDF Metadata Store.
 
 - **Metadata Provider** - responsible for the provisioning of the metadata content available in the FDP;
 - **Access Control** - reponsible for controlling the access to the metadata content. 
