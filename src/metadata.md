@@ -47,7 +47,7 @@ This information *MUST* be present in every metadata record that leads to other 
 
 The following RDF turtle code shows an example of a MetadataService metadata record with navigation information.
 <pre class=include-code>
-path: src/metadata/example-metadataservice.ttl
+path: src/rdf/example-metadataservice.ttl
 highlight: turtle
 </pre>
 
@@ -83,7 +83,7 @@ path: src/tables/table-navigation-information.html
 Below we have the FAIR Data Point metadata schema defined in `SHACL`.
 
 <pre class=include-code>
-path: src/metadata/shacl-fdp.ttl
+path: src/rdf/shacl-fdp.ttl
 highlight: turtle
 </pre>
 
@@ -96,7 +96,7 @@ path: src/tables/table-catalog-metadata.html
 Below we have a catalog metadata schema defined in `SHACL`.
 
 <pre class=include-code>
-path: src/metadata/shacl-catalog.ttl
+path: src/rdf/shacl-catalog.ttl
 highlight: turtle
 </pre>
 
