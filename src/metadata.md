@@ -14,7 +14,7 @@ The FDP uses the W3C's Data Catalog Vocabulaire (DCAT) version 2 [[!VOCAB-DCAT-2
 Figure 4.1 depicts the FDP extensions to the DCAT model.
 
 <figure>
-    <img src="images/FDPmetadatadiagram.png">
+    <img src="/images/FDPmetadatadiagram.png" alt="FDP metadata structure">
     <figcaption class="no-marker">**Figure 4.1** FDP extensions to the DCAT model</figcaption>
 </figure>
 
