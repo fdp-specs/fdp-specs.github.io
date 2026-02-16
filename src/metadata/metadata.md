@@ -10,7 +10,7 @@ The first object to provide metadata about is the FDP itself.
 When a client interacts with a service, it should know what it is dealing with.
 Therefore, the FDP provides metadata about itself and, from that point on, the client can navigate its metadata content to discover the other metadata records.
 
-The FDP uses the W3C's Data Catalog Vocabulaire (DCAT) version 2 [[vocab-dcat-2 obsolete]] model as the basis for its metadata content.
+The FDP uses the W3C's Data Catalog Vocabulaire (DCAT) version 2 [[!VOCAB-DCAT-2 obsolete]] model as the basis for its metadata content.
 Figure 2 depicts the FDP extensions to the DCAT model.
 
 <figure>
