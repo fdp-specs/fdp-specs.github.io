@@ -71,13 +71,13 @@ NOTE: In the FDP Ontology the `FAIR Data Point` is defined as a subclass of `Met
 ### FAIR Data Point metadata
 
 <pre class=include>
-path: src/metadata/tables/table-fdp-metadata.html
+path: src/tables/table-fdp-metadata.html
 </pre>
 
 The navigation information for the FAIR Data Point metadata record is defined below:
 
 <pre class=include>
-path: src/metadata/tables/table-navigation-information.html
+path: src/tables/table-navigation-information.html
 </pre>
 
 Below we have the FAIR Data Point metadata schema defined in `SHACL`.
@@ -90,7 +90,7 @@ highlight: turtle
 ### Catalog metadata
 
 <pre class=include>
-path: src/metadata/tables/table-catalog-metadata.html
+path: src/tables/table-catalog-metadata.html
 </pre>
 
 Below we have a catalog metadata schema defined in `SHACL`.
