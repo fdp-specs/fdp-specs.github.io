@@ -11,6 +11,7 @@ Previous Version: https://specs.fairdatapoint.org/fdp-specs-v1.2.html
 Date: now
 Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
 Markup Shorthands: markdown yes
+Boilerplate: conformance off
 </pre>
 
 <pre class=include>
