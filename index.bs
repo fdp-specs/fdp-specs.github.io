@@ -5,7 +5,8 @@ Status: LS
 Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
 Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
 Former Editor: Rajaram Kaliyaperumal, LUMC, https://www.lumc.nl/
-Abstract: This document provides specifications for the FAIR Data Point (FDP). The document includes architecture of the core component, metadata structure and schema, API and validation rules.
+Abstract: This document provides specifications for the FAIR Data Point (FDP).
+  The document includes architecture of the core component, metadata structure and schema, API and validation rules.
 Canonical URL: https://specs.fairdatapoint.org/
 Previous Version: https://specs.fairdatapoint.org/fdp-specs-v1.2.html
 Date: now
@@ -37,3 +38,7 @@ path: src/api/api.md
 <pre class=include>
 path: src/compliance/compliance.md
 </pre>
+
+<!-- hidden reference to [FDP] (todo: remove in next version) -->
+<span hidden>[[FDP]]</span>
+

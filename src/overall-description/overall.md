@@ -11,7 +11,8 @@ These stakeholders represent data producers, data consumers and providers of bot
 ## Usage Scenarios
 
 From the different semantic interoperability projects we have been and are involved in, the following usage scenarios have been identified.
-These usage scenarios do not represent one particular situation in a real project but depict data interoperability-related situations that we experienced in a number of different projects. From these scenarios we derived a set of requirements for metadata storage and accessibility infrastructure and they also guided the design and development of the solution.
+These usage scenarios do not represent one particular situation in a real project but depict data interoperability-related situations that we experienced in a number of different projects.
+From these scenarios we derived a set of requirements for metadata storage and accessibility infrastructure and they also guided the design and development of the solution.
 
 ### Data discovery
 

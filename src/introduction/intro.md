@@ -24,3 +24,12 @@ The purpose of this document is to specify the FAIR Data Point.
 This document includes requirements, architecture and design of the FDP as well as the metadata schemas used.
 This specification is primarily intended to be a reference for developers willing to add the FDP functionality into their existing applications or develop their own FAIR Data Point implementation.
 In order to better understand this specification, knowledge of RDF, LDP, SHACL and REST APIs is required. 
+
+## Document conventions
+
+Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC 2119.
+However, for readability, these words do not appear in all uppercase letters in this specification.
+
+All of the text of this specification is normative except sections explicitly marked as non-normative, examples, and notes. [[!RFC2119]]
+
