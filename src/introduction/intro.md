@@ -11,9 +11,9 @@ However, interoperability happens at different levels, including syntactical and
 The FDP aims at addressing these interoperability issues by providing:
 
 - A common interface to access information (metadata) about digital objects;
-- A common representation format [[RDF11-PRIMER]] to express the metadata in a machine-actionable manner;
+- A common representation format [[!RDF11-PRIMER]] to express the metadata in a machine-actionable manner;
 - A common approach to inform to clients how to navigate through the FDP's metadata structure;
-- A common representation format [[SHACL]] to represent each metadata record's schema.
+- A common representation format [[!SHACL]] to represent each metadata record's schema.
 
 The main goal of the FDP is to establish a common method for metadata provisioning and accessing and, as a consequence, provide to client applications a predictable way of accessing and interacting with metadata content.
 To fulfill this goal, this document contains a set of specifications to help developers to extend the functionality of their applications so these applications can also behave as a FAIR Data Point.
