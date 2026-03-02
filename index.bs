@@ -10,7 +10,7 @@ Former Editor: Rajaram Kaliyaperumal, LUMC, https://www.lumc.nl/
 Abstract: This document provides specifications for the FAIR Data Point (FDP).
   The document includes architecture of the core component, metadata structure and schema, API and validation rules.
 Canonical URL: https://specs.fairdatapoint.org/
-Previous Version: https://specs.fairdatapoint.org/old/fdp-specs-v1.2.html
+Previous Version: https://specs.fairdatapoint.org/v1.2/fdp-specs-v1.2.html
 Date: now
 Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
 Markup Shorthands: markdown yes
