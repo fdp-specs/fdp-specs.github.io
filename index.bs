@@ -18,27 +18,27 @@ Boilerplate: conformance off
 </pre>
 
 <pre class=include>
-path: src/introduction/intro.md
+path: src/intro.md
 </pre>
 
 <pre class=include>
-path: src/overall-description/overall.md
+path: src/overall.md
 </pre>
 
 <pre class=include>
-path: src/architecture/architecture.md
+path: src/architecture.md
 </pre>
 
 <pre class=include>
-path: src/metadata/metadata.md
+path: src/metadata.md
 </pre>
 
 <pre class=include>
-path: src/api/api.md
+path: src/api.md
 </pre>
 
 <pre class=include>
-path: src/compliance/compliance.md
+path: src/compliance.md
 </pre>
 
 <!-- hidden reference to [FDP] (todo: remove in next version) -->

@@ -14,7 +14,7 @@ The FDP uses the W3C's Data Catalog Vocabulaire (DCAT) version 2 [[!VOCAB-DCAT-2
 Figure 4.1 depicts the FDP extensions to the DCAT model.
 
 <figure>
-    <img src="images/FDPmetadatadiagram.png">
+    <img src="/images/FDPmetadatadiagram.png" alt="FDP metadata structure">
     <figcaption class="no-marker">**Figure 4.1** FDP extensions to the DCAT model</figcaption>
 </figure>
 
@@ -47,7 +47,7 @@ This information *MUST* be present in every metadata record that leads to other 
 
 The following RDF turtle code shows an example of a MetadataService metadata record with navigation information.
 <pre class=include-code>
-path: src/metadata/example-metadataservice.ttl
+path: src/rdf/example-metadataservice.ttl
 highlight: turtle
 </pre>
 
@@ -71,32 +71,32 @@ NOTE: In the FDP Ontology the `FAIR Data Point` is defined as a subclass of `Met
 ### FAIR Data Point metadata
 
 <pre class=include>
-path: src/metadata/tables/table-fdp-metadata.html
+path: src/tables/table-fdp-metadata.html
 </pre>
 
 The navigation information for the FAIR Data Point metadata record is defined below:
 
 <pre class=include>
-path: src/metadata/tables/table-navigation-information.html
+path: src/tables/table-navigation-information.html
 </pre>
 
 Below we have the FAIR Data Point metadata schema defined in `SHACL`.
 
 <pre class=include-code>
-path: src/metadata/shacl-fdp.ttl
+path: src/rdf/shacl-fdp.ttl
 highlight: turtle
 </pre>
 
 ### Catalog metadata
 
 <pre class=include>
-path: src/metadata/tables/table-catalog-metadata.html
+path: src/tables/table-catalog-metadata.html
 </pre>
 
 Below we have a catalog metadata schema defined in `SHACL`.
 
 <pre class=include-code>
-path: src/metadata/shacl-catalog.ttl
+path: src/rdf/shacl-catalog.ttl
 highlight: turtle
 </pre>
 
