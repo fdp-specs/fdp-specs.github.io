@@ -12,7 +12,7 @@ In this architecture, the FDP exposes its functionality to the users through an 
 In our reference implementation, besides the FDP itself we developed an FDP web client, which connects to the FDP API and allows human users to interact with the application through a web-based interface.
 
 <figure>
-    <img alt="High-level architecture of the FAIR Data Point" src="/images/FDParchitecture.png">
+    <img alt="High-level architecture of the FAIR Data Point" src="images/FDParchitecture.png">
     <figcaption class="no-marker">**Figure 3.1** High-level architecture of the FAIR Data Point.</figcaption>
 </figure>
 
