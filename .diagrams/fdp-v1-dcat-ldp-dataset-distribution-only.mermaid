@@ -1,0 +1,31 @@
+flowchart TD
+
+%% classes
+    ldpdc([ldp:DirectContainer])
+    dcatdat([dcat:Dataset])
+    dcatdis([dcat:Distribution])
+%% dcat resources
+    mydat([myfdp:dataset/297f7d44-...])
+    mydis([myfdp:distribution/da59fd0c-...])
+%% ldp containers
+    mydatcon(["myfdp:dataset/"])
+    mydiscon(["myfdp:distribution/"])
+
+    subgraph DCAT
+    %% dataset
+        mydat -- is a --> dcatdat
+        mydat -- dcat:distribution --> mydis
+    %% distribution
+        mydis -- is a --> dcatdis
+        mydis -- dc:isPartOf --> mydat
+    end
+
+    subgraph LDP
+    %% dataset
+        mydatcon -- is a --> ldpdc
+        mydatcon -- ldp:contains ---> mydat
+    %% distribution
+        mydiscon -- is a --> ldpdc
+        mydiscon -- ldp:membershipResource ---> mydat
+        mydiscon -- ldp:contains ---> mydis
+    end
