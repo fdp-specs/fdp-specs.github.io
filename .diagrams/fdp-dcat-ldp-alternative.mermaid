@@ -1,0 +1,42 @@
+flowchart TD
+%% classes
+    ldpdc([ldp:DirectContainer])
+    dcatser([dcat:DataService])
+    dcatcat([dcat:Catalog])
+    dcatdat([dcat:Dataset])
+    dcatdis([dcat:Distribution])
+%% these dcat resources are ldp containers
+    myfdp(["/fdp/"])
+    mycat(["/fdp/catalog-1/"])
+    mydat(["/fdp/catalog-1/dataset-1/"])
+    mydis(["/fdp/catalog-1/dataset-1/distribution-1/"])
+
+%% these dcat resources are NOT ldp containers (or perhaps ldp read-only containers?)
+    mycats(["/catalogs/"])
+    mydats(["/datasets/"])
+    mydiss(["/distributions/"])
+
+
+    myfdp -- is a --> dcatser
+    myfdp -- is a --> ldpdc
+    myfdp -- dcat:servesDataset --> mycat
+    myfdp -- ldp:contains --> mycat
+    mycat -- is a --> dcatcat
+    mycat -- is a --> ldpdc
+    mycat -- dcat:dataset --> mydat
+    mycat -- ldp:contains --> mydat
+    mycat -- ldp:membershipResource ---> myfdp
+    mydat -- is a --> dcatdat
+    mydat -- is a --> ldpdc
+    mydat -- dcat:distribution --> mydis
+    mydat -- ldp:contains --> mydis
+    mydat -- ldp:membershipResource ---> mycat
+    mydis -- is a --> ldpdc
+    mydis -- is a --> dcatdis
+    mydis -- ldp:membershipResource ---> mydat
+%%    mycats -- dcat:distribution --> mycat
+    mycats -- is a --> dcatcat
+    mydats -- is a --> dcatcat
+%%    mydats -- dcat:distribution --> mydat
+%%    mydiss -- dcat:distribution --> mydis
+    mydiss -- is a --> dcatcat
