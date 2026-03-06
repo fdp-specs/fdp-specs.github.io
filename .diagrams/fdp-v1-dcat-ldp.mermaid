@@ -1,0 +1,55 @@
+flowchart TD
+
+%% classes
+    ldpdc([ldp:DirectContainer])
+    dcatser([dcat:DataService])
+    dcatcat([dcat:Catalog])
+    dcatdat([dcat:Dataset])
+    dcatdis([dcat:Distribution])
+%% dcat resources
+    myfdp([myfdp:])
+    mycat([myfdp:catalog/d4e80fd5-...])
+    mydat([myfdp:dataset/297f7d44-...])
+    mydis([myfdp:distribution/da59fd0c-...])
+%% ldp containers
+    mycatcon(["myfdp:catalog/"])
+    mydatcon(["myfdp:dataset/"])
+    mydiscon(["myfdp:distribution/"])
+
+    subgraph DCAT
+    %% fdp
+        myfdp -- is a --> dcatser
+        myfdp -- fdpo:metadataCatalog --> mycat
+    %% catalog
+        mycat -- is a --> dcatcat
+        mycat -- dc:isPartOf --> myfdp
+        mycat -- dcat:dataset --> mydat
+    %% dataset
+        mydat -- is a --> dcatdat
+        mydat -- dc:isPartOf --> mycat
+        mydat -- dcat:distribution --> mydis
+    %% distribution
+        mydis -- is a --> dcatdis
+        mydis -- dc:isPartOf --> mydat
+
+    %% https://www.w3.org/TR/vocab-dcat-3/#inverse-properties
+    %% https://www.w3.org/TR/vocab-dcat-3/#Property:resource_relation
+    %% https://www.w3.org/TR/vocab-dcat-3/#qualified-relationship
+    %% https://www.w3.org/TR/vocab-dcat-3/#Property:resource_is_referenced_by
+
+    end
+
+    subgraph LDP
+    %% catalog
+        mycatcon -- ldp:contains ---> mycat
+        mycatcon -- ldp:membershipResource ---> myfdp
+        mycatcon -- is a --> ldpdc
+    %% dataset
+        mydatcon -- is a --> ldpdc
+        mydatcon -- ldp:membershipResource ---> mycat
+        mydatcon -- ldp:contains ---> mydat
+    %% distribution
+        mydiscon -- is a --> ldpdc
+        mydiscon -- ldp:membershipResource ---> mydat
+        mydiscon -- ldp:contains ---> mydis
+    end
