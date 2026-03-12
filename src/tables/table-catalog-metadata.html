@@ -1,0 +1,160 @@
+<table class="def">
+    <caption>Catalog metadata schema</caption>
+    <thead>
+        <tr>
+            <th>Ontology</th>
+            <th>Property name</th>
+            <th>Datatype</th>
+            <th>Cardinality</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RDF</td>
+            <td>rdf:type</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>
+                The type of the object described by the metadata record which, in this case, is a catalog.
+                The value should be of type <code>dcat:Catalog</code>.
+            </td>
+        </tr>
+        <tr>
+            <td>DC terms</td>
+            <td>dct:title</td>
+            <td>String</td>
+            <td>1..*</td>
+            <td>Name of the catalog with the language tag.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:hasVersion</td>
+            <td>String</td>
+            <td>0..1</td>
+            <td>Version of the catalog.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:description</td>
+            <td>String</td>
+            <td>0..*</td>
+            <td>Description of the catalog with the language tag.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:publisher</td>
+            <td><code>foaf:Agent</code></td>
+            <td>1..*</td>
+            <td>The entity or entities (person or organization) responsible for the catalog.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:language</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td>The language(s) used in the catalog.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:license</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The reference to the usage license of the catalog.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:issued</td>
+            <td>DateTime</td>
+            <td>0..1</td>
+            <td>The creation date of the catalog metadata record.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:modified</td>
+            <td>DateTime</td>
+            <td>0..1</td>
+            <td>The last modified date of the catalog metadata record.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:conformsTo</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The specification of the catalog metadata schema (in <code>SHACL</code>).</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:rights</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:accessRights</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:hasPart</td>
+            <td>IRI</td>
+            <td>1..*</td>
+            <td>
+                The relation between the catalog and its items.
+                This is the most general predicate for membership of a catalog.
+                It is recommended to use more specific sub-properties such as <code>dcat:dataset</code>, <code>dcat:catalog</code>, <code>dcat:service</code>, or a custom sub-property.
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dct:isPartOf</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>
+                Relation to the parent metadata.
+                In this case the metadata service metadata.
+            </td>
+        </tr>
+        <tr>
+            <td>DCAT</td>
+            <td>dcat:themeTaxonomy</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>
+                A knowledge organization system (KOS) used to classify the resources that are part of this catalog.
+                It is recommended that the taxonomy is organized in a <code>skos:ConceptScheme</code>, <code>skos:Collection</code>, <code>owl:Ontology</code>, or similar.
+            </td>
+        </tr>
+        <tr>
+            <td>FDP ontology</td>
+            <td>fdp-o:metadataIdentifier</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>Identifier of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:metadataIssued</td>
+            <td><code>xsd:dateTime</code></td>
+            <td>1</td>
+            <td>Creation date of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:metadataModified</td>
+            <td><code>xsd:dateTime</code></td>
+            <td>1</td>
+            <td>Last modified date of the metadata entry.</td>
+        </tr>
+        <tr>
+            <td>FOAF</td>
+            <td>foaf:homepage</td>
+            <td>IRI</td>
+            <td>0..1</td>
+            <td>The URL of the catalog HTML version.</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,62 @@
+<table class="def">
+    <caption>FAIR Data Point metadata's navigation information schema</caption>
+    <thead>
+        <tr>
+            <th>Ontology</th>
+            <th>Property name</th>
+            <th>Datatype</th>
+            <th>Cardinality</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RDF</td>
+            <td>rdf:type</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>
+                The type of the object described by the navigation information metadata segment which, in this case, is a Direct Container.
+                The value <em class="rfc2119">MUST</em> be <code>ldp:DirectContainer</code>.
+            </td>
+        </tr>
+        <tr>
+            <td>DC terms</td>
+            <td>dct:title</td>
+            <td>String</td>
+            <td>1..*</td>
+            <td>Name of the container.</td>
+        </tr>
+        <tr>
+            <td>LDP</td>
+            <td>ldp:contains</td>
+            <td><code>IRI</code></td>
+            <td>1..*</td>
+            <td>
+                Identifier of the resources contained in this container.
+                In this case, the identifiers of the catalogs available in this FAIR Data Point.
+                The object of this property <em class="rdc2119">MUST</em> be an instance of <code>dcat:Catalog</code> or a sub-class of it.
+            </td>
+        </tr>
+        <tr>
+            <td>LDP</td>
+            <td>ldp:hasMemberRelation</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>
+                This relation points to the URI of the custom relation/predicate used to relate the FAIR Data Point with its member catalogs.
+                The object of this property <em class="rdc2119">MUST</em> be <code>fdp-o:metadataCatalog</code>.
+            </td>
+        </tr>
+        <tr>
+            <td>LDP</td>
+            <td>ldp:membershipResource</td>
+            <td><code>IRI</code></td>
+            <td>1</td>
+            <td>
+                This relation points to the identifier of the FAIR Data Point that is related to this container.
+                The object of this property <em class="rdc2119">MUST</em> be an instance of <code>fdp-o:FAIRDataPoint</code>.
+            </td>
+        </tr>
+    </tbody>
+</table>

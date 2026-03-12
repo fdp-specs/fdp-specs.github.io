@@ -1,0 +1,12 @@
+[project]
+name = "fdp-specs"
+version = "1.2.0"
+description = "Repository for the specifications of the FAIR Data Point."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "bikeshed>=7.0.7",
+]

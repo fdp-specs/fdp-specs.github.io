@@ -1,0 +1,46 @@
+<pre class=metadata>
+Title: FAIR Data Point
+Shortname: fdp
+Org: W3C
+Status: UD
+ED: https://specs.fairdatapoint.org/
+Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
+Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
+Former Editor: Rajaram Kaliyaperumal, LUMC, https://www.lumc.nl/
+Abstract: This document provides specifications for the FAIR Data Point (FDP).
+  The document includes architecture of the core component, metadata structure and schema, API and validation rules.
+Canonical URL: https://specs.fairdatapoint.org/
+Previous Version: https://specs.fairdatapoint.org/v1.2/fdp-specs-v1.2.html
+Date: now
+Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
+Markup Shorthands: markdown yes
+Boilerplate: conformance off
+</pre>
+
+<pre class=include>
+path: src/intro.md
+</pre>
+
+<pre class=include>
+path: src/overall.md
+</pre>
+
+<pre class=include>
+path: src/architecture.md
+</pre>
+
+<pre class=include>
+path: src/metadata.md
+</pre>
+
+<pre class=include>
+path: src/api.md
+</pre>
+
+<pre class=include>
+path: src/compliance.md
+</pre>
+
+<!-- hidden reference to [FDP] (todo: remove in next version) -->
+<span hidden>[[FDP]]</span>
+
