@@ -41,8 +41,8 @@ flowchart TD
 
     subgraph LDP
     %% catalog
-        mycatcon -- ldp:contains ---> mycat
         mycatcon -- ldp:membershipResource ---> myfdp
+        mycatcon -- ldp:contains ---> mycat
         mycatcon -- is a --> ldpdc
     %% dataset
         mydatcon -- is a --> ldpdc
