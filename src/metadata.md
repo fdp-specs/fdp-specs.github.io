@@ -2,9 +2,10 @@
 
 The FAIR principles give special attention to metadata.
 In fact, all principles relate to metadata in at least one aspect.
-The most common definition for metadata is that it is data that provides information about other data. Here we extend this notion to define metadata as information about other entitites. This information includes descriptions of the origin, structure, provenance, rights and obligations, or other characteristics of the described entities.
-The FAIR Data Point's metadata approach follows this idea of supporting the creation and publication of metadata about different types of entities.
-In the seminal paper presenting the FAIR principles [[FAIR-principles]], we have that computational agents should "*be capable of autonomously and appropriately acting when faced with the wide range of types, formats, and access-mechanisms/protocols that will be encountered during their self-guided exploration of the global data ecosystem*". This requirement indicates that, to properly follow the FAIR principles, the FAIR Data Point not only supports the publication of FAIR-compliant metadata, but the service itself should follow the principles.
+The most common definition for metadata is that it is data that provides information about other data. Here we extend this notion to define metadata as data about other entitites. This metadata includes descriptions of the origin, structure, provenance, rights and obligations, or other characteristics of the described entities.
+
+The FAIR Data Point's metadata approach follows this approach of supporting the creation and publication of metadata about different types of entities.
+In the seminal paper presenting the FAIR principles [[FAIR-principles]], we have that computational agents should "*be capable of autonomously and appropriately acting when faced with the wide range of types, formats, and access-mechanisms/protocols that will be encountered during their self-guided exploration of the global data ecosystem*". This requirement indicates that, to properly follow the FAIR principles, the FAIR Data Point not only supports the publication of FAIR-compliant metadata about datasets, but also about the service itself as it should also follow the principles.
 
 Consequently, the first entity to provide metadata about is the FDP itself.
 When a client interacts with a service, it should know what it is dealing with.
@@ -17,15 +18,17 @@ Figure 4.1 depicts the FDP extensions to the DCAT model.
     <img src="images/FDPmetadatadiagram.png" alt="FDP metadata structure">
     <figcaption class="no-marker">**Figure 4.1** FDP extensions to the DCAT model</figcaption>
 </figure>
+[!WARNING]
+Update figure with DCAT v3 properties e classes.
 
 A DCAT `Resource` represents entities that can be described by a metadata record.
 Since `Resource` is defined as an abstract class, it is not intended to be used directly.
-We should use one of its subclasses, such as `Dataset` or `Data Service` instead.
+We should use one of its subclasses, such as `Dataset` or `Data Service` instead, or define a custom sub-class.
 `Dataset` represents a collection of data while `Data Service` represents a service, accessible through an interface (API), that serves datasets.
 `Catalog`, a subclass of `Dataset`, represents aggregations of metadata records about digital objects.
 For instance, a `Catalog` may contain references to the metadata records of `Datasets`.
 
-The FDP extends the DCAT model by adding the concept of a `FAIRDataPoint` as a specific type of data service that serves metadata catalogs and metadata records.
+The FDP extends the DCAT model by adding the concept of a `FAIRDataPoint` as a specific sub class of data service that serves metadata catalogs and metadata records.
 The DCAT extensions and other FDP-specific concepts and relations are defined in the FDP ontology (using the namespace prefix `fdp-o`).
 In the FDP ontology, the FAIR Data Point is represented by a sub-class of the concept of `MetadataService`.
 Figure 4.1 only depicts the properties that are not already inherited from `Data Service` and `Resource`.
@@ -37,9 +40,9 @@ Advisement: An implementation of the FDP specifications *MUST* minimally provide
 
 ## Navigation information
 
-Since the FDP supports the provisioning of metadata about different types of digital objects and the relations among these metadata records can be customized, each FDP installation may have a different structure.
-For instance, the FDP reference implementation is pre-loaded with the structure of metadata about `FAIR Data Point` → `Catalog` → `Dataset` → `Distribution`.
-Another FDP could have a different metadata structure, e.g., `FAIR Data Point` → `Catalog` → `Semantic Artefact`.
+Since the FDP supports the provisioning of metadata describing different types of entities and the relations among these metadata records can be customized, each FDP installation may have a different metadata structure.
+For instance, the FDP-RI is pre-loaded with the structure of metadata about `FAIR Data Point` (as a specific type of `Metadata Service`) → `Catalog` → `Dataset` → `Distribution`.
+Another FDP could have a different metadata structure, e.g., a FDP serving metadata about ontologies, taxonomies, vocabularies, etc., could have the metadata structure of `FAIR Data Point` → `Catalog` → `Semantic Artefact`.
 With this flexibility, a client application would not know how to navigate the FDP metadata content unless it follows all URIs in the metadata, which may be extensive.
 Therefore, the FDP *MUST* describe its own navigation structure.
 This navigation information *MUST* be provided by using the Linked Data Platform (LDP) containment predicates `ldp:contains` or `ldp:hasMemberRelation`.
@@ -51,9 +54,9 @@ path: src/rdf/example-metadataservice.ttl
 highlight: turtle
 </pre>
 
-In the metadata record, the FDP (`f:app`) has the relation `fdp-o:metadataCatalog` with its catalogs.
+In this example metadata record, the FDP (`f:app`) has the relation `fdp-o:metadataCatalog` with its catalogs.
 This is the parent-child relation that should be followed by a client that wants to navigate the FDP metadata structure.
-To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a container, identified as `https://purl.org/fairdatapoint/app/catalog/`, which is the container for the `https://purl.org/fairdatapoint/app` (the object of the `ldp:membershipResource`) and it relates to its contained members using the relation `fdp-o:metadataCatalog`.
+To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a LDP Container, identified as `https://purl.org/fairdatapoint/app/catalog/`, which is the container for the `https://purl.org/fairdatapoint/app` (the object of the `ldp:membershipResource`) and it relates to its contained members using the relation `fdp-o:metadataCatalog`.
 
 ## Metadata schemas
 

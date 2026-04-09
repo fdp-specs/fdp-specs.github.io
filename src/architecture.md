@@ -2,15 +2,18 @@
 
 *This section in non-normative.*
 
-From the usage scenarios, we have identified a need for a metadata provisioning infrastructure that we call FAIR Data Point (FDP).
-The FDP has the following goals:
+From the usage scenarios, we have identified the following requirements for a need for a metadata provisioning infrastructure that we call FAIR Data Point (FDP).
+The FDP has the following goals: 
 
 - Allow owners/creators/publishers to expose the metadata of their digital objects in a way that follows the FAIR Data Principles.
 - Allow consumers/users to discover information about digital objects they are interested in.
 - Provide meaningful information about digital objects for both humans and software agents.
 
+[!WARNING]
+Add goals for writting records and schemas
+
 Based on these goals, Figure 3.1 depicts the general architecture of an FDP.
-In this architecture, the FDP exposes its functionality to the users through an application programming interface (API).
+In this architecture, the FDP exposes its functionality to the users through an application programming interface (API). 
 In our reference implementation, besides the FDP itself we developed an FDP web client, which connects to the FDP API and allows human users to interact with the application through a web-based interface.
 
 <figure>
@@ -18,7 +21,7 @@ In our reference implementation, besides the FDP itself we developed an FDP web 
     <figcaption class="no-marker">**Figure 3.1** High-level architecture of the FAIR Data Point.</figcaption>
 </figure>
 
-Figure 3.1 also depicts the FDP's internal components, namely the Metadata Provider, Access Control, Metadata Schemas and the RDF Metadata Store.
+Figure 3.1 also depicts the FDP-RI's internal components, namely the Metadata Provider, Access Control, Metadata Schemas and the RDF Metadata Store. Besides the API, the other architectural components depicted in the figure are for illustrative purposes only. They reflect the engineering decisions we took in our FDP Reference Implementation (FDP-RI). Other implementations of this scpeficiation can have a different internal setup.
 
 - **Metadata Provider** - responsible for the provisioning of the metadata content available in the FDP;
 - **Access Control** - reponsible for controlling the access to the metadata content. 
