@@ -25,9 +25,9 @@ path: src/intro.md
 path: src/overall.md
 </pre>
 
-<pre class=include>
-path: src/architecture.md
-</pre>
+<!-- <pre class=include> -->
+<!-- path: src/architecture.md # This will be included in the reference implementation documentation -->
+<!-- </pre> -->
 
 <pre class=include>
 path: src/metadata.md

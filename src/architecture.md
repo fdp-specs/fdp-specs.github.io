@@ -1,5 +1,7 @@
 # Architecture
 
+*This section in non-normative.*
+
 From the usage scenarios, we have identified a need for a metadata provisioning infrastructure that we call FAIR Data Point (FDP).
 The FDP has the following goals:
 

@@ -1,5 +1,7 @@
 # Overall Description
 
+*This section is non-normative.*
+
 The basis for any infrastructure is its suitability to the issues it should address.
 Therefore, the first step is to identify these issues.
 One common approach for this identification is to investigate current practices that could benefit from a supporting infrastructure.
@@ -32,10 +34,10 @@ In order to facilitate the usage of metadata, the method with which the metadata
 ### (Meta)Data publication
 
 An organization is running a project in which data is being created.
-The data will be analyzed during the project but may also be useful for other users.
+The data will be analyzed during the project but, they may also be useful for other users.
 The group would therefore like to publish the data in a way that allows potential users to retrieve information about the datasets (metadata), allows data search engines to index the metadata, and allows users to acces the data.
 Some of the produced datasets have an open license but others have more restrictive licenses.
-All these metadata should be available so that potential data users would have enough information to assess whether the data described in the metadata fits their needs.
+All these metadata should be available so that potential data users would have enough information to assess whether the dataset described in the metadata fits their needs.
 
 ### Publishing other types of content
 

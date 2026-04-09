@@ -2,15 +2,15 @@
 
 The FAIR principles give special attention to metadata.
 In fact, all principles relate to metadata in at least one aspect.
-Metadata can be defined as data that provides information about other data.
-Here we extend this notion to define metadata as information about other digital objects.
-This information includes descriptions of the origin, structure, provenance, rights and obligations, or other characteristics of digital objects.
-The FAIR Data Point's metadata approach follows this idea of supporting the creation of metadata about different types of digital objects.
-The first object to provide metadata about is the FDP itself.
+The most common definition for metadata is that it is data that provides information about other data. Here we extend this notion to define metadata as information about other entitites. This information includes descriptions of the origin, structure, provenance, rights and obligations, or other characteristics of the described entities.
+The FAIR Data Point's metadata approach follows this idea of supporting the creation and publication of metadata about different types of entities.
+In the seminal paper presenting the FAIR principles [[FAIR-principles]], we have that computational agents should "*be capable of autonomously and appropriately acting when faced with the wide range of types, formats, and access-mechanisms/protocols that will be encountered during their self-guided exploration of the global data ecosystem*". This requirement indicates that, to properly follow the FAIR principles, the FAIR Data Point not only supports the publication of FAIR-compliant metadata, but the service itself should follow the principles.
+
+Consequently, the first entity to provide metadata about is the FDP itself.
 When a client interacts with a service, it should know what it is dealing with.
 Therefore, the FDP provides metadata about itself and, from that point on, the client can navigate its metadata content to discover the other metadata records.
 
-The FDP uses the W3C's Data Catalog Vocabulaire (DCAT) version 2 [[!VOCAB-DCAT-2 obsolete]] model as the basis for its metadata content.
+The FDP uses the W3C's Data Catalog Vocabulaire (DCAT) model as the basis for its metadata content. This version of the FDP specification adopts the W3C's DCAT version 3 [[!VOCAB-DCAT-3]].
 Figure 4.1 depicts the FDP extensions to the DCAT model.
 
 <figure>

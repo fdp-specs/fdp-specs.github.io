@@ -1,16 +1,18 @@
 # Introduction
 
+*This section in non-normative.*
+
 FAIR Data Point (FDP) is a metadata service that provides access to metadata following the FAIR principles [[FAIR-principles]].
 FDP uses a REST API for creating, storing and serving FAIR metadata.
 FDP is software that, from one side, allows digital objects owners/publishers to expose the metadata of their digital objects in a FAIR manner and, from the other side, allows digital objects' consumers to discover information (metadata) about offered digital objects.
-Commonly, the FAIR Data Point is used to expose metadata of datasets but metadata of other types of digital objects can also be exposed such as ontologies, repositories, analysis algorithms, websites, etc.
+Commonly, the FAIR Data Point is used to expose metadata of datasets but metadata of other types of entities can also be exposed such as ontologies, repositories, analysis algorithms, websites, and even non digital entities can be described with metadata such as organizations, people, etc.
 
 Many different repositories and their digital objects should interoperate in order to allow increasingly complex questions to be answered.
-These repositories and their content should be interoperable in order for client applications to autonomously (re)use them.
+These repositories and their content should be interoperable in order for client applications to autonomously interact with them and (re)use their content.
 However, interoperability happens at different levels, including syntactical and semantical interoperabilities.
 The FDP aims at addressing these interoperability issues by providing:
 
-- A common interface to access information (metadata) about digital objects;
+- A common interface to access information (metadata) about (digital) entities;
 - A common representation format [[!RDF11-PRIMER]] to express the metadata in a machine-actionable manner;
 - A common approach to inform to clients how to navigate through the FDP's metadata structure;
 - A common representation format [[!SHACL]] to represent each metadata record's schema.
