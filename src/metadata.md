@@ -33,7 +33,7 @@ The DCAT extensions and other FDP-specific concepts and relations are defined in
 In the FDP ontology, the FAIR Data Point is represented by a sub-class of the concept of `MetadataService`.
 Figure 4.1 only depicts the properties that are not already inherited from `Data Service` and `Resource`.
 
-With the definition of the FDP as a type of metadata service that serves metadata catalogs, the relation between the `MetadataService` and `dcat:Catalog` is represented by the predicate `fdp-o:metadataCatalog`.
+With the definition of the FDP as a spaecialization of metadata service (which is a specialiazation) that serves metadata catalogs, the relation between the `MetadataService` and `dcat:Catalog` is represented by the predicate `fdp-o:metadataCatalog`.
 Following the DCAT approach of providing qualified relations between resources, the `fdp-o:metadataCatalog` is defined as a sub-property of `dcat:Relationship` having `fdp-o:MetadataService` as its domain and `dcat:Catalog` as its range.
 
 Advisement: An implementation of the FDP specifications *MUST* minimally provide the metadata records of the `MetadataService`, and the metadata records of the other types of resources *MUST* be grouped in at least one `Catalog`.
@@ -41,12 +41,12 @@ Advisement: An implementation of the FDP specifications *MUST* minimally provide
 ## Navigation information
 
 Since the FDP supports the provisioning of metadata describing different types of entities and the relations among these metadata records can be customized, each FDP installation may have a different metadata structure.
-For instance, the FDP-RI is pre-loaded with the structure of metadata about `FAIR Data Point` (as a specific type of `Metadata Service`) → `Catalog` → `Dataset` → `Distribution`.
+For instance, the FDP-RI is pre-loaded with the structure of metadata about `FAIR Data Point` (as a specialization of `Metadata Service`) → `Catalog` → `Dataset` → `Distribution`.
 Another FDP could have a different metadata structure, e.g., a FDP serving metadata about ontologies, taxonomies, vocabularies, etc., could have the metadata structure of `FAIR Data Point` → `Catalog` → `Semantic Artefact`.
-With this flexibility, a client application would not know how to navigate the FDP metadata content unless it follows all URIs in the metadata, which may be extensive.
+With this flexibility, a client application would not have a predictable pattern to navigate the FDP's metadata content unless it follows all URIs in the metadata, which may be extensive.
 Therefore, the FDP *MUST* describe its own navigation structure.
 This navigation information *MUST* be provided by using the Linked Data Platform (LDP) containment predicates `ldp:contains` or `ldp:hasMemberRelation`.
-This information *MUST* be present in every metadata record that leads to other metadata records.
+This information *MUST* be present in every metadata record that leads to other metadata records. Therefore, an eventual *leaf* element would not have a LDP block because one cannot navigate further down the structure.
 
 The following RDF turtle code shows an example of a MetadataService metadata record with navigation information.
 <pre class=include-code>
@@ -54,9 +54,9 @@ path: src/rdf/example-metadataservice.ttl
 highlight: turtle
 </pre>
 
-In this example metadata record, the FDP (`f:app`) has the relation `fdp-o:metadataCatalog` with its catalogs.
+In this example metadata record, the FDP (`fdp:app`) has the relation `fdp-o:metadataCatalog` with its catalogs.
 This is the parent-child relation that should be followed by a client that wants to navigate the FDP metadata structure.
-To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a LDP Container, identified as `https://purl.org/fairdatapoint/app/catalog/`, which is the container for the `https://purl.org/fairdatapoint/app` (the object of the `ldp:membershipResource`) and it relates to its contained members using the relation `fdp-o:metadataCatalog`.
+To explicitly inform the navigation structure, we have the code segment at the bottom of this example metadata record informing that we have a LDP Container, identified as `https://fairdatapoint.org/app/catalog/`, which is the container for the `fdp:app` (the object of the `ldp:membershipResource`) and it relates to its contained members using the relation `fdp-o:metadataCatalog`.
 
 ## Metadata schemas
 
@@ -65,7 +65,7 @@ This follows the acknowledgment that every application scenario may require diff
 Moreover, the metadata records may have some relevant relationships that connect one to other.
 For instance, it seems straightforward to argue that a FAIR Data Point, as a metadata service, may have a number of catalogs that are used to organise the metadata records of other types of digital object, for instance, datasets.
 
-Therefore, to improve interoperability and provide a minimal level of predictability and organisation of different FDPs, the metadata structure of the FDP starts with the metadata of itself (as a metadata service), followed by the catalogs that it contains, and each catalog contains the metadata of given types of digital objects.
+Therefore, to improve interoperability and provide a minimal level of predictability and organisation of different FDPs, the metadata structure of the FDP starts with the metadata of itself (as a specialization of metadata service), followed by the catalogs that it contains, and each catalog contains the metadata of given types of digital objects.
 
 Below we present the metadata schemas of the two types of digital object that are mandatory for each FDP: the `FAIR Data Point` and the `Catalog`.
 
@@ -84,6 +84,9 @@ path: src/tables/table-navigation-information.html
 </pre>
 
 Below we have the FAIR Data Point metadata schema defined in `SHACL`.
+
+[!WARNING]
+Update figure with DCAT v3 properties e classes.
 
 <pre class=include-code>
 path: src/rdf/shacl-fdp.ttl
