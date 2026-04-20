@@ -95,7 +95,7 @@
     sh:nodeKind sh:Literal ;
     sh:maxCount 1 ;
   ], [
-    sh:path dct:conformsToFdpSpec ;
+    sh:path fdp-o:conformsToFdpSpec ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
     sh:minCount 1;
