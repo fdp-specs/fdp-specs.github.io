@@ -1,48 +1,48 @@
-@prefix     : <http://fairdatapoint.org/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix  dct: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix   sh: <http://www.w3.org/ns/shacl#> .
-@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix :        <http://fairdatapoint.org/> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 :CatalogShape a sh:NodeShape ;
   sh:targetClass dcat:Catalog ;
   sh:property [
-    sh:path dct:title ;
+    sh:path dcterms:title ;
     sh:nodeKind sh:Literal ;
     sh:minCount 1 ;
   ], [
-    sh:path dct:hasVersion ;
+    sh:path dcterms:hasVersion ;
     sh:nodeKind sh:Literal ;
     sh:maxCount ;
   ], [
-    sh:path dct:description ;
+    sh:path dcterms:description ;
     sh:nodeKind sh:Literal ;
   ], [
-    sh:path dct:publisher ;
+    sh:path dcterms:publisher ;
     sh:node :AgentShape ;
     sh:minCount 1;
   ], [
-    sh:path dct:language ;
+    sh:path dcterms:language ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dct:license ;
+    sh:path dcterms:license ;
     sh:nodeKind sh:IRI ;
     sh:minCount 1;
     sh:maxCount 1 ;
   ], [
-    sh:path dct:conformsTo ;
+    sh:path dcterms:conformsTo ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
     sh:minCount 1;
   ], [
-    sh:path dct:rights ;
+    sh:path dcterms:rights ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dct:accessRights ;
+    sh:path dcterms:accessRights ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dct:hasPart ;
+    sh:path dcterms:hasPart ;
     sh:node sh:ContactPointShape ;
   ], [
     sh:path dcat:keyword ;
