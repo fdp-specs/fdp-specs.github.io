@@ -84,6 +84,9 @@
     sh:datatype xsd:date ;
     sh:maxCount 1 ;
   ], [
+    sh:path fdp-o:uiLanguage ;
+    sh:nodeKind sh:IRI ;
+  ], [
     sh:path dct:conformsToFdpSpec ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
