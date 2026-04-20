@@ -14,10 +14,6 @@
     sh:nodeKind sh:Literal ;
     sh:minCount 1 ;
   ], [
-    sh:path dct:hasVersion ;
-    sh:nodeKind sh:Literal ;
-    sh:maxCount ;
-  ], [
     sh:path dct:description ;
     sh:nodeKind sh:Literal ;
   ], [
