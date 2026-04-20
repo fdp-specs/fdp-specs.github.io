@@ -92,12 +92,3 @@
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ].
-
-:ContactPointShape a sh:NodeShape ;
-  sh:targetClass vcard:Kind ;
-  sh:property [
-    sh:path vcard:hasEmail ;
-    sh:nodeKind sh:Literal ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ].
