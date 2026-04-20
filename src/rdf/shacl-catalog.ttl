@@ -55,6 +55,11 @@
     sh:path dcterms:hasPart ;
     sh:class dcat:Resource ;
   ], [
+    sh:path dcterms:isPartOf ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
     sh:path dcat:keyword ;
     sh:nodeKind sh:Literal ;
   ], [
