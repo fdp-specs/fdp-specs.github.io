@@ -14,7 +14,7 @@
   ], [
     sh:path dcterms:hasVersion ;
     sh:nodeKind sh:Literal ;
-    sh:maxCount ;
+    sh:maxCount 1;
   ], [
     sh:path dcterms:description ;
     sh:nodeKind sh:Literal ;
