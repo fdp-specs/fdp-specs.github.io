@@ -75,7 +75,7 @@
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path fdp-o:metadataIdentifier ;
+    sh:path fdp-o:metadataModified ;
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
