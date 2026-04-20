@@ -1,18 +1,18 @@
-@prefix dcat:  <http://www.w3.org/ns/dcat#> .
-@prefix dct:   <http://purl.org/dc/terms/> .
-@prefix fdp:   <https://purl.org/fairdatapoint/> .
-@prefix fdp-o: <https://w3id.org/fdp/fdp-o#> .
-@prefix fdp-s: <https://www.purl.org/fairtools/fdp/schema/0.1/> .
-@prefix ldp:   <http://www.w3.org/ns/ldp#> .
-@prefix rdfl:  <http://rdflicense.appspot.com/rdflicense/> .
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fdp:     <https://purl.org/fairdatapoint/> .
+@prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
+@prefix fdp-s:   <https://www.purl.org/fairtools/fdp/schema/0.1/> .
+@prefix ldp:     <http://www.w3.org/ns/ldp#> .
+@prefix rdfl:    <http://rdflicense.appspot.com/rdflicense/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 fdp:app
   a fdp-o:FairDataPoint ;
-  dct:title "Demonstration FAIR Data Point" ;
-  dct:publisher fdp:app#publisher ;
-  dct:license rdfl:cc-by-nc-nd4.0 ;
-  dct:conformsTo fdp-s:fdpMetadata ;
+  dcterms:title "Demonstration FAIR Data Point" ;
+  dcterms:publisher fdp:app#publisher ;
+  dcterms:license rdfl:cc-by-nc-nd4.0 ;
+  dcterms:conformsTo fdp-s:fdpMetadata ;
   dcat:endPointURL fdp:app ;
   fdp-o:metadataIdentifier fdp:app#identifier ;
   fdp-o:metadataIssued "2020-05-29T09:55:08.580Z"^^xsd:dateTime ;
@@ -27,7 +27,7 @@ fdp:app
 
 fdp:app/catalog/
   a ldp:DirectContainer ;
-  dct:title "Catalogs" ;
+  dcterms:title "Catalogs" ;
   ldp:membershipResource fdp:app ;
   ldp:hasMemberRelation fdp-o:metadataCatalog ;
   ldp:contains
