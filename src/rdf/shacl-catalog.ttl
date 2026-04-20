@@ -79,6 +79,9 @@
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
+  ], [
+    sh:path foaf:homepage ;
+    sh:nodeKind sh:IRI ;
   ].
 
 :AgentShape a sh:NodeShape ;
