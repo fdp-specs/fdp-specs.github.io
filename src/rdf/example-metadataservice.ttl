@@ -1,16 +1,16 @@
+@prefix cc:      <https://creativecommons.org/licenses/> .
 @prefix dcat:    <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix fdp:     <https://purl.org/fairdatapoint/> .
 @prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
 @prefix ldp:     <http://www.w3.org/ns/ldp#> .
-@prefix rdfl:    <http://rdflicense.appspot.com/rdflicense/> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 fdp:app
   a fdp-o:FairDataPoint ;
   dcterms:title "Demonstration FAIR Data Point" ;
   dcterms:publisher fdp:app#publisher ;
-  dcterms:license rdfl:cc-by-nc-nd4.0 ;
+  dcterms:license cc:by-nc-nd/4.0/rdf ;
   dcterms:conformsTo fdp:app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c ;
   dcat:endPointURL fdp:app ;
   fdp-o:metadataIdentifier fdp:app#identifier ;
