@@ -61,14 +61,6 @@
     sh:path dcat:endPointDescription ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path fdp-o:startDate ;
-    sh:datatype xsd:date ;
-    sh:maxCount 1 ;
-  ], [
-    sh:path fdp-o:endDate ;
-    sh:datatype xsd:date ;
-    sh:maxCount 1 ;
-  ], [
     sh:path fdp-o:metadataIdentifier ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1 ;
@@ -83,6 +75,14 @@
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
+  ], [
+    sh:path fdp-o:startDate ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path fdp-o:endDate ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
   ], [
     sh:path dct:conformsToFdpSpec ;
     sh:nodeKind sh:IRI ;
