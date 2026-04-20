@@ -31,6 +31,16 @@
     sh:minCount 1;
     sh:maxCount 1 ;
   ], [
+    sh:path dcterms:issued ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:modified ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+  ], [
     sh:path dcterms:conformsTo ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
