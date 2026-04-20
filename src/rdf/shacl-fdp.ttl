@@ -87,6 +87,10 @@
     sh:path fdp-o:uiLanguage ;
     sh:nodeKind sh:IRI ;
   ], [
+    sh:path fdp-o:hasSoftwareVersion ;
+    sh:nodeKind sh:Literal ;
+    sh:maxCount 1 ;
+  ], [
     sh:path dct:conformsToFdpSpec ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
