@@ -58,6 +58,9 @@
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
+    sh:path dcat:endPointDescription ;
+    sh:nodeKind sh:IRI ;
+  ], [
     sh:path fdp-o:startDate ;
     sh:datatype xsd:date ;
     sh:maxCount 1 ;
