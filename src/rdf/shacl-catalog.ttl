@@ -53,7 +53,7 @@
     sh:nodeKind sh:IRI ;
   ], [
     sh:path dcterms:hasPart ;
-    sh:node sh:ContactPointShape ;
+    sh:class dcat:Resource ;
   ], [
     sh:path dcat:keyword ;
     sh:nodeKind sh:Literal ;
