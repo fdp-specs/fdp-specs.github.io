@@ -2,6 +2,9 @@
 
 The aim of this specification is to guide developers in implementing their own FAIR Data Points or in extending existing applications with the FDP behaviours, thus exposing their metadata in a FAIR way.
 
+[!WARNING]
+Explain the different conformance levels and present their respective conformance criteria.
+
 In order to verify whether and application behaves as a FAIR Data Point according to these specifications, the following characteristics must be present:
 
 - Its root API URL *MUST* provide the `MetadataService` metadata;

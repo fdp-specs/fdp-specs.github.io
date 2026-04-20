@@ -75,16 +75,6 @@
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path fdp-o:metadataIssued ;
-    sh:datatype xsd:dateTime ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ], [
-    sh:path fdp-o:metadataIdentifier ;
-    sh:datatype xsd:dateTime ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ], [
     sh:path dct:conformsToFdpSpec ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
