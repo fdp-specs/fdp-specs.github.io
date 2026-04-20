@@ -17,10 +17,6 @@
     sh:path dct:description ;
     sh:nodeKind sh:Literal ;
   ], [
-    sh:path fdp-o:metadataCatalog ;
-    sh:node :CatalogShape ;
-    sh:minCount 1;
-  ], [
     sh:path dct:publisher ;
     sh:node :AgentShape ;
     sh:minCount 1;
@@ -98,6 +94,10 @@
     sh:path fdp-o:conformsToFdpSpec ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
+    sh:minCount 1;
+  ], [
+    sh:path fdp-o:metadataCatalog ;
+    sh:node :CatalogShape ;
     sh:minCount 1;
   ].
 
