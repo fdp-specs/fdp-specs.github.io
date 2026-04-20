@@ -67,20 +67,24 @@
     sh:minCount 1 ;
   ], [
     sh:path fdp-o:metadataIssued ;
+    sh:nodeKind sh:Literal ;
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
     sh:path fdp-o:metadataModified ;
+    sh:nodeKind sh:Literal ;
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
     sh:path fdp-o:startDate ;
+    sh:nodeKind sh:Literal ;
     sh:datatype xsd:date ;
     sh:maxCount 1 ;
   ], [
     sh:path fdp-o:endDate ;
+    sh:nodeKind sh:Literal ;
     sh:datatype xsd:date ;
     sh:maxCount 1 ;
   ], [
