@@ -98,7 +98,6 @@
   ], [
     sh:path fdp-o:metadataCatalog ;
     sh:node :CatalogShape ;
-    sh:minCount 1;
   ].
 
 :AgentShape a sh:NodeShape ;
