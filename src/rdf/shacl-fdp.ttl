@@ -41,7 +41,7 @@
     sh:nodeKind sh:IRI ;
   ], [
     sh:path dcat:contactPoint ;
-    sh:node sh:ContactPointShape ;
+    sh:node :ContactPointShape ;
   ], [
     sh:path dcat:keyword ;
     sh:nodeKind sh:Literal ;
