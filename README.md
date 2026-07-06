@@ -19,7 +19,7 @@ Included assets (metadata tables, SHACL schemas, example RDF) live in `core/src/
 ```
 uv sync
 uv run bikeshed spec index.bs
-uv run bikeshed spec core/index.bs
+uv run bikeshed --allow-nonlocal-files spec core/index.bs   # references the shared ../images/ diagram
 uv run bikeshed spec records/index.bs
 uv run bikeshed spec schemas/index.bs
 uv run bikeshed spec bulk/index.bs

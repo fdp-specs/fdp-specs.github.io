@@ -19,7 +19,7 @@ Markup Shorthands: markdown yes
 
 # Introduction # {#intro}
 
-This document defines <dfn>FDP Core</dfn>, the mandatory module of the <a href="../">FAIR Data Point specification suite</a>.
+This document defines <dfn export>FDP Core</dfn>, the mandatory module of the <a href="../">FAIR Data Point specification suite</a>.
 It specifies the externally observable, read-side behaviour of a FAIR Data Point: the HTTP interface through which metadata records are served, the representations in which they are served, the navigation information that lets clients traverse the metadata structure, and the exposure of metadata schemas.
 
 Terminology used in this document (metadata record, metadata schema, profile, container, conformance class) is defined in the <a href="../#terminology">umbrella document</a>.

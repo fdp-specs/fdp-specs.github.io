@@ -1,0 +1,2554 @@
+<!doctype html><html lang="en">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <title>FDP Core</title>
+  <meta content="CG-DRAFT" name="w3c-status">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
+  <meta content="Bikeshed version d113b2e81, updated Tue Jun 9 14:57:55 2026 -0700" name="generator">
+  <link href="https://specs.fairdatapoint.org/core/" rel="canonical">
+  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
+  <meta content="45eff07024dbee5fc4805c4078722df4af96f60b" name="revision">
+  <meta content="dark light" name="color-scheme">
+  <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
+<style>/* Boilerplate: style-autolinks */
+.css.css, .property.property, .descriptor.descriptor {
+    color: var(--a-normal-text);
+    font-size: inherit;
+    font-family: inherit;
+}
+.css::before, .property::before, .descriptor::before {
+    content: "‘";
+}
+.css::after, .property::after, .descriptor::after {
+    content: "’";
+}
+.property, .descriptor {
+    /* Don't wrap property and descriptor names */
+    white-space: nowrap;
+}
+.type { /* CSS value <type> */
+    font-style: italic;
+}
+pre .property::before, pre .property::after {
+    content: "";
+}
+[data-link-type="property"]::before,
+[data-link-type="propdesc"]::before,
+[data-link-type="descriptor"]::before,
+[data-link-type="value"]::before,
+[data-link-type="function"]::before,
+[data-link-type="at-rule"]::before,
+[data-link-type="selector"]::before,
+[data-link-type="maybe"]::before {
+    content: "‘";
+}
+[data-link-type="property"]::after,
+[data-link-type="propdesc"]::after,
+[data-link-type="descriptor"]::after,
+[data-link-type="value"]::after,
+[data-link-type="function"]::after,
+[data-link-type="at-rule"]::after,
+[data-link-type="selector"]::after,
+[data-link-type="maybe"]::after {
+    content: "’";
+}
+
+[data-link-type].production::before,
+[data-link-type].production::after,
+.prod [data-link-type]::before,
+.prod [data-link-type]::after {
+    content: "";
+}
+
+[data-link-type=element],
+[data-link-type=element-attr] {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-size: .9em;
+}
+[data-link-type=element]::before { content: "<" }
+[data-link-type=element]::after  { content: ">" }
+
+[data-link-type=biblio] {
+    white-space: pre;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
+/* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
+:root {
+    color-scheme: light dark;
+
+    --text: black;
+    --bg: white;
+
+    --unofficial-watermark: url(https://www.w3.org/StyleSheets/TR/2016/logos/UD-watermark);
+
+    --logo-bg: #1a5e9a;
+    --logo-active-bg: #c00;
+    --logo-text: white;
+
+    --tocnav-normal-text: #707070;
+    --tocnav-normal-bg: var(--bg);
+    --tocnav-hover-text: var(--tocnav-normal-text);
+    --tocnav-hover-bg: #f8f8f8;
+    --tocnav-active-text: #c00;
+    --tocnav-active-bg: var(--tocnav-normal-bg);
+
+    --tocsidebar-text: var(--text);
+    --tocsidebar-bg: #f7f8f9;
+    --tocsidebar-shadow: rgba(0,0,0,.1);
+    --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+    --toclink-text: var(--text);
+    --toclink-underline: #3980b5;
+    --toclink-visited-text: var(--toclink-text);
+    --toclink-visited-underline: #054572;
+
+    --heading-text: #005a9c;
+
+    --hr-text: var(--text);
+
+    --algo-border: #def;
+
+    --del-text: red;
+    --del-bg: transparent;
+    --ins-text: #080;
+    --ins-bg: transparent;
+
+    --a-normal-text: #034575;
+    --a-normal-underline: #bbb;
+    --a-visited-text: var(--a-normal-text);
+    --a-visited-underline: #707070;
+    --a-hover-bg: rgba(75%, 75%, 75%, .25);
+    --a-active-text: #c00;
+    --a-active-underline: #c00;
+
+    --blockquote-border: silver;
+    --blockquote-bg: transparent;
+    --blockquote-text: currentcolor;
+
+    --issue-border: #e05252;
+    --issue-bg: #fbe9e9;
+    --issue-text: var(--text);
+    --issueheading-text: #831616;
+
+    --example-border: #e0cb52;
+    --example-bg: #fcfaee;
+    --example-text: var(--text);
+    --exampleheading-text: #574b0f;
+
+    --note-border: #52e052;
+    --note-bg: #e9fbe9;
+    --note-text: var(--text);
+    --noteheading-text: hsl(120, 70%, 30%);
+    --notesummary-underline: silver;
+
+    --assertion-border: #aaa;
+    --assertion-bg: #eee;
+    --assertion-text: black;
+
+    --advisement-border: orange;
+    --advisement-bg: #fec;
+    --advisement-text: var(--text);
+    --advisementheading-text: #b35f00;
+
+    --warning-border: red;
+    --warning-bg: hsla(40,100%,50%,0.95);
+    --warning-text: var(--text);
+
+    --amendment-border: #330099;
+    --amendment-bg: #F5F0FF;
+    --amendment-text: var(--text);
+    --amendmentheading-text: #220066;
+
+    --def-border: #8ccbf2;
+    --def-bg: #def;
+    --def-text: var(--text);
+    --defrow-border: #bbd7e9;
+
+    --datacell-border: silver;
+
+    --indexinfo-text: #707070;
+
+    --indextable-hover-text: black;
+    --indextable-hover-bg: #f7f8f9;
+
+    --outdatedspec-bg: rgba(0, 0, 0, .5);
+    --outdatedspec-text: black;
+    --outdated-bg: maroon;
+    --outdated-text: white;
+    --outdated-shadow: red;
+
+    --editedrec-bg: darkorange;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue table;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
+
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example " counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+
+figure.table figcaption {
+    counter-increment: table;
+}
+figure.table figcaption:not(.no-marker)::before {
+    content: "Table " counter(table) " ";
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+    --dfnpanel-target-bg: #ffc;
+    --dfnpanel-target-outline: orange;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+        --dfnpanel-target-bg: #333;
+        --dfnpanel-target-outline: silver;
+    }
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel a:focus {
+    outline: 5px auto Highlight;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: 8px;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+    transition: left 1s ease-out, bottom 1s ease-out;
+}
+
+.dfn-panel .link-item:hover {
+    text-decoration: underline;
+}
+.dfn-panel .link-item .copy-icon {
+    opacity: 0;
+}
+.dfn-panel .link-item:hover .copy-icon,
+.dfn-panel .link-item .copy-icon:focus {
+    opacity: 1;
+}
+
+.dfn-panel .copy-icon {
+    display: inline-block;
+    margin-right: 0.5em;
+    width: 0.85em;
+    height: 1em;
+    border-radius: 3px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.dfn-panel .copy-icon .icon {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dfn-panel .copy-icon .icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    background-color: #ccc;
+    opacity: 0.25;
+    transform: translate(3px, -3px);
+}
+
+.dfn-panel .copy-icon:active .icon::before {
+    opacity: 1;
+}
+
+.dfn-paneled[role="button"] { cursor: help; }
+
+.highlighted {
+    animation: target-fade 3s;
+}
+
+@keyframes target-fade {
+    from {
+        background-color: var(--dfnpanel-target-bg);
+        outline: 5px solid var(--dfnpanel-target-outline);
+    }
+    to {
+        color: var(--a-normal-text);
+        background-color: transparent;
+        outline: transparent;
+    }
+}
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-ref-hints */
+:root {
+    --ref-hint-bg: #ddd;
+    --ref-hint-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ref-hint-bg: #222;
+        --ref-hint-text: var(--text);
+    }
+}
+
+.ref-hint {
+    display: inline-block;
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.5em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--ref-hint-bg);
+    color: var(--ref-hint-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+
+.ref-hint * { margin: 0; padding: 0; text-indent: 0; }
+
+.ref-hint ul { padding: 0 0 0 1em; list-style: none; }
+</style>
+<style>/* Boilerplate: style-selflinks */
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+code.highlight { padding: .1em; border-radius: .3em; }
+pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
+
+.highlight:not(.idl) { background: rgba(0, 0, 0, .03); }
+c-[a] { color: #990055 } /* Keyword.Declaration */
+c-[b] { color: #990055 } /* Keyword.Type */
+c-[c] { color: #708090 } /* Comment */
+c-[d] { color: #708090 } /* Comment.Multiline */
+c-[e] { color: #0077aa } /* Name.Attribute */
+c-[f] { color: #669900 } /* Name.Tag */
+c-[g] { color: #222222 } /* Name.Variable */
+c-[k] { color: #990055 } /* Keyword */
+c-[l] { color: #000000 } /* Literal */
+c-[m] { color: #000000 } /* Literal.Number */
+c-[n] { color: #0077aa } /* Name */
+c-[o] { color: #999999 } /* Operator */
+c-[p] { color: #999999 } /* Punctuation */
+c-[s] { color: #a67f59 } /* Literal.String */
+c-[t] { color: #a67f59 } /* Literal.String.Single */
+c-[u] { color: #a67f59 } /* Literal.String.Double */
+c-[cp] { color: #708090 } /* Comment.Preproc */
+c-[c1] { color: #708090 } /* Comment.Single */
+c-[cs] { color: #708090 } /* Comment.Special */
+c-[kc] { color: #990055 } /* Keyword.Constant */
+c-[kn] { color: #990055 } /* Keyword.Namespace */
+c-[kp] { color: #990055 } /* Keyword.Pseudo */
+c-[kr] { color: #990055 } /* Keyword.Reserved */
+c-[ld] { color: #000000 } /* Literal.Date */
+c-[nc] { color: #0077aa } /* Name.Class */
+c-[no] { color: #0077aa } /* Name.Constant */
+c-[nd] { color: #0077aa } /* Name.Decorator */
+c-[ni] { color: #0077aa } /* Name.Entity */
+c-[ne] { color: #0077aa } /* Name.Exception */
+c-[nf] { color: #0077aa } /* Name.Function */
+c-[nl] { color: #0077aa } /* Name.Label */
+c-[nn] { color: #0077aa } /* Name.Namespace */
+c-[py] { color: #0077aa } /* Name.Property */
+c-[ow] { color: #999999 } /* Operator.Word */
+c-[mb] { color: #000000 } /* Literal.Number.Bin */
+c-[mf] { color: #000000 } /* Literal.Number.Float */
+c-[mh] { color: #000000 } /* Literal.Number.Hex */
+c-[mi] { color: #000000 } /* Literal.Number.Integer */
+c-[mo] { color: #000000 } /* Literal.Number.Oct */
+c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
+c-[sc] { color: #a67f59 } /* Literal.String.Char */
+c-[sd] { color: #a67f59 } /* Literal.String.Doc */
+c-[se] { color: #a67f59 } /* Literal.String.Escape */
+c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
+c-[si] { color: #a67f59 } /* Literal.String.Interpol */
+c-[sx] { color: #a67f59 } /* Literal.String.Other */
+c-[sr] { color: #a67f59 } /* Literal.String.Regex */
+c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
+c-[vc] { color: #0077aa } /* Name.Variable.Class */
+c-[vg] { color: #0077aa } /* Name.Variable.Global */
+c-[vi] { color: #0077aa } /* Name.Variable.Instance */
+c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
+
+@media (prefers-color-scheme: dark) {
+    .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
+
+    c-[a] { color: #d33682 } /* Keyword.Declaration */
+    c-[b] { color: #d33682 } /* Keyword.Type */
+    c-[c] { color: #2aa198 } /* Comment */
+    c-[d] { color: #2aa198 } /* Comment.Multiline */
+    c-[e] { color: #268bd2 } /* Name.Attribute */
+    c-[f] { color: #b58900 } /* Name.Tag */
+    c-[g] { color: #cb4b16 } /* Name.Variable */
+    c-[k] { color: #d33682 } /* Keyword */
+    c-[l] { color: #657b83 } /* Literal */
+    c-[m] { color: #657b83 } /* Literal.Number */
+    c-[n] { color: #268bd2 } /* Name */
+    c-[o] { color: #657b83 } /* Operator */
+    c-[p] { color: #657b83 } /* Punctuation */
+    c-[s] { color: #6c71c4 } /* Literal.String */
+    c-[t] { color: #6c71c4 } /* Literal.String.Single */
+    c-[u] { color: #6c71c4 } /* Literal.String.Double */
+    c-[ch] { color: #2aa198 } /* Comment.Hashbang */
+    c-[cp] { color: #2aa198 } /* Comment.Preproc */
+    c-[cpf] { color: #2aa198 } /* Comment.PreprocFile */
+    c-[c1] { color: #2aa198 } /* Comment.Single */
+    c-[cs] { color: #2aa198 } /* Comment.Special */
+    c-[kc] { color: #d33682 } /* Keyword.Constant */
+    c-[kn] { color: #d33682 } /* Keyword.Namespace */
+    c-[kp] { color: #d33682 } /* Keyword.Pseudo */
+    c-[kr] { color: #d33682 } /* Keyword.Reserved */
+    c-[ld] { color: #657b83 } /* Literal.Date */
+    c-[nc] { color: #268bd2 } /* Name.Class */
+    c-[no] { color: #268bd2 } /* Name.Constant */
+    c-[nd] { color: #268bd2 } /* Name.Decorator */
+    c-[ni] { color: #268bd2 } /* Name.Entity */
+    c-[ne] { color: #268bd2 } /* Name.Exception */
+    c-[nf] { color: #268bd2 } /* Name.Function */
+    c-[nl] { color: #268bd2 } /* Name.Label */
+    c-[nn] { color: #268bd2 } /* Name.Namespace */
+    c-[py] { color: #268bd2 } /* Name.Property */
+    c-[ow] { color: #657b83 } /* Operator.Word */
+    c-[mb] { color: #657b83 } /* Literal.Number.Bin */
+    c-[mf] { color: #657b83 } /* Literal.Number.Float */
+    c-[mh] { color: #657b83 } /* Literal.Number.Hex */
+    c-[mi] { color: #657b83 } /* Literal.Number.Integer */
+    c-[mo] { color: #657b83 } /* Literal.Number.Oct */
+    c-[sa] { color: #6c71c4 } /* Literal.String.Affix */
+    c-[sb] { color: #6c71c4 } /* Literal.String.Backtick */
+    c-[sc] { color: #6c71c4 } /* Literal.String.Char */
+    c-[dl] { color: #6c71c4 } /* Literal.String.Delimiter */
+    c-[sd] { color: #6c71c4 } /* Literal.String.Doc */
+    c-[se] { color: #6c71c4 } /* Literal.String.Escape */
+    c-[sh] { color: #6c71c4 } /* Literal.String.Heredoc */
+    c-[si] { color: #6c71c4 } /* Literal.String.Interpol */
+    c-[sx] { color: #6c71c4 } /* Literal.String.Other */
+    c-[sr] { color: #6c71c4 } /* Literal.String.Regex */
+    c-[ss] { color: #6c71c4 } /* Literal.String.Symbol */
+    c-[fm] { color: #268bd2 } /* Name.Function.Magic */
+    c-[vc] { color: #cb4b16 } /* Name.Variable.Class */
+    c-[vg] { color: #cb4b16 } /* Name.Variable.Global */
+    c-[vi] { color: #cb4b16 } /* Name.Variable.Instance */
+    c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
+    c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
+}
+
+@media print {
+    /* Darken colors for print that would otherwise print too faintly */
+    c-[c]  { color: #555555 } /* Comment */
+    c-[d]  { color: #555555 } /* Comment.Multiline */
+    c-[cp] { color: #555555 } /* Comment.Preproc */
+    c-[c1] { color: #555555 } /* Comment.Single */
+    c-[cs] { color: #555555 } /* Comment.Special */
+    c-[o]  { color: #222222 } /* Operator */
+    c-[p]  { color: #222222 } /* Punctuation */
+    c-[ow] { color: #222222 } /* Operator.Word */
+    c-[s]  { color: #664400 } /* Literal.String */
+    c-[t]  { color: #664400 } /* Literal.String.Single */
+    c-[u]  { color: #664400 } /* Literal.String.Double */
+    c-[sb] { color: #664400 } /* Literal.String.Backtick */
+    c-[sc] { color: #664400 } /* Literal.String.Char */
+    c-[sd] { color: #664400 } /* Literal.String.Doc */
+    c-[se] { color: #664400 } /* Literal.String.Escape */
+    c-[sh] { color: #664400 } /* Literal.String.Heredoc */
+    c-[si] { color: #664400 } /* Literal.String.Interpol */
+    c-[sx] { color: #664400 } /* Literal.String.Other */
+    c-[sr] { color: #664400 } /* Literal.String.Regex */
+    c-[ss] { color: #664400 } /* Literal.String.Symbol */
+}
+</style>
+ <body class="h-entry">
+  <div class="head">
+   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/">
+    <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
+</a>
+</p>
+   <h1 class="no-ref p-name" id="title">FDP Core</h1>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>,
+    <time class="dt-updated" datetime="2026-07-06">6 July 2026</time></p>
+   <details open>
+    <summary>More details about this document</summary>
+    <div data-fill-with="spec-metadata">
+     <dl>
+      <dt>This version:
+      <dd><a class="u-url" href="https://specs.fairdatapoint.org/core/">https://specs.fairdatapoint.org/core/</a>
+      <dt>Issue Tracking:
+      <dd><a href="https://github.com/fdp-specs/fdp-specs.github.io/issues">Github</a>
+      <dd><a href="#issues-index">Inline In Spec</a>
+      <dt class="editor">Editors:
+      <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.utwente.nl/en/eemcs/scs/">Luiz Olavo Bonino da Silva Santos</a> (<span class="org p-org">UTwente</span>)
+      <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.health-ri.nl/">Kees Burger</a> (<span class="org p-org">Health-RI</span>)
+     </dl>
+    </div>
+   </details>
+   <div data-fill-with="warning"></div>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2026 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply.
+</p>
+   <hr title="Separator for header">
+  </div>
+  <div class="p-summary" data-fill-with="abstract">
+   <h2 class="heading no-num no-ref no-toc settled" id="abstract"><span class="content">Abstract</span></h2>
+   <p>This document specifies FDP Core, the mandatory conformance class of the FAIR Data Point (FDP) specification suite.
+FDP Core defines the read-side behaviour of a FAIR Data Point: how metadata records are served over HTTP, how clients navigate the metadata structure, and how metadata schemas are exposed.
+Implementing FDP Core is the necessary and sufficient condition for a system to claim that it behaves as a FAIR Data Point.</p>
+  </div>
+  <h2 class="heading no-num no-ref no-toc settled" id="sotd"><span class="content">Status of this document</span></h2>
+  <div data-fill-with="status">
+   <p></p>
+  </div>
+  <div data-fill-with="at-risk"></div>
+  <nav data-fill-with="table-of-contents" id="toc">
+   <h2 class="no-num no-ref no-toc" id="contents">Table of Contents</h2>
+   <ol class="toc">
+    <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
+    <li><a href="#conformance-class"><span class="secno">2</span> <span class="content">Conformance</span></a>
+    <li><a href="#root"><span class="secno">3</span> <span class="content">The root metadata record</span></a>
+    <li><a href="#model"><span class="secno">4</span> <span class="content">Metadata model</span></a>
+    <li>
+     <a href="#http"><span class="secno">5</span> <span class="content">HTTP interface</span></a>
+     <ol class="toc">
+      <li><a href="#retrieval"><span class="secno">5.1</span> <span class="content">Retrieval</span></a>
+      <li><a href="#representations"><span class="secno">5.2</span> <span class="content">Representations and content negotiation</span></a>
+      <li><a href="#caching"><span class="secno">5.3</span> <span class="content">Caching and change information</span></a>
+     </ol>
+    <li><a href="#navigation"><span class="secno">6</span> <span class="content">Navigation information</span></a>
+    <li>
+     <a href="#schemas"><span class="secno">7</span> <span class="content">Metadata schemas and profiles</span></a>
+     <ol class="toc">
+      <li><a href="#fdp-metadata"><span class="secno">7.1</span> <span class="content">FAIR Data Point metadata schema</span></a>
+      <li><a href="#catalog-metadata"><span class="secno">7.2</span> <span class="content">Catalog metadata schema</span></a>
+     </ol>
+    <li><a href="#requirements-summary"><span class="secno">8</span> <span class="content">Requirements summary</span></a>
+    <li>
+     <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
+     <ol class="toc">
+      <li><a href="#w3c-conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
+     </ol>
+    <li>
+     <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
+     <ol class="toc">
+      <li><a href="#index-defined-here"><span class="secno"></span> <span class="content">Terms defined by this specification</span></a>
+     </ol>
+    <li>
+     <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
+     <ol class="toc">
+      <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Non-Normative References</span></a>
+     </ol>
+    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
+   </ol>
+  </nav>
+  <main>
+   <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
+   <p>This document defines <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="fdp-core">FDP Core</dfn>, the mandatory module of the <a href="../">FAIR Data Point specification suite</a>.
+It specifies the externally observable, read-side behaviour of a FAIR Data Point: the HTTP interface through which metadata records are served, the representations in which they are served, the navigation information that lets clients traverse the metadata structure, and the exposure of metadata schemas.</p>
+   <p>Terminology used in this document (metadata record, metadata schema, profile, container, conformance class) is defined in the <a href="../#terminology">umbrella document</a>.
+The key words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are to be interpreted as described in <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> This document specifies behaviour, not architecture.
+How an implementation stores its metadata (native triple store, on-the-fly conversion from another representation, static files) is out of scope; any implementation whose observable behaviour satisfies the requirements below conforms.</p>
+   <h2 class="heading settled" data-level="2" id="conformance-class"><span class="secno">2. </span><span class="content">Conformance</span><a class="self-link" href="#conformance-class"></a></h2>
+   <p>This document defines the conformance class identified by:</p>
+<pre>https://specs.fairdatapoint.org/v2.0/conformance/core
+</pre>
+   <p>A <a href="../#terminology">deployment</a> conforms to FDP Core if and only if it satisfies all MUST-level requirements in this document (<a href="#requirements-summary">§ 8 Requirements summary</a> lists them).
+Conformance to FDP Core is the necessary and sufficient condition for claiming that a system <em>behaves as a FAIR Data Point</em>.</p>
+   <h2 class="heading settled" data-level="3" id="root"><span class="secno">3. </span><span class="content">The root metadata record</span><a class="self-link" href="#root"></a></h2>
+   <p>A client that knows nothing about a deployment except its root URL must be able to bootstrap all further interaction from that URL alone.
+The FDP therefore provides metadata about itself as the first <a href="../#terminology">metadata record</a>: the record of the FDP as a <a href="../#terminology">metadata service</a>.
+In the FDP ontology, the FAIR Data Point is represented by the class <code>fdp-o:FAIRDataPoint</code>, a subclass of <code>fdp-o:MetadataService</code>, which in turn is a subclass of <code>dcat:DataService</code>.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-01">CORE-01</dfn>
+    <dd data-md>
+     <p>The root URL of the deployment MUST serve the metadata record of the FDP itself, typed <code>fdp-o:FAIRDataPoint</code>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-02">CORE-02</dfn>
+    <dd data-md>
+     <p>The FDP’s own metadata record MUST declare, via <code>dct:conformsTo</code>, the URI of every conformance class of this suite that the deployment implements, including at least the FDP Core conformance class URI.</p>
+   </dl>
+   <p>CORE-02 is the machine-checkable capability and version declaration described in the <a href="../#declaring">umbrella document</a>: because the conformance class URIs are versioned, a single <code>dct:conformsTo</code> statement declares both a capability and the specification version that defines it.
+The FAIR Data Point <a href="../#terminology">metadata schema</a> (<a href="#fdp-metadata">§ 7.1 FAIR Data Point metadata schema</a>) enforces this declaration.</p>
+   <h2 class="heading settled" data-level="4" id="model"><span class="secno">4. </span><span class="content">Metadata model</span><a class="self-link" href="#model"></a></h2>
+   <p>The FDP uses the W3C’s Data Catalog Vocabulary (DCAT) version 2 <a data-biblio-obsolete data-link-type="biblio" href="#biblio-vocab-dcat-2" title="Data Catalog Vocabulary (DCAT) - Version 2">[VOCAB-DCAT-2]</a> as the basis for its metadata content.
+Figure 1 depicts the FDP extensions to the DCAT model.</p>
+   <figure>
+    
+    <img alt="FDP metadata structure" height="1069" src="../images/FDPmetadatadiagram.png" width="1593">
+    
+    <figcaption class="no-marker"><strong>Figure 1</strong> FDP extensions to the DCAT model</figcaption>
+   </figure>
+   <p>A DCAT <code>Resource</code> represents entities that can be described by a metadata record.
+Since <code>Resource</code> is defined as an abstract class, it is not intended to be used directly; one of its subclasses, such as <code>Dataset</code> or <code>Data Service</code>, is used instead.
+<code>Dataset</code> represents a collection of data while <code>Data Service</code> represents a service, accessible through an interface (API), that serves datasets.
+<code>Catalog</code>, a subclass of <code>Dataset</code>, represents aggregations of metadata records about digital objects; for instance, a <code>Catalog</code> may contain references to the metadata records of <code>Datasets</code>.</p>
+   <p>The FDP extends the DCAT model by adding the concept of a <code>FAIRDataPoint</code> as a specific type of data service that serves metadata catalogs and metadata records.
+The DCAT extensions and other FDP-specific concepts and relations are defined in the FDP ontology (namespace prefix <code>fdp-o</code>).
+The relation between the <code>MetadataService</code> and <code>dcat:Catalog</code> is represented by the predicate <code>fdp-o:metadataCatalog</code>, defined as a sub-property of <code>dcat:Relationship</code> having <code>fdp-o:MetadataService</code> as its domain and <code>dcat:Catalog</code> as its range.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-03">CORE-03</dfn>
+    <dd data-md>
+     <p>Every metadata record served by the deployment, other than the FDP’s own record, MUST be reachable from at least one <code>dcat:Catalog</code> record.</p>
+   </dl>
+   <p>Since only the FDP’s own record and <code>Catalog</code> records are mandatory, the metadata structure below the catalogs varies from deployment to deployment.
+The most common structure is <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Dataset</code> → <code>Distribution</code>, but another deployment could use, e.g., <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Semantic Artefact</code>.
+This flexibility is exactly why the navigation information of <a href="#navigation">§ 6 Navigation information</a> is mandatory.</p>
+   <h2 class="heading settled" data-level="5" id="http"><span class="secno">5. </span><span class="content">HTTP interface</span><a class="self-link" href="#http"></a></h2>
+   <p>The interface of the FDP follows the REST HATEOAS (Hypermedia as the Engine of Application State) principle: each response carries the information a client needs to discover the available resources.
+A client only needs the root URL (<a data-link-type="dfn" href="#core-01" id="ref-for-core-01">CORE-01</a>); everything else is discoverable by following the navigation information in the returned metadata.</p>
+   <h3 class="heading settled" data-level="5.1" id="retrieval"><span class="secno">5.1. </span><span class="content">Retrieval</span><a class="self-link" href="#retrieval"></a></h3>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-04">CORE-04</dfn>
+    <dd data-md>
+     <p>Every metadata record, every <a href="../#terminology">container</a>, and every <a href="../#terminology">metadata schema</a> MUST be retrievable via an HTTP(S) GET request on its IRI, returning status code <code>200</code> together with the resource’s representation.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-05">CORE-05</dfn>
+    <dd data-md>
+     <p>Every resource that supports GET MUST also support HEAD, returning the same headers as the corresponding GET without a body.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-06">CORE-06</dfn>
+    <dd data-md>
+     <p>A GET request on an IRI within the deployment’s namespace that does not identify an existing resource MUST return status code <code>404</code>; a deployment MAY return <code>410</code> for resources known to have been deleted.</p>
+   </dl>
+   <h3 class="heading settled" data-level="5.2" id="representations"><span class="secno">5.2. </span><span class="content">Representations and content negotiation</span><a class="self-link" href="#representations"></a></h3>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-07">CORE-07</dfn>
+    <dd data-md>
+     <p>Metadata content MUST be available at least in the RDF Turtle (<code>text/turtle</code>) and JSON-LD (<code>application/ld+json</code>) syntaxes, selectable via the HTTP <code>Accept</code> header.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-08">CORE-08</dfn>
+    <dd data-md>
+     <p>When a request carries no <code>Accept</code> header, an <code>Accept</code> header of <code><em>/</em></code>, or an <code>Accept</code> header that does not restrict the response to a specific supported type, the response MUST be RDF Turtle.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-09">CORE-09</dfn>
+    <dd data-md>
+     <p>When a request’s <code>Accept</code> header admits none of the supported media types, the deployment MUST return status code <code>406</code>; the response SHOULD list the supported media types.</p>
+   </dl>
+   <p>Other formats — XML, JSON, other RDF syntaxes, or HTML for human consumption — MAY additionally be offered through content negotiation.</p>
+   <h3 class="heading settled" data-level="5.3" id="caching"><span class="secno">5.3. </span><span class="content">Caching and change information</span><a class="self-link" href="#caching"></a></h3>
+   <p>Accurate change information matters beyond caching: harvesters (such as a FAIR Discovery service) rely on it to keep aggregated copies fresh without re-fetching entire trees, and to report a record’s real modification time rather than its harvest time.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-10">CORE-10</dfn>
+    <dd data-md>
+     <p>Responses serving metadata records SHOULD carry an <code>ETag</code> and/or <code>Last-Modified</code> header, and the deployment SHOULD support the corresponding conditional requests (<code>If-None-Match</code>, <code>If-Modified-Since</code>) returning <code>304</code> when the resource is unchanged.</p>
+   </dl>
+   <p class="note" role="note"><span class="marker">Note:</span> The mandatory schema elements <code>fdp-o:metadataIssued</code> and <code>fdp-o:metadataModified</code> (<a href="#fdp-metadata">§ 7.1 FAIR Data Point metadata schema</a>) provide the same information inside the metadata record itself.</p>
+   <h2 class="heading settled" data-level="6" id="navigation"><span class="secno">6. </span><span class="content">Navigation information</span><a class="self-link" href="#navigation"></a></h2>
+   <p>Since each FDP deployment may have a different metadata structure (<a href="#model">§ 4 Metadata model</a>), a client would not know how to navigate the metadata content unless it followed every IRI in every record, which does not scale.
+Therefore, the FDP describes its own navigation structure using the Linked Data Platform <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a> containment vocabulary.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-11">CORE-11</dfn>
+    <dd data-md>
+     <p>Every metadata record that leads to other metadata records MUST be accompanied by navigation information in the form of an LDP <a href="../#terminology">container</a>, and the record MUST be retrievable together with, or linked to, that container’s triples.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-12">CORE-12</dfn>
+    <dd data-md>
+     <p>Each container MUST list the IRI of every child metadata record as an object of <code>ldp:contains</code>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-13">CORE-13</dfn>
+    <dd data-md>
+     <p>When the parent record relates to its children through a domain predicate (e.g. <code>fdp-o:metadataCatalog</code>), the container SHOULD be an <code>ldp:DirectContainer</code> declaring that predicate via <code>ldp:hasMemberRelation</code> and the parent record via <code>ldp:membershipResource</code>.</p>
+   </dl>
+   <p class="note" role="note"><span class="marker">Note:</span> Version 1.2 of this specification was internally inconsistent about navigation: its metadata chapter required "<code>ldp:contains</code> or <code>ldp:hasMemberRelation</code>", while its compliance chapter required <code>ldp:hasMemberRelation</code> alone.
+Version 2.0 resolves this deliberately in favour of <code>ldp:contains</code> as the mandatory traversal predicate (<a data-link-type="dfn" href="#core-12" id="ref-for-core-12">CORE-12</a>), because containment is what generic clients and harvesters walk, while the membership declaration (<a data-link-type="dfn" href="#core-13" id="ref-for-core-13">CORE-13</a>) is a recommendation that adds the domain semantics when they exist.</p>
+   <p>The following RDF Turtle code shows an example of a FAIR Data Point metadata record with navigation information.</p>
+<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>dct:</c->   <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>fdp-o:</c-> <c- g>&lt;https://w3id.org/fdp/fdp-o#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>ldp:</c->   <c- g>&lt;http://www.w3.org/ns/ldp#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>xsd:</c->   <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
+
+<c- g>&lt;https://fairdatapoint.org/app></c-> <c- b>a</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>FAIRDataPoint</c-> <c- p>;</c->
+  <c- nn>dct</c-><c- p>:</c-><c- f>title</c-> <c- s>"Demonstration FAIR Data Point"</c-> <c- p>;</c->
+  <c- nn>dct</c-><c- p>:</c-><c- f>conformsTo</c->
+    <c- g>&lt;https://www.purl.org/fairtools/fdp/schema/0.1/fdpMetadata></c-> <c- p>,</c->      <c- c># profile (CORE-16)</c->
+    <c- g>&lt;https://specs.fairdatapoint.org/v2.0/conformance/core></c-> <c- p>,</c->          <c- c># conformance declaration (CORE-02)</c->
+    <c- g>&lt;https://specs.fairdatapoint.org/v2.0/conformance/records></c-> <c- p>;</c->
+  <c- nn>dct</c-><c- p>:</c-><c- f>description</c-> <c- s>"This FAIR Data Point deployment is used for demonstration of the application and to allow the navigation through its metadata content. The metadata presented here is also for demonstration purposes only and does not necessarily describe the related resources properly."</c-> <c- p>;</c->
+  <c- nn>dct</c-><c- p>:</c-><c- f>hasVersion</c-> <c- s>"1.0"</c-> <c- p>;</c->
+  <c- nn>dct</c-><c- p>:</c-><c- f>license</c-> <c- g>&lt;http://rdflicense.appspot.com/rdflicense/cc-by-nc-nd4.0></c-> <c- p>;</c->
+  <c- nn>dct</c-><c- p>:</c-><c- f>publisher</c-> <c- g>&lt;https://purl.org/fairdatapoint/app#publisher></c-> <c- p>;</c->
+  <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataIdentifier</c-> <c- g>&lt;https://purl.org/fairdatapoint/app#identifier></c-> <c- p>;</c->
+  <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataIssued</c-> <c- s>"2020-05-29T09:55:08.580Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+  <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataModified</c-> <c- s>"2020-09-30T11:17:43.008Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+  <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataCatalog</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8></c-> <c- p>,</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/508d3c96-8106-49d2-910c-13706aca75e3></c-> <c- p>,</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af></c-> <c- p>,</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47></c-> <c- p>,</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1></c-> <c- p>.</c->
+
+<c- g>&lt;https://purl.org/fairdatapoint/app/catalog/></c-> <c- b>a</c-> <c- nn>ldp</c-><c- p>:</c-><c- f>DirectContainer</c-> <c- p>;</c->
+  <c- nn>dct</c-><c- p>:</c-><c- f>title</c-> <c- s>"Catalogs"</c-> <c- p>;</c->
+  <c- nn>ldp</c-><c- p>:</c-><c- f>membershipResource</c-> <c- g>&lt;https://fairdatapoint.org/app></c-> <c- p>;</c->
+  <c- nn>ldp</c-><c- p>:</c-><c- f>hasMemberRelation</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataCatalog</c-> <c- p>;</c->
+  <c- nn>ldp</c-><c- p>:</c-><c- f>contains</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8></c-> <c- p>,</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/508d3c96-8106-49d2-910c-13706aca75e3></c-> <c- p>,</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af></c-> <c- p>,</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47></c-> <c- p>,</c->
+    <c- g>&lt;https://purl.org/fairdatapoint/app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1></c-> <c- p>.</c->
+</pre>
+   <p>In this record, the FDP has the relation <code>fdp-o:metadataCatalog</code> with its catalogs — the parent–child relation a client follows to navigate the structure.
+The container <code>&lt;https://purl.org/fairdatapoint/app/catalog/></code> makes the structure explicit: it declares the FDP record as its <code>ldp:membershipResource</code>, <code>fdp-o:metadataCatalog</code> as its <code>ldp:hasMemberRelation</code>, and lists the member catalogs via <code>ldp:contains</code>.</p>
+   <h2 class="heading settled" data-level="7" id="schemas"><span class="secno">7. </span><span class="content">Metadata schemas and profiles</span><a class="self-link" href="#schemas"></a></h2>
+   <p>The FAIR Data Point supports deployment-defined metadata schemas, following the acknowledgment that every application scenario may require different sets of properties to properly describe a given digital object.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-14">CORE-14</dfn>
+    <dd data-md>
+     <p>Every metadata schema used by the deployment MUST be expressed in SHACL <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-15">CORE-15</dfn>
+    <dd data-md>
+     <p>Every metadata schema MUST declare as its target class <code>dcat:Resource</code> or a subclass of <code>dcat:Resource</code>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-16">CORE-16</dfn>
+    <dd data-md>
+     <p>Each metadata record SHOULD reference its <a href="../#terminology">profile</a> via <code>dct:conformsTo</code>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="core-17">CORE-17</dfn>
+    <dd data-md>
+     <p>A profile IRI referenced by a metadata record MUST be retrievable (<a href="#retrieval">§ 5.1 Retrieval</a>) and MUST resolve to the record’s metadata schema expressed in SHACL.</p>
+   </dl>
+   <div class="issue" id="issue-9914ebb7"><a class="self-link" href="#issue-9914ebb7"></a>
+**Open question — should <a data-link-type="dfn" href="#core-16" id="ref-for-core-16">CORE-16</a> be promoted from SHOULD to MUST?**
+In version 1.x the profile reference was a SHOULD.
+Arguments for MUST: without the profile link, a client or harvester cannot validate a record or discover its schema mechanically, which undermines the predictability goal of the suite; and the two mandatory record types (the FDP’s own record and catalogs) already carry a mandatory <code>dct:conformsTo</code> in their schemas, so the gap only exists for deployment-defined types.
+Arguments for keeping SHOULD: deployments that expose legacy or third-party metadata may be unable to attach profiles to records they do not control, and a MUST would exclude them from Core conformance entirely rather than degrading gracefully.
+A possible middle ground is MUST for records created through the <a href="../records/">Records Management</a> interface and SHOULD otherwise.
+</div>
+   <h3 class="heading settled" data-level="7.1" id="fdp-metadata"><span class="secno">7.1. </span><span class="content">FAIR Data Point metadata schema</span><a class="self-link" href="#fdp-metadata"></a></h3>
+   <p>The metadata schema of the FDP’s own record:</p>
+   <table class="def">
+    <caption>FAIR Data Point metadata schema</caption>
+    <thead>
+     <tr>
+      <th>Ontology
+      <th>Property name
+      <th>Datatype
+      <th>Cardinality
+      <th>Description
+    <tbody>
+     <tr>
+      <td>RDF
+      <td>rdf:type
+      <td>IRI
+      <td>1
+      <td>The type of the object described by the metadata record, which, in this case, is a FAIR Data Point.
+                The value <em class="rfc2119">MUST</em> be <code>fdp-o:FAIRDataPoint</code>.
+     <tr>
+      <td>DC terms
+      <td>dct:title
+      <td>String
+      <td>1..*
+      <td>Name of the FAIR Data Point with the language tag.
+     <tr>
+      <td>
+      <td>dct:description
+      <td>String
+      <td>0..*
+      <td>Description of the FAIR Data Point with the language tag.
+     <tr>
+      <td>
+      <td>dct:publisher
+      <td><code>foaf:Agent</code>
+      <td>1..*
+      <td>The entity or entities (person or organization) responsible for the FAIR Data Point.
+     <tr>
+      <td>
+      <td>dct:language
+      <td>IRI
+      <td>0..*
+      <td>The language(s) used in the metadata record.
+     <tr>
+      <td>
+      <td>dct:license
+      <td>IRI
+      <td>1
+      <td>The reference to the usage license of the FAIR Data Point.
+     <tr>
+      <td>
+      <td>dct:conformsTo
+      <td>IRI
+      <td>2..*
+      <td>This property points to (a) a profile that contains the specification of the FAIR Data Point’s metadata schema (in <code>SHACL</code>) and (b) the conformance class URI(s) of the FDP specification suite that the deployment implements, including at least the FDP Core class of the implemented suite version, e.g. <code>https://specs.fairdatapoint.org/v2.0/conformance/core</code>.
+     <tr>
+      <td>
+      <td>dct:rights
+      <td>IRI
+      <td>0..*
+      <td>
+     <tr>
+      <td>
+      <td>dct:accessRights
+      <td>IRI
+      <td>0..*
+      <td>
+     <tr>
+      <td>DCAT
+      <td>dcat:contactPoint
+      <td><code>vCard</code>
+      <td>0..*
+      <td>Relevant contact information for the FAIR Data Point.
+     <tr>
+      <td>
+      <td>dcat:keyword
+      <td>String
+      <td>0..*
+      <td>Keyword(s) describing the FAIR Data Point.
+     <tr>
+      <td>
+      <td>dcat:theme
+      <td><code>skos:subject</code>
+      <td>0..*
+      <td>
+                Main concept(s) related to the FAIR Data Point.
+                DCAT themes are similar to keywords in the sense of representing concepts that are related to the entity.
+                However, keywords are natural language terms, intended for human consumption, whereas themes are concepts defined in ontologies/vocabularies, for machine consumption.
+            
+     <tr>
+      <td>
+      <td>dcat:endpointURL
+      <td>IRI
+      <td>1
+      <td>The URL of the FDP API endpoint.
+     <tr>
+      <td>
+      <td>dcat:endpointDescription
+      <td>IRI
+      <td>0..*
+      <td>
+                The URL of the document describing the endpoint, its operations, services, parameters, etc.
+                The description should be expressed in a machine-readable format, such as an OpenAPI or SmartAPI description.
+            
+     <tr>
+      <td>FDP ontology
+      <td>fdp-o:metadataIdentifier
+      <td><code>IRI</code>
+      <td>1
+      <td>Identifier of the metadata entry.
+     <tr>
+      <td>
+      <td>fdp-o:metadataIssued
+      <td><code>xsd:dateTime</code>
+      <td>1
+      <td>Creation data of the metadata entry.
+     <tr>
+      <td>
+      <td>fdp-o:metadataModified
+      <td><code>xsd:dateTime</code>
+      <td>1
+      <td>Last modified data of the metadata entry.
+     <tr>
+      <td>
+      <td>fdp-o:startDate
+      <td>xsd:date
+      <td>0..1
+      <td>Date when the metadata service started its operations.
+     <tr>
+      <td>
+      <td>fdp-o:endDate
+      <td>xsd:date
+      <td>0..1
+      <td>Date when the metadata service ended its operations.
+     <tr>
+      <td>
+      <td>fdp-o:uiLanguage
+      <td>IRI
+      <td>0..*
+      <td>The user interface language(s) of the FAIR Data Point, which is different from the <code>dcat:Resource</code> property of <code>dct:language</code> that relates to the language of the metadata record.
+     <tr>
+      <td>
+      <td>fdp-o:hasSoftwareVersion
+      <td>String
+      <td>0..1
+      <td>Version of the metadata service software that exposes the FDP behaviour.
+     <tr>
+      <td>
+      <td>fdp-o:conformsToFdpSpec
+      <td>IRI
+      <td>1
+      <td>The relation should point to a URI that contains the version of the FDP specifications which this instance of the FDP conforms to.
+   </table>
+   <p>The navigation information for the FAIR Data Point metadata record is defined below:</p>
+   <table class="def">
+    <caption>FAIR Data Point metadata’s navigation information schema</caption>
+    <thead>
+     <tr>
+      <th>Ontology
+      <th>Property name
+      <th>Datatype
+      <th>Cardinality
+      <th>Description
+    <tbody>
+     <tr>
+      <td>RDF
+      <td>rdf:type
+      <td>IRI
+      <td>1
+      <td>
+                The type of the object described by the navigation information metadata segment which, in this case, is a Direct Container.
+                The value <em class="rfc2119">MUST</em> be <code>ldp:DirectContainer</code>.
+            
+     <tr>
+      <td>DC terms
+      <td>dct:title
+      <td>String
+      <td>1..*
+      <td>Name of the container.
+     <tr>
+      <td>LDP
+      <td>ldp:contains
+      <td><code>IRI</code>
+      <td>1..*
+      <td>
+                Identifier of the resources contained in this container.
+                In this case, the identifiers of the catalogs available in this FAIR Data Point.
+                The object of this property <em class="rdc2119">MUST</em> be an instance of <code>dcat:Catalog</code> or a sub-class of it.
+            
+     <tr>
+      <td>LDP
+      <td>ldp:hasMemberRelation
+      <td><code>IRI</code>
+      <td>1
+      <td>
+                This relation points to the URI of the custom relation/predicate used to relate the FAIR Data Point with its member catalogs.
+                The object of this property <em class="rdc2119">MUST</em> be <code>fdp-o:metadataCatalog</code>.
+            
+     <tr>
+      <td>LDP
+      <td>ldp:membershipResource
+      <td><code>IRI</code>
+      <td>1
+      <td>
+                This relation points to the identifier of the FAIR Data Point that is related to this container.
+                The object of this property <em class="rdc2119">MUST</em> be an instance of <code>fdp-o:FAIRDataPoint</code>.
+            
+   </table>
+   <p>The FAIR Data Point metadata schema defined in SHACL:</p>
+<pre class="highlight include-code"><c- k>@prefix</c->      <c- nn>:</c-> <c- g>&lt;http://fairdatapoint.org/></c-> <c- p>.</c->
+<c- k>@prefix</c->  <c- nn>dcat:</c-> <c- g>&lt;http://www.w3.org/ns/dcat#></c-> <c- p>.</c->
+<c- k>@prefix</c->   <c- nn>dct:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>fdp-o:</c-> <c- g>&lt;https://w3id.org/fdp/fdp-o#></c-> <c- p>.</c->
+<c- k>@prefix</c->  <c- nn>foaf:</c-> <c- g>&lt;http://xmlns.com/foaf/0.1/></c-> <c- p>.</c->
+<c- k>@prefix</c->   <c- nn>ldp:</c-> <c- g>&lt;http://www.w3.org/ns/ldp#></c-> <c- p>.</c->
+<c- k>@prefix</c->    <c- nn>sh:</c-> <c- g>&lt;http://www.w3.org/ns/shacl#></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>vcard:</c-> <c- g>&lt;http://www.w3.org/2006/vcard/ns#></c-> <c- p>.</c->
+<c- k>@prefix</c->   <c- nn>xsd:</c-> <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
+
+<c- p>:</c-><c- f>FAIRDataPointShape</c-> <c- b>a</c-> <c- nn>sh</c-><c- p>:</c-><c- f>NodeShape</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>targetClass</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>FAIRDataPoint</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>property</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>title</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>hasVersion</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>description</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataCatalog</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>node</c-> <c- p>:</c-><c- f>CatalogShape</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>publisher</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>node</c-> <c- p>:</c-><c- f>AgentShape</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>language</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>license</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- c># The record's own profile and the conformance declaration (CORE-02)</c->
+    <c- c># share dct:conformsTo; hence minCount 1 and no maxCount.</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>conformsTo</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- c># CORE-02: at least one dct:conformsTo value is a versioned conformance</c->
+    <c- c># class URI of the FDP specification suite, declaring both the</c->
+    <c- c># implemented capabilities and the specification version.</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>conformsTo</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>qualifiedValueShape</c-> <c- p>[</c->
+      <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+      <c- nn>sh</c-><c- p>:</c-><c- f>pattern</c-> <c- s>"^https://specs\\.fairdatapoint\\.org/v[0-9]+\\.[0-9]+/conformance/"</c-> <c- p>;</c->
+    <c- p>]</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>qualifiedMinCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>rights</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>accessRights</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>contactPoint</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>node</c-> <c- p>:</c-><c- f>ContactPointShape</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>keyword</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>theme</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>endpointURL</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>startDate</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>datatype</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>date</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>endDate</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>datatype</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>date</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataIdentifier</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataIssued</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>datatype</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataModified</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>datatype</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>]</c-> <c- p>.</c->
+
+<c- p>:</c-><c- f>AgentShape</c-> <c- b>a</c-> <c- nn>sh</c-><c- p>:</c-><c- f>NodeShape</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>targetClass</c-> <c- nn>foaf</c-><c- p>:</c-><c- f>Agent</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>property</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>foaf</c-><c- p>:</c-><c- f>name</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>]</c-> <c- p>.</c->
+
+<c- p>:</c-><c- f>ContactPointShape</c-> <c- b>a</c-> <c- nn>sh</c-><c- p>:</c-><c- f>NodeShape</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>targetClass</c-> <c- nn>vcard</c-><c- p>:</c-><c- f>Kind</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>property</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>vcard</c-><c- p>:</c-><c- f>hasEmail</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>]</c-> <c- p>.</c->
+
+<c- p>:</c-><c- f>FAIRDataPointContainerShape</c-> <c- b>a</c-> <c- nn>sh</c-><c- p>:</c-><c- f>NodeShape</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>targetClass</c-> <c- nn>ldp</c-><c- p>:</c-><c- f>DirectContainer</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>property</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>name</c-> <c- s>"title"</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>description</c-> <c- s>"Name identifying the member resources"</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>title</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>uniqueLang</c-> <c- l>true</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>name</c-> <c- s>"membership resource"</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>description</c-> <c- s>"The FAIR Data Point record this container belongs to."</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>ldp</c-><c- p>:</c-><c- f>membershipResource</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>class</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>FAIRDataPoint</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>name</c-> <c- s>"has member relation"</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>description</c-> <c- s>"The predicate used in the metadata to relate the FAIR Data Point with its member catalogs."</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>ldp</c-><c- p>:</c-><c- f>hasMemberRelation</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>hasValue</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataCatalog</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>name</c-> <c- s>"contains"</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>description</c-> <c- s>"A set of triples, maintained by the LDP container, that lists the member metadata records (CORE-12)."</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>ldp</c-><c- p>:</c-><c- f>contains</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>node</c-> <c- p>:</c-><c- f>CatalogShape</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>]</c-> <c- p>.</c->
+</pre>
+   <p class="note" role="note"><span class="marker">Note:</span> The shape enforces <a data-link-type="dfn" href="#core-02" id="ref-for-core-02">CORE-02</a>: at least one <code>dct:conformsTo</code> value must be a conformance class URI of this suite (the qualified value shape matching <code>https://specs.fairdatapoint.org/v…/conformance/…</code>), which simultaneously pins the specification version the deployment implements.</p>
+   <h3 class="heading settled" data-level="7.2" id="catalog-metadata"><span class="secno">7.2. </span><span class="content">Catalog metadata schema</span><a class="self-link" href="#catalog-metadata"></a></h3>
+   <table class="def">
+    <caption>Catalog metadata schema</caption>
+    <thead>
+     <tr>
+      <th>Ontology
+      <th>Property name
+      <th>Datatype
+      <th>Cardinality
+      <th>Description
+    <tbody>
+     <tr>
+      <td>RDF
+      <td>rdf:type
+      <td>IRI
+      <td>1
+      <td>
+                The type of the object described by the metadata record which, in this case, is a catalog.
+                The value should be of type <code>dcat:Catalog</code>.
+            
+     <tr>
+      <td>DC terms
+      <td>dct:title
+      <td>String
+      <td>1..*
+      <td>Name of the catalog with the language tag.
+     <tr>
+      <td>
+      <td>dct:hasVersion
+      <td>String
+      <td>0..1
+      <td>Version of the catalog.
+     <tr>
+      <td>
+      <td>dct:description
+      <td>String
+      <td>0..*
+      <td>Description of the catalog with the language tag.
+     <tr>
+      <td>
+      <td>dct:publisher
+      <td><code>foaf:Agent</code>
+      <td>1..*
+      <td>The entity or entities (person or organization) responsible for the catalog.
+     <tr>
+      <td>
+      <td>dct:language
+      <td>IRI
+      <td>0..*
+      <td>The language(s) used in the catalog.
+     <tr>
+      <td>
+      <td>dct:license
+      <td>IRI
+      <td>1
+      <td>The reference to the usage license of the catalog.
+     <tr>
+      <td>
+      <td>dct:issued
+      <td>DateTime
+      <td>0..1
+      <td>The creation date of the catalog metadata record.
+     <tr>
+      <td>
+      <td>dct:modified
+      <td>DateTime
+      <td>0..1
+      <td>The last modified date of the catalog metadata record.
+     <tr>
+      <td>
+      <td>dct:conformsTo
+      <td>IRI
+      <td>1
+      <td>The specification of the catalog metadata schema (in <code>SHACL</code>).
+     <tr>
+      <td>
+      <td>dct:rights
+      <td>IRI
+      <td>0..*
+      <td>
+     <tr>
+      <td>
+      <td>dct:accessRights
+      <td>IRI
+      <td>0..*
+      <td>
+     <tr>
+      <td>
+      <td>dct:hasPart
+      <td>IRI
+      <td>1..*
+      <td>
+                The relation between the catalog and its items.
+                This is the most general predicate for membership of a catalog.
+                It is recommended to use more specific sub-properties such as <code>dcat:dataset</code>, <code>dcat:catalog</code>, <code>dcat:service</code>, or a custom sub-property.
+            
+     <tr>
+      <td>
+      <td>dct:isPartOf
+      <td>IRI
+      <td>1
+      <td>
+                Relation to the parent metadata.
+                In this case the metadata service metadata.
+            
+     <tr>
+      <td>DCAT
+      <td>dcat:themeTaxonomy
+      <td><code>IRI</code>
+      <td>1
+      <td>
+                A knowledge organization system (KOS) used to classify the resources that are part of this catalog.
+                It is recommended that the taxonomy is organized in a <code>skos:ConceptScheme</code>, <code>skos:Collection</code>, <code>owl:Ontology</code>, or similar.
+            
+     <tr>
+      <td>FDP ontology
+      <td>fdp-o:metadataIdentifier
+      <td><code>IRI</code>
+      <td>1
+      <td>Identifier of the metadata entry.
+     <tr>
+      <td>
+      <td>fdp-o:metadataIssued
+      <td><code>xsd:dateTime</code>
+      <td>1
+      <td>Creation date of the metadata entry.
+     <tr>
+      <td>
+      <td>fdp-o:metadataModified
+      <td><code>xsd:dateTime</code>
+      <td>1
+      <td>Last modified date of the metadata entry.
+     <tr>
+      <td>FOAF
+      <td>foaf:homepage
+      <td>IRI
+      <td>0..1
+      <td>The URL of the catalog HTML version.
+   </table>
+   <p>The catalog metadata schema defined in SHACL:</p>
+<pre class="highlight include-code"><c- k>@prefix</c->      <c- nn>:</c-> <c- g>&lt;http://fairdatapoint.org/></c-> <c- p>.</c->
+<c- k>@prefix</c->  <c- nn>dcat:</c-> <c- g>&lt;http://www.w3.org/ns/dcat#></c-> <c- p>.</c->
+<c- k>@prefix</c->   <c- nn>dct:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
+<c- k>@prefix</c-> <c- nn>fdp-o:</c-> <c- g>&lt;https://w3id.org/fdp/fdp-o#></c-> <c- p>.</c->
+<c- k>@prefix</c->  <c- nn>foaf:</c-> <c- g>&lt;http://xmlns.com/foaf/0.1/></c-> <c- p>.</c->
+<c- k>@prefix</c->    <c- nn>sh:</c-> <c- g>&lt;http://www.w3.org/ns/shacl#></c-> <c- p>.</c->
+<c- k>@prefix</c->   <c- nn>xsd:</c-> <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
+
+<c- p>:</c-><c- f>CatalogShape</c-> <c- b>a</c-> <c- nn>sh</c-><c- p>:</c-><c- f>NodeShape</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>targetClass</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>Catalog</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>property</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>title</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>hasVersion</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>description</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>publisher</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>node</c-> <c- p>:</c-><c- f>AgentShape</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>language</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>license</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>conformsTo</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>rights</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>accessRights</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- c># The relation between the catalog and its items. It is recommended to</c->
+    <c- c># use more specific sub-properties such as dcat:dataset, dcat:catalog,</c->
+    <c- c># dcat:service, or a custom sub-property.</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dct</c-><c- p>:</c-><c- f>hasPart</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>keyword</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>theme</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>startDate</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>datatype</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>date</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>endDate</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>datatype</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>date</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataIdentifier</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>IRI</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataIssued</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>datatype</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>],</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataModified</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>datatype</c-> <c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>]</c-> <c- p>.</c->
+
+<c- p>:</c-><c- f>AgentShape</c-> <c- b>a</c-> <c- nn>sh</c-><c- p>:</c-><c- f>NodeShape</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>targetClass</c-> <c- nn>foaf</c-><c- p>:</c-><c- f>Agent</c-> <c- p>;</c->
+  <c- nn>sh</c-><c- p>:</c-><c- f>property</c-> <c- p>[</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>path</c-> <c- nn>foaf</c-><c- p>:</c-><c- f>name</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>nodeKind</c-> <c- nn>sh</c-><c- p>:</c-><c- f>Literal</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>maxCount</c-> <c- mi>1</c-> <c- p>;</c->
+    <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
+  <c- p>]</c-> <c- p>.</c->
+</pre>
+   <p>Since only the FDP’s own record and <code>Catalog</code> records are mandatory, the metadata structure below the catalogs varies per deployment.
+As the FDP is most commonly used to provide metadata of datasets, deployments typically also define <code>Dataset</code> and <code>Distribution</code> schemas following the DCAT model; deployments are free to replace these with custom schemas, as long as <a data-link-type="dfn" href="#core-15" id="ref-for-core-15">CORE-15</a> is satisfied.
+If other types of digital objects are used, the catalog metadata must contain the navigation information from the catalog to those records, per <a href="#navigation">§ 6 Navigation information</a>.</p>
+   <h2 class="heading settled" data-level="8" id="requirements-summary"><span class="secno">8. </span><span class="content">Requirements summary</span><a class="self-link" href="#requirements-summary"></a></h2>
+   <table class="def">
+    <caption>FDP Core requirements</caption>
+    <thead>
+     <tr>
+      <th>ID
+      <th>Level
+      <th>Summary
+    <tbody>
+     <tr>
+      <td><a data-link-type="dfn" href="#core-01" id="ref-for-core-01①">CORE-01</a>
+      <td>MUST
+      <td>Root URL serves the FDP’s own metadata record
+     <tr>
+      <td><a data-link-type="dfn" href="#core-02" id="ref-for-core-02①">CORE-02</a>
+      <td>MUST
+      <td>FDP record declares implemented conformance classes via <code>dct:conformsTo</code>
+     <tr>
+      <td><a data-link-type="dfn" href="#core-03" id="ref-for-core-03">CORE-03</a>
+      <td>MUST
+      <td>All other records reachable from at least one Catalog
+     <tr>
+      <td><a data-link-type="dfn" href="#core-04" id="ref-for-core-04">CORE-04</a>
+      <td>MUST
+      <td>GET on every record, container and schema returns 200 + representation
+     <tr>
+      <td><a data-link-type="dfn" href="#core-05" id="ref-for-core-05">CORE-05</a>
+      <td>MUST
+      <td>HEAD supported wherever GET is
+     <tr>
+      <td><a data-link-type="dfn" href="#core-06" id="ref-for-core-06">CORE-06</a>
+      <td>MUST
+      <td>404 for unknown resources (410 MAY for deleted)
+     <tr>
+      <td><a data-link-type="dfn" href="#core-07" id="ref-for-core-07">CORE-07</a>
+      <td>MUST
+      <td>Turtle and JSON-LD available via content negotiation
+     <tr>
+      <td><a data-link-type="dfn" href="#core-08" id="ref-for-core-08">CORE-08</a>
+      <td>MUST
+      <td>Turtle is the default representation
+     <tr>
+      <td><a data-link-type="dfn" href="#core-09" id="ref-for-core-09">CORE-09</a>
+      <td>MUST
+      <td>406 for unsatisfiable Accept headers
+     <tr>
+      <td><a data-link-type="dfn" href="#core-10" id="ref-for-core-10">CORE-10</a>
+      <td>SHOULD
+      <td>ETag/Last-Modified and conditional requests
+     <tr>
+      <td><a data-link-type="dfn" href="#core-11" id="ref-for-core-11">CORE-11</a>
+      <td>MUST
+      <td>Navigation information for every record that leads to other records
+     <tr>
+      <td><a data-link-type="dfn" href="#core-12" id="ref-for-core-12①">CORE-12</a>
+      <td>MUST
+      <td>Children listed via <code>ldp:contains</code>
+     <tr>
+      <td><a data-link-type="dfn" href="#core-13" id="ref-for-core-13①">CORE-13</a>
+      <td>SHOULD
+      <td>DirectContainer with <code>ldp:hasMemberRelation</code>/<code>ldp:membershipResource</code> when a domain predicate exists
+     <tr>
+      <td><a data-link-type="dfn" href="#core-14" id="ref-for-core-14">CORE-14</a>
+      <td>MUST
+      <td>Schemas expressed in SHACL
+     <tr>
+      <td><a data-link-type="dfn" href="#core-15" id="ref-for-core-15①">CORE-15</a>
+      <td>MUST
+      <td>Schema target class is (a subclass of) <code>dcat:Resource</code>
+     <tr>
+      <td><a data-link-type="dfn" href="#core-16" id="ref-for-core-16①">CORE-16</a>
+      <td>SHOULD
+      <td>Records reference their profile via <code>dct:conformsTo</code>
+     <tr>
+      <td><a data-link-type="dfn" href="#core-17" id="ref-for-core-17">CORE-17</a>
+      <td>MUST
+      <td>Referenced profiles resolve to the SHACL schema
+   </table>
+   <p><span hidden><a data-link-type="biblio" href="#biblio-fdp" title="FAIR Data Point: A FAIR-oriented approach for metadata publication">[FDP]</a></span></p>
+  </main>
+  <div data-fill-with="conformance">
+   <h2 class="heading no-num no-ref settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
+   <h3 class="heading no-num no-ref settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
+   <p>Conformance requirements are expressed
+    with a combination of descriptive assertions
+    and RFC 2119 terminology.
+    The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
+    in the normative parts of this document
+    are to be interpreted as described in RFC 2119.
+    However, for readability,
+    these words do not appear in all uppercase letters in this specification.
+
+    </p>
+   <p>All of the text of this specification is normative
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+    </p>
+   <p>Examples in this specification are introduced with the words “for example”
+    or are set apart from the normative text
+    with <code>class="example"</code>,
+    like this:
+
+    </p>
+   <div class="example" id="w3c-example">
+    <a class="self-link" href="#w3c-example"></a>
+        
+    <p>This is an example of an informative example.
+    </p>
+   </div>
+   <p>Informative notes begin with the word “Note”
+    and are set apart from the normative text
+    with <code>class="note"</code>,
+    like this:
+
+    </p>
+   <p class="note" role="note">Note, this is an informative note.</p>
+  </div>
+  <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
+  <h2 class="heading no-num no-ref settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
+  <ul class="index">
+   <li><a href="#core-01">CORE-01</a><span>, in § 3</span>
+   <li><a href="#core-02">CORE-02</a><span>, in § 3</span>
+   <li><a href="#core-03">CORE-03</a><span>, in § 4</span>
+   <li><a href="#core-04">CORE-04</a><span>, in § 5.1</span>
+   <li><a href="#core-05">CORE-05</a><span>, in § 5.1</span>
+   <li><a href="#core-06">CORE-06</a><span>, in § 5.1</span>
+   <li><a href="#core-07">CORE-07</a><span>, in § 5.2</span>
+   <li><a href="#core-08">CORE-08</a><span>, in § 5.2</span>
+   <li><a href="#core-09">CORE-09</a><span>, in § 5.2</span>
+   <li><a href="#core-10">CORE-10</a><span>, in § 5.3</span>
+   <li><a href="#core-11">CORE-11</a><span>, in § 6</span>
+   <li><a href="#core-12">CORE-12</a><span>, in § 6</span>
+   <li><a href="#core-13">CORE-13</a><span>, in § 6</span>
+   <li><a href="#core-14">CORE-14</a><span>, in § 7</span>
+   <li><a href="#core-15">CORE-15</a><span>, in § 7</span>
+   <li><a href="#core-16">CORE-16</a><span>, in § 7</span>
+   <li><a href="#core-17">CORE-17</a><span>, in § 7</span>
+   <li><a href="#fdp-core">FDP Core</a><span>, in § 1</span>
+  </ul>
+  <h2 class="heading no-num no-ref settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <dl>
+   <dt id="biblio-ldp">[LDP]
+   <dd>Steve Speicher; John Arwe; Ashok Malhotra. <a href="https://www.w3.org/2012/ldp/hg/ldp.html"><cite>Linked Data Platform 1.0</cite></a>. URL: <a href="https://www.w3.org/2012/ldp/hg/ldp.html">https://www.w3.org/2012/ldp/hg/ldp.html</a>
+   <dt id="biblio-rfc2119">[RFC2119]
+   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
+   <dt id="biblio-shacl">[SHACL]
+   <dd>Holger Knublauch; Dimitris Kontokostas. <a href="https://w3c.github.io/data-shapes/shacl/"><cite>Shapes Constraint Language (SHACL)</cite></a>. URL: <a href="https://w3c.github.io/data-shapes/shacl/">https://w3c.github.io/data-shapes/shacl/</a>
+   <dt id="biblio-vocab-dcat-2">[VOCAB-DCAT-2]
+   <dd>Riccardo Albertoni; et al. <a href="https://w3c.github.io/dxwg/dcat/"><cite>Data Catalog Vocabulary (DCAT) - Version 2</cite></a>. URL: <a href="https://w3c.github.io/dxwg/dcat/">https://w3c.github.io/dxwg/dcat/</a>
+  </dl>
+  <h3 class="heading no-num no-ref settled" id="informative"><span class="content">Non-Normative References</span><a class="self-link" href="#informative"></a></h3>
+  <dl>
+   <dt id="biblio-fdp">[FDP]
+   <dd>Luiz Olavo Bonino da Silva Santos,; et al. <a href="https://doi.org/10.1162/dint_a_00160"><cite>FAIR Data Point: A FAIR-oriented approach for metadata publication</cite></a>. URL: <a href="https://doi.org/10.1162/dint_a_00160">https://doi.org/10.1162/dint_a_00160</a>
+  </dl>
+  <h2 class="heading no-num no-ref settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+  <div style="counter-reset:issue">
+   <div class="issue">
+**Open question — should <a data-link-type="dfn" href="#core-16">CORE-16</a> be promoted from SHOULD to MUST?**
+In version 1.x the profile reference was a SHOULD.
+Arguments for MUST: without the profile link, a client or harvester cannot validate a record or discover its schema mechanically, which undermines the predictability goal of the suite; and the two mandatory record types (the FDP’s own record and catalogs) already carry a mandatory <code>dct:conformsTo</code> in their schemas, so the gap only exists for deployment-defined types.
+Arguments for keeping SHOULD: deployments that expose legacy or third-party metadata may be unable to attach profiles to records they do not control, and a MUST would exclude them from Core conformance entirely rather than degrading gracefully.
+A possible middle ground is MUST for records created through the <a href="../records/">Records Management</a> interface and SHOULD otherwise.
+ <a class="issue-return" href="#issue-9914ebb7" title="Jump to section">↵</a></div>
+  </div>
+<script>/* Boilerplate: script-dom-helper */
+"use strict";
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}</script>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+let dfnPanelData = {
+"core-01": {"dfnID":"core-01","dfnText":"CORE-01","external":false,"refSections":[{"refs":[{"id":"ref-for-core-01"}],"title":"5. HTTP interface"},{"refs":[{"id":"ref-for-core-01\u2460"}],"title":"8. Requirements summary"}],"url":"#core-01"},
+"core-02": {"dfnID":"core-02","dfnText":"CORE-02","external":false,"refSections":[{"refs":[{"id":"ref-for-core-02"}],"title":"7.1. FAIR Data Point metadata schema"},{"refs":[{"id":"ref-for-core-02\u2460"}],"title":"8. Requirements summary"}],"url":"#core-02"},
+"core-03": {"dfnID":"core-03","dfnText":"CORE-03","external":false,"refSections":[{"refs":[{"id":"ref-for-core-03"}],"title":"8. Requirements summary"}],"url":"#core-03"},
+"core-04": {"dfnID":"core-04","dfnText":"CORE-04","external":false,"refSections":[{"refs":[{"id":"ref-for-core-04"}],"title":"8. Requirements summary"}],"url":"#core-04"},
+"core-05": {"dfnID":"core-05","dfnText":"CORE-05","external":false,"refSections":[{"refs":[{"id":"ref-for-core-05"}],"title":"8. Requirements summary"}],"url":"#core-05"},
+"core-06": {"dfnID":"core-06","dfnText":"CORE-06","external":false,"refSections":[{"refs":[{"id":"ref-for-core-06"}],"title":"8. Requirements summary"}],"url":"#core-06"},
+"core-07": {"dfnID":"core-07","dfnText":"CORE-07","external":false,"refSections":[{"refs":[{"id":"ref-for-core-07"}],"title":"8. Requirements summary"}],"url":"#core-07"},
+"core-08": {"dfnID":"core-08","dfnText":"CORE-08","external":false,"refSections":[{"refs":[{"id":"ref-for-core-08"}],"title":"8. Requirements summary"}],"url":"#core-08"},
+"core-09": {"dfnID":"core-09","dfnText":"CORE-09","external":false,"refSections":[{"refs":[{"id":"ref-for-core-09"}],"title":"8. Requirements summary"}],"url":"#core-09"},
+"core-10": {"dfnID":"core-10","dfnText":"CORE-10","external":false,"refSections":[{"refs":[{"id":"ref-for-core-10"}],"title":"8. Requirements summary"}],"url":"#core-10"},
+"core-11": {"dfnID":"core-11","dfnText":"CORE-11","external":false,"refSections":[{"refs":[{"id":"ref-for-core-11"}],"title":"8. Requirements summary"}],"url":"#core-11"},
+"core-12": {"dfnID":"core-12","dfnText":"CORE-12","external":false,"refSections":[{"refs":[{"id":"ref-for-core-12"}],"title":"6. Navigation information"},{"refs":[{"id":"ref-for-core-12\u2460"}],"title":"8. Requirements summary"}],"url":"#core-12"},
+"core-13": {"dfnID":"core-13","dfnText":"CORE-13","external":false,"refSections":[{"refs":[{"id":"ref-for-core-13"}],"title":"6. Navigation information"},{"refs":[{"id":"ref-for-core-13\u2460"}],"title":"8. Requirements summary"}],"url":"#core-13"},
+"core-14": {"dfnID":"core-14","dfnText":"CORE-14","external":false,"refSections":[{"refs":[{"id":"ref-for-core-14"}],"title":"8. Requirements summary"}],"url":"#core-14"},
+"core-15": {"dfnID":"core-15","dfnText":"CORE-15","external":false,"refSections":[{"refs":[{"id":"ref-for-core-15"}],"title":"7.2. Catalog metadata schema"},{"refs":[{"id":"ref-for-core-15\u2460"}],"title":"8. Requirements summary"}],"url":"#core-15"},
+"core-16": {"dfnID":"core-16","dfnText":"CORE-16","external":false,"refSections":[{"refs":[{"id":"ref-for-core-16"}],"title":"7. Metadata schemas and profiles"},{"refs":[{"id":"ref-for-core-16\u2460"}],"title":"8. Requirements summary"}],"url":"#core-16"},
+"core-17": {"dfnID":"core-17","dfnText":"CORE-17","external":false,"refSections":[{"refs":[{"id":"ref-for-core-17"}],"title":"8. Requirements summary"}],"url":"#core-17"},
+"fdp-core": {"dfnID":"fdp-core","dfnText":"FDP Core","external":false,"refSections":[],"url":"#fdp-core"},
+};
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    genAllDfnPanels();
+
+    document.body.addEventListener("click", (e) => {
+        // If not handled already, just hide all dfn panels.
+        hideAllDfnPanels();
+    });
+});
+
+window.addEventListener("resize", () => {
+    // Pin any visible dfn panel
+    queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>positionDfnPanel(el));
+});
+
+function genAllDfnPanels() {
+    for(const panelData of Object.values(dfnPanelData)) {
+        const dfnID = panelData.dfnID;
+        const dfn = document.getElementById(dfnID);
+        if(!dfn) {
+            console.log(`Can't find dfn#${dfnID}.`, panelData);
+            continue;
+        }
+        dfn.panelData = panelData;
+        insertDfnPopupAction(dfn);
+    }
+}
+
+function genDfnPanel(dfn, { dfnID, url, dfnText, refSections, external }) {
+    const dfnPanel = mk.aside({
+        class: "dfn-panel on",
+        id: `infopanel-for-${dfnID}`,
+        "data-for": dfnID,
+        "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+        },
+        mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+            `Info about the '${dfnText}' ${external?"external":""} reference.`),
+        mk.a({href:url, class:"dfn-link"}, url),
+        refSections.length == 0 ? [] :
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({ href: `#${ref.id}` },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        genLinkingSyntaxes(dfn),
+    );
+
+    dfnPanel.addEventListener('click', (event) => {
+        if (event.target.nodeName == 'A') {
+            scrollToTargetAndHighlight(event);
+            pinDfnPanel(dfnPanel);
+        }
+        event.stopPropagation();
+        refocusOnTarget(event);
+    });
+    dfnPanel.addEventListener('keydown', (event) => {
+        if(event.keyCode == 27) { // Escape key
+            hideDfnPanel({dfnPanel});
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    });
+
+    dfnPanel.dfn = dfn;
+    dfn.dfnPanel = dfnPanel;
+    return dfnPanel;
+}
+
+
+
+function hideAllDfnPanels() {
+    // Delete the currently-active dfn panel.
+    queryAll(".dfn-panel").forEach(dfnPanel=>hideDfnPanel({dfnPanel}));
+}
+
+function showDfnPanel(dfn) {
+    hideAllDfnPanels(); // Only display one at a time.
+
+    dfn.setAttribute("aria-expanded", "true");
+
+    const dfnPanel = genDfnPanel(dfn, dfn.panelData);
+
+    // Give the dfn a unique tabindex, and then
+    // give all the tabbable panel bits successive indexes.
+    let tabIndex = 100;
+    dfn.tabIndex = tabIndex++;
+    const tabbable = dfnPanel.querySelectorAll(":is(a, button)");
+    for (const el of tabbable) {
+        el.tabIndex = tabIndex++;
+    }
+
+    append(document.body, dfnPanel);
+    positionDfnPanel(dfnPanel);
+}
+
+function positionDfnPanel(dfnPanel) {
+    const dfn = dfnPanel.dfn;
+    const dfnPos = getBounds(dfn);
+    dfnPanel.style.top = dfnPos.bottom + "px";
+    dfnPanel.style.left = dfnPos.left + "px";
+
+    const panelPos = dfnPanel.getBoundingClientRect();
+    const panelMargin = 8;
+    const maxRight = document.body.parentNode.clientWidth - panelMargin;
+    if (panelPos.right > maxRight) {
+        const overflowAmount = panelPos.right - maxRight;
+        const newLeft = Math.max(panelMargin, dfnPos.left - overflowAmount);
+        dfnPanel.style.left = newLeft + "px";
+    }
+}
+
+function pinDfnPanel(dfnPanel) {
+    // Switch it to "activated" state, which pins it.
+    dfnPanel.classList.add("activated");
+    dfnPanel.style.position = "fixed";
+    dfnPanel.style.left = null;
+    dfnPanel.style.top = null;
+}
+
+function hideDfnPanel({dfn, dfnPanel}) {
+    if(!dfnPanel) dfnPanel = dfn.dfnPanel;
+    if(!dfn) dfn = dfnPanel.dfn;
+    dfn.dfnPanel = undefined;
+    dfnPanel.dfn = undefined;
+    dfn.setAttribute("aria-expanded", "false");
+    dfn.tabIndex = undefined;
+    dfnPanel.remove()
+}
+
+function toggleDfnPanel(dfn) {
+    if(dfn.dfnPanel) {
+        hideDfnPanel(dfn);
+    } else {
+        showDfnPanel(dfn);
+    }
+}
+
+function insertDfnPopupAction(dfn) {
+    dfn.setAttribute('role', 'button');
+    dfn.setAttribute('aria-expanded', 'false')
+    dfn.tabIndex = 0;
+    dfn.classList.add('has-dfn-panel');
+    dfn.addEventListener('click', (event) => {
+        toggleDfnPanel(dfn);
+        event.stopPropagation();
+    });
+    dfn.addEventListener('keypress', (event) => {
+        const kc = event.keyCode;
+        // 32->Space, 13->Enter
+        if(kc == 32 || kc == 13) {
+            toggleDfnPanel(dfn);
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    });
+}
+
+function refocusOnTarget(event) {
+    const target = event.target;
+    setTimeout(() => {
+        // Refocus on the event.target element.
+        // This is needed after browser scrolls to the destination.
+        target.focus();
+    });
+}
+
+// TODO: shared util
+// Returns the root-level absolute position {left and top} of element.
+function getBounds(el, relativeTo=document.body) {
+    const relativeRect = relativeTo.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const top = elRect.top - relativeRect.top;
+    const left = elRect.left - relativeRect.left;
+    return {
+        top,
+        left,
+        bottom: top + elRect.height,
+        right: left + elRect.width,
+    }
+}
+
+function scrollToTargetAndHighlight(event) {
+    let hash = event.target.hash;
+    if (hash) {
+        hash = decodeURIComponent(hash.substring(1));
+        const dest = document.getElementById(hash);
+        if (dest) {
+            dest.classList.add('highlighted');
+            setTimeout(() => dest.classList.remove('highlighted'), 1000);
+        }
+    }
+}
+
+// Functions, divided by link type, that wrap an autolink's
+// contents with the appropriate outer syntax.
+// Alternately, a string naming another type they format
+// the same as.
+function needsFor(type) {
+    switch(type) {
+        case "descriptor":
+        case "value":
+        case "element-attr":
+        case "attr-value":
+        case "element-state":
+        case "method":
+        case "constructor":
+        case "argument":
+        case "attribute":
+        case "const":
+        case "dict-member":
+        case "event":
+        case "enum-value":
+        case "stringifier":
+        case "serializer":
+        case "iterator":
+        case "maplike":
+        case "setlike":
+        case "state":
+        case "mode":
+        case "context":
+        case "facet": return true;
+
+        default: return false;
+    }
+}
+function refusesFor(type) {
+    switch(type) {
+        case "property":
+        case "element":
+        case "interface":
+        case "namespace":
+        case "callback":
+        case "dictionary":
+        case "enum":
+        case "exception":
+        case "typedef":
+        case "http-header":
+        case "permission": return true;
+
+        default: return false;
+    }
+}
+function linkFormatterFromType(type) {
+    switch(type) {
+        case 'scheme':
+        case 'permission':
+        case 'dfn': return (text) => `[=${text}=]`;
+
+        case 'abstract-op': return (text) => `[\$${text}\$]`;
+
+        case 'function':
+        case 'at-rule':
+        case 'selector':
+        case 'value': return (text) => `''${text}''`;
+
+        case 'http-header': return (text) => `[:${text}:]`;
+
+        case 'interface':
+        case 'constructor':
+        case 'method':
+        case 'argument':
+        case 'attribute':
+        case 'callback':
+        case 'dictionary':
+        case 'dict-member':
+        case 'enum':
+        case 'enum-value':
+        case 'exception':
+        case 'const':
+        case 'typedef':
+        case 'stringifier':
+        case 'serializer':
+        case 'iterator':
+        case 'maplike':
+        case 'setlike':
+        case 'extended-attribute':
+        case 'event':
+        case 'idl': return (text) => `{{${text}}}`;
+
+        case 'element-state':
+        case 'element-attr':
+        case 'attr-value':
+        case 'element': return (element) => `<{${element}}>`;
+
+        case 'grammar': return (text) => `${text} (within a <pre class=prod>)`;
+
+        case 'type': return (text)=> `<<${text}>>`;
+
+        case 'descriptor':
+        case 'property': return (text) => `'${text}'`;
+
+        default: return;
+    };
+};
+
+function genLinkingSyntaxes(dfn) {
+    if(dfn.tagName != "DFN") return;
+
+    const type = dfn.getAttribute('data-dfn-type');
+    if(!type) {
+        console.log(`<dfn> doesn't have a data-dfn-type:`, dfn);
+        return [];
+    }
+
+    // Return a function that wraps link text based on the type
+    const linkFormatter = linkFormatterFromType(type);
+    if(!linkFormatter) {
+        console.log(`<dfn> has an unknown data-dfn-type:`, dfn);
+        return [];
+    }
+
+    let ltAlts;
+    if(dfn.hasAttribute('data-lt')) {
+        ltAlts = dfn.getAttribute('data-lt')
+            .split("|")
+            .map(x=>x.trim());
+    } else {
+        ltAlts = [dfn.textContent.trim()];
+    }
+    if(type == "type") {
+        // lt of "<foo>", but "foo" is the interior;
+        // <<foo/bar>> is how you write it with a for,
+        // not <foo/<bar>> or whatever.
+        for(var i = 0; i < ltAlts.length; i++) {
+            const lt = ltAlts[i];
+            const match = /<(.*)>/.exec(lt);
+            if(match) { ltAlts[i] = match[1]; }
+        }
+    }
+
+    let forAlts;
+    if(dfn.hasAttribute('data-dfn-for')) {
+        forAlts = dfn.getAttribute('data-dfn-for')
+            .split(",")
+            .map(x=>x.trim());
+    } else {
+        forAlts = [''];
+    }
+
+    let linkingSyntaxes = [];
+    if(!needsFor(type)) {
+        for(const lt of ltAlts) {
+            linkingSyntaxes.push(linkFormatter(lt));
+        }
+    }
+    if(!refusesFor(type)) {
+        for(const f of forAlts) {
+            linkingSyntaxes.push(linkFormatter(`${f}/${ltAlts[0]}`))
+        }
+    }
+    return [
+        mk.b({}, 'Possible linking syntaxes:'),
+        mk.ul({},
+            ...linkingSyntaxes.map(link => {
+                const copyLink = async () =>
+                    await navigator.clipboard.writeText(link);
+                return mk.li({},
+                    mk.div({ class: 'link-item' },
+                        mk.button({
+                            class: 'copy-icon', title: 'Copy',
+                            type: 'button',
+                            _onclick: copyLink,
+                            tabindex: 0,
+                        }, mk.span({ class: 'icon' }) ),
+                        mk.span({}, link)
+                    )
+                );
+            })
+        )
+    ];
+}
+}
+</script>
+<script>/* Boilerplate: script-ref-hints */
+"use strict";
+{
+let refsData = {
+"#core-01": {"displayText":"core-01","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-01","type":"dfn","url":"#core-01"},
+"#core-02": {"displayText":"core-02","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-02","type":"dfn","url":"#core-02"},
+"#core-03": {"displayText":"core-03","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-03","type":"dfn","url":"#core-03"},
+"#core-04": {"displayText":"core-04","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-04","type":"dfn","url":"#core-04"},
+"#core-05": {"displayText":"core-05","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-05","type":"dfn","url":"#core-05"},
+"#core-06": {"displayText":"core-06","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-06","type":"dfn","url":"#core-06"},
+"#core-07": {"displayText":"core-07","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-07","type":"dfn","url":"#core-07"},
+"#core-08": {"displayText":"core-08","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-08","type":"dfn","url":"#core-08"},
+"#core-09": {"displayText":"core-09","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-09","type":"dfn","url":"#core-09"},
+"#core-10": {"displayText":"core-10","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-10","type":"dfn","url":"#core-10"},
+"#core-11": {"displayText":"core-11","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-11","type":"dfn","url":"#core-11"},
+"#core-12": {"displayText":"core-12","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-12","type":"dfn","url":"#core-12"},
+"#core-13": {"displayText":"core-13","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-13","type":"dfn","url":"#core-13"},
+"#core-14": {"displayText":"core-14","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-14","type":"dfn","url":"#core-14"},
+"#core-15": {"displayText":"core-15","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-15","type":"dfn","url":"#core-15"},
+"#core-16": {"displayText":"core-16","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-16","type":"dfn","url":"#core-16"},
+"#core-17": {"displayText":"core-17","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-core","spec":"fdp-core","status":"local","text":"core-17","type":"dfn","url":"#core-17"},
+};
+
+function mkRefHint(link, ref) {
+    const linkText = link.textContent;
+    let dfnTextElements = '';
+    if (ref.displayText.toLowerCase() != linkText.toLowerCase()) {
+        // Give the original term if it's being displayed in a different way.
+        // But allow casing differences, they're insignificant.
+        dfnTextElements =
+            mk.li({},
+                mk.b({}, "Term: "),
+                mk.span({}, ref.displayText)
+            );
+    }
+    const forList = ref.for_;
+    let forListElements;
+    if(forList.length == 0) {
+        forListElements = [];
+    } else if(forList.length == 1) {
+        forListElements = mk.li({},
+            mk.b({}, "For: "),
+            mk.span({}, forList[0]),
+        );
+    } else {
+        forListElements = mk.li({},
+            mk.b({}, "For: "),
+            mk.ul({},
+                ...forList.map(forItem =>
+                    mk.li({},
+                        mk.span({}, forItem)
+                    ),
+                ),
+            ),
+        );
+    }
+    const url = ref.url;
+    const safeUrl = encodeURIComponent(url);
+    const hintPanel = mk.aside({
+        class: "ref-hint",
+        id: `ref-hint-for-${safeUrl}`,
+        "data-for": url,
+        "aria-labelled-by": `ref-hint-for-${safeUrl}`,
+    },
+        mk.ul({},
+            dfnTextElements,
+            mk.li({},
+                mk.b({}, "URL: "),
+                mk.a({ href: url, class: "ref" }, url),
+            ),
+            mk.li({},
+                mk.b({}, "Type: "),
+                mk.span({}, `${ref.type}`),
+            ),
+            mk.li({},
+                mk.b({}, "Spec: "),
+                mk.span({}, `${ref.spec ? ref.spec : ''}`),
+            ),
+            forListElements
+        ),
+    );
+    hintPanel.forLink = link;
+    setupRefHintEventListeners(link, hintPanel);
+    return hintPanel;
+}
+
+function hideAllRefHints() {
+    queryAll(".ref-hint").forEach(el=>hideRefHint(el));
+}
+
+function hideRefHint(refHint) {
+    const link = refHint.forLink;
+    link.setAttribute("aria-expanded", "false");
+    if(refHint.teardownEventListeners) {
+        refHint.teardownEventListeners();
+    }
+    refHint.remove();
+}
+
+function showRefHint(link) {
+    if(link.classList.contains("dfn-link")) return;
+    const url = link.getAttribute("href");
+    const refHintKey = link.getAttribute("data-refhint-key");
+    let key = url;
+    if(refHintKey) {
+        key = refHintKey + "_" + url;
+    }
+    const ref = refsData[key];
+    if(!ref) return;
+
+    hideAllRefHints(); // Only display one at this time.
+
+    const refHint = mkRefHint(link, ref);
+    append(document.body, refHint);
+    link.setAttribute("aria-expanded", "true");
+    positionRefHint(refHint);
+}
+
+function setupRefHintEventListeners(link, refHint) {
+    if (refHint.teardownEventListeners) return;
+    // Add event handlers to hide the refHint after the user moves away
+    // from both the link and refHint, if not hovering either within one second.
+    let timeout = null;
+    const startHidingRefHint = (event) => {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+            hideRefHint(refHint);
+        }, 1000);
+    }
+    const resetHidingRefHint = (event) => {
+        if (timeout) clearTimeout(timeout);
+        timeout = null;
+    };
+    link.addEventListener("mouseleave", startHidingRefHint);
+    link.addEventListener("mouseenter", resetHidingRefHint);
+    link.addEventListener("blur", startHidingRefHint);
+    link.addEventListener("focus", resetHidingRefHint);
+    refHint.addEventListener("mouseleave", startHidingRefHint);
+    refHint.addEventListener("mouseenter", resetHidingRefHint);
+    refHint.addEventListener("blur", startHidingRefHint);
+    refHint.addEventListener("focus", resetHidingRefHint);
+
+    refHint.teardownEventListeners = () => {
+        // remove event listeners
+        resetHidingRefHint();
+        link.removeEventListener("mouseleave", startHidingRefHint);
+        link.removeEventListener("mouseenter", resetHidingRefHint);
+        link.removeEventListener("blur", startHidingRefHint);
+        link.removeEventListener("focus", resetHidingRefHint);
+        refHint.removeEventListener("mouseleave", startHidingRefHint);
+        refHint.removeEventListener("mouseenter", resetHidingRefHint);
+        refHint.removeEventListener("blur", startHidingRefHint);
+        refHint.removeEventListener("focus", resetHidingRefHint);
+    };
+}
+
+function positionRefHint(refHint) {
+    const link = refHint.forLink;
+    const linkPos = getBounds(link);
+    refHint.style.top = linkPos.bottom + "px";
+    refHint.style.left = linkPos.left + "px";
+
+    const panelPos = refHint.getBoundingClientRect();
+    const panelMargin = 8;
+    const maxRight = document.body.parentNode.clientWidth - panelMargin;
+    if (panelPos.right > maxRight) {
+        const overflowAmount = panelPos.right - maxRight;
+        const newLeft = Math.max(panelMargin, linkPos.left - overflowAmount);
+        refHint.style.left = newLeft + "px";
+    }
+}
+
+// TODO: shared util
+// Returns the root-level absolute position {left and top} of element.
+function getBounds(el, relativeTo=document.body) {
+    const relativeRect = relativeTo.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const top = elRect.top - relativeRect.top;
+    const left = elRect.left - relativeRect.left;
+    return {
+        top,
+        left,
+        bottom: top + elRect.height,
+        right: left + elRect.width,
+    }
+}
+
+function showRefHintListener(e) {
+    // If the target isn't in a link (or is a link),
+    // just ignore it.
+    let link = e.target.closest("a");
+    if(!link) return;
+
+    // If the target is in a ref-hint panel
+    // (aka a link in the already-open one),
+    // also just ignore it.
+    if(link.closest(".ref-hint")) return;
+
+    // Otherwise, show the panel for the link.
+    showRefHint(link);
+}
+
+function hideAllHintsListener(e) {
+    // If the click is inside a ref-hint panel, ignore it.
+    if(e.target.closest(".ref-hint")) return;
+    // Otherwise, close all the current panels.
+    hideAllRefHints();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.addEventListener("mousedown", showRefHintListener);
+    document.body.addEventListener("focus", showRefHintListener);
+
+    document.body.addEventListener("click", hideAllHintsListener);
+});
+
+window.addEventListener("resize", () => {
+    // Hide any open ref hint.
+    hideAllRefHints();
+});
+}
+</script>

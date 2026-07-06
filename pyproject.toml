@@ -8,5 +8,5 @@ dependencies = []
 
 [dependency-groups]
 dev = [
-    "bikeshed>=7.0.7",
+    "bikeshed>=7.1.1",
 ]

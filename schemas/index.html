@@ -2,11 +2,11 @@
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <title>FAIR Data Point Specification Suite</title>
+  <title>FDP Schema Management</title>
   <meta content="CG-DRAFT" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version d113b2e81, updated Tue Jun 9 14:57:55 2026 -0700" name="generator">
-  <link href="https://specs.fairdatapoint.org/" rel="canonical">
+  <link href="https://specs.fairdatapoint.org/schemas/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="45eff07024dbee5fc4805c4078722df4af96f60b" name="revision">
   <meta content="dark light" name="color-scheme">
@@ -573,158 +573,13 @@ a.self-link::before            { content: "¶"; }
 .heading > a.self-link::before { content: "§"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
-<style>/* Boilerplate: style-syntax-highlighting */
-code.highlight { padding: .1em; border-radius: .3em; }
-pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
-
-.highlight:not(.idl) { background: rgba(0, 0, 0, .03); }
-c-[a] { color: #990055 } /* Keyword.Declaration */
-c-[b] { color: #990055 } /* Keyword.Type */
-c-[c] { color: #708090 } /* Comment */
-c-[d] { color: #708090 } /* Comment.Multiline */
-c-[e] { color: #0077aa } /* Name.Attribute */
-c-[f] { color: #669900 } /* Name.Tag */
-c-[g] { color: #222222 } /* Name.Variable */
-c-[k] { color: #990055 } /* Keyword */
-c-[l] { color: #000000 } /* Literal */
-c-[m] { color: #000000 } /* Literal.Number */
-c-[n] { color: #0077aa } /* Name */
-c-[o] { color: #999999 } /* Operator */
-c-[p] { color: #999999 } /* Punctuation */
-c-[s] { color: #a67f59 } /* Literal.String */
-c-[t] { color: #a67f59 } /* Literal.String.Single */
-c-[u] { color: #a67f59 } /* Literal.String.Double */
-c-[cp] { color: #708090 } /* Comment.Preproc */
-c-[c1] { color: #708090 } /* Comment.Single */
-c-[cs] { color: #708090 } /* Comment.Special */
-c-[kc] { color: #990055 } /* Keyword.Constant */
-c-[kn] { color: #990055 } /* Keyword.Namespace */
-c-[kp] { color: #990055 } /* Keyword.Pseudo */
-c-[kr] { color: #990055 } /* Keyword.Reserved */
-c-[ld] { color: #000000 } /* Literal.Date */
-c-[nc] { color: #0077aa } /* Name.Class */
-c-[no] { color: #0077aa } /* Name.Constant */
-c-[nd] { color: #0077aa } /* Name.Decorator */
-c-[ni] { color: #0077aa } /* Name.Entity */
-c-[ne] { color: #0077aa } /* Name.Exception */
-c-[nf] { color: #0077aa } /* Name.Function */
-c-[nl] { color: #0077aa } /* Name.Label */
-c-[nn] { color: #0077aa } /* Name.Namespace */
-c-[py] { color: #0077aa } /* Name.Property */
-c-[ow] { color: #999999 } /* Operator.Word */
-c-[mb] { color: #000000 } /* Literal.Number.Bin */
-c-[mf] { color: #000000 } /* Literal.Number.Float */
-c-[mh] { color: #000000 } /* Literal.Number.Hex */
-c-[mi] { color: #000000 } /* Literal.Number.Integer */
-c-[mo] { color: #000000 } /* Literal.Number.Oct */
-c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
-c-[sc] { color: #a67f59 } /* Literal.String.Char */
-c-[sd] { color: #a67f59 } /* Literal.String.Doc */
-c-[se] { color: #a67f59 } /* Literal.String.Escape */
-c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
-c-[si] { color: #a67f59 } /* Literal.String.Interpol */
-c-[sx] { color: #a67f59 } /* Literal.String.Other */
-c-[sr] { color: #a67f59 } /* Literal.String.Regex */
-c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
-c-[vc] { color: #0077aa } /* Name.Variable.Class */
-c-[vg] { color: #0077aa } /* Name.Variable.Global */
-c-[vi] { color: #0077aa } /* Name.Variable.Instance */
-c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-
-@media (prefers-color-scheme: dark) {
-    .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
-
-    c-[a] { color: #d33682 } /* Keyword.Declaration */
-    c-[b] { color: #d33682 } /* Keyword.Type */
-    c-[c] { color: #2aa198 } /* Comment */
-    c-[d] { color: #2aa198 } /* Comment.Multiline */
-    c-[e] { color: #268bd2 } /* Name.Attribute */
-    c-[f] { color: #b58900 } /* Name.Tag */
-    c-[g] { color: #cb4b16 } /* Name.Variable */
-    c-[k] { color: #d33682 } /* Keyword */
-    c-[l] { color: #657b83 } /* Literal */
-    c-[m] { color: #657b83 } /* Literal.Number */
-    c-[n] { color: #268bd2 } /* Name */
-    c-[o] { color: #657b83 } /* Operator */
-    c-[p] { color: #657b83 } /* Punctuation */
-    c-[s] { color: #6c71c4 } /* Literal.String */
-    c-[t] { color: #6c71c4 } /* Literal.String.Single */
-    c-[u] { color: #6c71c4 } /* Literal.String.Double */
-    c-[ch] { color: #2aa198 } /* Comment.Hashbang */
-    c-[cp] { color: #2aa198 } /* Comment.Preproc */
-    c-[cpf] { color: #2aa198 } /* Comment.PreprocFile */
-    c-[c1] { color: #2aa198 } /* Comment.Single */
-    c-[cs] { color: #2aa198 } /* Comment.Special */
-    c-[kc] { color: #d33682 } /* Keyword.Constant */
-    c-[kn] { color: #d33682 } /* Keyword.Namespace */
-    c-[kp] { color: #d33682 } /* Keyword.Pseudo */
-    c-[kr] { color: #d33682 } /* Keyword.Reserved */
-    c-[ld] { color: #657b83 } /* Literal.Date */
-    c-[nc] { color: #268bd2 } /* Name.Class */
-    c-[no] { color: #268bd2 } /* Name.Constant */
-    c-[nd] { color: #268bd2 } /* Name.Decorator */
-    c-[ni] { color: #268bd2 } /* Name.Entity */
-    c-[ne] { color: #268bd2 } /* Name.Exception */
-    c-[nf] { color: #268bd2 } /* Name.Function */
-    c-[nl] { color: #268bd2 } /* Name.Label */
-    c-[nn] { color: #268bd2 } /* Name.Namespace */
-    c-[py] { color: #268bd2 } /* Name.Property */
-    c-[ow] { color: #657b83 } /* Operator.Word */
-    c-[mb] { color: #657b83 } /* Literal.Number.Bin */
-    c-[mf] { color: #657b83 } /* Literal.Number.Float */
-    c-[mh] { color: #657b83 } /* Literal.Number.Hex */
-    c-[mi] { color: #657b83 } /* Literal.Number.Integer */
-    c-[mo] { color: #657b83 } /* Literal.Number.Oct */
-    c-[sa] { color: #6c71c4 } /* Literal.String.Affix */
-    c-[sb] { color: #6c71c4 } /* Literal.String.Backtick */
-    c-[sc] { color: #6c71c4 } /* Literal.String.Char */
-    c-[dl] { color: #6c71c4 } /* Literal.String.Delimiter */
-    c-[sd] { color: #6c71c4 } /* Literal.String.Doc */
-    c-[se] { color: #6c71c4 } /* Literal.String.Escape */
-    c-[sh] { color: #6c71c4 } /* Literal.String.Heredoc */
-    c-[si] { color: #6c71c4 } /* Literal.String.Interpol */
-    c-[sx] { color: #6c71c4 } /* Literal.String.Other */
-    c-[sr] { color: #6c71c4 } /* Literal.String.Regex */
-    c-[ss] { color: #6c71c4 } /* Literal.String.Symbol */
-    c-[fm] { color: #268bd2 } /* Name.Function.Magic */
-    c-[vc] { color: #cb4b16 } /* Name.Variable.Class */
-    c-[vg] { color: #cb4b16 } /* Name.Variable.Global */
-    c-[vi] { color: #cb4b16 } /* Name.Variable.Instance */
-    c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
-    c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
-}
-
-@media print {
-    /* Darken colors for print that would otherwise print too faintly */
-    c-[c]  { color: #555555 } /* Comment */
-    c-[d]  { color: #555555 } /* Comment.Multiline */
-    c-[cp] { color: #555555 } /* Comment.Preproc */
-    c-[c1] { color: #555555 } /* Comment.Single */
-    c-[cs] { color: #555555 } /* Comment.Special */
-    c-[o]  { color: #222222 } /* Operator */
-    c-[p]  { color: #222222 } /* Punctuation */
-    c-[ow] { color: #222222 } /* Operator.Word */
-    c-[s]  { color: #664400 } /* Literal.String */
-    c-[t]  { color: #664400 } /* Literal.String.Single */
-    c-[u]  { color: #664400 } /* Literal.String.Double */
-    c-[sb] { color: #664400 } /* Literal.String.Backtick */
-    c-[sc] { color: #664400 } /* Literal.String.Char */
-    c-[sd] { color: #664400 } /* Literal.String.Doc */
-    c-[se] { color: #664400 } /* Literal.String.Escape */
-    c-[sh] { color: #664400 } /* Literal.String.Heredoc */
-    c-[si] { color: #664400 } /* Literal.String.Interpol */
-    c-[sx] { color: #664400 } /* Literal.String.Other */
-    c-[sr] { color: #664400 } /* Literal.String.Regex */
-    c-[ss] { color: #664400 } /* Literal.String.Symbol */
-}
-</style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/">
     <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
 </a>
 </p>
-   <h1 class="no-ref p-name" id="title">FAIR Data Point Specification Suite</h1>
+   <h1 class="no-ref p-name" id="title">FDP Schema Management</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>,
     <time class="dt-updated" datetime="2026-07-06">6 July 2026</time></p>
    <details open>
@@ -732,17 +587,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <div data-fill-with="spec-metadata">
      <dl>
       <dt>This version:
-      <dd><a class="u-url" href="https://specs.fairdatapoint.org/">https://specs.fairdatapoint.org/</a>
-      <dt>Previous Versions:
-      <dd><a href="https://specs.fairdatapoint.org/v1.2/fdp-specs-v1.2.html" rel="prev">https://specs.fairdatapoint.org/v1.2/fdp-specs-v1.2.html</a>
+      <dd><a class="u-url" href="https://specs.fairdatapoint.org/schemas/">https://specs.fairdatapoint.org/schemas/</a>
       <dt>Issue Tracking:
       <dd><a href="https://github.com/fdp-specs/fdp-specs.github.io/issues">Github</a>
       <dd><a href="#issues-index">Inline In Spec</a>
       <dt class="editor">Editors:
       <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.utwente.nl/en/eemcs/scs/">Luiz Olavo Bonino da Silva Santos</a> (<span class="org p-org">UTwente</span>)
       <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.health-ri.nl/">Kees Burger</a> (<span class="org p-org">Health-RI</span>)
-      <dt class="editor">Former Editor:
-      <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.lumc.nl/">Rajaram Kaliyaperumal</a> (<span class="org p-org">LUMC</span>)
      </dl>
     </div>
    </details>
@@ -753,8 +604,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </div>
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="heading no-num no-ref no-toc settled" id="abstract"><span class="content">Abstract</span></h2>
-   <p>This document is the entry point of the FAIR Data Point (FDP) specification suite.
-It introduces the FAIR Data Point, defines the terminology and the conformance model shared by all modules of the suite, and lists the modules: FDP Core (mandatory) and the optional extension modules for records management, schema management and bulk ingestion.</p>
+   <p>This document specifies FDP Schema Management, an optional conformance class of the FAIR Data Point (FDP) specification suite.
+It defines how an FDP supports the creation, modification and deletion of metadata schemas (SHACL shapes), and the rules for extending the mandatory base schemas.</p>
   </div>
   <h2 class="heading no-num no-ref no-toc settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
@@ -764,32 +615,13 @@ It introduces the FAIR Data Point, defines the terminology and the conformance m
   <nav data-fill-with="table-of-contents" id="toc">
    <h2 class="no-num no-ref no-toc" id="contents">Table of Contents</h2>
    <ol class="toc">
-    <li>
-     <a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
-     <ol class="toc">
-      <li><a href="#audience"><span class="secno">1.1</span> <span class="content">Audience</span></a>
-      <li><a href="#suite"><span class="secno">1.2</span> <span class="content">The suite</span></a>
-      <li><a href="#conventions"><span class="secno">1.3</span> <span class="content">Document conventions</span></a>
-     </ol>
-    <li><a href="#terminology"><span class="secno">2</span> <span class="content">Terminology</span></a>
-    <li>
-     <a href="#conformance-model"><span class="secno">3</span> <span class="content">Conformance model</span></a>
-     <ol class="toc">
-      <li><a href="#classes"><span class="secno">3.1</span> <span class="content">Classes, not levels</span></a>
-      <li><a href="#conformance-uris"><span class="secno">3.2</span> <span class="content">Conformance class URIs and versioning</span></a>
-      <li><a href="#declaring"><span class="secno">3.3</span> <span class="content">Declaring conformance</span></a>
-      <li><a href="#profiles-informative"><span class="secno">3.4</span> <span class="content">Named profiles (informative)</span></a>
-     </ol>
-    <li><a href="#discovery"><span class="secno">4</span> <span class="content">Relationship to FAIR Discovery</span></a>
-    <li>
-     <a href="#scenarios"><span class="secno">5</span> <span class="content">Usage scenarios (informative)</span></a>
-     <ol class="toc">
-      <li><a href="#scenario-discovery"><span class="secno">5.1</span> <span class="content">Data discovery</span></a>
-      <li><a href="#scenario-access"><span class="secno">5.2</span> <span class="content">Data access</span></a>
-      <li><a href="#scenario-publication"><span class="secno">5.3</span> <span class="content">(Meta)data publication</span></a>
-      <li><a href="#scenario-other-content"><span class="secno">5.4</span> <span class="content">Publishing other types of content</span></a>
-     </ol>
-    <li><a href="#changes"><span class="secno">6</span> <span class="content">Changes from version 1.2 (informative)</span></a>
+    <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
+    <li><a href="#conformance-class"><span class="secno">2</span> <span class="content">Conformance</span></a>
+    <li><a href="#schema-resources"><span class="secno">3</span> <span class="content">Schemas as resources</span></a>
+    <li><a href="#create-modify"><span class="secno">4</span> <span class="content">Creating and modifying schemas</span></a>
+    <li><a href="#delete"><span class="secno">5</span> <span class="content">Deleting schemas</span></a>
+    <li><a href="#extension"><span class="secno">6</span> <span class="content">Extending the base schemas</span></a>
+    <li><a href="#requirements-summary"><span class="secno">7</span> <span class="content">Requirements summary</span></a>
     <li>
      <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
@@ -804,183 +636,135 @@ It introduces the FAIR Data Point, defines the terminology and the conformance m
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
-      <li><a href="#informative"><span class="secno"></span> <span class="content">Non-Normative References</span></a>
      </ol>
     <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
-   <p>The FAIR Data Point (FDP) is a set of specifications defining how systems expose the metadata of digital objects in a way that follows the FAIR principles <a data-link-type="biblio" href="#biblio-fair-principles" title="The FAIR Guiding Principles for scientific data management and stewardship">[FAIR-principles]</a>.
-A FAIR Data Point allows digital object owners and publishers to expose the metadata of their digital objects in a FAIR manner and allows consumers — human users and software agents alike — to discover information about the offered digital objects.
-Commonly, an FDP is used to expose metadata of datasets, but metadata of any other type of digital object can be exposed as well, such as ontologies, repositories, analysis algorithms, websites, etc.</p>
-   <p>Interoperability happens at different levels, including syntactic and semantic interoperability.
-The FDP addresses these interoperability issues by providing:</p>
-   <ul>
-    <li data-md>
-     <p>a common interface to access information (metadata) about digital objects;</p>
-    <li data-md>
-     <p>a common representation format <a data-link-type="biblio" href="#biblio-rdf11-primer" title="RDF 1.1 Primer">[RDF11-PRIMER]</a> to express the metadata in a machine-actionable manner;</p>
-    <li data-md>
-     <p>a common approach to inform clients how to navigate through an FDP’s metadata structure;</p>
-    <li data-md>
-     <p>a common representation format <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a> to represent each metadata record’s schema.</p>
-   </ul>
-   <p>The main goal of the FDP is to establish a common method for metadata provisioning and access and, as a consequence, provide client applications with a predictable way of accessing and interacting with metadata content.</p>
-   <h3 class="heading settled" data-level="1.1" id="audience"><span class="secno">1.1. </span><span class="content">Audience</span><a class="self-link" href="#audience"></a></h3>
-   <p>This suite is primarily intended as a reference for developers who want to add FDP behaviour to their existing applications or develop their own FAIR Data Point implementation.
-In order to better understand these specifications, knowledge of RDF, LDP, SHACL and REST APIs is required.</p>
-   <h3 class="heading settled" data-level="1.2" id="suite"><span class="secno">1.2. </span><span class="content">The suite</span><a class="self-link" href="#suite"></a></h3>
-   <p>Version 2.0 of the FDP specifications is organised as a suite of documents.
-Each module is a separate specification defining exactly one <a data-link-type="dfn" href="#conformance-class" id="ref-for-conformance-class">conformance class</a>:</p>
+   <p>Every application scenario may require different sets of properties to properly describe a given <a href="../#terminology">digital object</a>; the FDP therefore supports deployment-defined <a href="../#terminology">metadata schema</a>s.
+<a href="../core/">FDP Core</a> requires schemas to be expressed in SHACL and to be retrievable; this module specifies how schemas are managed: added, edited, deleted, and extended.</p>
+   <p>Terminology is defined in the <a href="../#terminology">umbrella document</a>.
+The key words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are to be interpreted as described in <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>.</p>
+   <h2 class="heading settled" data-level="2" id="conformance-class"><span class="secno">2. </span><span class="content">Conformance</span><a class="self-link" href="#conformance-class"></a></h2>
+   <p>This document defines the conformance class identified by:</p>
+<pre>https://specs.fairdatapoint.org/v2.0/conformance/schemas
+</pre>
+   <p>A <a href="../#terminology">deployment</a> conforms to FDP Schema Management if and only if it conforms to <a href="../core/">FDP Core</a> and satisfies all MUST-level requirements in this document.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-01">SCH-01</dfn>
+    <dd data-md>
+     <p>A deployment claiming this conformance class MUST also conform to the FDP Core conformance class of the same suite version.</p>
+   </dl>
+   <h2 class="heading settled" data-level="3" id="schema-resources"><span class="secno">3. </span><span class="content">Schemas as resources</span><a class="self-link" href="#schema-resources"></a></h2>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-02">SCH-02</dfn>
+    <dd data-md>
+     <p>Every metadata schema in use by the deployment MUST be exposed as an addressable resource, retrievable per Core’s retrieval and content-negotiation requirements, with the SHACL shapes graph as its representation.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-03">SCH-03</dfn>
+    <dd data-md>
+     <p>The deployment MUST expose a schema <a href="../#terminology">container</a> listing all its schemas via <code>ldp:contains</code>, and that container MUST be discoverable from the FDP’s own metadata record.</p>
+   </dl>
+   <p class="note" role="note"><span class="marker">Note:</span> Exposing the schema catalogue through the same LDP containment mechanism used for metadata records keeps the client model uniform: one navigation mechanism for everything the FDP serves.</p>
+   <h2 class="heading settled" data-level="4" id="create-modify"><span class="secno">4. </span><span class="content">Creating and modifying schemas</span><a class="self-link" href="#create-modify"></a></h2>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-04">SCH-04</dfn>
+    <dd data-md>
+     <p>Creation of a schema MUST be supported via an HTTP POST on the schema container, with the SHACL shapes graph as the request body, accepting at least Turtle and JSON-LD; the deployment MUST verify that the submitted graph is syntactically valid SHACL and that it satisfies Core requirement CORE-15 (target class is <code>dcat:Resource</code> or a subclass); a violation MUST be answered with status code <code>422</code> and a report of the violation.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-05">SCH-05</dfn>
+    <dd data-md>
+     <p>On successful creation, the deployment MUST return <code>201</code> with a <code>Location</code> header carrying the schema’s IRI and MUST add the schema to the schema container.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-06">SCH-06</dfn>
+    <dd data-md>
+     <p>Modification of a schema MUST be supported via an HTTP PUT on the schema’s IRI, as a full replacement, subject to the same verification as <a data-link-type="dfn" href="#sch-04" id="ref-for-sch-04">SCH-04</a>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-07">SCH-07</dfn>
+    <dd data-md>
+     <p>Schemas SHOULD be versioned: when a schema is modified, the deployment SHOULD keep the previous version retrievable at a version-specific IRI, so that records whose <a href="../#terminology">profile</a> reference points to the earlier version continue to resolve to the schema they were validated against.</p>
+   </dl>
+   <h2 class="heading settled" data-level="5" id="delete"><span class="secno">5. </span><span class="content">Deleting schemas</span><a class="self-link" href="#delete"></a></h2>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-08">SCH-08</dfn>
+    <dd data-md>
+     <p>Deletion of a schema MUST be supported via an HTTP DELETE on the schema’s IRI; the deployment MUST refuse, with status code <code>409</code>, the deletion of a schema that is referenced as the profile of any existing metadata record.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-09">SCH-09</dfn>
+    <dd data-md>
+     <p>The deployment MUST refuse, with status code <code>409</code>, the deletion or the weakening of the two mandatory base schemas — the FAIR Data Point schema and the Catalog schema — where weakening means any modification under which metadata content satisfying the modified schema would violate a Core requirement.</p>
+   </dl>
+   <h2 class="heading settled" data-level="6" id="extension"><span class="secno">6. </span><span class="content">Extending the base schemas</span><a class="self-link" href="#extension"></a></h2>
+   <p>Deployments commonly need richer descriptions than the base schemas require — additional properties, stricter cardinalities, controlled vocabularies for specific fields.</p>
+   <dl>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-10">SCH-10</dfn>
+    <dd data-md>
+     <p>A deployment MAY extend the base schemas and MAY define schemas for additional record types; an extension of a base schema MUST preserve every constraint of the base schema (extensions may add constraints, never remove or relax them).</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="sch-11">SCH-11</dfn>
+    <dd data-md>
+     <p>Access control for the operations in this module MUST follow the same interface behaviour as Records Management (requirements REC-14 and REC-15 in <a href="../records/">FDP Records Management</a>): protection possible, <code>401</code>/<code>403</code> semantics.</p>
+   </dl>
+   <div class="issue" id="issue-c04ee174"><a class="self-link" href="#issue-c04ee174"></a>
+<strong>Open question — revalidation semantics when a schema changes.</strong>
+When a schema is modified (<a data-link-type="dfn" href="#sch-06" id="ref-for-sch-06">SCH-06</a>), existing records that were valid against the previous version may be invalid against the new one.
+This draft deliberately does not require automatic revalidation, because the cost on large deployments can be substantial and rejection of previously accepted records would be hostile to data holders.
+Options for the community group:
+(a) no obligation — records keep their validity status until next modified (the current draft’s implicit position);
+(b) lazy revalidation — a record is revalidated against the current schema whenever it is next written;
+(c) eager revalidation with flagging — the deployment revalidates affected records and exposes a per-record conformance status, following the accept-and-flag posture that FAIR Discovery applies on the harvesting side;
+(d) mandatory schema versioning — turn <a data-link-type="dfn" href="#sch-07" id="ref-for-sch-07">SCH-07</a> into a MUST, so that a record’s profile reference always pins the exact schema version it conforms to and revalidation is never implicit.
+Options (c) and (d) combine well and would make FDP-side behaviour symmetrical with the conformance reporting harvesters produce.
+</div>
+   <h2 class="heading settled" data-level="7" id="requirements-summary"><span class="secno">7. </span><span class="content">Requirements summary</span><a class="self-link" href="#requirements-summary"></a></h2>
    <table class="def">
-    <caption>Modules of the FDP specification suite</caption>
+    <caption>FDP Schema Management requirements</caption>
     <thead>
      <tr>
-      <th>Module
-      <th>Status
-      <th>Obligation
-      <th>Scope
+      <th>ID
+      <th>Level
+      <th>Summary
     <tbody>
      <tr>
-      <td><a href="core/">FDP Core</a>
-      <td>Draft
-      <td>Mandatory
-      <td>Read-side metadata provisioning: serving metadata records, representations, navigation, schema exposure.
-                Implementing Core is the necessary and sufficient condition for claiming that a system <em>behaves as a FAIR Data Point</em>.
+      <td><a data-link-type="dfn" href="#sch-01" id="ref-for-sch-01">SCH-01</a>
+      <td>MUST
+      <td>Core conformance is a prerequisite
      <tr>
-      <td><a href="records/">FDP Records Management</a>
-      <td>Draft
-      <td>Optional
-      <td>Creation, modification and deletion of metadata records through the FDP’s HTTP interface, including validation on write.
+      <td><a data-link-type="dfn" href="#sch-02" id="ref-for-sch-02">SCH-02</a>
+      <td>MUST
+      <td>Every schema is an addressable, negotiable resource
      <tr>
-      <td><a href="schemas/">FDP Schema Management</a>
-      <td>Draft
-      <td>Optional
-      <td>Creation, modification and deletion of metadata schemas (SHACL shapes), and rules for extending the mandatory base schemas.
+      <td><a data-link-type="dfn" href="#sch-03" id="ref-for-sch-03">SCH-03</a>
+      <td>MUST
+      <td>Schema container discoverable from the FDP record
      <tr>
-      <td><a href="bulk/">FDP Bulk Ingestion</a>
-      <td>Draft
-      <td>Optional
-      <td>Adding a bundle of metadata records to an FDP in a single operation, including transactionality and partial-failure reporting.
+      <td><a data-link-type="dfn" href="#sch-04" id="ref-for-sch-04①">SCH-04</a>
+      <td>MUST
+      <td>Create via POST; SHACL and target-class verification; 422 on violation
      <tr>
-      <td>FDP Discovery Participation
-      <td>In preparation
-      <td>Optional
-      <td>The FDP-side obligations of the FAIR Discovery protocol: registration and change notification (<em>ping</em>) towards a FAIR Discovery service, and harvest-friendliness guarantees.
-                This module is being developed separately and will be added to the suite when its protocol stabilises — see <a href="#discovery">§ 4 Relationship to FAIR Discovery</a>.
+      <td><a data-link-type="dfn" href="#sch-05" id="ref-for-sch-05">SCH-05</a>
+      <td>MUST
+      <td>201 + Location; schema added to the container
+     <tr>
+      <td><a data-link-type="dfn" href="#sch-06" id="ref-for-sch-06①">SCH-06</a>
+      <td>MUST
+      <td>Modify via PUT, verified as on creation
+     <tr>
+      <td><a data-link-type="dfn" href="#sch-07" id="ref-for-sch-07①">SCH-07</a>
+      <td>SHOULD
+      <td>Version schemas; previous versions stay resolvable
+     <tr>
+      <td><a data-link-type="dfn" href="#sch-08" id="ref-for-sch-08">SCH-08</a>
+      <td>MUST
+      <td>Refuse (409) deleting a schema in use
+     <tr>
+      <td><a data-link-type="dfn" href="#sch-09" id="ref-for-sch-09">SCH-09</a>
+      <td>MUST
+      <td>Refuse (409) deleting/weakening the mandatory base schemas
+     <tr>
+      <td><a data-link-type="dfn" href="#sch-10" id="ref-for-sch-10">SCH-10</a>
+      <td>MUST
+      <td>Extensions preserve base-schema constraints
+     <tr>
+      <td><a data-link-type="dfn" href="#sch-11" id="ref-for-sch-11">SCH-11</a>
+      <td>MUST
+      <td>Access control per Records Management interface behaviour
    </table>
-   <p>The extension modules depend on Core but are otherwise independent of each other; see <a href="#conformance-model">§ 3 Conformance model</a>.</p>
-   <h3 class="heading settled" data-level="1.3" id="conventions"><span class="secno">1.3. </span><span class="content">Document conventions</span><a class="self-link" href="#conventions"></a></h3>
-   <p>The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL in the normative parts of the suite are to be interpreted as described in <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>.</p>
-   <p>Every normative requirement in the suite is stated once, as a single testable assertion, and carries a stable identifier (e.g. <code>CORE-01</code>, <code>REC-03</code>).
-Conformance sections reference requirements by identifier; they never introduce new requirements.</p>
-   <p>Issues marked in the documents indicate questions that are open for discussion in the community group.</p>
-   <h2 class="heading settled" data-level="2" id="terminology"><span class="secno">2. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h2>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="digital-object">digital object</dfn>: any object that is available digitally, e.g. a dataset, an ontology, a piece of software, a document, a repository.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="metadata-record">metadata record</dfn>: a set of RDF statements, retrievable as a single resource, describing exactly one <a data-link-type="dfn" href="#digital-object" id="ref-for-digital-object">digital object</a>.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="metadata-schema">metadata schema</dfn>: a set of SHACL shapes <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a> that metadata records of a given type are expected to conform to.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="profile">profile</dfn>: the resource, referenced by a <a data-link-type="dfn" href="#metadata-record" id="ref-for-metadata-record">metadata record</a>, that identifies the <a data-link-type="dfn" href="#metadata-schema" id="ref-for-metadata-schema">metadata schema</a> the record conforms to.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="metadata-service">metadata service</dfn>: a service that provides access to metadata records. In the FDP ontology (namespace prefix <code>fdp-o</code>, <code>https://w3id.org/fdp/fdp-o#</code>), the FAIR Data Point is a subclass of <code>fdp-o:MetadataService</code>.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="container">container</dfn>: a resource, expressed with the Linked Data Platform <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a> containment vocabulary, that groups metadata records and provides the navigation information from a parent record to its children.</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="conformance-class">conformance class</dfn>: a named, versioned set of requirements defined by exactly one module of this suite and identified by a stable URI (<a href="#conformance-uris">§ 3.2 Conformance class URIs and versioning</a>).</p>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="deployment">deployment</dfn>: a running system that implements one or more conformance classes of this suite.</p>
-   <h2 class="heading settled" data-level="3" id="conformance-model"><span class="secno">3. </span><span class="content">Conformance model</span><a class="self-link" href="#conformance-model"></a></h2>
-   <h3 class="heading settled" data-level="3.1" id="classes"><span class="secno">3.1. </span><span class="content">Classes, not levels</span><a class="self-link" href="#classes"></a></h3>
-   <p>Each module of the suite defines exactly one <a data-link-type="dfn" href="#conformance-class" id="ref-for-conformance-class①">conformance class</a>.
-<strong>FDP Core is mandatory</strong>: a system may claim to <em>behave as a FAIR Data Point</em> if and only if it satisfies every requirement of the Core conformance class.
-Every other conformance class requires Core as a prerequisite but is otherwise independent.</p>
-   <p>The classes are deliberately not organised as cumulative levels (e.g. Level 1/2/3), because the capabilities are orthogonal rather than cumulative.
-For example, a read-only institutional FDP that participates in FAIR Discovery is a coherent deployment; a linear grading would force it to implement write support first.
-Named classes let a deployment claim exactly what it implements, e.g. "Core + Records Management".</p>
-   <h3 class="heading settled" data-level="3.2" id="conformance-uris"><span class="secno">3.2. </span><span class="content">Conformance class URIs and versioning</span><a class="self-link" href="#conformance-uris"></a></h3>
-   <p>Each conformance class is identified by a URI that includes the major.minor version of the suite it belongs to:</p>
-<pre>https://specs.fairdatapoint.org/v2.0/conformance/core
-https://specs.fairdatapoint.org/v2.0/conformance/records
-https://specs.fairdatapoint.org/v2.0/conformance/schemas
-https://specs.fairdatapoint.org/v2.0/conformance/bulk
-</pre>
-   <p>Versioning the class URIs — rather than publishing unversioned class URIs next to a separate version property — has a deliberate consequence: <strong>a single statement simultaneously declares a capability and the version of the specification that defines it.</strong>
-Clients never need to combine two pieces of information to know what behaviour to expect, and a deployment can, during a migration period, truthfully declare conformance to classes from two suite versions at once.</p>
-   <h3 class="heading settled" data-level="3.3" id="declaring"><span class="secno">3.3. </span><span class="content">Declaring conformance</span><a class="self-link" href="#declaring"></a></h3>
-   <p>A deployment declares the conformance classes it implements in its own metadata record (the metadata record of the FDP itself), using <code>dct:conformsTo</code>:</p>
-<pre class="highlight"><c- g>&lt;https://fdp.example.org></c-> <c- nn>dct</c-><c- p>:</c-><c- f>conformsTo</c->
-    <c- g>&lt;https://specs.fairdatapoint.org/v2.0/conformance/core></c-> <c- p>,</c->
-    <c- g>&lt;https://specs.fairdatapoint.org/v2.0/conformance/records></c-> <c- p>,</c->
-    <c- g>&lt;https://example.org/schema/fdpMetadata></c-> <c- p>.</c->   <c- c># the record's own profile</c->
-</pre>
-   <p>The declaration is itself a Core requirement (see requirement CORE-02 in <a href="core/">FDP Core</a>), and the FAIR Data Point <a data-link-type="dfn" href="#metadata-schema" id="ref-for-metadata-schema①">metadata schema</a> enforces it: the SHACL shape for the FDP’s own metadata record requires at least one <code>dct:conformsTo</code> value that is a conformance class URI of this suite.
-This makes the implemented specification version machine-checkable: a client — including a FAIR Discovery harvester — can determine a deployment’s capabilities and specification version from the root metadata record alone, before any further interaction.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> In version 1.x of these specifications the same need was served informally, and inconsistently, by a non-standard <code>conformsToFdpSpec</code> property that appeared in the SHACL schema but was never defined.
-Version 2.0 replaces it with the <code>dct:conformsTo</code> declaration described here.</p>
-   <h3 class="heading settled" data-level="3.4" id="profiles-informative"><span class="secno">3.4. </span><span class="content">Named profiles (informative)</span><a class="self-link" href="#profiles-informative"></a></h3>
-   <p><em>This section is non-normative.</em></p>
-   <p>For communication purposes, deployments and procurement documents may use labelled bundles of conformance classes:</p>
-   <ul>
-    <li data-md>
-     <p><strong>FDP</strong> — Core;</p>
-    <li data-md>
-     <p><strong>FDP Publisher</strong> — Core + Records Management + Schema Management;</p>
-    <li data-md>
-     <p><strong>FDP Federated</strong> — Core + Discovery Participation (once published).</p>
-   </ul>
-   <p>These labels are presentation only; the conformance classes remain the normative unit.</p>
-   <h2 class="heading settled" data-level="4" id="discovery"><span class="secno">4. </span><span class="content">Relationship to FAIR Discovery</span><a class="self-link" href="#discovery"></a></h2>
-   <p>FAIR Discovery is the aggregation service of the FAIR ecosystem: it registers metadata sources, harvests their metadata, validates it against profiles, and re-publishes the aggregate for search, browsing and downstream federation.
-A FAIR Discovery deployment re-publishes its aggregated corpus through the standard FDP serving behaviour — the aggregate catalogue is itself an FDP whose content is harvested rather than authored — and is therefore itself an implementer of FDP Core.</p>
-   <p>The FDP-side obligations towards FAIR Discovery — registration, the <em>ping</em> change-notification protocol, and harvest-friendliness guarantees such as stable record IRIs and accurate modification timestamps — will be specified in the <strong>FDP Discovery Participation</strong> module.
-The harvester-side behaviour (source registry, connector protocol, incremental harvesting, conformance reporting) belongs to the FAIR Discovery specification itself, which references this suite rather than being part of it.
-The two specifications meet at exactly two points: the ping protocol and the harvestability guarantees.</p>
-   <div class="issue" id="issue-877d0e45"><a class="self-link" href="#issue-877d0e45"></a>
-The FDP Discovery Participation module and the companion FAIR Discovery specification are being designed separately and are not part of this draft.
-Open question: should the FAIR Discovery specification be developed in this same community group, and on what timeline relative to this suite?
-Arguments for the same group: the two specifications share editors, terminology and the conformance-URI mechanism, and the FDP side and the harvester side of the ping protocol should not drift apart.
-Arguments for separate development: FAIR Discovery is a product-scale specification (source registry lifecycle, connector protocol, validation posture) whose maturity timeline is independent of this suite, and coupling the two could hold Core back from reaching a final community group report.
-</div>
-   <h2 class="heading settled" data-level="5" id="scenarios"><span class="secno">5. </span><span class="content">Usage scenarios (informative)</span><a class="self-link" href="#scenarios"></a></h2>
-   <p><em>This section is non-normative.</em>
-The following usage scenarios motivated the requirements of this suite.
-They were gathered through interactions with representative stakeholders — data producers, data consumers, and providers of infrastructure and services — in a variety of data-intensive domains, and do not represent one particular project.</p>
-   <h3 class="heading settled" data-level="5.1" id="scenario-discovery"><span class="secno">5.1. </span><span class="content">Data discovery</span><a class="self-link" href="#scenario-discovery"></a></h3>
-   <p>A researcher needs to find datasets containing data about a given subject, e.g., proteins that are activated in specific tissues, pollution levels in a given region, or infrared observations of a particular galaxy; integrate the discovered data with other pre-selected datasets and analyse them.
-In another situation, the researcher needs to know which biobanks carry a given type of biosample (e.g., blood samples) from patients possessing a specific disease (e.g., Alzheimer’s disease) taken from a patient registry whose onset age was lower than 45 years old.
-These data users need a straightforward search application that allows them to find the required information.
-However, the search application first needs to have indexed information about existing datasets wherever their location.</p>
-   <h3 class="heading settled" data-level="5.2" id="scenario-access"><span class="secno">5.2. </span><span class="content">Data access</span><a class="self-link" href="#scenario-access"></a></h3>
-   <p>Once a data consumer finds the desired datasets, including the information about their licenses and access protocols, the consumer wants to access the data — retrieving it, or sending an algorithm to analyse it.
-In many situations the consumer will integrate many different datasets.
-To carry out these integrations, the consumer needs to know in which formats the data can be accessed and which access methods are available.
-This information comes in the form of metadata.
-To facilitate its usage, the method with which the metadata is accessed should be common across metadata sources, and a common representation technology should be used.</p>
-   <h3 class="heading settled" data-level="5.3" id="scenario-publication"><span class="secno">5.3. </span><span class="content">(Meta)data publication</span><a class="self-link" href="#scenario-publication"></a></h3>
-   <p>An organisation is running a project in which data is being created.
-The data will be analysed during the project but may also be useful for other users.
-The group would therefore like to publish the data in a way that allows potential users to retrieve information about the datasets (metadata), allows data search engines to index the metadata, and allows users to access the data.
-Some of the produced datasets have an open license but others have more restrictive licenses.
-All these metadata should be available so that potential data users have enough information to assess whether the data fits their needs.</p>
-   <h3 class="heading settled" data-level="5.4" id="scenario-other-content"><span class="secno">5.4. </span><span class="content">Publishing other types of content</span><a class="self-link" href="#scenario-other-content"></a></h3>
-   <p>An organisation is running a project in which different types of deliverables will be created.
-One group is developing a piece of software, another group is working on a controlled vocabulary, while a third group will generate a number of reference documents.
-The organisation would like to publish information about these materials so others can discover and reuse them.</p>
-   <h2 class="heading settled" data-level="6" id="changes"><span class="secno">6. </span><span class="content">Changes from version 1.2 (informative)</span><a class="self-link" href="#changes"></a></h2>
-   <p><em>This section is non-normative.</em></p>
-   <ul>
-    <li data-md>
-     <p>The single specification document was restructured into this suite: an umbrella document plus one document per module, each defining one conformance class.</p>
-    <li data-md>
-     <p>All normative statements were given stable identifiers and moved out of narrative prose; the conformance sections now only reference them.</p>
-    <li data-md>
-     <p>Write operations (records, schemas, bulk), previously implied but unspecified, are now specified in dedicated optional modules.</p>
-    <li data-md>
-     <p>The conformance declaration via <code>dct:conformsTo</code> with versioned class URIs was introduced (<a href="#conformance-uris">§ 3.2 Conformance class URIs and versioning</a>).</p>
-    <li data-md>
-     <p>The navigation-information inconsistency of v1.2 (<code>ldp:contains</code> "or" <code>ldp:hasMemberRelation</code> in the metadata chapter versus <code>ldp:hasMemberRelation</code> alone in the compliance chapter) was resolved — see the navigation section of <a href="core/">FDP Core</a>.</p>
-    <li data-md>
-     <p>The internal component architecture (Metadata Provider, Access Control, RDF Metadata Store) and reference-implementation notes were removed from the normative text; the specifications now define only externally observable behaviour.</p>
-    <li data-md>
-     <p>Several errors in the published SHACL schemas were corrected (missing cardinality values, a duplicated <code>fdp-o:metadataIdentifier</code> property shape that should have been <code>fdp-o:metadataModified</code>, undeclared prefixes, and the non-standard <code>conformsToFdpSpec</code> property).</p>
-   </ul>
-   <p><span hidden><a data-link-type="biblio" href="#biblio-fdp" title="FAIR Data Point: A FAIR-oriented approach for metadata publication">[FDP]</a></span></p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="heading no-num no-ref settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
@@ -1023,42 +807,37 @@ The organisation would like to publish information about these materials so othe
   <h2 class="heading no-num no-ref settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="heading no-num no-ref settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#conformance-class">conformance class</a><span>, in § 2</span>
-   <li><a href="#container">container</a><span>, in § 2</span>
-   <li><a href="#deployment">deployment</a><span>, in § 2</span>
-   <li><a href="#digital-object">digital object</a><span>, in § 2</span>
-   <li><a href="#metadata-record">metadata record</a><span>, in § 2</span>
-   <li><a href="#metadata-schema">metadata schema</a><span>, in § 2</span>
-   <li><a href="#metadata-service">metadata service</a><span>, in § 2</span>
-   <li><a href="#profile">profile</a><span>, in § 2</span>
+   <li><a href="#sch-01">SCH-01</a><span>, in § 2</span>
+   <li><a href="#sch-02">SCH-02</a><span>, in § 3</span>
+   <li><a href="#sch-03">SCH-03</a><span>, in § 3</span>
+   <li><a href="#sch-04">SCH-04</a><span>, in § 4</span>
+   <li><a href="#sch-05">SCH-05</a><span>, in § 4</span>
+   <li><a href="#sch-06">SCH-06</a><span>, in § 4</span>
+   <li><a href="#sch-07">SCH-07</a><span>, in § 4</span>
+   <li><a href="#sch-08">SCH-08</a><span>, in § 5</span>
+   <li><a href="#sch-09">SCH-09</a><span>, in § 5</span>
+   <li><a href="#sch-10">SCH-10</a><span>, in § 6</span>
+   <li><a href="#sch-11">SCH-11</a><span>, in § 6</span>
   </ul>
   <h2 class="heading no-num no-ref settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="heading no-num no-ref settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
-   <dt id="biblio-ldp">[LDP]
-   <dd>Steve Speicher; John Arwe; Ashok Malhotra. <a href="https://www.w3.org/2012/ldp/hg/ldp.html"><cite>Linked Data Platform 1.0</cite></a>. URL: <a href="https://www.w3.org/2012/ldp/hg/ldp.html">https://www.w3.org/2012/ldp/hg/ldp.html</a>
-   <dt id="biblio-rdf11-primer">[RDF11-PRIMER]
-   <dd>Guus Schreiber; Yves Raimond. <a href="https://www.w3.org/TR/rdf11-primer/"><cite>RDF 1.1 Primer</cite></a>. 24 June 2014. NOTE. URL: <a href="https://www.w3.org/TR/rdf11-primer/">https://www.w3.org/TR/rdf11-primer/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
-   <dt id="biblio-shacl">[SHACL]
-   <dd>Holger Knublauch; Dimitris Kontokostas. <a href="https://w3c.github.io/data-shapes/shacl/"><cite>Shapes Constraint Language (SHACL)</cite></a>. URL: <a href="https://w3c.github.io/data-shapes/shacl/">https://w3c.github.io/data-shapes/shacl/</a>
-  </dl>
-  <h3 class="heading no-num no-ref settled" id="informative"><span class="content">Non-Normative References</span><a class="self-link" href="#informative"></a></h3>
-  <dl>
-   <dt id="biblio-fair-principles">[FAIR-principles]
-   <dd>Mark D. Wilkinson; et al. <a href="https://doi.org/10.1038/sdata.2016.18"><cite>The FAIR Guiding Principles for scientific data management and stewardship</cite></a>. URL: <a href="https://doi.org/10.1038/sdata.2016.18">https://doi.org/10.1038/sdata.2016.18</a>
-   <dt id="biblio-fdp">[FDP]
-   <dd>Luiz Olavo Bonino da Silva Santos,; et al. <a href="https://doi.org/10.1162/dint_a_00160"><cite>FAIR Data Point: A FAIR-oriented approach for metadata publication</cite></a>. URL: <a href="https://doi.org/10.1162/dint_a_00160">https://doi.org/10.1162/dint_a_00160</a>
   </dl>
   <h2 class="heading no-num no-ref settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue">
-The FDP Discovery Participation module and the companion FAIR Discovery specification are being designed separately and are not part of this draft.
-Open question: should the FAIR Discovery specification be developed in this same community group, and on what timeline relative to this suite?
-Arguments for the same group: the two specifications share editors, terminology and the conformance-URI mechanism, and the FDP side and the harvester side of the ping protocol should not drift apart.
-Arguments for separate development: FAIR Discovery is a product-scale specification (source registry lifecycle, connector protocol, validation posture) whose maturity timeline is independent of this suite, and coupling the two could hold Core back from reaching a final community group report.
- <a class="issue-return" href="#issue-877d0e45" title="Jump to section">↵</a></div>
+<strong>Open question — revalidation semantics when a schema changes.</strong>
+When a schema is modified (<a data-link-type="dfn" href="#sch-06">SCH-06</a>), existing records that were valid against the previous version may be invalid against the new one.
+This draft deliberately does not require automatic revalidation, because the cost on large deployments can be substantial and rejection of previously accepted records would be hostile to data holders.
+Options for the community group:
+(a) no obligation — records keep their validity status until next modified (the current draft’s implicit position);
+(b) lazy revalidation — a record is revalidated against the current schema whenever it is next written;
+(c) eager revalidation with flagging — the deployment revalidates affected records and exposes a per-record conformance status, following the accept-and-flag posture that FAIR Discovery applies on the harvesting side;
+(d) mandatory schema versioning — turn <a data-link-type="dfn" href="#sch-07">SCH-07</a> into a MUST, so that a record’s profile reference always pins the exact schema version it conforms to and revalidation is never implicit.
+Options (c) and (d) combine well and would make FDP-side behaviour symmetrical with the conformance reporting harvesters produce.
+ <a class="issue-return" href="#issue-c04ee174" title="Jump to section">↵</a></div>
   </div>
 <script>/* Boilerplate: script-dom-helper */
 "use strict";
@@ -1260,14 +1039,17 @@ function parseHTML(markup) {
 "use strict";
 {
 let dfnPanelData = {
-"conformance-class": {"dfnID":"conformance-class","dfnText":"conformance class","external":false,"refSections":[{"refs":[{"id":"ref-for-conformance-class"}],"title":"1.2. The suite"},{"refs":[{"id":"ref-for-conformance-class\u2460"}],"title":"3.1. Classes, not levels"}],"url":"#conformance-class"},
-"container": {"dfnID":"container","dfnText":"container","external":false,"refSections":[],"url":"#container"},
-"deployment": {"dfnID":"deployment","dfnText":"deployment","external":false,"refSections":[],"url":"#deployment"},
-"digital-object": {"dfnID":"digital-object","dfnText":"digital object","external":false,"refSections":[{"refs":[{"id":"ref-for-digital-object"}],"title":"2. Terminology"}],"url":"#digital-object"},
-"metadata-record": {"dfnID":"metadata-record","dfnText":"metadata record","external":false,"refSections":[{"refs":[{"id":"ref-for-metadata-record"}],"title":"2. Terminology"}],"url":"#metadata-record"},
-"metadata-schema": {"dfnID":"metadata-schema","dfnText":"metadata schema","external":false,"refSections":[{"refs":[{"id":"ref-for-metadata-schema"}],"title":"2. Terminology"},{"refs":[{"id":"ref-for-metadata-schema\u2460"}],"title":"3.3. Declaring conformance"}],"url":"#metadata-schema"},
-"metadata-service": {"dfnID":"metadata-service","dfnText":"metadata service","external":false,"refSections":[],"url":"#metadata-service"},
-"profile": {"dfnID":"profile","dfnText":"profile","external":false,"refSections":[],"url":"#profile"},
+"sch-01": {"dfnID":"sch-01","dfnText":"SCH-01","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-01"}],"title":"7. Requirements summary"}],"url":"#sch-01"},
+"sch-02": {"dfnID":"sch-02","dfnText":"SCH-02","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-02"}],"title":"7. Requirements summary"}],"url":"#sch-02"},
+"sch-03": {"dfnID":"sch-03","dfnText":"SCH-03","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-03"}],"title":"7. Requirements summary"}],"url":"#sch-03"},
+"sch-04": {"dfnID":"sch-04","dfnText":"SCH-04","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-04"}],"title":"4. Creating and modifying schemas"},{"refs":[{"id":"ref-for-sch-04\u2460"}],"title":"7. Requirements summary"}],"url":"#sch-04"},
+"sch-05": {"dfnID":"sch-05","dfnText":"SCH-05","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-05"}],"title":"7. Requirements summary"}],"url":"#sch-05"},
+"sch-06": {"dfnID":"sch-06","dfnText":"SCH-06","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-06"}],"title":"6. Extending the base schemas"},{"refs":[{"id":"ref-for-sch-06\u2460"}],"title":"7. Requirements summary"}],"url":"#sch-06"},
+"sch-07": {"dfnID":"sch-07","dfnText":"SCH-07","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-07"}],"title":"6. Extending the base schemas"},{"refs":[{"id":"ref-for-sch-07\u2460"}],"title":"7. Requirements summary"}],"url":"#sch-07"},
+"sch-08": {"dfnID":"sch-08","dfnText":"SCH-08","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-08"}],"title":"7. Requirements summary"}],"url":"#sch-08"},
+"sch-09": {"dfnID":"sch-09","dfnText":"SCH-09","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-09"}],"title":"7. Requirements summary"}],"url":"#sch-09"},
+"sch-10": {"dfnID":"sch-10","dfnText":"SCH-10","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-10"}],"title":"7. Requirements summary"}],"url":"#sch-10"},
+"sch-11": {"dfnID":"sch-11","dfnText":"SCH-11","external":false,"refSections":[{"refs":[{"id":"ref-for-sch-11"}],"title":"7. Requirements summary"}],"url":"#sch-11"},
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -1656,10 +1438,17 @@ function genLinkingSyntaxes(dfn) {
 "use strict";
 {
 let refsData = {
-"#conformance-class": {"displayText":"conformance class","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp","spec":"fdp","status":"local","text":"conformance class","type":"dfn","url":"#conformance-class"},
-"#digital-object": {"displayText":"digital object","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp","spec":"fdp","status":"local","text":"digital object","type":"dfn","url":"#digital-object"},
-"#metadata-record": {"displayText":"metadata record","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp","spec":"fdp","status":"local","text":"metadata record","type":"dfn","url":"#metadata-record"},
-"#metadata-schema": {"displayText":"metadata schema","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp","spec":"fdp","status":"local","text":"metadata schema","type":"dfn","url":"#metadata-schema"},
+"#sch-01": {"displayText":"sch-01","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-01","type":"dfn","url":"#sch-01"},
+"#sch-02": {"displayText":"sch-02","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-02","type":"dfn","url":"#sch-02"},
+"#sch-03": {"displayText":"sch-03","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-03","type":"dfn","url":"#sch-03"},
+"#sch-04": {"displayText":"sch-04","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-04","type":"dfn","url":"#sch-04"},
+"#sch-05": {"displayText":"sch-05","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-05","type":"dfn","url":"#sch-05"},
+"#sch-06": {"displayText":"sch-06","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-06","type":"dfn","url":"#sch-06"},
+"#sch-07": {"displayText":"sch-07","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-07","type":"dfn","url":"#sch-07"},
+"#sch-08": {"displayText":"sch-08","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-08","type":"dfn","url":"#sch-08"},
+"#sch-09": {"displayText":"sch-09","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-09","type":"dfn","url":"#sch-09"},
+"#sch-10": {"displayText":"sch-10","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-10","type":"dfn","url":"#sch-10"},
+"#sch-11": {"displayText":"sch-11","export":true,"for_":[],"level":"","normative":true,"shortname":"fdp-schemas","spec":"fdp-schemas","status":"local","text":"sch-11","type":"dfn","url":"#sch-11"},
 };
 
 function mkRefHint(link, ref) {
