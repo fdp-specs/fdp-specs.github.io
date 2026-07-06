@@ -138,7 +138,7 @@ Version 2.0 resolves this deliberately in favour of <code>ldp:contains</code> as
 The following RDF Turtle code shows an example of a FAIR Data Point metadata record with navigation information.
 
 <pre class=include-code>
-path: ../src/rdf/example-metadataservice.ttl
+path: src/rdf/example-metadataservice.ttl
 highlight: turtle
 </pre>
 
@@ -174,19 +174,19 @@ A possible middle ground is MUST for records created through the <a href="../rec
 The metadata schema of the FDP's own record:
 
 <pre class=include>
-path: ../src/tables/table-fdp-metadata.html
+path: src/tables/table-fdp-metadata.html
 </pre>
 
 The navigation information for the FAIR Data Point metadata record is defined below:
 
 <pre class=include>
-path: ../src/tables/table-navigation-information.html
+path: src/tables/table-navigation-information.html
 </pre>
 
 The FAIR Data Point metadata schema defined in SHACL:
 
 <pre class=include-code>
-path: ../src/rdf/shacl-fdp.ttl
+path: src/rdf/shacl-fdp.ttl
 highlight: turtle
 </pre>
 
@@ -195,13 +195,13 @@ Note: The shape enforces [=CORE-02=]: at least one <code>dct:conformsTo</code> v
 ## Catalog metadata schema ## {#catalog-metadata}
 
 <pre class=include>
-path: ../src/tables/table-catalog-metadata.html
+path: src/tables/table-catalog-metadata.html
 </pre>
 
 The catalog metadata schema defined in SHACL:
 
 <pre class=include-code>
-path: ../src/rdf/shacl-catalog.ttl
+path: src/rdf/shacl-catalog.ttl
 highlight: turtle
 </pre>
 

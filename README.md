@@ -14,7 +14,7 @@ Since version 2.0 the specifications are organised as a suite of documents, each
 
 The FDP Discovery Participation module (the FDP-side obligations of the FAIR Discovery protocol) is in preparation and will be added as a further module.
 
-Shared assets (metadata tables, SHACL schemas, example RDF) live in `src/`; images in `images/`. Documents are written in [Bikeshed](https://speced.github.io/bikeshed/); to build locally:
+Included assets (metadata tables, SHACL schemas, example RDF) live in `core/src/` — Bikeshed only allows includes from the spec's own folder or subfolders; images in `images/`. Documents are written in [Bikeshed](https://speced.github.io/bikeshed/); to build locally:
 
 ```
 uv sync
