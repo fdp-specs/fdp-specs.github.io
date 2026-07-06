@@ -1,4 +1,4 @@
-# Build and validate the spec using bikeshed
+# Build and validate the specification suite using bikeshed
 #
 # TODO: publish to github pages on release
 #
@@ -9,6 +9,7 @@ on:
   push:
     branches:
       - development
+      - v2-suite
   pull_request:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,8 +18,24 @@ jobs:
   main:
     name: Build and Validate
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - source: index.bs
+            destination: index.html
+          - source: core/index.bs
+            destination: core/index.html
+          - source: records/index.bs
+            destination: records/index.html
+          - source: schemas/index.bs
+            destination: schemas/index.html
+          - source: bulk/index.bs
+            destination: bulk/index.html
     steps:
       - uses: actions/checkout@v6
       - uses: w3c/spec-prod@v2
         with:
           TOOLCHAIN: bikeshed
+          SOURCE: ${{ matrix.source }}
+          DESTINATION: ${{ matrix.destination }}

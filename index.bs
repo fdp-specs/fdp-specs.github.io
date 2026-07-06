@@ -1,46 +1,236 @@
 <pre class=metadata>
-Title: FAIR Data Point
+Title: FAIR Data Point Specification Suite
 Shortname: fdp
 Org: W3C
-Status: UD
+Group: fdpcg
+Status: CG-DRAFT
+Level: none
 ED: https://specs.fairdatapoint.org/
 Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
 Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
 Former Editor: Rajaram Kaliyaperumal, LUMC, https://www.lumc.nl/
-Abstract: This document provides specifications for the FAIR Data Point (FDP).
-  The document includes architecture of the core component, metadata structure and schema, API and validation rules.
+Abstract: This document is the entry point of the FAIR Data Point (FDP) specification suite.
+  It introduces the FAIR Data Point, defines the terminology and the conformance model shared by all modules of the suite, and lists the modules: FDP Core (mandatory) and the optional extension modules for records management, schema management and bulk ingestion.
 Canonical URL: https://specs.fairdatapoint.org/
 Previous Version: https://specs.fairdatapoint.org/v1.2/fdp-specs-v1.2.html
 Date: now
 Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
 Markup Shorthands: markdown yes
-Boilerplate: conformance off
 </pre>
 
-<pre class=include>
-path: src/intro.md
+# Introduction # {#intro}
+
+The FAIR Data Point (FDP) is a set of specifications defining how systems expose the metadata of digital objects in a way that follows the FAIR principles [[FAIR-principles]].
+A FAIR Data Point allows digital object owners and publishers to expose the metadata of their digital objects in a FAIR manner and allows consumers — human users and software agents alike — to discover information about the offered digital objects.
+Commonly, an FDP is used to expose metadata of datasets, but metadata of any other type of digital object can be exposed as well, such as ontologies, repositories, analysis algorithms, websites, etc.
+
+Interoperability happens at different levels, including syntactic and semantic interoperability.
+The FDP addresses these interoperability issues by providing:
+
+- a common interface to access information (metadata) about digital objects;
+- a common representation format [[!RDF11-PRIMER]] to express the metadata in a machine-actionable manner;
+- a common approach to inform clients how to navigate through an FDP's metadata structure;
+- a common representation format [[!SHACL]] to represent each metadata record's schema.
+
+The main goal of the FDP is to establish a common method for metadata provisioning and access and, as a consequence, provide client applications with a predictable way of accessing and interacting with metadata content.
+
+## Audience ## {#audience}
+
+This suite is primarily intended as a reference for developers who want to add FDP behaviour to their existing applications or develop their own FAIR Data Point implementation.
+In order to better understand these specifications, knowledge of RDF, LDP, SHACL and REST APIs is required.
+
+## The suite ## {#suite}
+
+Version 2.0 of the FDP specifications is organised as a suite of documents.
+Each module is a separate specification defining exactly one [=conformance class=]:
+
+<table class="def">
+    <caption>Modules of the FDP specification suite</caption>
+    <thead>
+        <tr><th>Module</th><th>Status</th><th>Obligation</th><th>Scope</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="core/">FDP Core</a></td>
+            <td>Draft</td>
+            <td>Mandatory</td>
+            <td>Read-side metadata provisioning: serving metadata records, representations, navigation, schema exposure.
+                Implementing Core is the necessary and sufficient condition for claiming that a system <em>behaves as a FAIR Data Point</em>.</td>
+        </tr>
+        <tr>
+            <td><a href="records/">FDP Records Management</a></td>
+            <td>Draft</td>
+            <td>Optional</td>
+            <td>Creation, modification and deletion of metadata records through the FDP's HTTP interface, including validation on write.</td>
+        </tr>
+        <tr>
+            <td><a href="schemas/">FDP Schema Management</a></td>
+            <td>Draft</td>
+            <td>Optional</td>
+            <td>Creation, modification and deletion of metadata schemas (SHACL shapes), and rules for extending the mandatory base schemas.</td>
+        </tr>
+        <tr>
+            <td><a href="bulk/">FDP Bulk Ingestion</a></td>
+            <td>Draft</td>
+            <td>Optional</td>
+            <td>Adding a bundle of metadata records to an FDP in a single operation, including transactionality and partial-failure reporting.</td>
+        </tr>
+        <tr>
+            <td>FDP Discovery Participation</td>
+            <td>In preparation</td>
+            <td>Optional</td>
+            <td>The FDP-side obligations of the FAIR Discovery protocol: registration and change notification (<em>ping</em>) towards a FAIR Discovery service, and harvest-friendliness guarantees.
+                This module is being developed separately and will be added to the suite when its protocol stabilises — see [[#discovery]].</td>
+        </tr>
+    </tbody>
+</table>
+
+The extension modules depend on Core but are otherwise independent of each other; see [[#conformance-model]].
+
+## Document conventions ## {#conventions}
+
+The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL in the normative parts of the suite are to be interpreted as described in [[!RFC2119]].
+
+Every normative requirement in the suite is stated once, as a single testable assertion, and carries a stable identifier (e.g. <code>CORE-01</code>, <code>REC-03</code>).
+Conformance sections reference requirements by identifier; they never introduce new requirements.
+
+Issues marked in the documents indicate questions that are open for discussion in the community group.
+
+# Terminology # {#terminology}
+
+<dfn export>digital object</dfn>: any object that is available digitally, e.g. a dataset, an ontology, a piece of software, a document, a repository.
+
+<dfn export>metadata record</dfn>: a set of RDF statements, retrievable as a single resource, describing exactly one [=digital object=].
+
+<dfn export>metadata schema</dfn>: a set of SHACL shapes [[!SHACL]] that metadata records of a given type are expected to conform to.
+
+<dfn export>profile</dfn>: the resource, referenced by a [=metadata record=], that identifies the [=metadata schema=] the record conforms to.
+
+<dfn export>metadata service</dfn>: a service that provides access to metadata records. In the FDP ontology (namespace prefix <code>fdp-o</code>, <code>https://w3id.org/fdp/fdp-o#</code>), the FAIR Data Point is a subclass of <code>fdp-o:MetadataService</code>.
+
+<dfn export>container</dfn>: a resource, expressed with the Linked Data Platform [[!LDP]] containment vocabulary, that groups metadata records and provides the navigation information from a parent record to its children.
+
+<dfn export>conformance class</dfn>: a named, versioned set of requirements defined by exactly one module of this suite and identified by a stable URI ([[#conformance-uris]]).
+
+<dfn export>deployment</dfn>: a running system that implements one or more conformance classes of this suite.
+
+# Conformance model # {#conformance-model}
+
+## Classes, not levels ## {#classes}
+
+Each module of the suite defines exactly one [=conformance class=].
+**FDP Core is mandatory**: a system may claim to <em>behave as a FAIR Data Point</em> if and only if it satisfies every requirement of the Core conformance class.
+Every other conformance class requires Core as a prerequisite but is otherwise independent.
+
+The classes are deliberately not organised as cumulative levels (e.g. Level 1/2/3), because the capabilities are orthogonal rather than cumulative.
+For example, a read-only institutional FDP that participates in FAIR Discovery is a coherent deployment; a linear grading would force it to implement write support first.
+Named classes let a deployment claim exactly what it implements, e.g. "Core + Records Management".
+
+## Conformance class URIs and versioning ## {#conformance-uris}
+
+Each conformance class is identified by a URI that includes the major.minor version of the suite it belongs to:
+
+<pre>
+https://specs.fairdatapoint.org/v2.0/conformance/core
+https://specs.fairdatapoint.org/v2.0/conformance/records
+https://specs.fairdatapoint.org/v2.0/conformance/schemas
+https://specs.fairdatapoint.org/v2.0/conformance/bulk
 </pre>
 
-<pre class=include>
-path: src/overall.md
+Versioning the class URIs — rather than publishing unversioned class URIs next to a separate version property — has a deliberate consequence: **a single statement simultaneously declares a capability and the version of the specification that defines it.**
+Clients never need to combine two pieces of information to know what behaviour to expect, and a deployment can, during a migration period, truthfully declare conformance to classes from two suite versions at once.
+
+## Declaring conformance ## {#declaring}
+
+A deployment declares the conformance classes it implements in its own metadata record (the metadata record of the FDP itself), using <code>dct:conformsTo</code>:
+
+<pre highlight=turtle>
+&lt;https://fdp.example.org&gt; dct:conformsTo
+    &lt;https://specs.fairdatapoint.org/v2.0/conformance/core&gt; ,
+    &lt;https://specs.fairdatapoint.org/v2.0/conformance/records&gt; ,
+    &lt;https://example.org/schema/fdpMetadata&gt; .   # the record's own profile
 </pre>
 
-<pre class=include>
-path: src/architecture.md
-</pre>
+The declaration is itself a Core requirement (see requirement CORE-02 in <a href="core/">FDP Core</a>), and the FAIR Data Point [=metadata schema=] enforces it: the SHACL shape for the FDP's own metadata record requires at least one <code>dct:conformsTo</code> value that is a conformance class URI of this suite.
+This makes the implemented specification version machine-checkable: a client — including a FAIR Discovery harvester — can determine a deployment's capabilities and specification version from the root metadata record alone, before any further interaction.
 
-<pre class=include>
-path: src/metadata.md
-</pre>
+Note: In version 1.x of these specifications the same need was served informally, and inconsistently, by a non-standard <code>conformsToFdpSpec</code> property that appeared in the SHACL schema but was never defined.
+Version 2.0 replaces it with the <code>dct:conformsTo</code> declaration described here.
 
-<pre class=include>
-path: src/api.md
-</pre>
+## Named profiles (informative) ## {#profiles-informative}
 
-<pre class=include>
-path: src/compliance.md
-</pre>
+<em>This section is non-normative.</em>
 
-<!-- hidden reference to [FDP] (todo: remove in next version) -->
+For communication purposes, deployments and procurement documents may use labelled bundles of conformance classes:
+
+- **FDP** — Core;
+- **FDP Publisher** — Core + Records Management + Schema Management;
+- **FDP Federated** — Core + Discovery Participation (once published).
+
+These labels are presentation only; the conformance classes remain the normative unit.
+
+# Relationship to FAIR Discovery # {#discovery}
+
+FAIR Discovery is the aggregation service of the FAIR ecosystem: it registers metadata sources, harvests their metadata, validates it against profiles, and re-publishes the aggregate for search, browsing and downstream federation.
+A FAIR Discovery deployment re-publishes its aggregated corpus through the standard FDP serving behaviour — the aggregate catalogue is itself an FDP whose content is harvested rather than authored — and is therefore itself an implementer of FDP Core.
+
+The FDP-side obligations towards FAIR Discovery — registration, the <em>ping</em> change-notification protocol, and harvest-friendliness guarantees such as stable record IRIs and accurate modification timestamps — will be specified in the <strong>FDP Discovery Participation</strong> module.
+The harvester-side behaviour (source registry, connector protocol, incremental harvesting, conformance reporting) belongs to the FAIR Discovery specification itself, which references this suite rather than being part of it.
+The two specifications meet at exactly two points: the ping protocol and the harvestability guarantees.
+
+<div class=issue>
+The FDP Discovery Participation module and the companion FAIR Discovery specification are being designed separately and are not part of this draft.
+Open question: should the FAIR Discovery specification be developed in this same community group, and on what timeline relative to this suite?
+Arguments for the same group: the two specifications share editors, terminology and the conformance-URI mechanism, and the FDP side and the harvester side of the ping protocol should not drift apart.
+Arguments for separate development: FAIR Discovery is a product-scale specification (source registry lifecycle, connector protocol, validation posture) whose maturity timeline is independent of this suite, and coupling the two could hold Core back from reaching a final community group report.
+</div>
+
+# Usage scenarios (informative) # {#scenarios}
+
+<em>This section is non-normative.</em>
+The following usage scenarios motivated the requirements of this suite.
+They were gathered through interactions with representative stakeholders — data producers, data consumers, and providers of infrastructure and services — in a variety of data-intensive domains, and do not represent one particular project.
+
+## Data discovery ## {#scenario-discovery}
+
+A researcher needs to find datasets containing data about a given subject, e.g., proteins that are activated in specific tissues, pollution levels in a given region, or infrared observations of a particular galaxy; integrate the discovered data with other pre-selected datasets and analyse them.
+In another situation, the researcher needs to know which biobanks carry a given type of biosample (e.g., blood samples) from patients possessing a specific disease (e.g., Alzheimer's disease) taken from a patient registry whose onset age was lower than 45 years old.
+These data users need a straightforward search application that allows them to find the required information.
+However, the search application first needs to have indexed information about existing datasets wherever their location.
+
+## Data access ## {#scenario-access}
+
+Once a data consumer finds the desired datasets, including the information about their licenses and access protocols, the consumer wants to access the data — retrieving it, or sending an algorithm to analyse it.
+In many situations the consumer will integrate many different datasets.
+To carry out these integrations, the consumer needs to know in which formats the data can be accessed and which access methods are available.
+This information comes in the form of metadata.
+To facilitate its usage, the method with which the metadata is accessed should be common across metadata sources, and a common representation technology should be used.
+
+## (Meta)data publication ## {#scenario-publication}
+
+An organisation is running a project in which data is being created.
+The data will be analysed during the project but may also be useful for other users.
+The group would therefore like to publish the data in a way that allows potential users to retrieve information about the datasets (metadata), allows data search engines to index the metadata, and allows users to access the data.
+Some of the produced datasets have an open license but others have more restrictive licenses.
+All these metadata should be available so that potential data users have enough information to assess whether the data fits their needs.
+
+## Publishing other types of content ## {#scenario-other-content}
+
+An organisation is running a project in which different types of deliverables will be created.
+One group is developing a piece of software, another group is working on a controlled vocabulary, while a third group will generate a number of reference documents.
+The organisation would like to publish information about these materials so others can discover and reuse them.
+
+# Changes from version 1.2 (informative) # {#changes}
+
+<em>This section is non-normative.</em>
+
+- The single specification document was restructured into this suite: an umbrella document plus one document per module, each defining one conformance class.
+- All normative statements were given stable identifiers and moved out of narrative prose; the conformance sections now only reference them.
+- Write operations (records, schemas, bulk), previously implied but unspecified, are now specified in dedicated optional modules.
+- The conformance declaration via <code>dct:conformsTo</code> with versioned class URIs was introduced ([[#conformance-uris]]).
+- The navigation-information inconsistency of v1.2 (<code>ldp:contains</code> "or" <code>ldp:hasMemberRelation</code> in the metadata chapter versus <code>ldp:hasMemberRelation</code> alone in the compliance chapter) was resolved — see the navigation section of <a href="core/">FDP Core</a>.
+- The internal component architecture (Metadata Provider, Access Control, RDF Metadata Store) and reference-implementation notes were removed from the normative text; the specifications now define only externally observable behaviour.
+- Several errors in the published SHACL schemas were corrected (missing cardinality values, a duplicated <code>fdp-o:metadataIdentifier</code> property shape that should have been <code>fdp-o:metadataModified</code>, undeclared prefixes, and the non-standard <code>conformsToFdpSpec</code> property).
+
+<!-- hidden reference to [FDP] -->
 <span hidden>[[FDP]]</span>
-

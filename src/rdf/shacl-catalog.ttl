@@ -1,9 +1,10 @@
-@prefix     : <http://fairdatapoint.org/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix  dct: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix   sh: <http://www.w3.org/ns/shacl#> .
-@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix      : <http://fairdatapoint.org/> .
+@prefix  dcat: <http://www.w3.org/ns/dcat#> .
+@prefix   dct: <http://purl.org/dc/terms/> .
+@prefix fdp-o: <https://w3id.org/fdp/fdp-o#> .
+@prefix  foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix    sh: <http://www.w3.org/ns/shacl#> .
+@prefix   xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :CatalogShape a sh:NodeShape ;
   sh:targetClass dcat:Catalog ;
@@ -14,27 +15,26 @@
   ], [
     sh:path dct:hasVersion ;
     sh:nodeKind sh:Literal ;
-    sh:maxCount ;
+    sh:maxCount 1 ;
   ], [
     sh:path dct:description ;
     sh:nodeKind sh:Literal ;
   ], [
     sh:path dct:publisher ;
     sh:node :AgentShape ;
-    sh:minCount 1;
+    sh:minCount 1 ;
   ], [
     sh:path dct:language ;
     sh:nodeKind sh:IRI ;
   ], [
     sh:path dct:license ;
     sh:nodeKind sh:IRI ;
-    sh:minCount 1;
+    sh:minCount 1 ;
     sh:maxCount 1 ;
   ], [
     sh:path dct:conformsTo ;
     sh:nodeKind sh:IRI ;
-    sh:maxCount 1;
-    sh:minCount 1;
+    sh:minCount 1 ;
   ], [
     sh:path dct:rights ;
     sh:nodeKind sh:IRI ;
@@ -42,19 +42,18 @@
     sh:path dct:accessRights ;
     sh:nodeKind sh:IRI ;
   ], [
+    # The relation between the catalog and its items. It is recommended to
+    # use more specific sub-properties such as dcat:dataset, dcat:catalog,
+    # dcat:service, or a custom sub-property.
     sh:path dct:hasPart ;
-    sh:node sh:ContactPointShape ;
+    sh:nodeKind sh:IRI ;
+    sh:minCount 1 ;
   ], [
     sh:path dcat:keyword ;
     sh:nodeKind sh:Literal ;
   ], [
     sh:path dcat:theme ;
     sh:nodeKind sh:IRI ;
-  ], [
-    sh:path dcat:endPointURL ;
-    sh:nodeKind sh:IRI ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
   ], [
     sh:path fdp-o:startDate ;
     sh:datatype xsd:date ;
@@ -74,11 +73,11 @@
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path fdp-o:metadataIdentifier ;
+    sh:path fdp-o:metadataModified ;
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
-  ].
+  ] .
 
 :AgentShape a sh:NodeShape ;
   sh:targetClass foaf:Agent ;
@@ -87,13 +86,4 @@
     sh:nodeKind sh:Literal ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
-  ].
-
-:ContactPointShape a sh:NodeShape ;
-  sh:targetClass vcard:Kind ;
-  sh:property [
-    sh:path vcard:hasEmail ;
-    sh:nodeKind sh:Literal ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ].
+  ] .

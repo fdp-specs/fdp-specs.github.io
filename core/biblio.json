@@ -1,0 +1,22 @@
+{
+    "FAIR-principles": {
+        "authors": [
+            "Mark D. Wilkinson",
+            "et al"
+        ],
+        "href": "https://doi.org/10.1038/sdata.2016.18",
+        "title": "The FAIR Guiding Principles for scientific data management and stewardship",
+        "publisher": "Scientific Data"
+    },
+    "FDP": {
+        "authors": [
+            "Luiz Olavo Bonino da Silva Santos,",
+            "Kees Burger",
+            "Rajaram Kaliyaperumal",
+            "Mark D. Wilkinson"
+        ],
+        "href": "https://doi.org/10.1162/dint_a_00160",
+        "title": "FAIR Data Point: A FAIR-oriented approach for metadata publication",
+        "publisher": "Data Intelligence"
+    }
+}

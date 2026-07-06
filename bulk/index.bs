@@ -1,0 +1,108 @@
+<pre class=metadata>
+Title: FDP Bulk Ingestion
+Shortname: fdp-bulk
+Org: W3C
+Group: fdpcg
+Status: CG-DRAFT
+Level: none
+ED: https://specs.fairdatapoint.org/bulk/
+Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
+Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
+Abstract: This document specifies FDP Bulk Ingestion, an optional conformance class of the FAIR Data Point (FDP) specification suite.
+  It defines how a bundle of metadata records is added to an FDP in a single operation, including bundle representation, validation, transactionality and partial-failure reporting.
+Canonical URL: https://specs.fairdatapoint.org/bulk/
+Date: now
+Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
+Markup Shorthands: markdown yes
+</pre>
+
+# Introduction # {#intro}
+
+Populating an FDP one record at a time through <a href="../records/">Records Management</a> is impractical when migrating an existing repository, mirroring another catalogue, or publishing the output of a pipeline that produces many records at once.
+This module specifies bulk ingestion: adding a bundle of <a href="../#terminology">metadata record</a>s — possibly spanning multiple levels of the metadata structure, e.g. a catalog together with its datasets and their distributions — to an FDP in a single operation.
+
+Terminology is defined in the <a href="../#terminology">umbrella document</a>.
+The key words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are to be interpreted as described in [[!RFC2119]].
+
+# Conformance # {#conformance-class}
+
+This document defines the conformance class identified by:
+
+<pre>
+https://specs.fairdatapoint.org/v2.0/conformance/bulk
+</pre>
+
+A <a href="../#terminology">deployment</a> conforms to FDP Bulk Ingestion if and only if it conforms to <a href="../core/">FDP Core</a> and <a href="../records/">FDP Records Management</a> and satisfies all MUST-level requirements in this document.
+
+: <dfn>BLK-01</dfn>
+:: A deployment claiming this conformance class MUST also conform to the FDP Core and FDP Records Management conformance classes of the same suite version.
+
+Note: Records Management is a prerequisite because bulk ingestion is semantically a batch of record creations: validation, IRI assignment, container updates and access control are all inherited from that module and only their batch behaviour is specified here.
+
+# The bundle # {#bundle}
+
+: <dfn>BLK-02</dfn>
+:: Bulk ingestion MUST be supported via an HTTP POST on the IRI of the container under which the bundle's top-level records are to be created, with <code>Content-Type: application/trig</code> and a TriG [[!TRIG]] document as the request body; receiving a TriG body is what distinguishes a bulk operation from a single-record creation on the same container.
+
+: <dfn>BLK-03</dfn>
+:: In the bundle, each named graph MUST contain exactly one metadata record; the graph names act as temporary, bundle-local identifiers.
+
+: <dfn>BLK-04</dfn>
+:: Records within a bundle MAY reference each other using their bundle-local graph names; the deployment MUST resolve such references to the IRIs it assigns on ingestion, so that hierarchical structures (e.g. catalog → datasets → distributions) can be created in one operation with correct parent–child relations and navigation information.
+
+: <dfn>BLK-05</dfn>
+:: On successful ingestion the deployment MUST return a response listing, for every record in the bundle, the bundle-local graph name and the assigned IRI; each ingested record MUST afterwards be individually retrievable and navigable exactly as if it had been created through Records Management.
+
+# Validation and transactionality # {#transactionality}
+
+: <dfn>BLK-06</dfn>
+:: Every record in the bundle MUST be validated against its applicable <a href="../#terminology">metadata schema</a>, with the same semantics as single-record creation (REC-04 in <a href="../records/">Records Management</a>).
+
+: <dfn>BLK-07</dfn>
+:: By default, bulk ingestion MUST be atomic: if any record in the bundle fails validation, or if ingestion fails for any other reason, no record from the bundle is persisted, and the deployment MUST return status code <code>422</code> with a report that identifies, per failing record (by bundle-local graph name), the SHACL validation report or error.
+
+: <dfn>BLK-08</dfn>
+:: A deployment MAY offer a non-atomic mode, in which valid records are persisted and invalid ones are reported; this mode MUST only be applied when the client explicitly requests it (e.g. via <code>Prefer: handling=lenient</code>), and the response MUST report the outcome for every record in the bundle.
+
+# Large bundles # {#large-bundles}
+
+: <dfn>BLK-09</dfn>
+:: A deployment MAY process bundles asynchronously: it then MUST return status code <code>202</code> with a <code>Location</code> header pointing to a status resource, and a GET on the status resource MUST report the ingestion's state (in progress, succeeded, failed) and, on completion, the result described in [=BLK-05=] or the failure report of [=BLK-07=].
+
+: <dfn>BLK-10</dfn>
+:: A deployment MAY enforce a maximum bundle size; a bundle exceeding it MUST be answered with status code <code>413</code>, and the limit SHOULD be stated in the deployment's service documentation.
+
+: <dfn>BLK-11</dfn>
+:: Access control for bulk ingestion MUST follow the same interface behaviour as Records Management (REC-14, REC-15).
+
+<div class=issue>
+**Open question — bundle representation.**
+This draft uses TriG on the target container ([=BLK-02=], [=BLK-03=]) because it needs no new endpoint, no packaging tooling, and reuses the media type to signal bulk semantics; one named graph per record also gives the per-record validation reporting of [=BLK-07=] a natural addressing unit.
+Alternatives the community group should weigh:
+(a) a single flat RDF graph (e.g. one large Turtle document) — simpler to produce, but record boundaries must then be inferred from typing and containment, which makes per-record reporting and bundle-local referencing ([=BLK-04=]) ambiguous;
+(b) a packaged bundle format such as an RO-Crate-like archive — attractive when records come with attachments or when provenance of the bundle itself must travel with it, but it introduces a packaging dependency that plain metadata migration does not need;
+(c) a dedicated bulk endpoint instead of overloading the container POST — cleaner separation and easier to document/advertise, but it adds surface that must be discoverable from the FDP's own metadata.
+A related question is whether the asynchronous mode of [=BLK-09=] should be mandatory above a stated bundle size, so that clients can rely on it for large migrations.
+</div>
+
+# Requirements summary # {#requirements-summary}
+
+<table class="def">
+    <caption>FDP Bulk Ingestion requirements</caption>
+    <thead>
+        <tr><th>ID</th><th>Level</th><th>Summary</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>[=BLK-01=]</td><td>MUST</td><td>Core and Records Management are prerequisites</td></tr>
+        <tr><td>[=BLK-02=]</td><td>MUST</td><td>Bulk via POST of TriG on the target container</td></tr>
+        <tr><td>[=BLK-03=]</td><td>MUST</td><td>One named graph per record</td></tr>
+        <tr><td>[=BLK-04=]</td><td>MUST</td><td>Bundle-local cross-references resolved to assigned IRIs</td></tr>
+        <tr><td>[=BLK-05=]</td><td>MUST</td><td>Response maps graph names to assigned IRIs; records fully navigable</td></tr>
+        <tr><td>[=BLK-06=]</td><td>MUST</td><td>Per-record SHACL validation as in Records Management</td></tr>
+        <tr><td>[=BLK-07=]</td><td>MUST</td><td>Atomic by default; 422 with per-record failure report</td></tr>
+        <tr><td>[=BLK-08=]</td><td>MAY</td><td>Lenient mode on explicit request, with full per-record outcome</td></tr>
+        <tr><td>[=BLK-09=]</td><td>MAY</td><td>Asynchronous processing: 202 + status resource</td></tr>
+        <tr><td>[=BLK-10=]</td><td>MAY</td><td>Size limits; 413 when exceeded</td></tr>
+        <tr><td>[=BLK-11=]</td><td>MUST</td><td>Access control per Records Management interface behaviour</td></tr>
+    </tbody>
+</table>

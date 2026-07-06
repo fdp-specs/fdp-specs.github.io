@@ -1,0 +1,241 @@
+<pre class=metadata>
+Title: FDP Core
+Shortname: fdp-core
+Org: W3C
+Group: fdpcg
+Status: CG-DRAFT
+Level: none
+ED: https://specs.fairdatapoint.org/core/
+Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
+Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
+Abstract: This document specifies FDP Core, the mandatory conformance class of the FAIR Data Point (FDP) specification suite.
+  FDP Core defines the read-side behaviour of a FAIR Data Point: how metadata records are served over HTTP, how clients navigate the metadata structure, and how metadata schemas are exposed.
+  Implementing FDP Core is the necessary and sufficient condition for a system to claim that it behaves as a FAIR Data Point.
+Canonical URL: https://specs.fairdatapoint.org/core/
+Date: now
+Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
+Markup Shorthands: markdown yes
+</pre>
+
+# Introduction # {#intro}
+
+This document defines <dfn>FDP Core</dfn>, the mandatory module of the <a href="../">FAIR Data Point specification suite</a>.
+It specifies the externally observable, read-side behaviour of a FAIR Data Point: the HTTP interface through which metadata records are served, the representations in which they are served, the navigation information that lets clients traverse the metadata structure, and the exposure of metadata schemas.
+
+Terminology used in this document (metadata record, metadata schema, profile, container, conformance class) is defined in the <a href="../#terminology">umbrella document</a>.
+The key words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are to be interpreted as described in [[!RFC2119]].
+
+Note: This document specifies behaviour, not architecture.
+How an implementation stores its metadata (native triple store, on-the-fly conversion from another representation, static files) is out of scope; any implementation whose observable behaviour satisfies the requirements below conforms.
+
+# Conformance # {#conformance-class}
+
+This document defines the conformance class identified by:
+
+<pre>
+https://specs.fairdatapoint.org/v2.0/conformance/core
+</pre>
+
+A <a href="../#terminology">deployment</a> conforms to FDP Core if and only if it satisfies all MUST-level requirements in this document ([[#requirements-summary]] lists them).
+Conformance to FDP Core is the necessary and sufficient condition for claiming that a system <em>behaves as a FAIR Data Point</em>.
+
+# The root metadata record # {#root}
+
+A client that knows nothing about a deployment except its root URL must be able to bootstrap all further interaction from that URL alone.
+The FDP therefore provides metadata about itself as the first <a href="../#terminology">metadata record</a>: the record of the FDP as a <a href="../#terminology">metadata service</a>.
+In the FDP ontology, the FAIR Data Point is represented by the class <code>fdp-o:FAIRDataPoint</code>, a subclass of <code>fdp-o:MetadataService</code>, which in turn is a subclass of <code>dcat:DataService</code>.
+
+: <dfn>CORE-01</dfn>
+:: The root URL of the deployment MUST serve the metadata record of the FDP itself, typed <code>fdp-o:FAIRDataPoint</code>.
+
+: <dfn>CORE-02</dfn>
+:: The FDP's own metadata record MUST declare, via <code>dct:conformsTo</code>, the URI of every conformance class of this suite that the deployment implements, including at least the FDP Core conformance class URI.
+
+CORE-02 is the machine-checkable capability and version declaration described in the <a href="../#declaring">umbrella document</a>: because the conformance class URIs are versioned, a single <code>dct:conformsTo</code> statement declares both a capability and the specification version that defines it.
+The FAIR Data Point <a href="../#terminology">metadata schema</a> ([[#fdp-metadata]]) enforces this declaration.
+
+# Metadata model # {#model}
+
+The FDP uses the W3C's Data Catalog Vocabulary (DCAT) version 2 [[!VOCAB-DCAT-2 obsolete]] as the basis for its metadata content.
+Figure 1 depicts the FDP extensions to the DCAT model.
+
+<figure>
+    <img src="../images/FDPmetadatadiagram.png" alt="FDP metadata structure">
+    <figcaption class="no-marker">**Figure 1** FDP extensions to the DCAT model</figcaption>
+</figure>
+
+A DCAT <code>Resource</code> represents entities that can be described by a metadata record.
+Since <code>Resource</code> is defined as an abstract class, it is not intended to be used directly; one of its subclasses, such as <code>Dataset</code> or <code>Data Service</code>, is used instead.
+<code>Dataset</code> represents a collection of data while <code>Data Service</code> represents a service, accessible through an interface (API), that serves datasets.
+<code>Catalog</code>, a subclass of <code>Dataset</code>, represents aggregations of metadata records about digital objects; for instance, a <code>Catalog</code> may contain references to the metadata records of <code>Datasets</code>.
+
+The FDP extends the DCAT model by adding the concept of a <code>FAIRDataPoint</code> as a specific type of data service that serves metadata catalogs and metadata records.
+The DCAT extensions and other FDP-specific concepts and relations are defined in the FDP ontology (namespace prefix <code>fdp-o</code>).
+The relation between the <code>MetadataService</code> and <code>dcat:Catalog</code> is represented by the predicate <code>fdp-o:metadataCatalog</code>, defined as a sub-property of <code>dcat:Relationship</code> having <code>fdp-o:MetadataService</code> as its domain and <code>dcat:Catalog</code> as its range.
+
+: <dfn>CORE-03</dfn>
+:: Every metadata record served by the deployment, other than the FDP's own record, MUST be reachable from at least one <code>dcat:Catalog</code> record.
+
+Since only the FDP's own record and <code>Catalog</code> records are mandatory, the metadata structure below the catalogs varies from deployment to deployment.
+The most common structure is <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Dataset</code> → <code>Distribution</code>, but another deployment could use, e.g., <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Semantic Artefact</code>.
+This flexibility is exactly why the navigation information of [[#navigation]] is mandatory.
+
+# HTTP interface # {#http}
+
+The interface of the FDP follows the REST HATEOAS (Hypermedia as the Engine of Application State) principle: each response carries the information a client needs to discover the available resources.
+A client only needs the root URL ([=CORE-01=]); everything else is discoverable by following the navigation information in the returned metadata.
+
+## Retrieval ## {#retrieval}
+
+: <dfn>CORE-04</dfn>
+:: Every metadata record, every <a href="../#terminology">container</a>, and every <a href="../#terminology">metadata schema</a> MUST be retrievable via an HTTP(S) GET request on its IRI, returning status code <code>200</code> together with the resource's representation.
+
+: <dfn>CORE-05</dfn>
+:: Every resource that supports GET MUST also support HEAD, returning the same headers as the corresponding GET without a body.
+
+: <dfn>CORE-06</dfn>
+:: A GET request on an IRI within the deployment's namespace that does not identify an existing resource MUST return status code <code>404</code>; a deployment MAY return <code>410</code> for resources known to have been deleted.
+
+## Representations and content negotiation ## {#representations}
+
+: <dfn>CORE-07</dfn>
+:: Metadata content MUST be available at least in the RDF Turtle (<code>text/turtle</code>) and JSON-LD (<code>application/ld+json</code>) syntaxes, selectable via the HTTP <code>Accept</code> header.
+
+: <dfn>CORE-08</dfn>
+:: When a request carries no <code>Accept</code> header, an <code>Accept</code> header of <code>*/*</code>, or an <code>Accept</code> header that does not restrict the response to a specific supported type, the response MUST be RDF Turtle.
+
+: <dfn>CORE-09</dfn>
+:: When a request's <code>Accept</code> header admits none of the supported media types, the deployment MUST return status code <code>406</code>; the response SHOULD list the supported media types.
+
+Other formats — XML, JSON, other RDF syntaxes, or HTML for human consumption — MAY additionally be offered through content negotiation.
+
+## Caching and change information ## {#caching}
+
+Accurate change information matters beyond caching: harvesters (such as a FAIR Discovery service) rely on it to keep aggregated copies fresh without re-fetching entire trees, and to report a record's real modification time rather than its harvest time.
+
+: <dfn>CORE-10</dfn>
+:: Responses serving metadata records SHOULD carry an <code>ETag</code> and/or <code>Last-Modified</code> header, and the deployment SHOULD support the corresponding conditional requests (<code>If-None-Match</code>, <code>If-Modified-Since</code>) returning <code>304</code> when the resource is unchanged.
+
+Note: The mandatory schema elements <code>fdp-o:metadataIssued</code> and <code>fdp-o:metadataModified</code> ([[#fdp-metadata]]) provide the same information inside the metadata record itself.
+
+# Navigation information # {#navigation}
+
+Since each FDP deployment may have a different metadata structure ([[#model]]), a client would not know how to navigate the metadata content unless it followed every IRI in every record, which does not scale.
+Therefore, the FDP describes its own navigation structure using the Linked Data Platform [[!LDP]] containment vocabulary.
+
+: <dfn>CORE-11</dfn>
+:: Every metadata record that leads to other metadata records MUST be accompanied by navigation information in the form of an LDP <a href="../#terminology">container</a>, and the record MUST be retrievable together with, or linked to, that container's triples.
+
+: <dfn>CORE-12</dfn>
+:: Each container MUST list the IRI of every child metadata record as an object of <code>ldp:contains</code>.
+
+: <dfn>CORE-13</dfn>
+:: When the parent record relates to its children through a domain predicate (e.g. <code>fdp-o:metadataCatalog</code>), the container SHOULD be an <code>ldp:DirectContainer</code> declaring that predicate via <code>ldp:hasMemberRelation</code> and the parent record via <code>ldp:membershipResource</code>.
+
+Note: Version 1.2 of this specification was internally inconsistent about navigation: its metadata chapter required "<code>ldp:contains</code> or <code>ldp:hasMemberRelation</code>", while its compliance chapter required <code>ldp:hasMemberRelation</code> alone.
+Version 2.0 resolves this deliberately in favour of <code>ldp:contains</code> as the mandatory traversal predicate ([=CORE-12=]), because containment is what generic clients and harvesters walk, while the membership declaration ([=CORE-13=]) is a recommendation that adds the domain semantics when they exist.
+
+The following RDF Turtle code shows an example of a FAIR Data Point metadata record with navigation information.
+
+<pre class=include-code>
+path: ../src/rdf/example-metadataservice.ttl
+highlight: turtle
+</pre>
+
+In this record, the FDP has the relation <code>fdp-o:metadataCatalog</code> with its catalogs — the parent–child relation a client follows to navigate the structure.
+The container <code>&lt;https://purl.org/fairdatapoint/app/catalog/&gt;</code> makes the structure explicit: it declares the FDP record as its <code>ldp:membershipResource</code>, <code>fdp-o:metadataCatalog</code> as its <code>ldp:hasMemberRelation</code>, and lists the member catalogs via <code>ldp:contains</code>.
+
+# Metadata schemas and profiles # {#schemas}
+
+The FAIR Data Point supports deployment-defined metadata schemas, following the acknowledgment that every application scenario may require different sets of properties to properly describe a given digital object.
+
+: <dfn>CORE-14</dfn>
+:: Every metadata schema used by the deployment MUST be expressed in SHACL [[!SHACL]].
+
+: <dfn>CORE-15</dfn>
+:: Every metadata schema MUST declare as its target class <code>dcat:Resource</code> or a subclass of <code>dcat:Resource</code>.
+
+: <dfn>CORE-16</dfn>
+:: Each metadata record SHOULD reference its <a href="../#terminology">profile</a> via <code>dct:conformsTo</code>.
+
+: <dfn>CORE-17</dfn>
+:: A profile IRI referenced by a metadata record MUST be retrievable ([[#retrieval]]) and MUST resolve to the record's metadata schema expressed in SHACL.
+
+<div class=issue>
+**Open question — should [=CORE-16=] be promoted from SHOULD to MUST?**
+In version 1.x the profile reference was a SHOULD.
+Arguments for MUST: without the profile link, a client or harvester cannot validate a record or discover its schema mechanically, which undermines the predictability goal of the suite; and the two mandatory record types (the FDP's own record and catalogs) already carry a mandatory <code>dct:conformsTo</code> in their schemas, so the gap only exists for deployment-defined types.
+Arguments for keeping SHOULD: deployments that expose legacy or third-party metadata may be unable to attach profiles to records they do not control, and a MUST would exclude them from Core conformance entirely rather than degrading gracefully.
+A possible middle ground is MUST for records created through the <a href="../records/">Records Management</a> interface and SHOULD otherwise.
+</div>
+
+## FAIR Data Point metadata schema ## {#fdp-metadata}
+
+The metadata schema of the FDP's own record:
+
+<pre class=include>
+path: ../src/tables/table-fdp-metadata.html
+</pre>
+
+The navigation information for the FAIR Data Point metadata record is defined below:
+
+<pre class=include>
+path: ../src/tables/table-navigation-information.html
+</pre>
+
+The FAIR Data Point metadata schema defined in SHACL:
+
+<pre class=include-code>
+path: ../src/rdf/shacl-fdp.ttl
+highlight: turtle
+</pre>
+
+Note: The shape enforces [=CORE-02=]: at least one <code>dct:conformsTo</code> value must be a conformance class URI of this suite (the qualified value shape matching <code>https://specs.fairdatapoint.org/v&hellip;/conformance/&hellip;</code>), which simultaneously pins the specification version the deployment implements.
+
+## Catalog metadata schema ## {#catalog-metadata}
+
+<pre class=include>
+path: ../src/tables/table-catalog-metadata.html
+</pre>
+
+The catalog metadata schema defined in SHACL:
+
+<pre class=include-code>
+path: ../src/rdf/shacl-catalog.ttl
+highlight: turtle
+</pre>
+
+Since only the FDP's own record and <code>Catalog</code> records are mandatory, the metadata structure below the catalogs varies per deployment.
+As the FDP is most commonly used to provide metadata of datasets, deployments typically also define <code>Dataset</code> and <code>Distribution</code> schemas following the DCAT model; deployments are free to replace these with custom schemas, as long as [=CORE-15=] is satisfied.
+If other types of digital objects are used, the catalog metadata must contain the navigation information from the catalog to those records, per [[#navigation]].
+
+# Requirements summary # {#requirements-summary}
+
+<table class="def">
+    <caption>FDP Core requirements</caption>
+    <thead>
+        <tr><th>ID</th><th>Level</th><th>Summary</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>[=CORE-01=]</td><td>MUST</td><td>Root URL serves the FDP's own metadata record</td></tr>
+        <tr><td>[=CORE-02=]</td><td>MUST</td><td>FDP record declares implemented conformance classes via <code>dct:conformsTo</code></td></tr>
+        <tr><td>[=CORE-03=]</td><td>MUST</td><td>All other records reachable from at least one Catalog</td></tr>
+        <tr><td>[=CORE-04=]</td><td>MUST</td><td>GET on every record, container and schema returns 200 + representation</td></tr>
+        <tr><td>[=CORE-05=]</td><td>MUST</td><td>HEAD supported wherever GET is</td></tr>
+        <tr><td>[=CORE-06=]</td><td>MUST</td><td>404 for unknown resources (410 MAY for deleted)</td></tr>
+        <tr><td>[=CORE-07=]</td><td>MUST</td><td>Turtle and JSON-LD available via content negotiation</td></tr>
+        <tr><td>[=CORE-08=]</td><td>MUST</td><td>Turtle is the default representation</td></tr>
+        <tr><td>[=CORE-09=]</td><td>MUST</td><td>406 for unsatisfiable Accept headers</td></tr>
+        <tr><td>[=CORE-10=]</td><td>SHOULD</td><td>ETag/Last-Modified and conditional requests</td></tr>
+        <tr><td>[=CORE-11=]</td><td>MUST</td><td>Navigation information for every record that leads to other records</td></tr>
+        <tr><td>[=CORE-12=]</td><td>MUST</td><td>Children listed via <code>ldp:contains</code></td></tr>
+        <tr><td>[=CORE-13=]</td><td>SHOULD</td><td>DirectContainer with <code>ldp:hasMemberRelation</code>/<code>ldp:membershipResource</code> when a domain predicate exists</td></tr>
+        <tr><td>[=CORE-14=]</td><td>MUST</td><td>Schemas expressed in SHACL</td></tr>
+        <tr><td>[=CORE-15=]</td><td>MUST</td><td>Schema target class is (a subclass of) <code>dcat:Resource</code></td></tr>
+        <tr><td>[=CORE-16=]</td><td>SHOULD</td><td>Records reference their profile via <code>dct:conformsTo</code></td></tr>
+        <tr><td>[=CORE-17=]</td><td>MUST</td><td>Referenced profiles resolve to the SHACL schema</td></tr>
+    </tbody>
+</table>
+
+<!-- hidden reference to [FDP] -->
+<span hidden>[[FDP]]</span>

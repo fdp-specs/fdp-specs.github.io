@@ -1,0 +1,114 @@
+<pre class=metadata>
+Title: FDP Schema Management
+Shortname: fdp-schemas
+Org: W3C
+Group: fdpcg
+Status: CG-DRAFT
+Level: none
+ED: https://specs.fairdatapoint.org/schemas/
+Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
+Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
+Abstract: This document specifies FDP Schema Management, an optional conformance class of the FAIR Data Point (FDP) specification suite.
+  It defines how an FDP supports the creation, modification and deletion of metadata schemas (SHACL shapes), and the rules for extending the mandatory base schemas.
+Canonical URL: https://specs.fairdatapoint.org/schemas/
+Date: now
+Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
+Markup Shorthands: markdown yes
+</pre>
+
+# Introduction # {#intro}
+
+Every application scenario may require different sets of properties to properly describe a given <a href="../#terminology">digital object</a>; the FDP therefore supports deployment-defined <a href="../#terminology">metadata schema</a>s.
+<a href="../core/">FDP Core</a> requires schemas to be expressed in SHACL and to be retrievable; this module specifies how schemas are managed: added, edited, deleted, and extended.
+
+Terminology is defined in the <a href="../#terminology">umbrella document</a>.
+The key words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are to be interpreted as described in [[!RFC2119]].
+
+# Conformance # {#conformance-class}
+
+This document defines the conformance class identified by:
+
+<pre>
+https://specs.fairdatapoint.org/v2.0/conformance/schemas
+</pre>
+
+A <a href="../#terminology">deployment</a> conforms to FDP Schema Management if and only if it conforms to <a href="../core/">FDP Core</a> and satisfies all MUST-level requirements in this document.
+
+: <dfn>SCH-01</dfn>
+:: A deployment claiming this conformance class MUST also conform to the FDP Core conformance class of the same suite version.
+
+# Schemas as resources # {#schema-resources}
+
+: <dfn>SCH-02</dfn>
+:: Every metadata schema in use by the deployment MUST be exposed as an addressable resource, retrievable per Core's retrieval and content-negotiation requirements, with the SHACL shapes graph as its representation.
+
+: <dfn>SCH-03</dfn>
+:: The deployment MUST expose a schema <a href="../#terminology">container</a> listing all its schemas via <code>ldp:contains</code>, and that container MUST be discoverable from the FDP's own metadata record.
+
+Note: Exposing the schema catalogue through the same LDP containment mechanism used for metadata records keeps the client model uniform: one navigation mechanism for everything the FDP serves.
+
+# Creating and modifying schemas # {#create-modify}
+
+: <dfn>SCH-04</dfn>
+:: Creation of a schema MUST be supported via an HTTP POST on the schema container, with the SHACL shapes graph as the request body, accepting at least Turtle and JSON-LD; the deployment MUST verify that the submitted graph is syntactically valid SHACL and that it satisfies Core requirement CORE-15 (target class is <code>dcat:Resource</code> or a subclass); a violation MUST be answered with status code <code>422</code> and a report of the violation.
+
+: <dfn>SCH-05</dfn>
+:: On successful creation, the deployment MUST return <code>201</code> with a <code>Location</code> header carrying the schema's IRI and MUST add the schema to the schema container.
+
+: <dfn>SCH-06</dfn>
+:: Modification of a schema MUST be supported via an HTTP PUT on the schema's IRI, as a full replacement, subject to the same verification as [=SCH-04=].
+
+: <dfn>SCH-07</dfn>
+:: Schemas SHOULD be versioned: when a schema is modified, the deployment SHOULD keep the previous version retrievable at a version-specific IRI, so that records whose <a href="../#terminology">profile</a> reference points to the earlier version continue to resolve to the schema they were validated against.
+
+# Deleting schemas # {#delete}
+
+: <dfn>SCH-08</dfn>
+:: Deletion of a schema MUST be supported via an HTTP DELETE on the schema's IRI; the deployment MUST refuse, with status code <code>409</code>, the deletion of a schema that is referenced as the profile of any existing metadata record.
+
+: <dfn>SCH-09</dfn>
+:: The deployment MUST refuse, with status code <code>409</code>, the deletion or the weakening of the two mandatory base schemas — the FAIR Data Point schema and the Catalog schema — where weakening means any modification under which metadata content satisfying the modified schema would violate a Core requirement.
+
+# Extending the base schemas # {#extension}
+
+Deployments commonly need richer descriptions than the base schemas require — additional properties, stricter cardinalities, controlled vocabularies for specific fields.
+
+: <dfn>SCH-10</dfn>
+:: A deployment MAY extend the base schemas and MAY define schemas for additional record types; an extension of a base schema MUST preserve every constraint of the base schema (extensions may add constraints, never remove or relax them).
+
+: <dfn>SCH-11</dfn>
+:: Access control for the operations in this module MUST follow the same interface behaviour as Records Management (requirements REC-14 and REC-15 in <a href="../records/">FDP Records Management</a>): protection possible, <code>401</code>/<code>403</code> semantics.
+
+<div class=issue>
+**Open question — revalidation semantics when a schema changes.**
+When a schema is modified ([=SCH-06=]), existing records that were valid against the previous version may be invalid against the new one.
+This draft deliberately does not require automatic revalidation, because the cost on large deployments can be substantial and rejection of previously accepted records would be hostile to data holders.
+Options for the community group:
+(a) no obligation — records keep their validity status until next modified (the current draft's implicit position);
+(b) lazy revalidation — a record is revalidated against the current schema whenever it is next written;
+(c) eager revalidation with flagging — the deployment revalidates affected records and exposes a per-record conformance status, following the accept-and-flag posture that FAIR Discovery applies on the harvesting side;
+(d) mandatory schema versioning — turn [=SCH-07=] into a MUST, so that a record's profile reference always pins the exact schema version it conforms to and revalidation is never implicit.
+Options (c) and (d) combine well and would make FDP-side behaviour symmetrical with the conformance reporting harvesters produce.
+</div>
+
+# Requirements summary # {#requirements-summary}
+
+<table class="def">
+    <caption>FDP Schema Management requirements</caption>
+    <thead>
+        <tr><th>ID</th><th>Level</th><th>Summary</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>[=SCH-01=]</td><td>MUST</td><td>Core conformance is a prerequisite</td></tr>
+        <tr><td>[=SCH-02=]</td><td>MUST</td><td>Every schema is an addressable, negotiable resource</td></tr>
+        <tr><td>[=SCH-03=]</td><td>MUST</td><td>Schema container discoverable from the FDP record</td></tr>
+        <tr><td>[=SCH-04=]</td><td>MUST</td><td>Create via POST; SHACL and target-class verification; 422 on violation</td></tr>
+        <tr><td>[=SCH-05=]</td><td>MUST</td><td>201 + Location; schema added to the container</td></tr>
+        <tr><td>[=SCH-06=]</td><td>MUST</td><td>Modify via PUT, verified as on creation</td></tr>
+        <tr><td>[=SCH-07=]</td><td>SHOULD</td><td>Version schemas; previous versions stay resolvable</td></tr>
+        <tr><td>[=SCH-08=]</td><td>MUST</td><td>Refuse (409) deleting a schema in use</td></tr>
+        <tr><td>[=SCH-09=]</td><td>MUST</td><td>Refuse (409) deleting/weakening the mandatory base schemas</td></tr>
+        <tr><td>[=SCH-10=]</td><td>MUST</td><td>Extensions preserve base-schema constraints</td></tr>
+        <tr><td>[=SCH-11=]</td><td>MUST</td><td>Access control per Records Management interface behaviour</td></tr>
+    </tbody>
+</table>

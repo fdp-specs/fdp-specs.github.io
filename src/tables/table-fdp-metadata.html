@@ -57,8 +57,8 @@
             <td></td>
             <td>dct:conformsTo</td>
             <td>IRI</td>
-            <td>1</td>
-            <td>This property points to a profile that contains the specification of the FAIR Data Point's metadata schema (in <code>SHACL</code>).</td>
+            <td>2..*</td>
+            <td>This property points to (a) a profile that contains the specification of the FAIR Data Point's metadata schema (in <code>SHACL</code>) and (b) the conformance class URI(s) of the FDP specification suite that the deployment implements, including at least the FDP Core class of the implemented suite version, e.g. <code>https://specs.fairdatapoint.org/v2.0/conformance/core</code>.</td>
         </tr>
         <tr>
             <td></td>
@@ -101,14 +101,14 @@
         </tr>
         <tr>
             <td></td>
-            <td>dcat:endPointURL</td>
+            <td>dcat:endpointURL</td>
             <td>IRI</td>
             <td>1</td>
             <td>The URL of the FDP API endpoint.</td>
         </tr>
         <tr>
             <td></td>
-            <td>dcat:endPointDescription</td>
+            <td>dcat:endpointDescription</td>
             <td>IRI</td>
             <td>0..*</td>
             <td>

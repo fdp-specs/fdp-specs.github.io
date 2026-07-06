@@ -1,0 +1,138 @@
+<pre class=metadata>
+Title: FDP Records Management
+Shortname: fdp-records
+Org: W3C
+Group: fdpcg
+Status: CG-DRAFT
+Level: none
+ED: https://specs.fairdatapoint.org/records/
+Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
+Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
+Abstract: This document specifies FDP Records Management, an optional conformance class of the FAIR Data Point (FDP) specification suite.
+  It defines how an FDP supports the creation, modification and deletion of metadata records through its HTTP interface, including server-side validation against the applicable metadata schemas.
+Canonical URL: https://specs.fairdatapoint.org/records/
+Date: now
+Issue Tracking: Github https://github.com/fdp-specs/fdp-specs.github.io/issues
+Markup Shorthands: markdown yes
+</pre>
+
+# Introduction # {#intro}
+
+<a href="../core/">FDP Core</a> specifies how metadata records are served; this module specifies how they are managed.
+A deployment implementing this module allows authorised clients to add, edit and delete <a href="../#terminology">metadata record</a>s through the same HTTP interface used for reading, following the resource semantics of the Linked Data Platform [[!LDP]]: records are created by POSTing to their parent <a href="../#terminology">container</a>, replaced with PUT, and removed with DELETE.
+
+Terminology is defined in the <a href="../#terminology">umbrella document</a>.
+The key words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are to be interpreted as described in [[!RFC2119]].
+
+This module specifies interface behaviour only.
+How an implementation stores records, manages users, or evaluates access policies is out of scope; what is normative is the observable HTTP behaviour, including the guarantee that write operations can be protected.
+
+# Conformance # {#conformance-class}
+
+This document defines the conformance class identified by:
+
+<pre>
+https://specs.fairdatapoint.org/v2.0/conformance/records
+</pre>
+
+A <a href="../#terminology">deployment</a> conforms to FDP Records Management if and only if it conforms to <a href="../core/">FDP Core</a> and satisfies all MUST-level requirements in this document.
+
+: <dfn>REC-01</dfn>
+:: A deployment claiming this conformance class MUST also conform to the FDP Core conformance class of the same suite version.
+
+# Creating records # {#create}
+
+: <dfn>REC-02</dfn>
+:: Creation of a metadata record MUST be supported via an HTTP POST request on the IRI of the parent container (e.g. the catalog container of the FDP for a new catalog, or a catalog's own container for a new record in that catalog), with the record's RDF as the request body.
+
+: <dfn>REC-03</dfn>
+:: For write request bodies, the deployment MUST accept at least RDF Turtle (<code>text/turtle</code>) and JSON-LD (<code>application/ld+json</code>), interpreting the <code>Content-Type</code> header; an unsupported <code>Content-Type</code> MUST be answered with status code <code>415</code>.
+
+: <dfn>REC-04</dfn>
+:: Before persisting, the deployment MUST validate the submitted record against the <a href="../#terminology">metadata schema</a> applicable to the record's type; if validation fails, the deployment MUST return status code <code>422</code> and MUST include the SHACL validation report [[!SHACL]] in the response body, serialised in the negotiated RDF syntax (Turtle by default).
+
+: <dfn>REC-05</dfn>
+:: On successful creation, the deployment MUST return status code <code>201</code> with a <code>Location</code> header carrying the IRI assigned to the new record; the assigned IRI MUST be dereferenceable per Core.
+
+: <dfn>REC-06</dfn>
+:: On successful creation, the deployment MUST add the new record's IRI to the parent container's <code>ldp:contains</code> listing and, where applicable, add the corresponding domain-predicate triple (e.g. <code>fdp-o:metadataCatalog</code>) to the parent record.
+
+Note: IRI assignment is the server's responsibility; a client MAY propose an IRI (e.g. via the LDP <code>Slug</code> header), and the server MAY honour it, but the authoritative IRI is the one returned in <code>Location</code>.
+
+# Modifying records # {#modify}
+
+: <dfn>REC-07</dfn>
+:: Modification of a metadata record MUST be supported via an HTTP PUT request on the record's IRI, interpreted as a full replacement of the record's content, subject to the same validation behaviour as [=REC-04=]; success MUST be answered with status code <code>200</code> or <code>204</code>.
+
+: <dfn>REC-08</dfn>
+:: A deployment MAY additionally support partial modification via HTTP PATCH; if PATCH is supported, the accepted patch format(s) MUST be advertised via the <code>Accept-Patch</code> response header.
+
+: <dfn>REC-09</dfn>
+:: The deployment MUST maintain <code>fdp-o:metadataIssued</code> (set at creation, immutable thereafter) and <code>fdp-o:metadataModified</code> (updated at every successful modification) on every record managed through this interface; client-supplied values for these properties MUST be ignored or rejected.
+
+: <dfn>REC-10</dfn>
+:: To prevent lost updates, the deployment SHOULD support conditional writes: honouring <code>If-Match</code>/<code>If-Unmodified-Since</code> on PUT, PATCH and DELETE, and answering <code>412</code> when the precondition fails.
+
+<div class=issue>
+**Open question — which PATCH format(s) should be named?**
+[=REC-08=] deliberately leaves the patch format open.
+Candidates: SPARQL 1.1 Update (expressive, widely implemented in triple stores, but a full query language as a patch format has security and complexity implications), LD Patch (designed for exactly this use in the LDP family, but with limited implementation uptake), and RDF Patch / TriG-diff style formats (simple, but not standardised).
+Naming one format would improve interoperability of write clients; naming none keeps the barrier for implementers low since PUT full-replacement is always available.
+The community group should decide whether interoperable partial update is worth mandating a specific format in a future version.
+</div>
+
+# Deleting records # {#delete}
+
+: <dfn>REC-11</dfn>
+:: Deletion of a metadata record MUST be supported via an HTTP DELETE request on the record's IRI; on success the deployment MUST return <code>200</code> or <code>204</code>, MUST remove the record's IRI from every container that listed it, and MUST remove the corresponding domain-predicate triples from the parent record(s).
+
+: <dfn>REC-12</dfn>
+:: When a DELETE targets a record that leads to other records (a non-empty parent, e.g. a catalog with datasets), the deployment MUST either refuse the operation with status code <code>409</code> or delete the contained records recursively; whichever behaviour is implemented MUST be applied consistently and SHOULD be stated in the deployment's service documentation. The deployment MUST NOT leave orphaned records that are no longer reachable from any catalog (which would violate Core requirement CORE-03).
+
+: <dfn>REC-13</dfn>
+:: After successful deletion, a GET on the record's IRI MUST return <code>404</code> or <code>410</code>.
+
+# Access control at the interface # {#access-control}
+
+Metadata is generally openly readable, but it is expected that only a select group of agents may add, edit or delete records.
+How authentication and authorisation are implemented (accounts, tokens, federated identity, policy languages) is out of scope; what this module requires is that protection is possible and that its observable behaviour is uniform.
+
+: <dfn>REC-14</dfn>
+:: The deployment MUST be able to require authentication for every operation defined in this module; when an unauthenticated request requires authentication, the deployment MUST return status code <code>401</code>; when an authenticated agent lacks permission, the deployment MUST return status code <code>403</code>.
+
+: <dfn>REC-15</dfn>
+:: Authentication and authorisation requirements MUST NOT alter read behaviour required by Core for openly readable records; a deployment MAY additionally restrict reading of specific records or parts of records.
+
+<div class=issue>
+**Open question — should interface-level access-control requirements move to Core?**
+[=REC-14=] and [=REC-15=] live in this module because Core is read-only and public in the common case.
+However, deployments exist whose *read* side is partially restricted (e.g. sensitive-domain metadata behind authentication), and today Core says nothing about how such restrictions behave (401/403 semantics on GET, discoverability of restricted records in containers).
+Moving the requirements to Core would give restricted-read deployments a specified behaviour, at the cost of enlarging the mandatory class with requirements many public deployments never exercise; alternatively a separate small "Access Control" conformance class could be defined.
+The same question affects <a href="../schemas/">Schema Management</a> and <a href="../bulk/">Bulk Ingestion</a>, which currently reference the requirements defined here.
+</div>
+
+# Requirements summary # {#requirements-summary}
+
+<table class="def">
+    <caption>FDP Records Management requirements</caption>
+    <thead>
+        <tr><th>ID</th><th>Level</th><th>Summary</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>[=REC-01=]</td><td>MUST</td><td>Core conformance is a prerequisite</td></tr>
+        <tr><td>[=REC-02=]</td><td>MUST</td><td>Create via POST on the parent container</td></tr>
+        <tr><td>[=REC-03=]</td><td>MUST</td><td>Turtle and JSON-LD accepted on write; 415 otherwise</td></tr>
+        <tr><td>[=REC-04=]</td><td>MUST</td><td>SHACL validation before persisting; 422 + validation report on failure</td></tr>
+        <tr><td>[=REC-05=]</td><td>MUST</td><td>201 + Location with the assigned IRI</td></tr>
+        <tr><td>[=REC-06=]</td><td>MUST</td><td>Containers and parent record updated on creation</td></tr>
+        <tr><td>[=REC-07=]</td><td>MUST</td><td>Full replacement via PUT, validated</td></tr>
+        <tr><td>[=REC-08=]</td><td>MAY</td><td>PATCH; formats advertised via Accept-Patch</td></tr>
+        <tr><td>[=REC-09=]</td><td>MUST</td><td>Server-maintained metadataIssued/metadataModified</td></tr>
+        <tr><td>[=REC-10=]</td><td>SHOULD</td><td>Conditional writes (If-Match), 412 on failure</td></tr>
+        <tr><td>[=REC-11=]</td><td>MUST</td><td>DELETE removes record and all containment/domain triples</td></tr>
+        <tr><td>[=REC-12=]</td><td>MUST</td><td>Non-empty parents: refuse (409) or cascade, consistently; no orphans</td></tr>
+        <tr><td>[=REC-13=]</td><td>MUST</td><td>404/410 after deletion</td></tr>
+        <tr><td>[=REC-14=]</td><td>MUST</td><td>Write operations protectable; 401/403 semantics</td></tr>
+        <tr><td>[=REC-15=]</td><td>MUST</td><td>Protection does not alter Core read behaviour for open records</td></tr>
+    </tbody>
+</table>
