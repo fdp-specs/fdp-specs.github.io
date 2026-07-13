@@ -54,7 +54,7 @@
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path dcat:endPointDescription ;
+    sh:path dcat:endpointDescription ;
     sh:nodeKind sh:IRI ;
   ], [
     sh:path fdp-o:metadataIdentifier ;
