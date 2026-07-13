@@ -12,7 +12,7 @@ fdp:app
   dcterms:publisher fdp:app#publisher ;
   dcterms:license cc:by-nc-nd/4.0/rdf ;
   dcterms:conformsTo fdp:app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c ;
-  dcat:endPointURL fdp:app ;
+  dcat:endpointURL fdp:app ;
   fdp-o:metadataIdentifier fdp:app#identifier ;
   fdp-o:metadataIssued "2020-05-29T09:55:08.580Z"^^xsd:dateTime ;
   fdp-o:metadataModified "2020-09-30T11:17:43.008Z"^^xsd:dateTime ;
