@@ -1,4 +1,4 @@
-@prefix :        <http://fairdatapoint.org/> .
+@prefix :        <https://w3id.org/fdp/specs-examples/v2.0/shacl-catalog.ttl#> .
 @prefix dcat:    <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .

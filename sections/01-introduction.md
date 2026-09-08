@@ -39,6 +39,7 @@ This draft deliberately leaves a number of design decisions open for review.
 They are marked in the text as numbered **decision points** (DP-*n*) in issue blocks, each stating the question, the options considered and, where there is one, a proposed default.
 The normative text surrounding a decision point is written for the proposed default, so that the document remains complete and readable. The issue block describes what would change under the other options.
 All decision points are collected in the Issues Index at the end of this document.
+When a decision point is resolved, its text is replaced by the decision and its number is not reused, so the numbering may have gaps.
 Comments are welcome in the <a href="https://github.com/fdp-specs/fdp-specs.github.io/issues">issue tracker</a>.
 
 ## Document conventions ## {#document-conventions}

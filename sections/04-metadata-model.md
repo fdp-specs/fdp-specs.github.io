@@ -115,11 +115,10 @@ highlight: turtle
 </pre>
 The schemas for the `fdp-o:FAIRDataPoint` and `dcat:Catalog` classes are defined in [[#fair-data-point-metadata]] and [[#catalog-metadata]]. Schemas for other classes are discussed in [[#extending-the-content-model]].
 
-Issue: **DP-9: Identification of the normative shapes.**
-The SHACL shapes in this document are identified by IRIs under `http://fairdatapoint.org/`, which does not resolve to them.
-Options: (a) publish the shapes under a persistent namespace, e.g. `https://w3id.org/fdp/shapes/`, resolving to the Turtle files in the specification repository. (b) use document-relative fragment identifiers such as `<#FAIRDataPointShape>`, so the IRIs depend on where the file is published. (c) keep the current IRIs.
-Related: the shared shapes `AgentShape` and `ContactPointShape` are currently duplicated in each schema file so that every file is self-contained. Under option (a) they could be published once and referenced.
-Proposed default: (a).
+The normative shapes and the examples of this specification are published under the persistent namespace `https://w3id.org/fdp/specs-examples/`, which redirects to the files served together with this specification.
+The IRI `https://w3id.org/fdp/specs-examples/v2.0/<file>` identifies the file as published with version 2.0 of this specification, and `https://w3id.org/fdp/specs-examples/<file>` the file as published with the latest version.
+Each shape is identified by the IRI of its file followed by a fragment, e.g., `https://w3id.org/fdp/specs-examples/v2.0/shacl-fdp.ttl#FAIRDataPointShape`.
+The shapes `AgentShape` and `ContactPointShape` are repeated in each file that needs them, so that every file is self-contained, and therefore have a file-specific IRI in each.
 
 ## FDP Metadata Record: meta-metadata ## {#metadata-record}
 Two levels of description have to be distinguished: the metadata *about the entity* (e.g., the title, publisher and license of a dataset) and the metadata *about the metadata record itself* (e.g., when the record was created and last modified in this FDP, and by whom).

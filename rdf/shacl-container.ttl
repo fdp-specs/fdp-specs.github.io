@@ -1,4 +1,4 @@
-@prefix :        <http://fairdatapoint.org/> .
+@prefix :        <https://w3id.org/fdp/specs-examples/v2.0/shacl-container.ttl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ldp:     <http://www.w3.org/ns/ldp#> .
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .

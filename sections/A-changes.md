@@ -16,6 +16,7 @@
 - The SHACL schemas were made consistent with the tables and were corrected: missing prefixes, an invalid empty `sh:maxCount`, a duplicated property shape, an undefined shape reference and invalid `sh:nodeKind` values were fixed.
     Cross-record constraints (`sh:node` and `sh:class` on the IRIs of member records) were replaced by `sh:nodeKind sh:IRI`, since the members' triples are not part of the record being validated. The expected classes of members are stated in the tables.
 - The container schema for the navigation information was generalised from the FAIR Data Point's catalog container to any container ([[#navigation-information]]).
+- The normative shapes and the examples are published under the persistent namespace `https://w3id.org/fdp/specs-examples/`, and each shape is identified by its file IRI and a fragment ([[#metadata-records]]).
 - The metadata model figure was redrawn for DCAT 3 and the classes introduced in this version.
 - The document type changed from an unofficial draft to a W3C Community Group Draft Report.
 - The Write and Bundle capabilities are new and are published as first drafts, with open decision points.

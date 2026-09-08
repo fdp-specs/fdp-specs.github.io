@@ -79,7 +79,7 @@ Proposed default: (b), as reflected in this draft.
 
 ## Relation to the conformance classes ## {#capabilities-and-conformance}
 An application is a FAIR Data Point if it conforms to the **FDP Core** conformance class, i.e., if it provides the Read and Navigate capabilities.
-Read alone is deliberately not sufficient: serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way, whatever schemas and structure the deployment has chosen (see [[#navigate-overview]]).
+Read alone is deliberately not sufficient, as serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way, whatever schemas and structure the deployment has chosen (see [[#navigate-overview]]).
 An FDP may additionally claim conformance to any of the other conformance classes for which it satisfies the requirements.
 The conformance classes and their criteria are defined in [[#conformance]].
 

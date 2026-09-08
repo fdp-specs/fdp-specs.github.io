@@ -8,7 +8,7 @@
   <meta content="Bikeshed version ac92c2f0d, updated Fri Aug 21 16:01:29 2026 -0700" name="generator">
   <link href="https://specs.fairdatapoint.org/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="5bb4e530d3987a1a1e05e8ec2b53d9b7506808df" name="revision">
+  <meta content="cdb2f642d29f40990f28e8a265162b21faf7e632" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -753,6 +753,7 @@ The remaining capabilities are optional.</p>
 They are marked in the text as numbered <strong>decision points</strong> (DP-<em>n</em>) in issue blocks, each stating the question, the options considered and, where there is one, a proposed default.
 The normative text surrounding a decision point is written for the proposed default, so that the document remains complete and readable. The issue block describes what would change under the other options.
 All decision points are collected in the Issues Index at the end of this document.
+When a decision point is resolved, its text is replaced by the decision and its number is not reused, so the numbering may have gaps.
 Comments are welcome in the <a href="https://github.com/fdp-specs/fdp-specs.github.io/issues">issue tracker</a>.</p>
    <h3 class="heading settled" data-level="1.3" id="document-conventions"><span class="secno">1.3. </span><span class="content">Document conventions</span><a class="self-link" href="#document-conventions"></a></h3>
    
@@ -974,7 +975,7 @@ Proposed default: (b), as reflected in this draft.</p>
    <h3 class="heading settled" data-level="3.2" id="capabilities-and-conformance"><span class="secno">3.2. </span><span class="content">Relation to the conformance classes</span><a class="self-link" href="#capabilities-and-conformance"></a></h3>
    
 An application is a FAIR Data Point if it conforms to the <strong>FDP Core</strong> conformance class, i.e., if it provides the Read and Navigate capabilities.
-Read alone is deliberately not sufficient: serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way, whatever schemas and structure the deployment has chosen (see <a href="#navigate-overview">§ 6.1 Overview</a>).
+Read alone is deliberately not sufficient, as serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way, whatever schemas and structure the deployment has chosen (see <a href="#navigate-overview">§ 6.1 Overview</a>).
 An FDP may additionally claim conformance to any of the other conformance classes for which it satisfies the requirements.
 The conformance classes and their criteria are defined in <a href="#conformance">§ 9 Conformance</a>.
 
@@ -1127,7 +1128,7 @@ An FDP <em>MUST</em> provide a profile, and thereby a metadata schema, for every
       <td>The resources of the profile. At least one resource descriptor <em class="rfc2119">MUST</em> have the role <code>role:validation</code>; its <code>prof:hasArtifact</code> is the IRI of the metadata schema in SHACL, its <code>dcterms:conformsTo</code> <em class="rfc2119">SHOULD</em> be the SHACL specification and its <code>dcterms:format</code> <em class="rfc2119">SHOULD</em> give the media type of the artifact.
    </table>
    <p>The profile description schema in SHACL:</p>
-<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;http://fairdatapoint.org/></c-> <c- p>.</c->
+<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;https://w3id.org/fdp/specs-examples/v2.0/shacl-profile.ttl#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>prof:</c->    <c- g>&lt;http://www.w3.org/ns/dx/prof/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>rdf:</c->     <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-> <c- p>.</c->
@@ -1209,11 +1210,10 @@ An FDP <em>MUST</em> provide a profile, and thereby a metadata schema, for every
 The schemas for the <code>fdp-o:FAIRDataPoint</code> and <code>dcat:Catalog</code> classes are defined in <a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata</a> and <a href="#catalog-metadata">§ 4.5 Catalog metadata</a>. Schemas for other classes are discussed in <a href="#extending-the-content-model">§ 4.6 Extending the content model</a>.
 
 
-   <p class="issue" id="issue-53af0586"><a class="self-link" href="#issue-53af0586"></a> <strong>DP-9: Identification of the normative shapes.</strong>
-The SHACL shapes in this document are identified by IRIs under <code>http://fairdatapoint.org/</code>, which does not resolve to them.
-Options: (a) publish the shapes under a persistent namespace, e.g. <code>https://w3id.org/fdp/shapes/</code>, resolving to the Turtle files in the specification repository. (b) use document-relative fragment identifiers such as <code>&lt;#FAIRDataPointShape></code>, so the IRIs depend on where the file is published. (c) keep the current IRIs.
-Related: the shared shapes <code>AgentShape</code> and <code>ContactPointShape</code> are currently duplicated in each schema file so that every file is self-contained. Under option (a) they could be published once and referenced.
-Proposed default: (a).</p>
+   <p>The normative shapes and the examples of this specification are published under the persistent namespace <code>https://w3id.org/fdp/specs-examples/</code>, which redirects to the files served together with this specification.
+The IRI <code>https://w3id.org/fdp/specs-examples/v2.0/&lt;file></code> identifies the file as published with version 2.0 of this specification, and <code>https://w3id.org/fdp/specs-examples/&lt;file></code> the file as published with the latest version.
+Each shape is identified by the IRI of its file followed by a fragment, e.g., <code>https://w3id.org/fdp/specs-examples/v2.0/shacl-fdp.ttl#FAIRDataPointShape</code>.
+The shapes <code>AgentShape</code> and <code>ContactPointShape</code> are repeated in each file that needs them, so that every file is self-contained, and therefore have a file-specific IRI in each.</p>
    <h3 class="heading settled" data-level="4.3" id="metadata-record"><span class="secno">4.3. </span><span class="content">FDP Metadata Record: meta-metadata</span><a class="self-link" href="#metadata-record"></a></h3>
    
 Two levels of description have to be distinguished: the metadata <em>about the entity</em> (e.g., the title, publisher and license of a dataset) and the metadata <em>about the metadata record itself</em> (e.g., when the record was created and last modified in this FDP, and by whom).
@@ -1295,7 +1295,7 @@ Which class: (a) <code>fdp-o:MetadataRecord</code> as the renamed successor of <
 Whether the record is a dataset: (a) <code>fdp-o:MetadataRecord</code> is not a subclass of <code>dcat:Dataset</code>, as written, so that records do not need records of their own and do not clash with the DCAT distinction between catalog records and catalogued resources. (b) <code>fdp-o:MetadataRecord</code> is a subclass of <code>dcat:Dataset</code>, as <code>fdp-o:Metadata</code> was, which makes <code>fdp-o:servesMetadata</code> a sub-property of <code>dcat:servesDataset</code> and a <code>MetadataService</code> a <code>DataService</code> by construction, at the cost of exempting records from the rule that every resource has a record.
 Proposed default: (a) for all three.</p>
    <p>The FDP Metadata Record schema in SHACL:</p>
-<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;http://fairdatapoint.org/></c-> <c- p>.</c->
+<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;https://w3id.org/fdp/specs-examples/v2.0/shacl-metadata-record.ttl#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>fdp-o:</c->   <c- g>&lt;https://w3id.org/fdp/fdp-o#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>foaf:</c->    <c- g>&lt;http://xmlns.com/foaf/0.1/></c-> <c- p>.</c->
@@ -1518,7 +1518,7 @@ It describes the FDP as a <code>dcat:DataService</code>, and it is the root from
 Options: (a) keep it, with the <code>ContactPointShape</code> below. (b) drop it in favour of the publisher’s contact information. (c) keep it without constraining the shape of the value.
 Proposed default: (a), because DCAT 3 defines <code>dcat:contactPoint</code> as the standard way of giving contact information for a resource and DCAT-based tooling expects a vCard value. The shape only requires an e-mail address, which is the minimum a client needs to act on the contact point.</p>
    <p>The FAIR Data Point metadata schema in SHACL:</p>
-<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;http://fairdatapoint.org/></c-> <c- p>.</c->
+<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;https://w3id.org/fdp/specs-examples/v2.0/shacl-fdp.ttl#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcat:</c->    <c- g>&lt;http://www.w3.org/ns/dcat#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>fdp-o:</c->   <c- g>&lt;https://w3id.org/fdp/fdp-o#></c-> <c- p>.</c->
@@ -1779,7 +1779,7 @@ When an FDP serves metadata records of instances of <code>dcat:Catalog</code>, t
       <td>The FDP Metadata Record of this metadata record.
    </table>
    <p>The catalog metadata schema in SHACL:</p>
-<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;http://fairdatapoint.org/></c-> <c- p>.</c->
+<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;https://w3id.org/fdp/specs-examples/v2.0/shacl-catalog.ttl#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcat:</c->    <c- g>&lt;http://www.w3.org/ns/dcat#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>fdp-o:</c->   <c- g>&lt;https://w3id.org/fdp/fdp-o#></c-> <c- p>.</c->
@@ -2031,7 +2031,7 @@ The IRI of each container <em>SHOULD</em> be dereferenceable, returning the desc
             
    </table>
    <p>The container schema in SHACL:</p>
-<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;http://fairdatapoint.org/></c-> <c- p>.</c->
+<pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;https://w3id.org/fdp/specs-examples/v2.0/shacl-container.ttl#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>ldp:</c->     <c- g>&lt;http://www.w3.org/ns/ldp#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>rdf:</c->     <c- g>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#></c-> <c- p>.</c->
@@ -2415,6 +2415,8 @@ Cross-record constraints (<code>sh:node</code> and <code>sh:class</code> on the 
     <li data-md>
      <p>The container schema for the navigation information was generalised from the FAIR Data Point’s catalog container to any container (<a href="#navigation-information">§ 6.2 Navigation information</a>).</p>
     <li data-md>
+     <p>The normative shapes and the examples are published under the persistent namespace <code>https://w3id.org/fdp/specs-examples/</code>, and each shape is identified by its file IRI and a fragment (<a href="#metadata-records">§ 4.2 Metadata records and profiles</a>).</p>
+    <li data-md>
      <p>The metadata model figure was redrawn for DCAT 3 and the classes introduced in this version.</p>
     <li data-md>
      <p>The document type changed from an unofficial draft to a W3C Community Group Draft Report.</p>
@@ -2483,11 +2485,6 @@ Without the rule above, a client only learns that an <code>fdp-o:FAIRDataPoint</
 The FDP Reference Implementation already states the parent classes explicitly.
 Options: (a) records MUST state the most specific DCAT class in addition to the specialised class, as written above. (b) records MUST state the complete chain of parent classes up to <code>dcat:Resource</code>. (c) records SHOULD state the parent classes. (d) leave it to inference.
 Proposed default: (a). <a class="issue-return" href="#issue-3ebf8dac" title="Jump to section">↵</a></div>
-   <div class="issue"> <strong>DP-9: Identification of the normative shapes.</strong>
-The SHACL shapes in this document are identified by IRIs under <code>http://fairdatapoint.org/</code>, which does not resolve to them.
-Options: (a) publish the shapes under a persistent namespace, e.g. <code>https://w3id.org/fdp/shapes/</code>, resolving to the Turtle files in the specification repository. (b) use document-relative fragment identifiers such as <code>&lt;#FAIRDataPointShape></code>, so the IRIs depend on where the file is published. (c) keep the current IRIs.
-Related: the shared shapes <code>AgentShape</code> and <code>ContactPointShape</code> are currently duplicated in each schema file so that every file is self-contained. Under option (a) they could be published once and referenced.
-Proposed default: (a). <a class="issue-return" href="#issue-53af0586" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-2: Location of the FDP Metadata Record.</strong>
 Options: (a) the FDP Metadata Record is a separate dereferenceable resource, linked from the metadata record with <code>fdp-o:hasMetadata</code> and advertised in the HTTP response with a <code>Link</code> header, as written in this draft. (b) the FDP Metadata Record is embedded in the representation of the metadata record, as a second subject in the same RDF document, and has no separate URL. (c) both: embedded in the representation and also dereferenceable.
 Proposed default: (a), because it keeps one subject per response, allows caching and conditional requests to be driven by the record’s <code>dcterms:modified</code>, and lets bundles (<a href="#bundle">§ 8 Bundle capability</a>) carry records and their meta-metadata uniformly. <a class="issue-return" href="#issue-d0646c9a" title="Jump to section">↵</a></div>
