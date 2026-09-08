@@ -14,6 +14,7 @@ This specification defines four capabilities:
 
 : Navigate ([[#navigate]])
 :: The FDP describes the structure of its metadata content using the Linked Data Platform containment model, so that a client can discover all metadata records starting from the root of the FDP.
+    Because every FDP may organise its content differently, this information is provided incrementally, with each record, rather than as a structure a client has to know in advance.
     By providing this capability an FDP enables client applications, such as harvesters and search engines, to traverse and index its whole metadata content without prior knowledge of its structure.
 
 : Write ([[#write]])
@@ -78,7 +79,7 @@ Proposed default: (b), as reflected in this draft.
 
 ## Relation to the conformance classes ## {#capabilities-and-conformance}
 An application is a FAIR Data Point if it conforms to the **FDP Core** conformance class, i.e., if it provides the Read and Navigate capabilities.
-Read alone is deliberately not sufficient: serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way.
+Read alone is deliberately not sufficient: serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way, whatever schemas and structure the deployment has chosen (see [[#navigate-overview]]).
 An FDP may additionally claim conformance to any of the other conformance classes for which it satisfies the requirements.
 The conformance classes and their criteria are defined in [[#conformance]].
 

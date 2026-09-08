@@ -5,13 +5,16 @@ By providing this capability, an FDP enables client applications to discover its
 This is what allows, for instance, search engines and metadata aggregators to index the content of an FDP effortlessly.
 
 ## Overview ## {#navigate-overview}
+
 *This section is non-normative.*
 
-Since the FDP supports the provisioning of metadata describing different types of entities, and the relations among these metadata records can be customised, each FDP deployment may have a different metadata structure.
+The FDP allows each deployment to define its own metadata schemas and its own structure of schemas: which classes of entities are described, and how their metadata records relate to one another.
 For instance, an FDP may have the structure `FAIR Data Point` → `Catalog` → `Dataset` → `Distribution`.
 Another FDP, serving metadata about ontologies, taxonomies and vocabularies, could have the structure `FAIR Data Point` → `Catalog` → `Semantic Artefact`.
-With this flexibility, a client application would not have a predictable pattern to navigate the metadata content of an FDP unless it followed every IRI in the metadata, which may be extensive.
-Therefore, the FDP describes its own navigation structure, using the containment model of the Linked Data Platform (LDP) [[!LDP]].
+As a consequence, different FDPs will in general not share the same structure, and no client can know beforehand how to navigate the content of an FDP it has not seen before.
+Following every IRI in every record is not an option either, since records reference many resources that are not part of the content of the FDP.
+Therefore, the FDP provides its navigation structure as it goes: each metadata record carries the information a client needs to reach the records below it, using the containment model of the Linked Data Platform (LDP) [[!LDP]].
+A client needs nothing beyond the root URL, and it discovers the structure one step at a time, however the deployment has organised it.
 
 ## Navigation information ## {#navigation-information}
 An FDP *MUST* describe the structure of its metadata content using LDP Direct Containers.

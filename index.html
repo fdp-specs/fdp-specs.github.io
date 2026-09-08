@@ -8,7 +8,7 @@
   <meta content="Bikeshed version ac92c2f0d, updated Fri Aug 21 16:01:29 2026 -0700" name="generator">
   <link href="https://specs.fairdatapoint.org/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="487d1259615295b7e92a80bfc103b37633e44f33" name="revision">
+  <meta content="5bb4e530d3987a1a1e05e8ec2b53d9b7506808df" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -894,6 +894,7 @@ By providing this capability an FDP enables client applications to retrieve and 
     <dt data-md>Navigate (<a href="#navigate">§ 6 Navigate capability</a>)
     <dd data-md>
      <p>The FDP describes the structure of its metadata content using the Linked Data Platform containment model, so that a client can discover all metadata records starting from the root of the FDP.
+Because every FDP may organise its content differently, this information is provided incrementally, with each record, rather than as a structure a client has to know in advance.
 By providing this capability an FDP enables client applications, such as harvesters and search engines, to traverse and index its whole metadata content without prior knowledge of its structure.</p>
     <dt data-md>Write (<a href="#write">§ 7 Write capability</a>)
     <dd data-md>
@@ -973,7 +974,7 @@ Proposed default: (b), as reflected in this draft.</p>
    <h3 class="heading settled" data-level="3.2" id="capabilities-and-conformance"><span class="secno">3.2. </span><span class="content">Relation to the conformance classes</span><a class="self-link" href="#capabilities-and-conformance"></a></h3>
    
 An application is a FAIR Data Point if it conforms to the <strong>FDP Core</strong> conformance class, i.e., if it provides the Read and Navigate capabilities.
-Read alone is deliberately not sufficient: serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way.
+Read alone is deliberately not sufficient: serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way, whatever schemas and structure the deployment has chosen (see <a href="#navigate-overview">§ 6.1 Overview</a>).
 An FDP may additionally claim conformance to any of the other conformance classes for which it satisfies the requirements.
 The conformance classes and their criteria are defined in <a href="#conformance">§ 9 Conformance</a>.
 
@@ -1950,15 +1951,14 @@ This is what allows, for instance, search engines and metadata aggregators to in
 
 
    <h3 class="heading settled" data-level="6.1" id="navigate-overview"><span class="secno">6.1. </span><span class="content">Overview</span><a class="self-link" href="#navigate-overview"></a></h3>
-   
-<em>This section is non-normative.</em>
-
-
-   <p>Since the FDP supports the provisioning of metadata describing different types of entities, and the relations among these metadata records can be customised, each FDP deployment may have a different metadata structure.
+   <p><em>This section is non-normative.</em></p>
+   <p>The FDP allows each deployment to define its own metadata schemas and its own structure of schemas: which classes of entities are described, and how their metadata records relate to one another.
 For instance, an FDP may have the structure <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Dataset</code> → <code>Distribution</code>.
 Another FDP, serving metadata about ontologies, taxonomies and vocabularies, could have the structure <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Semantic Artefact</code>.
-With this flexibility, a client application would not have a predictable pattern to navigate the metadata content of an FDP unless it followed every IRI in the metadata, which may be extensive.
-Therefore, the FDP describes its own navigation structure, using the containment model of the Linked Data Platform (LDP) <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a>.</p>
+As a consequence, different FDPs will in general not share the same structure, and no client can know beforehand how to navigate the content of an FDP it has not seen before.
+Following every IRI in every record is not an option either, since records reference many resources that are not part of the content of the FDP.
+Therefore, the FDP provides its navigation structure as it goes: each metadata record carries the information a client needs to reach the records below it, using the containment model of the Linked Data Platform (LDP) <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a>.
+A client needs nothing beyond the root URL, and it discovers the structure one step at a time, however the deployment has organised it.</p>
    <h3 class="heading settled" data-level="6.2" id="navigation-information"><span class="secno">6.2. </span><span class="content">Navigation information</span><a class="self-link" href="#navigation-information"></a></h3>
    
 An FDP <em>MUST</em> describe the structure of its metadata content using LDP Direct Containers.
