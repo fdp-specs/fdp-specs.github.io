@@ -49,8 +49,8 @@ An FDP that provides a capability *MUST* also provide the capabilities it depend
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#444"/>
     </marker>
   </defs>
-  <rect x="20" y="20" width="480" height="150" rx="8" fill="none" stroke="#888" stroke-dasharray="6 4"/>
-  <text x="32" y="40" font-size="12" fill="#666" font-family="sans-serif">FDP Core</text>
+  <rect x="40" y="20" width="200" height="150" rx="8" fill="none" stroke="#888" stroke-dasharray="6 4"/>
+  <text x="50" y="40" font-size="12" fill="#666" font-family="sans-serif">FDP Core</text>
   <rect x="60" y="55" width="160" height="44" rx="6" fill="#e8f0fe" stroke="#345"/>
   <text x="140" y="83" text-anchor="middle" font-size="15" font-family="sans-serif">Read</text>
   <rect x="60" y="115" width="160" height="44" rx="6" fill="#e8f0fe" stroke="#345"/>
