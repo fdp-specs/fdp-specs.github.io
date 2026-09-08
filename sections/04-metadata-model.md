@@ -44,7 +44,7 @@ What distinguishes a `MetadataService` from other data services is what it serve
 In Figure 4.1, each class only lists the properties that are not already inherited from its superclasses. The class `fdp-o:MetadataRecord` and its relation to `dcat:CatalogRecord` are specified in [[#metadata-record]].
 
 With the definition of the FDP as a specialisation of metadata service that serves metadata catalogs, the relation between the `MetadataService` and `dcat:Catalog` is represented by the predicate `fdp-o:metadataCatalog`.
-Following the DCAT approach of providing qualified relations between resources, `fdp-o:metadataCatalog` is defined as a sub-property of `dcat:Relationship`, having `fdp-o:MetadataService` as its domain and `dcat:Catalog` as its range.
+`fdp-o:metadataCatalog` has `fdp-o:MetadataService` as its domain and `dcat:Catalog` as its range, and is a specialisation of `dcterms:relation`, in the same way as `dcat:catalog` specialises `dcterms:hasPart` for the relation between catalogs.
 
 The **content model** of an FDP is the set of classes whose instances the FDP describes with metadata records.
 It consists of:
@@ -134,7 +134,7 @@ When the described entity is an instance of `dcat:Resource`, the FDP Metadata Re
 This makes the FDP Metadata Records of catalogued resources directly usable by DCAT-based harvesters and by DCAT application profiles.
 Entities that are not DCAT resources, such as distributions or entities of custom classes, have an FDP Metadata Record without the `dcat:CatalogRecord` type, since DCAT restricts catalog records to catalogued resources.
 
-Note: The FDP ontology already models this concept as `fdp-o:Metadata`, with the relations `fdp-o:isMetadataOf`, `fdp-o:hasMetadata` and `fdp-o:servesMetadata`, and with the deprecated date properties in its domain. `fdp-o:MetadataRecord` is the successor of `fdp-o:Metadata` under a clearer name. The ontology will be updated together with this version of the specification: `fdp-o:MetadataRecord` declared equivalent to `fdp-o:Metadata`, `fdp-o:isMetadataOf` and `fdp-o:hasMetadata` declared sub-properties of `foaf:primaryTopic` and `foaf:isPrimaryTopicOf`, and the record-level date properties deprecated.
+Note: The FDP ontology (version 1.1) already contains `fdp-o:MetadataRecord`, linked to the described resource by `fdp-o:isMetadataOf` and `fdp-o:hasMetadata`, next to an older class `fdp-o:Metadata`, a subclass of `dcat:Dataset`, that is the domain of the record-level date properties and the range of `fdp-o:servesMetadata`. This version uses `fdp-o:MetadataRecord` for both purposes. The ontology will be updated together with this version of the specification: `fdp-o:Metadata` deprecated in favour of `fdp-o:MetadataRecord`, the domain of `fdp-o:hasMetadata` and the range of `fdp-o:isMetadataOf` widened from `dcat:Resource` to any entity of the content model, `fdp-o:servesMetadata` ranging over `fdp-o:MetadataRecord`, `fdp-o:isMetadataOf` and `fdp-o:hasMetadata` declared sub-properties of `foaf:primaryTopic` and `foaf:isPrimaryTopicOf`, and the record-level date properties deprecated.
 
 The following table defines the schema of the FDP Metadata Record.
 
@@ -149,7 +149,7 @@ Proposed default: (a), because it keeps one subject per response, allows caching
 Issue: **DP-18: Relation of the FDP Metadata Record to the FDP ontology and to DCAT.**
 The FDP ontology already has `fdp-o:Metadata` as a subclass of Dataset, linked to the described resource by `fdp-o:isMetadataOf` and `fdp-o:hasMetadata` and served by a `MetadataService` through `fdp-o:servesMetadata`.
 This version adopts the FDP ontology link properties `fdp-o:isMetadataOf` and `fdp-o:hasMetadata`, to be declared sub-properties of `foaf:primaryTopic` and `foaf:isPrimaryTopicOf`, with `foaf:primaryTopic` stated explicitly when the record is a `dcat:CatalogRecord`. Two questions remain.
-Which class: (a) `fdp-o:MetadataRecord` as the renamed successor of `fdp-o:Metadata`, as written. (b) keep the name `fdp-o:Metadata`.
+Which class: (a) `fdp-o:MetadataRecord`, already in the ontology, with `fdp-o:Metadata` deprecated, as written. (b) `fdp-o:Metadata`, with `fdp-o:MetadataRecord` deprecated.
 Whether the record is a dataset: (a) `fdp-o:MetadataRecord` is not a subclass of `dcat:Dataset`, as written, so that records do not need records of their own and do not clash with the DCAT distinction between catalog records and catalogued resources. (b) `fdp-o:MetadataRecord` is a subclass of `dcat:Dataset`, as `fdp-o:Metadata` was, which makes `fdp-o:servesMetadata` a sub-property of `dcat:servesDataset` and a `MetadataService` a `DataService` by construction, at the cost of exempting records from the rule that every resource has a record.
 Proposed default: (a) for both.
 
