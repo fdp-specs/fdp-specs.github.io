@@ -34,7 +34,7 @@ An FDP that provides a capability *MUST* also provide the capabilities it depend
         <tr><th>Capability</th><th>Depends on</th><th>Conformance class</th></tr>
     </thead>
     <tbody>
-        <tr><td>Read</td><td>none</td><td rowspan="2">FDP Core</td></tr>
+        <tr><td>Read</td><td>none</td><td rowspan="2" style="vertical-align: middle">FDP Core</td></tr>
         <tr><td>Navigate</td><td>Read</td></tr>
         <tr><td>Write</td><td>Read</td><td>FDP Write</td></tr>
         <tr><td>Bundle retrieval</td><td>Read, Navigate</td><td>FDP Bundle Retrieval</td></tr>
