@@ -8,7 +8,7 @@
   <meta content="Bikeshed version ac92c2f0d, updated Fri Aug 21 16:01:29 2026 -0700" name="generator">
   <link href="https://specs.fairdatapoint.org/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="b08e2f9851a6fb0300b638c267efee39e6b82fa7" name="revision">
+  <meta content="a9c3d912427779efbb9e42ff867626e7270886eb" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -714,17 +714,14 @@ An application is a FAIR Data Point if it conforms to the Core conformance class
    <p>The FAIR Data Point (FDP) is a metadata service that provides access to metadata following the FAIR principles <a data-link-type="biblio" href="#biblio-fair-principles" title="The FAIR Guiding Principles for scientific data management and stewardship">[FAIR-principles]</a> <a data-link-type="biblio" href="#biblio-fdp" title="FAIR Data Point: A FAIR-oriented approach for metadata publication">[FDP]</a>.
 An FDP, on one side, allows the owners and publishers of digital objects to expose the metadata of these objects in a FAIR manner and, on the other side, allows consumers of digital objects to discover information (metadata) about the offered objects.
 Commonly, an FDP is used to expose metadata of datasets, but metadata of other types of entities can also be exposed, such as ontologies, repositories, analysis algorithms, websites, and even non-digital entities such as organisations and people.</p>
-   <p>Many different repositories and their digital objects should interoperate in order to allow increasingly complex questions to be answered.
-These repositories and their content should be interoperable in order for client applications to autonomously interact with them and (re)use their content.
-However, interoperability happens at different levels, including syntactic and semantic interoperability.
-The FDP aims at addressing these interoperability issues by providing:</p>
+   <p>Answering increasingly complex questions requires client applications and repositories to interoperate, exchanging digital objects and acting on them autonomously. For this interoperation to happen, the exchanged objects must play their enabling part, i.e., they must be expressed and described in ways that allow machines to correctly interpret and (re)use them. Interoperability spans different levels, from the syntactic to the semantic. The FDP addresses these interoperability challenges by providing:</p>
    <ul>
     <li data-md>
      <p>A common interface to access information (metadata) about (digital) entities;</p>
     <li data-md>
      <p>A common representation format <a data-link-type="biblio" href="#biblio-rdf11-primer" title="RDF 1.1 Primer">[RDF11-PRIMER]</a> to express the metadata in a machine-actionable manner;</p>
     <li data-md>
-     <p>A common approach to inform clients how to navigate through the metadata structure of an FDP;</p>
+     <p>A common approach <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a> to inform clients how to navigate through the metadata structure of an FDP;</p>
     <li data-md>
      <p>A common representation format <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a> to represent the schema of each metadata record.</p>
    </ul>

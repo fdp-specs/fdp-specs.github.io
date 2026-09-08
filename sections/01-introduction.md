@@ -5,14 +5,12 @@ The FAIR Data Point (FDP) is a metadata service that provides access to metadata
 An FDP, on one side, allows the owners and publishers of digital objects to expose the metadata of these objects in a FAIR manner and, on the other side, allows consumers of digital objects to discover information (metadata) about the offered objects.
 Commonly, an FDP is used to expose metadata of datasets, but metadata of other types of entities can also be exposed, such as ontologies, repositories, analysis algorithms, websites, and even non-digital entities such as organisations and people.
 
-Many different repositories and their digital objects should interoperate in order to allow increasingly complex questions to be answered.
-These repositories and their content should be interoperable in order for client applications to autonomously interact with them and (re)use their content.
-However, interoperability happens at different levels, including syntactic and semantic interoperability.
-The FDP aims at addressing these interoperability issues by providing:
+
+Answering increasingly complex questions requires client applications and repositories to interoperate, exchanging digital objects and acting on them autonomously. For this interoperation to happen, the exchanged objects must play their enabling part, i.e., they must be expressed and described in ways that allow machines to correctly interpret and (re)use them. Interoperability spans different levels, from the syntactic to the semantic. The FDP addresses these interoperability challenges by providing:
 
 - A common interface to access information (metadata) about (digital) entities;
 - A common representation format [[!RDF11-PRIMER]] to express the metadata in a machine-actionable manner;
-- A common approach to inform clients how to navigate through the metadata structure of an FDP;
+- A common approach [[!LDP]] to inform clients how to navigate through the metadata structure of an FDP;
 - A common representation format [[!SHACL]] to represent the schema of each metadata record.
 
 The main goal of the FDP is to establish a common method for metadata provisioning and access and, as a consequence, to provide client applications with a predictable way of accessing and interacting with metadata content.
