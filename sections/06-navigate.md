@@ -18,8 +18,8 @@ An FDP *MUST* describe the structure of its metadata content using LDP Direct Co
 
 Every metadata record that leads to other metadata records *MUST* provide **navigation information**: for each relation that connects the described entity to member entities whose metadata records the FDP serves, an `ldp:DirectContainer` such that:
 
-- its `ldp:membershipResource` is the IRI of the described entity;
-- its `ldp:hasMemberRelation` is the relation that connects the described entity to its members, e.g., `fdp-o:metadataCatalog` for the relation between a FAIR Data Point and its catalogs, or `dcterms:hasPart` for the relation between a catalog and its members;
+- its `ldp:membershipResource` is the IRI of the described entity.
+- its `ldp:hasMemberRelation` is the relation that connects the described entity to its members, e.g., `fdp-o:metadataCatalog` for the relation between a FAIR Data Point and its catalogs, or `dcterms:hasPart` for the relation between a catalog and its members.
 - its `ldp:contains` values are the IRIs of the metadata records of the members.
 
 A metadata record that does not lead to other metadata records, i.e., a *leaf* of the content structure, has no navigation information.
@@ -61,6 +61,6 @@ Clients *MUST NOT* assume a particular content structure, such as a fixed depth 
 A container may list a large number of members.
 An FDP *MAY* split the representation of such a container in pages, in which case it *SHOULD* follow LDP Paging [[LDP-PAGING]].
 
-Issue: **DP-8 — Paging of large containers.**
-Options: (a) mandate LDP Paging for containers above a size that the FDP chooses; (b) recommend LDP Paging, as written above; (c) leave paging out of the specification and rely on the Bundle capability ([[#bundle]]) for large-scale retrieval.
+Issue: **DP-8: Paging of large containers.**
+Options: (a) mandate LDP Paging for containers above a size that the FDP chooses. (b) recommend LDP Paging, as written above. (c) leave paging out of the specification and rely on the Bundle capability ([[#bundle]]) for large-scale retrieval.
 Proposed default: (b).

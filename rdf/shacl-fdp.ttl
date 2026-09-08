@@ -16,10 +16,12 @@
   ], [
     sh:path dcterms:title ;
     sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
     sh:minCount 1 ;
   ], [
     sh:path dcterms:description ;
     sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
   ], [
     sh:path dcterms:publisher ;
     sh:node :AgentShape ;
@@ -59,6 +61,7 @@
   ], [
     sh:path dcat:keyword ;
     sh:nodeKind sh:Literal ;
+    sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ;
   ], [
     sh:path dcat:theme ;
     sh:nodeKind sh:IRI ;
@@ -86,6 +89,7 @@
   ], [
     sh:path fdp-o:hasSoftwareVersion ;
     sh:nodeKind sh:Literal ;
+    sh:datatype xsd:string ;
     sh:maxCount 1 ;
   ], [
     sh:path fdp-o:conformsToFdpSpec ;
@@ -107,6 +111,7 @@
   sh:property [
     sh:path foaf:name ;
     sh:nodeKind sh:Literal ;
+    sh:datatype xsd:string ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ].

@@ -23,14 +23,14 @@ Figure 4.1 depicts the DCAT 3 classes and properties used by the FDP and the FDP
 
 <figure>
     <img src="images/FDPmetadatadiagram.svg" width="1580" height="1080" style="max-width:100%;height:auto" alt="Class diagram of the FDP metadata model: the DCAT 3 classes Resource, Catalog, Dataset, DatasetSeries, Distribution, DataService and CatalogRecord with their properties, the related vocabularies (foaf:Agent, skos:Concept, skos:ConceptScheme, vcard:Kind, dcat:Relationship), and the FDP ontology classes FAIRDataPoint, MetadataService and MetadataRecord with their relations to the DCAT classes.">
-    <figcaption class="no-marker">**Figure 4.1** The FDP metadata model, based on DCAT 3. Cyan: DCAT 3 and other standard vocabularies; green: FDP ontology. Only the classes and properties used in this specification are shown.</figcaption>
+    <figcaption class="no-marker">**Figure 4.1** The FDP metadata model, based on DCAT 3. Cyan: DCAT 3 and other standard vocabularies. Green: FDP ontology. Only the classes and properties used in this specification are shown.</figcaption>
 </figure>
 
 A DCAT `Resource` represents an entity that can be described by a metadata record.
 Since `Resource` is defined as an abstract class, it is not intended to be used directly.
 One of its subclasses, such as `Dataset` or `DataService`, or a custom subclass, is used instead.
 `Dataset` represents a collection of data, while `DataService` represents a service, accessible through an interface (API), that serves datasets.
-`Catalog`, a subclass of `Dataset`, represents an aggregation of metadata records about digital objects; for instance, a `Catalog` may contain references to the metadata records of `Datasets`.
+`Catalog`, a subclass of `Dataset`, represents an aggregation of metadata records about digital objects. For instance, a `Catalog` may contain references to the metadata records of `Datasets`.
 A `Distribution` represents an accessible form of a dataset, such as a downloadable file or an API endpoint.
 
 Note: In DCAT, `Distribution` is *not* a subclass of `Resource`: a distribution is described as part of its dataset and is not catalogued in its own right.
@@ -40,7 +40,7 @@ This is why the FDP content model, defined below, is not limited to subclasses o
 The FDP extends the DCAT model by adding the concept of a `FAIRDataPoint` as a specific subclass of data service that serves metadata catalogs and metadata records.
 The DCAT extensions and other FDP-specific concepts and relations are defined in the FDP ontology (namespace prefix `fdp-o`).
 In the FDP ontology, the FAIR Data Point is represented by a subclass of `MetadataService`, which in turn is a subclass of `dcat:DataService`.
-In Figure 4.1, each class only lists the properties that are not already inherited from its superclasses; `fdp-o:MetadataRecord` and its relation to `dcat:CatalogRecord` are specified in [[#metadata-record]].
+In Figure 4.1, each class only lists the properties that are not already inherited from its superclasses. The class `fdp-o:MetadataRecord` and its relation to `dcat:CatalogRecord` are specified in [[#metadata-record]].
 
 With the definition of the FDP as a specialisation of metadata service that serves metadata catalogs, the relation between the `MetadataService` and `dcat:Catalog` is represented by the predicate `fdp-o:metadataCatalog`.
 Following the DCAT approach of providing qualified relations between resources, `fdp-o:metadataCatalog` is defined as a sub-property of `dcat:Relationship`, having `fdp-o:MetadataService` as its domain and `dcat:Catalog` as its range.
@@ -48,46 +48,76 @@ Following the DCAT approach of providing qualified relations between resources, 
 The **content model** of an FDP is the set of classes whose instances the FDP describes with metadata records.
 It consists of:
 
-- `fdp-o:FAIRDataPoint`, the class of the FDP itself;
-- the DCAT classes `dcat:Catalog`, `dcat:Dataset`, `dcat:DatasetSeries`, `dcat:DataService` and `dcat:Distribution`;
+- `fdp-o:FAIRDataPoint`, the class of the FDP itself.
+- the DCAT classes `dcat:Catalog`, `dcat:Dataset`, `dcat:DatasetSeries`, `dcat:DataService` and `dcat:Distribution`.
 - any further class for which the FDP provides a metadata schema (see [[#extending-the-content-model]]).
 
 An FDP *MUST* serve the metadata record of itself, i.e., of an instance of `fdp-o:FAIRDataPoint` conforming to [[#fair-data-point-metadata]].
 Metadata records of instances of every other class of the content model are optional.
 
-Issue: **DP-4 — Catalogs no longer mandatory.**
+Issue: **DP-4: Catalogs no longer mandatory.**
 Version 1.2 required every FDP to expose at least one `dcat:Catalog`, directly related to the FDP through `fdp-o:metadataCatalog`.
 Since the navigation information ([[#navigate]]) already tells a client which relation leads from a record to its members, the core does not need to hardcode the catalog as the first level of the content structure, and a minimal FDP that only publishes its own metadata is still useful, e.g., when newly deployed.
-Options: (a) keep at least one catalog mandatory, as in version 1.2; (b) catalogs are optional, but when an FDP exposes catalogs they must conform to [[#catalog-metadata]]; (c) catalogs are optional and their schema is left entirely to the deployment.
+Options: (a) keep at least one catalog mandatory, as in version 1.2. (b) catalogs are optional, but when an FDP exposes catalogs they must conform to [[#catalog-metadata]]. (c) catalogs are optional and their schema is left entirely to the deployment.
 Proposed default: (b), as reflected in this draft.
 
 Every metadata record *MUST* state the class of the described entity with `rdf:type`.
 In addition, when that class is a specialisation of a class of the content model, the record *MUST* also state the most specific class of the content model that it specialises, so that clients can interpret the record without inference over the ontologies.
 For example, the metadata record of an FDP states both `fdp-o:FAIRDataPoint` and `dcat:DataService`.
 
-Issue: **DP-3 — Explicit DCAT parent classes.**
+Issue: **DP-3: Explicit DCAT parent classes.**
 Without the rule above, a client only learns that an `fdp-o:FAIRDataPoint` is also a `dcat:DataService` (and a `dcat:Resource`) through inference over the FDP ontology, which plain SHACL validation and plain SPARQL queries do not perform.
 The FDP Reference Implementation already states the parent classes explicitly.
-Options: (a) records MUST state the most specific DCAT class in addition to the specialised class, as written above; (b) records MUST state the complete chain of parent classes up to `dcat:Resource`; (c) records SHOULD state the parent classes; (d) leave it to inference.
+Options: (a) records MUST state the most specific DCAT class in addition to the specialised class, as written above. (b) records MUST state the complete chain of parent classes up to `dcat:Resource`. (c) records SHOULD state the parent classes. (d) leave it to inference.
 Proposed default: (a).
 
 ## Metadata records and profiles ## {#metadata-records}
 A **metadata record** is the RDF description of one entity of the content model.
 It is identified by the IRI of the described entity and is retrievable by dereferencing that IRI, as specified in [[#read]].
 
+This specification mandates as few properties as possible in its metadata schemas: only what a client needs to identify, interpret and navigate a record.
+Communities and deployments add further constraints, such as additional mandatory properties or controlled vocabularies, through the profiles their records conform to.
+
 Each metadata record *MUST* reference, with `dcterms:conformsTo`, the **profile** it conforms to.
-A profile is an IRI that identifies a metadata schema.
-Dereferencing a profile IRI *MUST* return the metadata schema expressed in SHACL [[!SHACL]] (see [[#read-schemas]]); the profile *MAY* additionally provide human-readable documentation of the schema through content negotiation.
-Version 1.2 of this specification only recommended the profile reference while its schemas required it; this version resolves the inconsistency in favour of the requirement.
+A profile is a named set of constraints on metadata records, identified by an IRI and described with the W3C Profiles Vocabulary [[!DX-PROF]]:
+
+- the profile IRI identifies an instance of `prof:Profile`.
+- the profile description *SHOULD* state, with `prof:isProfileOf`, the specifications or base profiles it constrains, e.g., DCAT or a community profile of DCAT.
+- the profile description *MUST* include at least one resource descriptor (`prof:hasResource`, an instance of `prof:ResourceDescriptor`) with the role `role:validation` whose artifact (`prof:hasArtifact`) is the **metadata schema**, a SHACL shapes graph [[!SHACL]].
+- the profile description *MAY* include further resource descriptors, e.g., with the role `role:guidance` for human-readable documentation.
+
+Dereferencing the profile IRI *MUST* return the profile description, and dereferencing the artifact IRI of a validation resource *MUST* return the metadata schema (see [[#read-schemas]]).
+SHACL is the only schema language of this specification. Other shape languages are out of scope.
+Version 1.2 of this specification only recommended the profile reference while its schemas required it. This version resolves the inconsistency in favour of the requirement.
 
 A metadata schema *MUST* declare, with `sh:targetClass`, a class of the content model of the FDP as the class of the entities it describes.
-An FDP *MUST* provide a metadata schema for every class of its content model of which it serves metadata records.
-The schemas for the `fdp-o:FAIRDataPoint` and `dcat:Catalog` classes are defined in [[#fair-data-point-metadata]] and [[#catalog-metadata]]; schemas for other classes are discussed in [[#extending-the-content-model]].
+An FDP *MUST* provide a profile, and thereby a metadata schema, for every class of its content model of which it serves metadata records.
 
-Issue: **DP-9 — Identification of the normative shapes.**
+The following table defines the schema of a profile description.
+
+<pre class=include>
+path: tables/table-profile.html
+</pre>
+
+The profile description schema in SHACL:
+
+<pre class=include-code>
+path: rdf/shacl-profile.ttl
+highlight: turtle
+</pre>
+
+Example of the profile description referenced by the FAIR Data Point metadata record of [[#navigation-information]]:
+
+<pre class=include-code>
+path: rdf/example-profile.ttl
+highlight: turtle
+</pre>
+The schemas for the `fdp-o:FAIRDataPoint` and `dcat:Catalog` classes are defined in [[#fair-data-point-metadata]] and [[#catalog-metadata]]. Schemas for other classes are discussed in [[#extending-the-content-model]].
+
+Issue: **DP-9: Identification of the normative shapes.**
 The SHACL shapes in this document are identified by IRIs under `http://fairdatapoint.org/`, which does not resolve to them.
-Options: (a) publish the shapes under a persistent namespace, e.g. `https://w3id.org/fdp/shapes/`, resolving to the Turtle files in the specification repository; (b) use document-relative fragment identifiers such as `<#FAIRDataPointShape>`, so the IRIs depend on where the file is published; (c) keep the current IRIs.
-Related: the shared shapes `AgentShape` and `ContactPointShape` are currently duplicated in each schema file so that every file is self-contained; under option (a) they could be published once and referenced.
+Options: (a) publish the shapes under a persistent namespace, e.g. `https://w3id.org/fdp/shapes/`, resolving to the Turtle files in the specification repository. (b) use document-relative fragment identifiers such as `<#FAIRDataPointShape>`, so the IRIs depend on where the file is published. (c) keep the current IRIs.
+Related: the shared shapes `AgentShape` and `ContactPointShape` are currently duplicated in each schema file so that every file is self-contained. Under option (a) they could be published once and referenced.
 Proposed default: (a).
 
 ## FDP Metadata Record: meta-metadata ## {#metadata-record}
@@ -111,8 +141,8 @@ The following table defines the schema of the FDP Metadata Record.
 path: tables/table-metadata-record.html
 </pre>
 
-Issue: **DP-2 — Location of the FDP Metadata Record.**
-Options: (a) the FDP Metadata Record is a separate dereferenceable resource, linked from the metadata record with `foaf:isPrimaryTopicOf` and advertised in the HTTP response with a `Link` header, as written in this draft; (b) the FDP Metadata Record is embedded in the representation of the metadata record, as a second subject in the same RDF document, and has no separate URL; (c) both: embedded in the representation and also dereferenceable.
+Issue: **DP-2: Location of the FDP Metadata Record.**
+Options: (a) the FDP Metadata Record is a separate dereferenceable resource, linked from the metadata record with `foaf:isPrimaryTopicOf` and advertised in the HTTP response with a `Link` header, as written in this draft. (b) the FDP Metadata Record is embedded in the representation of the metadata record, as a second subject in the same RDF document, and has no separate URL. (c) both: embedded in the representation and also dereferenceable.
 Proposed default: (a), because it keeps one subject per response, allows caching and conditional requests to be driven by the record's `dcterms:modified`, and lets bundles ([[#bundle]]) carry records and their meta-metadata uniformly.
 
 The FDP Metadata Record schema in SHACL:
@@ -137,10 +167,10 @@ It describes the FDP as a `dcat:DataService`, and it is the root from which the 
 path: tables/table-fdp-metadata.html
 </pre>
 
-Issue: **DP-7 — Contact point on the FAIR Data Point.**
+Issue: **DP-7: Contact point on the FAIR Data Point.**
 `dcat:contactPoint` with a `vcard:Kind` value is the only property in the FDP schema that requires the vCard vocabulary.
-Options: (a) keep it, with the `ContactPointShape` below; (b) drop it in favour of the publisher's contact information; (c) keep it without constraining the shape of the value.
-Proposed default: (a), because DCAT 3 defines `dcat:contactPoint` as the standard way of giving contact information for a resource and DCAT-based tooling expects a vCard value; the shape only requires an e-mail address, which is the minimum a client needs to act on the contact point.
+Options: (a) keep it, with the `ContactPointShape` below. (b) drop it in favour of the publisher's contact information. (c) keep it without constraining the shape of the value.
+Proposed default: (a), because DCAT 3 defines `dcat:contactPoint` as the standard way of giving contact information for a resource and DCAT-based tooling expects a vCard value. The shape only requires an e-mail address, which is the minimum a client needs to act on the contact point.
 
 The FAIR Data Point metadata schema in SHACL:
 

@@ -12,7 +12,7 @@ An application conforms to FDP Core if it satisfies all of the following criteri
 1. Its root URL provides its own metadata record, conforming to the FAIR Data Point metadata schema ([[#fair-data-point-metadata]]), as specified in [[#read-root]].
 2. Every metadata record is retrievable in at least RDF Turtle and JSON-LD, with RDF Turtle as the default, as specified in [[#read-records]].
 3. Every metadata record states the class of the described entity, and the most specific class of the content model it specialises, as specified in [[#content-model]].
-4. Every metadata record references its profile, and every profile resolves to a metadata schema in SHACL whose target class is a class of the content model, as specified in [[#metadata-records]] and [[#read-schemas]].
+4. Every metadata record references its profile. Every profile is described with the Profiles Vocabulary and provides, as a validation resource, a metadata schema in SHACL whose target class is a class of the content model, as specified in [[#metadata-records]] and [[#read-schemas]].
 5. Every metadata record has a retrievable FDP Metadata Record, as specified in [[#metadata-record]] and [[#read-metadata-records]].
 6. Every metadata record of a catalog, if any, conforms to the catalog metadata schema ([[#catalog-metadata]]).
 7. Every metadata record that leads to other metadata records provides navigation information, as specified in [[#navigation-information]].
@@ -49,17 +49,17 @@ An application conforms to FDP Bundle Submission if it satisfies all of the foll
 ## Claiming conformance ## {#claiming-conformance}
 An FDP declares the conformance classes it claims in its own metadata record, with the property `fdp-o:conformsToFdpSpec` ([[#fair-data-point-metadata]]).
 
-Issue: **DP-6 — Values of `fdp-o:conformsToFdpSpec`.**
+Issue: **DP-6: Values of `fdp-o:conformsToFdpSpec`.**
 Version 1.2 required a single value: a URL containing the version of the specification the FDP conforms to.
 With several conformance classes, one value no longer suffices.
-Options: (a) one value per claimed conformance class, being the IRI of the class in a versioned copy of this document, e.g. `https://specs.fairdatapoint.org/v2.0/#conformance-core`; (b) one value, the versioned URL of the specification, implying only FDP Core, and a separate property for the additional classes; (c) one value per class, using IRIs defined in the FDP ontology.
+Options: (a) one value per claimed conformance class, being the IRI of the class in a versioned copy of this document, e.g. `https://specs.fairdatapoint.org/v2.0/#conformance-core`. (b) one value, the versioned URL of the specification, implying only FDP Core, and a separate property for the additional classes. (c) one value per class, using IRIs defined in the FDP ontology.
 Proposed default: (a).
 
 ## Client conformance ## {#client-conformance}
 A **FAIR Data Point client** is an application that consumes the metadata content of FDPs, such as a harvester, a search engine or a metadata editor.
 This specification does not define a conformance class for clients, but a client that follows this specification:
 
-- starts from the root URL of an FDP and discovers its content through the navigation information, as specified in [[#navigate-traversal]], without assuming a particular content structure;
-- accepts RDF Turtle and *SHOULD* accept JSON-LD;
-- ignores properties and classes it does not understand, rather than rejecting the record;
+- starts from the root URL of an FDP and discovers its content through the navigation information, as specified in [[#navigate-traversal]], without assuming a particular content structure.
+- accepts RDF Turtle and *SHOULD* accept JSON-LD.
+- ignores properties and classes it does not understand, rather than rejecting the record.
 - honours the caching and conditional request mechanisms of [[#read-records]].

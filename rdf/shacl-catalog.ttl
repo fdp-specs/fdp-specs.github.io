@@ -14,14 +14,17 @@
   ], [
     sh:path dcterms:title ;
     sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
     sh:minCount 1 ;
   ], [
     sh:path dcterms:hasVersion ;
     sh:nodeKind sh:Literal ;
+    sh:datatype xsd:string ;
     sh:maxCount 1 ;
   ], [
     sh:path dcterms:description ;
     sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
   ], [
     sh:path dcterms:publisher ;
     sh:node :AgentShape ;
@@ -84,6 +87,7 @@
   sh:property [
     sh:path foaf:name ;
     sh:nodeKind sh:Literal ;
+    sh:datatype xsd:string ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ].

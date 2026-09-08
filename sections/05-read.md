@@ -31,8 +31,9 @@ The FDP *SHOULD* support conditional requests on metadata records: the response 
 
 ## Retrieving metadata schemas ## {#read-schemas}
 Every profile IRI referenced by a metadata record served by the FDP *MUST* be dereferenceable.
-An HTTP GET request on a profile IRI *MUST* return the metadata schema as a SHACL shapes graph [[!SHACL]], serialised in RDF Turtle by default, and *SHOULD* also support JSON-LD.
-Profiles *MAY* be hosted by the FDP itself or elsewhere, e.g., a shared profile registry; in both cases the requirements of this section apply to what the profile IRI returns.
+An HTTP GET request on a profile IRI *MUST* return the profile description ([[#metadata-records]]) as RDF, serialised in RDF Turtle by default, and *SHOULD* also support JSON-LD.
+The artifact IRI of every validation resource of the profile *MUST* be dereferenceable, and an HTTP GET request on it *MUST* return the metadata schema as a SHACL shapes graph [[!SHACL]], serialised in RDF Turtle by default, and *SHOULD* also support JSON-LD.
+Profiles and their artifacts *MAY* be hosted by the FDP itself or elsewhere, e.g., a shared profile registry. In both cases the requirements of this section apply to what their IRIs return.
 
 ## Retrieving FDP Metadata Records ## {#read-metadata-records}
 The IRI of every FDP Metadata Record ([[#metadata-record]]) *MUST* be dereferenceable, with the same syntax and content negotiation requirements as metadata records ([[#read-records]]), and the FDP *SHOULD* support conditional requests on FDP Metadata Records in the same way.
@@ -42,6 +43,6 @@ A request for an IRI that the FDP does not serve *MUST* be answered with status 
 A request for a metadata record that has been deleted *SHOULD* be answered with status code `410 Gone`.
 Requests for unsupported representations are answered with `406 Not Acceptable`, as specified in [[#read-records]].
 
-Issue: **DP-10 — Format of error responses.**
-Options: (a) error responses use the Problem Details format [[RFC9457]] (`application/problem+json`); (b) error responses are RDF documents describing the error, in the same syntaxes as metadata records; (c) the format of error bodies is left unspecified.
+Issue: **DP-10: Format of error responses.**
+Options: (a) error responses use the Problem Details format [[RFC9457]] (`application/problem+json`). (b) error responses are RDF documents describing the error, in the same syntaxes as metadata records. (c) the format of error bodies is left unspecified.
 Proposed default: (a), as it is widely supported by HTTP tooling and independent of the RDF syntax negotiated for the records.

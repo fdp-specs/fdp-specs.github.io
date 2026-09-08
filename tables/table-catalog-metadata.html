@@ -23,21 +23,21 @@
         <tr>
             <td>DC terms</td>
             <td>dcterms:title</td>
-            <td>String</td>
+            <td><code>rdf:langString</code></td>
             <td>1..*</td>
             <td>Name of the catalog with the language tag.</td>
         </tr>
         <tr>
             <td></td>
             <td>dcterms:hasVersion</td>
-            <td>String</td>
+            <td><code>xsd:string</code></td>
             <td>0..1</td>
             <td>Version of the catalog.</td>
         </tr>
         <tr>
             <td></td>
             <td>dcterms:description</td>
-            <td>String</td>
+            <td><code>rdf:langString</code></td>
             <td>0..*</td>
             <td>Description of the catalog with the language tag.</td>
         </tr>
@@ -65,14 +65,14 @@
         <tr>
             <td></td>
             <td>dcterms:issued</td>
-            <td>DateTime</td>
+            <td><code>xsd:dateTime</code></td>
             <td>0..1</td>
             <td>Date of formal issuance of the catalog itself. The dates of its metadata record are given in the FDP Metadata Record.</td>
         </tr>
         <tr>
             <td></td>
             <td>dcterms:modified</td>
-            <td>DateTime</td>
+            <td><code>xsd:dateTime</code></td>
             <td>0..1</td>
             <td>Most recent date on which the catalog itself was changed. The dates of its metadata record are given in the FDP Metadata Record.</td>
         </tr>

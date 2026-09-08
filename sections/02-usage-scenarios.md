@@ -15,12 +15,12 @@ From these scenarios we derived a set of requirements for a metadata storage and
 For each scenario we indicate the FDP capabilities (see [[#capabilities]]) on which it relies.
 
 ## Data discovery ## {#data-discovery}
-A researcher needs to find datasets containing data about a given subject, e.g., proteins that are activated in specific tissues, pollution level in a given region, or infrared observation of a particular galaxy; integrate the discovered data with other pre-selected datasets and analyse them.
+A researcher needs to find datasets containing data about a given subject, e.g., proteins that are activated in specific tissues, pollution level in a given region, or infrared observation of a particular galaxy. The researcher then integrates the discovered data with other pre-selected datasets and analyses them.
 In another situation, the researcher needs to know which biobanks carry a given type of biosample (e.g., blood samples) from patients possessing a specific disease (e.g., Alzheimer's disease) taken from a patient registry whose onset age was lower than 45 years old.
 These data users need to use a straightforward search application that allows them to find the required information.
 However, the search application first needs to have indexed information about existing datasets wherever their location.
 
-*Capabilities involved:* Read and Navigate, so that a search application can traverse and index the metadata content of an FDP; optionally Bundle, to harvest the metadata content in a single interaction.
+*Capabilities involved:* Read and Navigate, so that a search application can traverse and index the metadata content of an FDP. Optionally Bundle, to harvest the metadata content in a single interaction.
 
 ## Data access ## {#data-access}
 Once a data user/consumer finds the desired datasets, including the information about their licenses and access protocols, the user wants to access the data, retrieving it, or sending an algorithm to analyse the data.
@@ -38,7 +38,7 @@ The group would therefore like to publish the data in a way that allows potentia
 Some of the produced datasets have an open license but others have more restrictive licenses.
 All these metadata should be available so that potential data users would have enough information to assess whether the dataset described in the metadata fits their needs.
 
-*Capabilities involved:* Write, so that the group can add and maintain metadata records through the FDP; Read and Navigate, so that users and search engines can find them; optionally Bundle, for bulk publication.
+*Capabilities involved:* Write, so that the group can add and maintain metadata records through the FDP. Read and Navigate, so that users and search engines can find them. Optionally Bundle, for bulk publication.
 
 ## Publishing other types of content ## {#publishing-other-types-of-content}
 An organization is running a project in which different types of deliverables will be created.

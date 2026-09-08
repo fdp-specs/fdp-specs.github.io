@@ -1,6 +1,7 @@
 @prefix :        <http://fairdatapoint.org/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ldp:     <http://www.w3.org/ns/ldp#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 
 :ContainerShape a sh:NodeShape ;
@@ -10,6 +11,7 @@
     sh:description "Name identifying the member resources" ;
     sh:path dcterms:title ;
     sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
     sh:minCount 1 ;
     sh:uniqueLang true ;
   ], [

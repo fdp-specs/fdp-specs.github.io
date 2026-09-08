@@ -34,7 +34,7 @@ An FDP that provides a capability *MUST* also provide the capabilities it depend
         <tr><th>Capability</th><th>Depends on</th><th>Conformance class</th></tr>
     </thead>
     <tbody>
-        <tr><td>Read</td><td>—</td><td rowspan="2">FDP Core</td></tr>
+        <tr><td>Read</td><td>none</td><td rowspan="2">FDP Core</td></tr>
         <tr><td>Navigate</td><td>Read</td></tr>
         <tr><td>Write</td><td>Read</td><td>FDP Write</td></tr>
         <tr><td>Bundle retrieval</td><td>Read, Navigate</td><td>FDP Bundle Retrieval</td></tr>
@@ -70,10 +70,10 @@ An FDP that provides a capability *MUST* also provide the capabilities it depend
 <figcaption class="no-marker">**Figure 3.1** Dependencies between the FDP capabilities</figcaption>
 </figure>
 
-Issue: **DP-1 — Bundle as one or two conformance classes.**
+Issue: **DP-1: Bundle as one or two conformance classes.**
 Bundle retrieval only depends on the Core capabilities, whereas bundle submission depends on Write.
 Should Bundle be a single conformance class, requiring an FDP to provide both retrieval and submission, or two classes, so that a harvest-oriented FDP can claim bundle retrieval without implementing Write?
-Options: (a) one class, FDP Bundle; (b) two classes, FDP Bundle Retrieval and FDP Bundle Submission.
+Options: (a) one class, FDP Bundle. (b) two classes, FDP Bundle Retrieval and FDP Bundle Submission.
 Proposed default: (b), as reflected in this draft.
 
 ## Relation to the conformance classes ## {#capabilities-and-conformance}

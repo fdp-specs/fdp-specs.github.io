@@ -8,16 +8,16 @@ Commonly, an FDP is used to expose metadata of datasets, but metadata of other t
 
 Answering increasingly complex questions requires client applications and repositories to interoperate, exchanging digital objects and acting on them autonomously. For this interoperation to happen, the exchanged objects must play their enabling part, i.e., they must be expressed and described in ways that allow machines to correctly interpret and (re)use them. Interoperability spans different levels, from the syntactic to the semantic. The FDP addresses these interoperability challenges by providing:
 
-- A common interface to access information (metadata) about (digital) entities;
-- A common representation format [[!RDF11-PRIMER]] to express the metadata in a machine-actionable manner;
-- A common approach [[!LDP]] to inform clients how to navigate through the metadata structure of an FDP;
+- A common interface to access information (metadata) about (digital) entities.
+- A common representation format [[!RDF11-PRIMER]] to express the metadata in a machine-actionable manner.
+- A common approach [[!LDP]] to inform clients how to navigate through the metadata structure of an FDP.
 - A common representation format [[!SHACL]] to represent the schema of each metadata record.
 
 The main goal of the FDP is to establish a common method for metadata provisioning and access and, as a consequence, to provide client applications with a predictable way of accessing and interacting with metadata content.
 An FDP has the following goals:
 
-- Allow owners, creators and publishers to expose the metadata of their digital objects in a way that follows the FAIR principles;
-- Allow consumers and users to discover information about digital objects they are interested in;
+- Allow owners, creators and publishers to expose the metadata of their digital objects in a way that follows the FAIR principles.
+- Allow consumers and users to discover information about digital objects they are interested in.
 - Provide meaningful information about digital objects for both humans and software agents.
 
 ## Purpose and scope ## {#purpose}
@@ -27,16 +27,17 @@ It does not prescribe how a particular FDP implementation should be internally d
 Documentation about particular implementations, such as the <a href="https://github.com/FAIRDataTeam/FAIRDataPoint">FDP Reference Implementation (FDP-RI)</a>, is provided by the respective implementation projects.
 
 This version of the specification organises the behaviour of an FDP in **capabilities**: Read, Navigate, Write and Bundle (see [[#capabilities]]).
-Each capability is a coherent set of behaviours that an FDP offers to third-party applications, and each has a corresponding conformance class (see [[#conformance]]).
+Each capability is a coherent set of behaviours that an FDP is expected to offer to third-party applications, and each has a corresponding conformance class (see [[#conformance]]).
 An application is a FAIR Data Point if it conforms to the Core conformance class, which comprises the Read and Navigate capabilities.
 The remaining capabilities are optional.
 
 In order to better understand this specification, knowledge of RDF, LDP, SHACL and REST APIs is required.
 
-## Open decision points ## {#decision-points}
+## Open decision points (TO BE REMOVED after decisions) ## {#decision-points}
+
 This draft deliberately leaves a number of design decisions open for review.
 They are marked in the text as numbered **decision points** (DP-*n*) in issue blocks, each stating the question, the options considered and, where there is one, a proposed default.
-The normative text surrounding a decision point is written for the proposed default, so that the document remains complete and readable; the issue block describes what would change under the other options.
+The normative text surrounding a decision point is written for the proposed default, so that the document remains complete and readable. The issue block describes what would change under the other options.
 All decision points are collected in the Issues Index at the end of this document.
 Comments are welcome in the <a href="https://github.com/fdp-specs/fdp-specs.github.io/issues">issue tracker</a>.
 
@@ -46,7 +47,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 All of the text of this specification is normative except sections explicitly marked as non-normative, examples, notes and issue blocks.
 
-The SHACL shapes in this document validate the structure of a single metadata record; in SHACL, a property shape without `sh:minCount` allows the property to be absent and one without `sh:maxCount` allows any number of values.
+The SHACL shapes in this document validate the structure of a single metadata record. In SHACL, a property shape without `sh:minCount` set to at least 1 allows the property to be absent and one without `sh:maxCount` allows any number of values.
 Requirements that span several records, such as the class of the members listed in a container, or that concern HTTP behaviour, are not expressed in the shapes and are tested by inspecting the responses of the FDP.
 
 Each requirement belongs to one capability.
@@ -69,6 +70,8 @@ The following namespace prefixes are used throughout this document.
         <tr><td><code>vcard</code></td><td><code>http://www.w3.org/2006/vcard/ns#</code></td><td>vCard Ontology</td></tr>
         <tr><td><code>ldp</code></td><td><code>http://www.w3.org/ns/ldp#</code></td><td>Linked Data Platform [[!LDP]]</td></tr>
         <tr><td><code>sh</code></td><td><code>http://www.w3.org/ns/shacl#</code></td><td>Shapes Constraint Language [[!SHACL]]</td></tr>
+        <tr><td><code>prof</code></td><td><code>http://www.w3.org/ns/dx/prof/</code></td><td>Profiles Vocabulary [[!DX-PROF]]</td></tr>
+        <tr><td><code>role</code></td><td><code>http://www.w3.org/ns/dx/prof/role/</code></td><td>Profiles Vocabulary resource roles</td></tr>
         <tr><td><code>fdp-o</code></td><td><code>https://w3id.org/fdp/fdp-o#</code></td><td>FAIR Data Point Ontology</td></tr>
     </tbody>
 </table>
