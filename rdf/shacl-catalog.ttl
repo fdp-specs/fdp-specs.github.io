@@ -1,6 +1,7 @@
 @prefix :        <http://fairdatapoint.org/> .
 @prefix dcat:    <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
@@ -76,7 +77,7 @@
     sh:nodeKind sh:IRI ;
     sh:maxCount 1 ;
   ], [
-    sh:path foaf:isPrimaryTopicOf ;
+    sh:path fdp-o:hasMetadata ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1 ;
     sh:minCount 1 ;

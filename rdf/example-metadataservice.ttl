@@ -16,7 +16,7 @@
   dcterms:modified "2020-09-30T11:17:43.008Z"^^xsd:dateTime ;
   dcterms:conformsTo <app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c> ;
   dcat:endpointURL <app> ;
-  foaf:isPrimaryTopicOf <app/record> ;
+  fdp-o:hasMetadata <app/record> ;
   fdp-o:conformsToFdpSpec <https://specs.fairdatapoint.org/v2.0/#conformance-core> ;
   fdp-o:metadataCatalog
     <app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8> ,

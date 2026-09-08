@@ -8,10 +8,14 @@
 :MetadataRecordShape a sh:NodeShape ;
   sh:targetClass fdp-o:MetadataRecord ;
   sh:property [
-    sh:path foaf:primaryTopic ;
+    sh:path fdp-o:isMetadataOf ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
+  ], [
+    sh:path foaf:primaryTopic ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
   ], [
     sh:path dcterms:issued ;
     sh:nodeKind sh:Literal ;

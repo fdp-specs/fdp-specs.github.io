@@ -20,11 +20,18 @@
                 When the described entity is a <code>dcat:Resource</code>, the record <em class="rfc2119">MUST</em> additionally be typed <code>dcat:CatalogRecord</code>.</td>
         </tr>
         <tr>
-            <td>FOAF</td>
-            <td>foaf:primaryTopic</td>
+            <td>FDP Ontology</td>
+            <td>fdp-o:isMetadataOf</td>
             <td>IRI</td>
             <td>1</td>
             <td>The metadata record described by this FDP Metadata Record, i.e., the IRI of the described entity.</td>
+        </tr>
+        <tr>
+            <td>FOAF</td>
+            <td>foaf:primaryTopic</td>
+            <td>IRI</td>
+            <td>0..1</td>
+            <td>The same value as <code>fdp-o:isMetadataOf</code>. <em class="rfc2119">MUST</em> be present when the record is typed <code>dcat:CatalogRecord</code>, so that DCAT-based clients can read it without inference.</td>
         </tr>
         <tr>
             <td>DC terms</td>

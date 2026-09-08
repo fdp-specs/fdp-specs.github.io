@@ -4,7 +4,8 @@
 - The specification is organised in **capabilities** (Read, Navigate, Write, Bundle) with a **conformance class** for each ([[#capabilities]], [[#conformance]]).
     The former compliance criteria became the criteria of the FDP Core conformance class.
 - The record-level properties `fdp-o:metadataIdentifier`, `fdp-o:metadataIssued` and `fdp-o:metadataModified` were removed from the metadata schemas.
-    Meta-metadata is now carried by the **FDP Metadata Record** (`fdp-o:MetadataRecord`, also typed `dcat:CatalogRecord` for DCAT resources), see [[#metadata-record]].
+    Meta-metadata is now carried by the **FDP Metadata Record** (`fdp-o:MetadataRecord`, the successor of `fdp-o:Metadata`, also typed `dcat:CatalogRecord` for DCAT resources), linked with `fdp-o:isMetadataOf` and `fdp-o:hasMetadata`, see [[#metadata-record]] and DP-18.
+- The FDP ontology needs corresponding changes: `fdp-o:MetadataRecord`, sub-property axioms towards FOAF, and deprecation of the record-level date properties.
 - The requirement that every FDP exposes at least one catalog was relaxed. The catalog schema applies when catalogs are exposed ([[#catalog-metadata]], DP-4).
 - The requirement that the target class of a metadata schema is a subclass of `dcat:Resource` was replaced by the requirement that it is a class of the content model, which includes `dcat:Distribution` and custom classes ([[#metadata-records]]).
 - Metadata records must state the most specific class of the content model that they specialise ([[#content-model]], DP-3).

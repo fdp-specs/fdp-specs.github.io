@@ -100,7 +100,7 @@
     sh:path fdp-o:metadataCatalog ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path foaf:isPrimaryTopicOf ;
+    sh:path fdp-o:hasMetadata ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1 ;
     sh:minCount 1 ;

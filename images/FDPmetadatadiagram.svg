@@ -173,9 +173,12 @@
 <text x="48" y="322" font-size="13" fill="#222" text-anchor="start">fdp-o:metadataCatalog</text>
 <text x="45" y="362" font-size="13" fill="#222">0..*</text>
 <text transform="translate(1553,470) rotate(-90)" font-size="13" fill="#222">fdp-o:metadataCatalog</text>
-<polyline points="190,994 190,1040 1520,1040 1520,85 1100,85 1100,100" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
-<text x="200" y="1058" font-size="13" fill="#222" text-anchor="start">foaf:primaryTopic  (the described metadata record: a dcat:Resource, a dcat:Distribution or an entity of any other class of the content model)</text>
+<polyline points="190,994 190,1050 1520,1050 1520,85 1100,85 1100,100" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="200" y="1068" font-size="13" fill="#222" text-anchor="start">fdp-o:isMetadataOf (inverse fdp-o:hasMetadata). The described metadata record is a dcat:Resource, a dcat:Distribution or an entity of any other class of the content model.</text>
 <text x="1108" y="97" font-size="13" fill="#222">1</text>
+<polyline points="1490,810 1500,810 1500,1028 250,1028 250,994" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="800" y="1022" font-size="13" fill="#222" text-anchor="start">fdp-o:servesMetadata</text>
+<text x="262" y="1010" font-size="13" fill="#222">0..*</text>
 <polyline points="190,604 190,880" fill="none" stroke="#333" stroke-width="1.4" stroke-dasharray="7 5"/>
 <text x="200" y="735" font-size="13" fill="#222" text-anchor="start">typed additionally as dcat:CatalogRecord</text>
 <text x="200" y="750" font-size="13" fill="#222" text-anchor="start">when the topic is a dcat:Resource</text>

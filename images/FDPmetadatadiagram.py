@@ -75,7 +75,8 @@ edge([(1240,810),(1120,810)], "rdfs:subClassOf", (1128,803), kind="sub")
 edge([(1365,694),(1365,780)], "rdfs:subClassOf", (1373,742), kind="sub")
 edge([(1490,620),(1540,620),(1540,15),(40,15),(40,370),(60,370)], "fdp-o:metadataCatalog", (48,322), card="0..*", cpos=(45,362))
 out.append('<text transform="translate(1553,470) rotate(-90)" font-size="13" fill="#222">fdp-o:metadataCatalog</text>')
-edge([(190,994),(190,1040),(1520,1040),(1520,85),(1100,85),(1100,100)], "foaf:primaryTopic  (the described metadata record: a dcat:Resource, a dcat:Distribution or an entity of any other class of the content model)", (200,1058), card="1", cpos=(1108,97))
+edge([(190,994),(190,1050),(1520,1050),(1520,85),(1100,85),(1100,100)], "fdp-o:isMetadataOf (inverse fdp-o:hasMetadata). The described metadata record is a dcat:Resource, a dcat:Distribution or an entity of any other class of the content model.", (200,1068), card="1", cpos=(1108,97))
+edge([(1490,810),(1500,810),(1500,1028),(250,1028),(250,994)], "fdp-o:servesMetadata", (800,1022), card="0..*", cpos=(262,1010))
 edge([(190,604),(190,880)], "typed additionally as dcat:CatalogRecord\nwhen the topic is a dcat:Resource", (200,735), kind="dashed")
 
 # ---- legend
