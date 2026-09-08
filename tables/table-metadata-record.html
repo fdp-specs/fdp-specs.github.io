@@ -1,0 +1,58 @@
+<table class="def">
+    <caption>FDP Metadata Record schema</caption>
+    <thead>
+        <tr>
+            <th>Ontology</th>
+            <th>Property name</th>
+            <th>Datatype</th>
+            <th>Cardinality</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RDF</td>
+            <td>rdf:type</td>
+            <td>IRI</td>
+            <td>1..2</td>
+            <td>The type of the record.
+                The value <em class="rfc2119">MUST</em> be <code>fdp-o:MetadataRecord</code>.
+                When the described entity is a <code>dcat:Resource</code>, the record <em class="rfc2119">MUST</em> additionally be typed <code>dcat:CatalogRecord</code>.</td>
+        </tr>
+        <tr>
+            <td>FOAF</td>
+            <td>foaf:primaryTopic</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The metadata record described by this FDP Metadata Record, i.e., the IRI of the described entity.</td>
+        </tr>
+        <tr>
+            <td>DC terms</td>
+            <td>dcterms:issued</td>
+            <td>DateTime</td>
+            <td>1</td>
+            <td>Date and time at which the metadata record was created in this FAIR Data Point.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcterms:modified</td>
+            <td>DateTime</td>
+            <td>1</td>
+            <td>Date and time at which the metadata record was last modified in this FAIR Data Point.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcterms:conformsTo</td>
+            <td>IRI</td>
+            <td>0..1</td>
+            <td>The profile of the FDP Metadata Record itself, i.e., the IRI of a schema for <code>fdp-o:MetadataRecord</code>. It does not replace the profile stated in the metadata record it describes.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcterms:creator</td>
+            <td><code>foaf:Agent</code></td>
+            <td>0..*</td>
+            <td>The agent(s) that created the metadata record in this FAIR Data Point.</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,13 @@
+@base            <https://fairdatapoint.org/> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<app/record>
+  a fdp-o:MetadataRecord , dcat:CatalogRecord ;
+  foaf:primaryTopic <app> ;
+  dcterms:issued "2020-05-29T09:55:08.580Z"^^xsd:dateTime ;
+  dcterms:modified "2020-09-30T11:17:43.008Z"^^xsd:dateTime ;
+  dcterms:creator <app#publisher> .

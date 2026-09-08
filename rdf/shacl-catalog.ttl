@@ -1,0 +1,89 @@
+@prefix :        <http://fairdatapoint.org/> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+:CatalogShape a sh:NodeShape ;
+  sh:targetClass dcat:Catalog ;
+  sh:property [
+    sh:path rdf:type ;
+    sh:hasValue dcat:Catalog ;
+  ], [
+    sh:path dcterms:title ;
+    sh:nodeKind sh:Literal ;
+    sh:minCount 1 ;
+  ], [
+    sh:path dcterms:hasVersion ;
+    sh:nodeKind sh:Literal ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:description ;
+    sh:nodeKind sh:Literal ;
+  ], [
+    sh:path dcterms:publisher ;
+    sh:node :AgentShape ;
+    sh:minCount 1 ;
+  ], [
+    sh:path dcterms:language ;
+    sh:nodeKind sh:IRI ;
+  ], [
+    sh:path dcterms:license ;
+    sh:nodeKind sh:IRI ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:issued ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:modified ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:conformsTo ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
+    sh:path dcterms:rights ;
+    sh:nodeKind sh:IRI ;
+  ], [
+    sh:path dcterms:accessRights ;
+    sh:nodeKind sh:IRI ;
+  ], [
+    sh:path dcterms:hasPart ;
+    sh:nodeKind sh:IRI ;
+  ], [
+    sh:path dcterms:isPartOf ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
+    sh:path dcat:themeTaxonomy ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
+    sh:path foaf:homepage ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path foaf:isPrimaryTopicOf ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ].
+
+:AgentShape a sh:NodeShape ;
+  sh:targetClass foaf:Agent ;
+  sh:property [
+    sh:path foaf:name ;
+    sh:nodeKind sh:Literal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ].
