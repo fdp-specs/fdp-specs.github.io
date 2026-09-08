@@ -1,13 +1,10 @@
-# Conformance {#conformance}
-
+# Conformance # {#conformance}
 This section defines the conformance classes of this specification and the criteria of each class.
 An application is a **FAIR Data Point** if and only if it conforms to the FDP Core conformance class.
 An application *MAY* additionally claim conformance to any of the other conformance classes for which it satisfies all criteria, provided that it also conforms to the classes they depend on ([[#capability-dependencies]]).
 
-## Conformance classes {#conformance-classes}
-
-### FDP Core {#conformance-core}
-
+## Conformance classes ## {#conformance-classes}
+### FDP Core ### {#conformance-core}
 The FDP Core conformance class comprises the Read ([[#read]]) and Navigate ([[#navigate]]) capabilities.
 It has no prerequisites.
 An application conforms to FDP Core if it satisfies all of the following criteria:
@@ -22,8 +19,7 @@ An application conforms to FDP Core if it satisfies all of the following criteri
 8. Every metadata record is reachable from the root URL through the navigation information, as specified in [[#navigate-traversal]].
 9. Requests that cannot be served are answered as specified in [[#read-errors]].
 
-### FDP Write {#conformance-write}
-
+### FDP Write ### {#conformance-write}
 The FDP Write conformance class comprises the Write capability ([[#write]]).
 Its prerequisite is FDP Core.
 An application conforms to FDP Write if it satisfies all of the following criteria:
@@ -34,8 +30,7 @@ An application conforms to FDP Write if it satisfies all of the following criter
 4. The FDP Metadata Record of every written record is maintained as specified in [[#write-create]] and [[#write-update]].
 5. Write operations are authenticated and authorised as specified in [[#write-auth]].
 
-### FDP Bundle Retrieval {#conformance-bundle-retrieval}
-
+### FDP Bundle Retrieval ### {#conformance-bundle-retrieval}
 The FDP Bundle Retrieval conformance class comprises the retrieval half of the Bundle capability ([[#bundle]]).
 Its prerequisite is FDP Core.
 An application conforms to FDP Bundle Retrieval if it satisfies all of the following criteria:
@@ -43,8 +38,7 @@ An application conforms to FDP Bundle Retrieval if it satisfies all of the follo
 1. The bundle of its own metadata record is retrievable as specified in [[#bundle-retrieval]], in the representations specified in [[#bundle-format]].
 2. The bundle endpoints are discoverable as specified in [[#bundle-format]].
 
-### FDP Bundle Submission {#conformance-bundle-submission}
-
+### FDP Bundle Submission ### {#conformance-bundle-submission}
 The FDP Bundle Submission conformance class comprises the submission half of the Bundle capability ([[#bundle]]).
 Its prerequisites are FDP Core and FDP Write.
 An application conforms to FDP Bundle Submission if it satisfies all of the following criteria:
@@ -52,8 +46,7 @@ An application conforms to FDP Bundle Submission if it satisfies all of the foll
 1. Bundles are accepted, validated and applied as specified in [[#bundle-submission]].
 2. Every submission is answered with a report as specified in [[#bundle-submission]].
 
-## Claiming conformance {#claiming-conformance}
-
+## Claiming conformance ## {#claiming-conformance}
 An FDP declares the conformance classes it claims in its own metadata record, with the property `fdp-o:conformsToFdpSpec` ([[#fair-data-point-metadata]]).
 
 Issue: **DP-6 — Values of `fdp-o:conformsToFdpSpec`.**
@@ -62,8 +55,7 @@ With several conformance classes, one value no longer suffices.
 Options: (a) one value per claimed conformance class, being the IRI of the class in a versioned copy of this document, e.g. `https://specs.fairdatapoint.org/v2.0/#conformance-core`; (b) one value, the versioned URL of the specification, implying only FDP Core, and a separate property for the additional classes; (c) one value per class, using IRIs defined in the FDP ontology.
 Proposed default: (a).
 
-## Client conformance {#client-conformance}
-
+## Client conformance ## {#client-conformance}
 A **FAIR Data Point client** is an application that consumes the metadata content of FDPs, such as a harvester, a search engine or a metadata editor.
 This specification does not define a conformance class for clients, but a client that follows this specification:
 

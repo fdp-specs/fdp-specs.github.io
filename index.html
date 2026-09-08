@@ -8,7 +8,7 @@
   <meta content="Bikeshed version ac92c2f0d, updated Fri Aug 21 16:01:29 2026 -0700" name="generator">
   <link href="https://specs.fairdatapoint.org/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="bd3a710e3ab75f2ab1a55d88f9fbcb1be2cf67ca" name="revision">
+  <meta content="a5735395260b332e521a6862ff4f7d498a100cda" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -583,6 +583,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <dd><a href="#issues-index">Inline In Spec</a>
       <dt class="editor">Editors:
       <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.utwente.nl/en/eemcs/scs/">Luiz Olavo Bonino da Silva Santos</a> (<span class="org p-org">UTwente</span>)
+      <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.health-ri.nl/">Dennis van</a> (<span class="org p-org">Health-RI</span>)
       <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.health-ri.nl/">Kees Burger</a> (<span class="org p-org">Health-RI</span>)
       <dt class="editor">Former Editor:
       <dd class="editor h-card p-author vcard"><a class="fn p-name u-url url" href="https://www.lumc.nl/">Rajaram Kaliyaperumal</a> (<span class="org p-org">LUMC</span>)
@@ -611,90 +612,90 @@ An application is a FAIR Data Point if it conforms to the Core conformance class
    <h2 class="no-num no-ref no-toc" id="contents">Table of Contents</h2>
    <ol class="toc">
     <li>
-     <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction {#introduction}</span></a>
+     <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
-      <li><a href="#purpose"><span class="secno">1.1</span> <span class="content">Purpose and scope {#purpose}</span></a>
-      <li><a href="#decision-points"><span class="secno">1.2</span> <span class="content">Open decision points {#decision-points}</span></a>
-      <li><a href="#document-conventions"><span class="secno">1.3</span> <span class="content">Document conventions {#document-conventions}</span></a>
+      <li><a href="#purpose"><span class="secno">1.1</span> <span class="content">Purpose and scope</span></a>
+      <li><a href="#decision-points"><span class="secno">1.2</span> <span class="content">Open decision points</span></a>
+      <li><a href="#document-conventions"><span class="secno">1.3</span> <span class="content">Document conventions</span></a>
      </ol>
     <li>
-     <a href="#usage-scenarios"><span class="secno">2</span> <span class="content">Usage Scenarios {#usage-scenarios}</span></a>
+     <a href="#usage-scenarios"><span class="secno">2</span> <span class="content">Usage Scenarios</span></a>
      <ol class="toc">
-      <li><a href="#data-discovery"><span class="secno">2.1</span> <span class="content">Data discovery {#data-discovery}</span></a>
-      <li><a href="#data-access"><span class="secno">2.2</span> <span class="content">Data access {#data-access}</span></a>
-      <li><a href="#metadata-publication"><span class="secno">2.3</span> <span class="content">(Meta)Data publication {#metadata-publication}</span></a>
-      <li><a href="#publishing-other-types-of-content"><span class="secno">2.4</span> <span class="content">Publishing other types of content {#publishing-other-types-of-content}</span></a>
+      <li><a href="#data-discovery"><span class="secno">2.1</span> <span class="content">Data discovery</span></a>
+      <li><a href="#data-access"><span class="secno">2.2</span> <span class="content">Data access</span></a>
+      <li><a href="#metadata-publication"><span class="secno">2.3</span> <span class="content">(Meta)Data publication</span></a>
+      <li><a href="#publishing-other-types-of-content"><span class="secno">2.4</span> <span class="content">Publishing other types of content</span></a>
      </ol>
     <li>
-     <a href="#capabilities"><span class="secno">3</span> <span class="content">Capabilities {#capabilities}</span></a>
+     <a href="#capabilities"><span class="secno">3</span> <span class="content">Capabilities</span></a>
      <ol class="toc">
-      <li><a href="#capability-dependencies"><span class="secno">3.1</span> <span class="content">Dependencies between capabilities {#capability-dependencies}</span></a>
-      <li><a href="#capabilities-and-conformance"><span class="secno">3.2</span> <span class="content">Relation to the conformance classes {#capabilities-and-conformance}</span></a>
-      <li><a href="#implementations"><span class="secno">3.3</span> <span class="content">Implementations {#implementations}</span></a>
+      <li><a href="#capability-dependencies"><span class="secno">3.1</span> <span class="content">Dependencies between capabilities</span></a>
+      <li><a href="#capabilities-and-conformance"><span class="secno">3.2</span> <span class="content">Relation to the conformance classes</span></a>
+      <li><a href="#implementations"><span class="secno">3.3</span> <span class="content">Implementations</span></a>
      </ol>
     <li>
-     <a href="#metadata-model"><span class="secno">4</span> <span class="content">Metadata model {#metadata-model}</span></a>
+     <a href="#metadata-model"><span class="secno">4</span> <span class="content">Metadata model</span></a>
      <ol class="toc">
-      <li><a href="#content-model"><span class="secno">4.1</span> <span class="content">Content model {#content-model}</span></a>
-      <li><a href="#metadata-records"><span class="secno">4.2</span> <span class="content">Metadata records and profiles {#metadata-records}</span></a>
-      <li><a href="#metadata-record"><span class="secno">4.3</span> <span class="content">FDP Metadata Record: meta-metadata {#metadata-record}</span></a>
-      <li><a href="#fair-data-point-metadata"><span class="secno">4.4</span> <span class="content">FAIR Data Point metadata {#fair-data-point-metadata}</span></a>
-      <li><a href="#catalog-metadata"><span class="secno">4.5</span> <span class="content">Catalog metadata {#catalog-metadata}</span></a>
-      <li><a href="#extending-the-content-model"><span class="secno">4.6</span> <span class="content">Extending the content model {#extending-the-content-model}</span></a>
+      <li><a href="#content-model"><span class="secno">4.1</span> <span class="content">Content model</span></a>
+      <li><a href="#metadata-records"><span class="secno">4.2</span> <span class="content">Metadata records and profiles</span></a>
+      <li><a href="#metadata-record"><span class="secno">4.3</span> <span class="content">FDP Metadata Record: meta-metadata</span></a>
+      <li><a href="#fair-data-point-metadata"><span class="secno">4.4</span> <span class="content">FAIR Data Point metadata</span></a>
+      <li><a href="#catalog-metadata"><span class="secno">4.5</span> <span class="content">Catalog metadata</span></a>
+      <li><a href="#extending-the-content-model"><span class="secno">4.6</span> <span class="content">Extending the content model</span></a>
      </ol>
     <li>
-     <a href="#read"><span class="secno">5</span> <span class="content">Read capability {#read}</span></a>
+     <a href="#read"><span class="secno">5</span> <span class="content">Read capability</span></a>
      <ol class="toc">
-      <li><a href="#read-overview"><span class="secno">5.1</span> <span class="content">Overview {#read-overview}</span></a>
-      <li><a href="#read-root"><span class="secno">5.2</span> <span class="content">Root URL {#read-root}</span></a>
-      <li><a href="#read-records"><span class="secno">5.3</span> <span class="content">Retrieving metadata records {#read-records}</span></a>
-      <li><a href="#read-schemas"><span class="secno">5.4</span> <span class="content">Retrieving metadata schemas {#read-schemas}</span></a>
-      <li><a href="#read-metadata-records"><span class="secno">5.5</span> <span class="content">Retrieving FDP Metadata Records {#read-metadata-records}</span></a>
-      <li><a href="#read-errors"><span class="secno">5.6</span> <span class="content">Error responses {#read-errors}</span></a>
+      <li><a href="#read-overview"><span class="secno">5.1</span> <span class="content">Overview</span></a>
+      <li><a href="#read-root"><span class="secno">5.2</span> <span class="content">Root URL</span></a>
+      <li><a href="#read-records"><span class="secno">5.3</span> <span class="content">Retrieving metadata records</span></a>
+      <li><a href="#read-schemas"><span class="secno">5.4</span> <span class="content">Retrieving metadata schemas</span></a>
+      <li><a href="#read-metadata-records"><span class="secno">5.5</span> <span class="content">Retrieving FDP Metadata Records</span></a>
+      <li><a href="#read-errors"><span class="secno">5.6</span> <span class="content">Error responses</span></a>
      </ol>
     <li>
-     <a href="#navigate"><span class="secno">6</span> <span class="content">Navigate capability {#navigate}</span></a>
+     <a href="#navigate"><span class="secno">6</span> <span class="content">Navigate capability</span></a>
      <ol class="toc">
-      <li><a href="#navigate-overview"><span class="secno">6.1</span> <span class="content">Overview {#navigate-overview}</span></a>
-      <li><a href="#navigation-information"><span class="secno">6.2</span> <span class="content">Navigation information {#navigation-information}</span></a>
-      <li><a href="#navigate-traversal"><span class="secno">6.3</span> <span class="content">Traversing the content of an FDP {#navigate-traversal}</span></a>
-      <li><a href="#navigate-paging"><span class="secno">6.4</span> <span class="content">Large containers {#navigate-paging}</span></a>
+      <li><a href="#navigate-overview"><span class="secno">6.1</span> <span class="content">Overview</span></a>
+      <li><a href="#navigation-information"><span class="secno">6.2</span> <span class="content">Navigation information</span></a>
+      <li><a href="#navigate-traversal"><span class="secno">6.3</span> <span class="content">Traversing the content of an FDP</span></a>
+      <li><a href="#navigate-paging"><span class="secno">6.4</span> <span class="content">Large containers</span></a>
      </ol>
     <li>
-     <a href="#write"><span class="secno">7</span> <span class="content">Write capability {#write}</span></a>
+     <a href="#write"><span class="secno">7</span> <span class="content">Write capability</span></a>
      <ol class="toc">
-      <li><a href="#write-overview"><span class="secno">7.1</span> <span class="content">Overview {#write-overview}</span></a>
-      <li><a href="#write-create"><span class="secno">7.2</span> <span class="content">Creating metadata records {#write-create}</span></a>
-      <li><a href="#write-update"><span class="secno">7.3</span> <span class="content">Replacing and modifying metadata records {#write-update}</span></a>
-      <li><a href="#write-delete"><span class="secno">7.4</span> <span class="content">Deleting metadata records {#write-delete}</span></a>
-      <li><a href="#write-schemas"><span class="secno">7.5</span> <span class="content">Managing metadata schemas {#write-schemas}</span></a>
-      <li><a href="#write-validation"><span class="secno">7.6</span> <span class="content">Validation {#write-validation}</span></a>
-      <li><a href="#write-auth"><span class="secno">7.7</span> <span class="content">Authentication and authorization {#write-auth}</span></a>
+      <li><a href="#write-overview"><span class="secno">7.1</span> <span class="content">Overview</span></a>
+      <li><a href="#write-create"><span class="secno">7.2</span> <span class="content">Creating metadata records</span></a>
+      <li><a href="#write-update"><span class="secno">7.3</span> <span class="content">Replacing and modifying metadata records</span></a>
+      <li><a href="#write-delete"><span class="secno">7.4</span> <span class="content">Deleting metadata records</span></a>
+      <li><a href="#write-schemas"><span class="secno">7.5</span> <span class="content">Managing metadata schemas</span></a>
+      <li><a href="#write-validation"><span class="secno">7.6</span> <span class="content">Validation</span></a>
+      <li><a href="#write-auth"><span class="secno">7.7</span> <span class="content">Authentication and authorization</span></a>
      </ol>
     <li>
-     <a href="#bundle"><span class="secno">8</span> <span class="content">Bundle capability {#bundle}</span></a>
+     <a href="#bundle"><span class="secno">8</span> <span class="content">Bundle capability</span></a>
      <ol class="toc">
-      <li><a href="#bundle-overview"><span class="secno">8.1</span> <span class="content">Overview {#bundle-overview}</span></a>
-      <li><a href="#bundle-format"><span class="secno">8.2</span> <span class="content">Bundle representation {#bundle-format}</span></a>
-      <li><a href="#bundle-retrieval"><span class="secno">8.3</span> <span class="content">Bundle retrieval {#bundle-retrieval}</span></a>
-      <li><a href="#bundle-submission"><span class="secno">8.4</span> <span class="content">Bundle submission {#bundle-submission}</span></a>
+      <li><a href="#bundle-overview"><span class="secno">8.1</span> <span class="content">Overview</span></a>
+      <li><a href="#bundle-format"><span class="secno">8.2</span> <span class="content">Bundle representation</span></a>
+      <li><a href="#bundle-retrieval"><span class="secno">8.3</span> <span class="content">Bundle retrieval</span></a>
+      <li><a href="#bundle-submission"><span class="secno">8.4</span> <span class="content">Bundle submission</span></a>
      </ol>
     <li>
-     <a href="#conformance"><span class="secno">9</span> <span class="content">Conformance {#conformance}</span></a>
+     <a href="#conformance"><span class="secno">9</span> <span class="content">Conformance</span></a>
      <ol class="toc">
       <li>
-       <a href="#conformance-classes"><span class="secno">9.1</span> <span class="content">Conformance classes {#conformance-classes}</span></a>
+       <a href="#conformance-classes"><span class="secno">9.1</span> <span class="content">Conformance classes</span></a>
        <ol class="toc">
-        <li><a href="#conformance-core"><span class="secno">9.1.1</span> <span class="content">FDP Core {#conformance-core}</span></a>
-        <li><a href="#conformance-write"><span class="secno">9.1.2</span> <span class="content">FDP Write {#conformance-write}</span></a>
-        <li><a href="#conformance-bundle-retrieval"><span class="secno">9.1.3</span> <span class="content">FDP Bundle Retrieval {#conformance-bundle-retrieval}</span></a>
-        <li><a href="#conformance-bundle-submission"><span class="secno">9.1.4</span> <span class="content">FDP Bundle Submission {#conformance-bundle-submission}</span></a>
+        <li><a href="#conformance-core"><span class="secno">9.1.1</span> <span class="content">FDP Core</span></a>
+        <li><a href="#conformance-write"><span class="secno">9.1.2</span> <span class="content">FDP Write</span></a>
+        <li><a href="#conformance-bundle-retrieval"><span class="secno">9.1.3</span> <span class="content">FDP Bundle Retrieval</span></a>
+        <li><a href="#conformance-bundle-submission"><span class="secno">9.1.4</span> <span class="content">FDP Bundle Submission</span></a>
        </ol>
-      <li><a href="#claiming-conformance"><span class="secno">9.2</span> <span class="content">Claiming conformance {#claiming-conformance}</span></a>
-      <li><a href="#client-conformance"><span class="secno">9.3</span> <span class="content">Client conformance {#client-conformance}</span></a>
+      <li><a href="#claiming-conformance"><span class="secno">9.2</span> <span class="content">Claiming conformance</span></a>
+      <li><a href="#client-conformance"><span class="secno">9.3</span> <span class="content">Client conformance</span></a>
      </ol>
-    <li><a href="#security-privacy"><span class="secno">10</span> <span class="content">Security and privacy considerations {#security-privacy}</span></a>
-    <li><a href="#changes"><span class="secno">11</span> <span class="content">Changes since version 1.2 {#changes}</span></a>
+    <li><a href="#security-privacy"><span class="secno">10</span> <span class="content">Security and privacy considerations</span></a>
+    <li><a href="#changes"><span class="secno">11</span> <span class="content">Changes since version 1.2</span></a>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
@@ -705,8 +706,11 @@ An application is a FAIR Data Point if it conforms to the Core conformance class
    </ol>
   </nav>
   <main>
-   <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction {#introduction}</span><a class="self-link" href="#introduction"></a></h2>
-   <p><em>This section is non-normative.</em></p>
+   <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
+   
+<em>This section is non-normative.</em>
+
+
    <p>The FAIR Data Point (FDP) is a metadata service that provides access to metadata following the FAIR principles <a data-link-type="biblio" href="#biblio-fair-principles" title="The FAIR Guiding Principles for scientific data management and stewardship">[FAIR-principles]</a> <a data-link-type="biblio" href="#biblio-fdp" title="FAIR Data Point: A FAIR-oriented approach for metadata publication">[FDP]</a>.
 An FDP, on one side, allows the owners and publishers of digital objects to expose the metadata of these objects in a FAIR manner and, on the other side, allows consumers of digital objects to discover information (metadata) about the offered objects.
 Commonly, an FDP is used to expose metadata of datasets, but metadata of other types of entities can also be exposed, such as ontologies, repositories, analysis algorithms, websites, and even non-digital entities such as organisations and people.</p>
@@ -734,30 +738,39 @@ An FDP has the following goals:</p>
     <li data-md>
      <p>Provide meaningful information about digital objects for both humans and software agents.</p>
    </ul>
-   <h3 class="heading settled" data-level="1.1" id="purpose"><span class="secno">1.1. </span><span class="content">Purpose and scope {#purpose}</span><a class="self-link" href="#purpose"></a></h3>
-   <p>The purpose of this specification is to define the expected behaviour of a FAIR Data Point, i.e., the behaviour an application must exhibit in order to be considered an FDP.
+   <h3 class="heading settled" data-level="1.1" id="purpose"><span class="secno">1.1. </span><span class="content">Purpose and scope</span><a class="self-link" href="#purpose"></a></h3>
+   
+The purpose of this specification is to define the expected behaviour of a FAIR Data Point, i.e., the behaviour an application must exhibit in order to be considered an FDP.
 The specification is implementation-agnostic: it is primarily intended as a reference for developers willing to add FDP functionality to their existing applications or to develop their own FAIR Data Point implementation.
 It does not prescribe how a particular FDP implementation should be internally designed or engineered.
-Documentation about particular implementations, such as the <a href="https://github.com/FAIRDataTeam/FAIRDataPoint">FDP Reference Implementation (FDP-RI)</a>, is provided by the respective implementation projects.</p>
-   <p>This version of the specification organises the behaviour of an FDP in <strong>capabilities</strong>: Read, Navigate, Write and Bundle (see <a href="#capabilities">§ 3 Capabilities {#capabilities}</a>).
-Each capability is a coherent set of behaviours that an FDP offers to third-party applications, and each has a corresponding conformance class (see <a href="#conformance">§ 9 Conformance {#conformance}</a>).
+Documentation about particular implementations, such as the <a href="https://github.com/FAIRDataTeam/FAIRDataPoint">FDP Reference Implementation (FDP-RI)</a>, is provided by the respective implementation projects.
+
+
+   <p>This version of the specification organises the behaviour of an FDP in <strong>capabilities</strong>: Read, Navigate, Write and Bundle (see <a href="#capabilities">§ 3 Capabilities</a>).
+Each capability is a coherent set of behaviours that an FDP offers to third-party applications, and each has a corresponding conformance class (see <a href="#conformance">§ 9 Conformance</a>).
 An application is a FAIR Data Point if it conforms to the Core conformance class, which comprises the Read and Navigate capabilities.
 The remaining capabilities are optional.</p>
    <p>In order to better understand this specification, knowledge of RDF, LDP, SHACL and REST APIs is required.</p>
-   <h3 class="heading settled" data-level="1.2" id="decision-points"><span class="secno">1.2. </span><span class="content">Open decision points {#decision-points}</span><a class="self-link" href="#decision-points"></a></h3>
-   <p>This draft deliberately leaves a number of design decisions open for review.
+   <h3 class="heading settled" data-level="1.2" id="decision-points"><span class="secno">1.2. </span><span class="content">Open decision points</span><a class="self-link" href="#decision-points"></a></h3>
+   
+This draft deliberately leaves a number of design decisions open for review.
 They are marked in the text as numbered <strong>decision points</strong> (DP-<em>n</em>) in issue blocks, each stating the question, the options considered and, where there is one, a proposed default.
 The normative text surrounding a decision point is written for the proposed default, so that the document remains complete and readable; the issue block describes what would change under the other options.
 All decision points are collected in the Issues Index at the end of this document.
-Comments are welcome in the <a href="https://github.com/fdp-specs/fdp-specs.github.io/issues">issue tracker</a>.</p>
-   <h3 class="heading settled" data-level="1.3" id="document-conventions"><span class="secno">1.3. </span><span class="content">Document conventions {#document-conventions}</span><a class="self-link" href="#document-conventions"></a></h3>
-   <p>Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC 2119. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a></p>
+Comments are welcome in the <a href="https://github.com/fdp-specs/fdp-specs.github.io/issues">issue tracker</a>.
+
+
+   <h3 class="heading settled" data-level="1.3" id="document-conventions"><span class="secno">1.3. </span><span class="content">Document conventions</span><a class="self-link" href="#document-conventions"></a></h3>
+   
+Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC 2119. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+
    <p>All of the text of this specification is normative except sections explicitly marked as non-normative, examples, notes and issue blocks.</p>
    <p>The SHACL shapes in this document validate the structure of a single metadata record; in SHACL, a property shape without <code>sh:minCount</code> allows the property to be absent and one without <code>sh:maxCount</code> allows any number of values.
 Requirements that span several records, such as the class of the members listed in a container, or that concern HTTP behaviour, are not expressed in the shapes and are tested by inspecting the responses of the FDP.</p>
    <p>Each requirement belongs to one capability.
-The capability a section belongs to is stated at the start of the section, and the conformance section (<a href="#conformance">§ 9 Conformance {#conformance}</a>) lists, per conformance class, the sections whose requirements apply.</p>
+The capability a section belongs to is stated at the start of the section, and the conformance section (<a href="#conformance">§ 9 Conformance</a>) lists, per conformance class, the sections whose requirements apply.</p>
    <p>The following namespace prefixes are used throughout this document.</p>
    <table class="def">
     <caption>Namespace prefixes</caption>
@@ -808,8 +821,11 @@ The capability a section belongs to is stated at the start of the section, and t
       <td><code>https://w3id.org/fdp/fdp-o#</code>
       <td>FAIR Data Point Ontology
    </table>
-   <h2 class="heading settled" data-level="2" id="usage-scenarios"><span class="secno">2. </span><span class="content">Usage Scenarios {#usage-scenarios}</span><a class="self-link" href="#usage-scenarios"></a></h2>
-   <p><em>This section is non-normative.</em></p>
+   <h2 class="heading settled" data-level="2" id="usage-scenarios"><span class="secno">2. </span><span class="content">Usage Scenarios</span><a class="self-link" href="#usage-scenarios"></a></h2>
+   
+<em>This section is non-normative.</em>
+
+
    <p>The basis for any infrastructure is its suitability to the issues it should address.
 Therefore, the first step is to identify these issues.
 One common approach for this identification is to investigate current practices that could benefit from a supporting infrastructure.
@@ -820,60 +836,78 @@ These stakeholders represent data producers, data consumers and providers of bot
    <p>From the different semantic interoperability projects we have been and are involved in, the following usage scenarios have been identified.
 These usage scenarios do not represent one particular situation in a real project but depict data interoperability-related situations that we experienced in a number of different projects.
 From these scenarios we derived a set of requirements for a metadata storage and accessibility infrastructure, and they also guided the design and development of the solution.
-For each scenario we indicate the FDP capabilities (see <a href="#capabilities">§ 3 Capabilities {#capabilities}</a>) on which it relies.</p>
-   <h3 class="heading settled" data-level="2.1" id="data-discovery"><span class="secno">2.1. </span><span class="content">Data discovery {#data-discovery}</span><a class="self-link" href="#data-discovery"></a></h3>
-   <p>A researcher needs to find datasets containing data about a given subject, e.g., proteins that are activated in specific tissues, pollution level in a given region, or infrared observation of a particular galaxy; integrate the discovered data with other pre-selected datasets and analyse them.
+For each scenario we indicate the FDP capabilities (see <a href="#capabilities">§ 3 Capabilities</a>) on which it relies.</p>
+   <h3 class="heading settled" data-level="2.1" id="data-discovery"><span class="secno">2.1. </span><span class="content">Data discovery</span><a class="self-link" href="#data-discovery"></a></h3>
+   
+A researcher needs to find datasets containing data about a given subject, e.g., proteins that are activated in specific tissues, pollution level in a given region, or infrared observation of a particular galaxy; integrate the discovered data with other pre-selected datasets and analyse them.
 In another situation, the researcher needs to know which biobanks carry a given type of biosample (e.g., blood samples) from patients possessing a specific disease (e.g., Alzheimer’s disease) taken from a patient registry whose onset age was lower than 45 years old.
 These data users need to use a straightforward search application that allows them to find the required information.
-However, the search application first needs to have indexed information about existing datasets wherever their location.</p>
+However, the search application first needs to have indexed information about existing datasets wherever their location.
+
+
    <p><em>Capabilities involved:</em> Read and Navigate, so that a search application can traverse and index the metadata content of an FDP; optionally Bundle, to harvest the metadata content in a single interaction.</p>
-   <h3 class="heading settled" data-level="2.2" id="data-access"><span class="secno">2.2. </span><span class="content">Data access {#data-access}</span><a class="self-link" href="#data-access"></a></h3>
-   <p>Once a data user/consumer finds the desired datasets, including the information about their licenses and access protocols, the user wants to access the data, retrieving it, or sending an algorithm to analyse the data.
+   <h3 class="heading settled" data-level="2.2" id="data-access"><span class="secno">2.2. </span><span class="content">Data access</span><a class="self-link" href="#data-access"></a></h3>
+   
+Once a data user/consumer finds the desired datasets, including the information about their licenses and access protocols, the user wants to access the data, retrieving it, or sending an algorithm to analyse the data.
 In many situations the data user will integrate many different datasets.
 To carry out these integrations, the user needs to know in which formats the data can be accessed, and which access methods are available.
 This information comes in the form of metadata.
-In order to facilitate the usage of metadata, the method with which the metadata will be accessed should be common in all different metadata sources and a common representation technology should be used for the metadata.</p>
+In order to facilitate the usage of metadata, the method with which the metadata will be accessed should be common in all different metadata sources and a common representation technology should be used for the metadata.
+
+
    <p><em>Capabilities involved:</em> Read.</p>
-   <h3 class="heading settled" data-level="2.3" id="metadata-publication"><span class="secno">2.3. </span><span class="content">(Meta)Data publication {#metadata-publication}</span><a class="self-link" href="#metadata-publication"></a></h3>
-   <p>An organization is running a project in which data is being created.
+   <h3 class="heading settled" data-level="2.3" id="metadata-publication"><span class="secno">2.3. </span><span class="content">(Meta)Data publication</span><a class="self-link" href="#metadata-publication"></a></h3>
+   
+An organization is running a project in which data is being created.
 The data will be analysed during the project but, they may also be useful for other users.
 The group would therefore like to publish the data in a way that allows potential users to retrieve information about the datasets (metadata), allows data search engines to index the metadata, and allows users to access the data.
 Some of the produced datasets have an open license but others have more restrictive licenses.
-All these metadata should be available so that potential data users would have enough information to assess whether the dataset described in the metadata fits their needs.</p>
+All these metadata should be available so that potential data users would have enough information to assess whether the dataset described in the metadata fits their needs.
+
+
    <p><em>Capabilities involved:</em> Write, so that the group can add and maintain metadata records through the FDP; Read and Navigate, so that users and search engines can find them; optionally Bundle, for bulk publication.</p>
-   <h3 class="heading settled" data-level="2.4" id="publishing-other-types-of-content"><span class="secno">2.4. </span><span class="content">Publishing other types of content {#publishing-other-types-of-content}</span><a class="self-link" href="#publishing-other-types-of-content"></a></h3>
-   <p>An organization is running a project in which different types of deliverables will be created.
+   <h3 class="heading settled" data-level="2.4" id="publishing-other-types-of-content"><span class="secno">2.4. </span><span class="content">Publishing other types of content</span><a class="self-link" href="#publishing-other-types-of-content"></a></h3>
+   
+An organization is running a project in which different types of deliverables will be created.
 One group is developing a piece of software, another group is working on a controlled vocabulary, while a third group will generate a number of reference documents.
-The organization would like to publish information about these materials so others could discover and reuse them.</p>
-   <p><em>Capabilities involved:</em> Read, Navigate and Write, together with the ability to define metadata schemas for types of content beyond datasets (see <a href="#extending-the-content-model">§ 4.6 Extending the content model {#extending-the-content-model}</a>).</p>
-   <h2 class="heading settled" data-level="3" id="capabilities"><span class="secno">3. </span><span class="content">Capabilities {#capabilities}</span><a class="self-link" href="#capabilities"></a></h2>
-   <p>*This section is non-normative, except for <a href="#capability-dependencies">§ 3.1 Dependencies between capabilities {#capability-dependencies}</a>.*</p>
+The organization would like to publish information about these materials so others could discover and reuse them.
+
+
+   <p><em>Capabilities involved:</em> Read, Navigate and Write, together with the ability to define metadata schemas for types of content beyond datasets (see <a href="#extending-the-content-model">§ 4.6 Extending the content model</a>).</p>
+   <h2 class="heading settled" data-level="3" id="capabilities"><span class="secno">3. </span><span class="content">Capabilities</span><a class="self-link" href="#capabilities"></a></h2>
+   
+*This section is non-normative, except for <a href="#capability-dependencies">§ 3.1 Dependencies between capabilities</a>.*
+
+
    <p>The behaviour of a FAIR Data Point is organised in <strong>capabilities</strong>.
 A capability is a coherent set of behaviours that an FDP offers to third-party applications.
 By providing a capability, an FDP enables a class of interactions: for instance, by providing the Read capability an FDP enables client applications to retrieve its metadata records in the way specified in this document.
-Each capability is specified in its own section of this document, and each has a corresponding conformance class, defined in <a href="#conformance">§ 9 Conformance {#conformance}</a>.</p>
+Each capability is specified in its own section of this document, and each has a corresponding conformance class, defined in <a href="#conformance">§ 9 Conformance</a>.</p>
    <p>This specification defines four capabilities:</p>
    <dl>
-    <dt data-md>Read (<a href="#read">§ 5 Read capability {#read}</a>)
+    <dt data-md>Read (<a href="#read">§ 5 Read capability</a>)
     <dd data-md>
      <p>The FDP serves its metadata records in a common representation format, with content negotiation, and each record refers to the schema it conforms to.
 By providing this capability an FDP enables client applications to retrieve and interpret individual metadata records.</p>
-    <dt data-md>Navigate (<a href="#navigate">§ 6 Navigate capability {#navigate}</a>)
+    <dt data-md>Navigate (<a href="#navigate">§ 6 Navigate capability</a>)
     <dd data-md>
      <p>The FDP describes the structure of its metadata content using the Linked Data Platform containment model, so that a client can discover all metadata records starting from the root of the FDP.
 By providing this capability an FDP enables client applications, such as harvesters and search engines, to traverse and index its whole metadata content without prior knowledge of its structure.</p>
-    <dt data-md>Write (<a href="#write">§ 7 Write capability {#write}</a>)
+    <dt data-md>Write (<a href="#write">§ 7 Write capability</a>)
     <dd data-md>
      <p>The FDP accepts the creation, modification and deletion of metadata records and metadata schemas through its API.
 By providing this capability an FDP enables authorised client applications to publish and maintain metadata.</p>
-    <dt data-md>Bundle (<a href="#bundle">§ 8 Bundle capability {#bundle}</a>)
+    <dt data-md>Bundle (<a href="#bundle">§ 8 Bundle capability</a>)
     <dd data-md>
      <p>The FDP exchanges bundles of metadata records in a single interaction, both for retrieval and for submission.
 By providing this capability an FDP enables bulk harvesting, bulk publication and the migration of metadata content between FDPs.</p>
    </dl>
-   <h3 class="heading settled" data-level="3.1" id="capability-dependencies"><span class="secno">3.1. </span><span class="content">Dependencies between capabilities {#capability-dependencies}</span><a class="self-link" href="#capability-dependencies"></a></h3>
-   <p>Capabilities build on each other.
-An FDP that provides a capability <em>MUST</em> also provide the capabilities it depends on, as listed in the following table and depicted in Figure 3.1.</p>
+   <h3 class="heading settled" data-level="3.1" id="capability-dependencies"><span class="secno">3.1. </span><span class="content">Dependencies between capabilities</span><a class="self-link" href="#capability-dependencies"></a></h3>
+   
+Capabilities build on each other.
+An FDP that provides a capability <em>MUST</em> also provide the capabilities it depends on, as listed in the following table and depicted in Figure 3.1.
+
+
    <table class="def">
     <caption>Capability dependencies</caption>
     <thead>
@@ -934,18 +968,29 @@ Bundle retrieval only depends on the Core capabilities, whereas bundle submissio
 Should Bundle be a single conformance class, requiring an FDP to provide both retrieval and submission, or two classes, so that a harvest-oriented FDP can claim bundle retrieval without implementing Write?
 Options: (a) one class, FDP Bundle; (b) two classes, FDP Bundle Retrieval and FDP Bundle Submission.
 Proposed default: (b), as reflected in this draft.</p>
-   <h3 class="heading settled" data-level="3.2" id="capabilities-and-conformance"><span class="secno">3.2. </span><span class="content">Relation to the conformance classes {#capabilities-and-conformance}</span><a class="self-link" href="#capabilities-and-conformance"></a></h3>
-   <p>An application is a FAIR Data Point if it conforms to the <strong>FDP Core</strong> conformance class, i.e., if it provides the Read and Navigate capabilities.
+   <h3 class="heading settled" data-level="3.2" id="capabilities-and-conformance"><span class="secno">3.2. </span><span class="content">Relation to the conformance classes</span><a class="self-link" href="#capabilities-and-conformance"></a></h3>
+   
+An application is a FAIR Data Point if it conforms to the <strong>FDP Core</strong> conformance class, i.e., if it provides the Read and Navigate capabilities.
 Read alone is deliberately not sufficient: serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way.
 An FDP may additionally claim conformance to any of the other conformance classes for which it satisfies the requirements.
-The conformance classes and their criteria are defined in <a href="#conformance">§ 9 Conformance {#conformance}</a>.</p>
-   <h3 class="heading settled" data-level="3.3" id="implementations"><span class="secno">3.3. </span><span class="content">Implementations {#implementations}</span><a class="self-link" href="#implementations"></a></h3>
-   <p>This specification describes the expected behaviour of a FAIR Data Point and is independent of any particular implementation.
+The conformance classes and their criteria are defined in <a href="#conformance">§ 9 Conformance</a>.
+
+
+   <h3 class="heading settled" data-level="3.3" id="implementations"><span class="secno">3.3. </span><span class="content">Implementations</span><a class="self-link" href="#implementations"></a></h3>
+   
+This specification describes the expected behaviour of a FAIR Data Point and is independent of any particular implementation.
 The <a href="https://github.com/FAIRDataTeam/FAIRDataPoint">FDP Reference Implementation (FDP-RI)</a> is one particular implementation of this specification, developed and maintained by the FAIR Data Team.
-Documentation about the FDP-RI, including its internal architecture and deployment instructions, is available at the <a href="https://fairdatapoint.readthedocs.io/">FDP-RI documentation</a>.</p>
-   <h2 class="heading settled" data-level="4" id="metadata-model"><span class="secno">4. </span><span class="content">Metadata model {#metadata-model}</span><a class="self-link" href="#metadata-model"></a></h2>
-   <p>The requirements in this section apply to every metadata record served by an FDP.
-They belong to the Read capability (<a href="#read">§ 5 Read capability {#read}</a>) and are therefore part of the FDP Core conformance class.</p>
+Documentation about the FDP-RI, including its internal architecture and deployment instructions, is available at the <a href="https://fairdatapoint.readthedocs.io/">FDP-RI documentation</a>.
+
+
+
+
+   <h2 class="heading settled" data-level="4" id="metadata-model"><span class="secno">4. </span><span class="content">Metadata model</span><a class="self-link" href="#metadata-model"></a></h2>
+   
+The requirements in this section apply to every metadata record served by an FDP.
+They belong to the Read capability (<a href="#read">§ 5 Read capability</a>) and are therefore part of the FDP Core conformance class.
+
+
    <p>The FAIR principles give special attention to metadata.
 In fact, all principles relate to metadata in at least one aspect.
 The most common definition of metadata is that it is data that provides information about other data.
@@ -957,10 +1002,13 @@ This requirement indicates that, to properly follow the FAIR principles, the FAI
    <p>Consequently, the first entity to provide metadata about is the FDP itself.
 When a client interacts with a service, it should know what it is dealing with.
 Therefore, the FDP provides metadata about itself and, from that point on, the client can navigate its metadata content to discover the other metadata records.</p>
-   <h3 class="heading settled" data-level="4.1" id="content-model"><span class="secno">4.1. </span><span class="content">Content model {#content-model}</span><a class="self-link" href="#content-model"></a></h3>
-   <p>The FDP uses the W3C Data Catalog Vocabulary (DCAT) as the basis for its metadata content.
+   <h3 class="heading settled" data-level="4.1" id="content-model"><span class="secno">4.1. </span><span class="content">Content model</span><a class="self-link" href="#content-model"></a></h3>
+   
+The FDP uses the W3C Data Catalog Vocabulary (DCAT) as the basis for its metadata content.
 This version of the FDP specification adopts DCAT version 3 <a data-link-type="biblio" href="#biblio-vocab-dcat-3" title="Data Catalog Vocabulary (DCAT) - Version 3">[VOCAB-DCAT-3]</a>.
-Figure 4.1 depicts the DCAT 3 classes and properties used by the FDP and the FDP extensions to the DCAT model.</p>
+Figure 4.1 depicts the DCAT 3 classes and properties used by the FDP and the FDP extensions to the DCAT model.
+
+
    <figure>
     
     <img alt="Class diagram of the FDP metadata model: the DCAT 3 classes Resource, Catalog, Dataset, DatasetSeries, Distribution, DataService and CatalogRecord with their properties, the related vocabularies (foaf:Agent, skos:Concept, skos:ConceptScheme, vcard:Kind, dcat:Relationship), and the FDP ontology classes FAIRDataPoint, MetadataService and MetadataRecord with their relations to the DCAT classes." height="1080" src="images/FDPmetadatadiagram.svg" style="max-width:100%;height:auto" width="1580">
@@ -974,12 +1022,12 @@ One of its subclasses, such as <code>Dataset</code> or <code>DataService</code>,
 <code>Catalog</code>, a subclass of <code>Dataset</code>, represents an aggregation of metadata records about digital objects; for instance, a <code>Catalog</code> may contain references to the metadata records of <code>Datasets</code>.
 A <code>Distribution</code> represents an accessible form of a dataset, such as a downloadable file or an API endpoint.</p>
    <p class="note" role="note"><span class="marker">Note:</span> In DCAT, <code>Distribution</code> is <em>not</em> a subclass of <code>Resource</code>: a distribution is described as part of its dataset and is not catalogued in its own right.
-In an FDP, however, every entity for which a metadata record is served, including distributions, is a first-class metadata record with its own IRI, its own schema and its own FDP Metadata Record (see <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata {#metadata-record}</a>).
+In an FDP, however, every entity for which a metadata record is served, including distributions, is a first-class metadata record with its own IRI, its own schema and its own FDP Metadata Record (see <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata</a>).
 This is why the FDP content model, defined below, is not limited to subclasses of <code>dcat:Resource</code>.</p>
    <p>The FDP extends the DCAT model by adding the concept of a <code>FAIRDataPoint</code> as a specific subclass of data service that serves metadata catalogs and metadata records.
 The DCAT extensions and other FDP-specific concepts and relations are defined in the FDP ontology (namespace prefix <code>fdp-o</code>).
 In the FDP ontology, the FAIR Data Point is represented by a subclass of <code>MetadataService</code>, which in turn is a subclass of <code>dcat:DataService</code>.
-In Figure 4.1, each class only lists the properties that are not already inherited from its superclasses; <code>fdp-o:MetadataRecord</code> and its relation to <code>dcat:CatalogRecord</code> are specified in <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata {#metadata-record}</a>.</p>
+In Figure 4.1, each class only lists the properties that are not already inherited from its superclasses; <code>fdp-o:MetadataRecord</code> and its relation to <code>dcat:CatalogRecord</code> are specified in <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata</a>.</p>
    <p>With the definition of the FDP as a specialisation of metadata service that serves metadata catalogs, the relation between the <code>MetadataService</code> and <code>dcat:Catalog</code> is represented by the predicate <code>fdp-o:metadataCatalog</code>.
 Following the DCAT approach of providing qualified relations between resources, <code>fdp-o:metadataCatalog</code> is defined as a sub-property of <code>dcat:Relationship</code>, having <code>fdp-o:MetadataService</code> as its domain and <code>dcat:Catalog</code> as its range.</p>
    <p>The <strong>content model</strong> of an FDP is the set of classes whose instances the FDP describes with metadata records.
@@ -990,14 +1038,14 @@ It consists of:</p>
     <li data-md>
      <p>the DCAT classes <code>dcat:Catalog</code>, <code>dcat:Dataset</code>, <code>dcat:DatasetSeries</code>, <code>dcat:DataService</code> and <code>dcat:Distribution</code>;</p>
     <li data-md>
-     <p>any further class for which the FDP provides a metadata schema (see <a href="#extending-the-content-model">§ 4.6 Extending the content model {#extending-the-content-model}</a>).</p>
+     <p>any further class for which the FDP provides a metadata schema (see <a href="#extending-the-content-model">§ 4.6 Extending the content model</a>).</p>
    </ul>
-   <p>An FDP <em>MUST</em> serve the metadata record of itself, i.e., of an instance of <code>fdp-o:FAIRDataPoint</code> conforming to <a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata {#fair-data-point-metadata}</a>.
+   <p>An FDP <em>MUST</em> serve the metadata record of itself, i.e., of an instance of <code>fdp-o:FAIRDataPoint</code> conforming to <a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata</a>.
 Metadata records of instances of every other class of the content model are optional.</p>
    <p class="issue" id="issue-b8236b40"><a class="self-link" href="#issue-b8236b40"></a> <strong>DP-4 — Catalogs no longer mandatory.</strong>
 Version 1.2 required every FDP to expose at least one <code>dcat:Catalog</code>, directly related to the FDP through <code>fdp-o:metadataCatalog</code>.
-Since the navigation information (<a href="#navigate">§ 6 Navigate capability {#navigate}</a>) already tells a client which relation leads from a record to its members, the core does not need to hardcode the catalog as the first level of the content structure, and a minimal FDP that only publishes its own metadata is still useful, e.g., when newly deployed.
-Options: (a) keep at least one catalog mandatory, as in version 1.2; (b) catalogs are optional, but when an FDP exposes catalogs they must conform to <a href="#catalog-metadata">§ 4.5 Catalog metadata {#catalog-metadata}</a>; (c) catalogs are optional and their schema is left entirely to the deployment.
+Since the navigation information (<a href="#navigate">§ 6 Navigate capability</a>) already tells a client which relation leads from a record to its members, the core does not need to hardcode the catalog as the first level of the content structure, and a minimal FDP that only publishes its own metadata is still useful, e.g., when newly deployed.
+Options: (a) keep at least one catalog mandatory, as in version 1.2; (b) catalogs are optional, but when an FDP exposes catalogs they must conform to <a href="#catalog-metadata">§ 4.5 Catalog metadata</a>; (c) catalogs are optional and their schema is left entirely to the deployment.
 Proposed default: (b), as reflected in this draft.</p>
    <p>Every metadata record <em>MUST</em> state the class of the described entity with <code>rdf:type</code>.
 In addition, when that class is a specialisation of a class of the content model, the record <em>MUST</em> also state the most specific class of the content model that it specialises, so that clients can interpret the record without inference over the ontologies.
@@ -1007,27 +1055,33 @@ Without the rule above, a client only learns that an <code>fdp-o:FAIRDataPoint</
 The FDP Reference Implementation already states the parent classes explicitly.
 Options: (a) records MUST state the most specific DCAT class in addition to the specialised class, as written above; (b) records MUST state the complete chain of parent classes up to <code>dcat:Resource</code>; (c) records SHOULD state the parent classes; (d) leave it to inference.
 Proposed default: (a).</p>
-   <h3 class="heading settled" data-level="4.2" id="metadata-records"><span class="secno">4.2. </span><span class="content">Metadata records and profiles {#metadata-records}</span><a class="self-link" href="#metadata-records"></a></h3>
-   <p>A <strong>metadata record</strong> is the RDF description of one entity of the content model.
-It is identified by the IRI of the described entity and is retrievable by dereferencing that IRI, as specified in <a href="#read">§ 5 Read capability {#read}</a>.</p>
+   <h3 class="heading settled" data-level="4.2" id="metadata-records"><span class="secno">4.2. </span><span class="content">Metadata records and profiles</span><a class="self-link" href="#metadata-records"></a></h3>
+   
+A <strong>metadata record</strong> is the RDF description of one entity of the content model.
+It is identified by the IRI of the described entity and is retrievable by dereferencing that IRI, as specified in <a href="#read">§ 5 Read capability</a>.
+
+
    <p>Each metadata record <em>MUST</em> reference, with <code>dcterms:conformsTo</code>, the <strong>profile</strong> it conforms to.
 A profile is an IRI that identifies a metadata schema.
-Dereferencing a profile IRI <em>MUST</em> return the metadata schema expressed in SHACL <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a> (see <a href="#read-schemas">§ 5.4 Retrieving metadata schemas {#read-schemas}</a>); the profile <em>MAY</em> additionally provide human-readable documentation of the schema through content negotiation.
+Dereferencing a profile IRI <em>MUST</em> return the metadata schema expressed in SHACL <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a> (see <a href="#read-schemas">§ 5.4 Retrieving metadata schemas</a>); the profile <em>MAY</em> additionally provide human-readable documentation of the schema through content negotiation.
 Version 1.2 of this specification only recommended the profile reference while its schemas required it; this version resolves the inconsistency in favour of the requirement.</p>
    <p>A metadata schema <em>MUST</em> declare, with <code>sh:targetClass</code>, a class of the content model of the FDP as the class of the entities it describes.
 An FDP <em>MUST</em> provide a metadata schema for every class of its content model of which it serves metadata records.
-The schemas for the <code>fdp-o:FAIRDataPoint</code> and <code>dcat:Catalog</code> classes are defined in <a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata {#fair-data-point-metadata}</a> and <a href="#catalog-metadata">§ 4.5 Catalog metadata {#catalog-metadata}</a>; schemas for other classes are discussed in <a href="#extending-the-content-model">§ 4.6 Extending the content model {#extending-the-content-model}</a>.</p>
+The schemas for the <code>fdp-o:FAIRDataPoint</code> and <code>dcat:Catalog</code> classes are defined in <a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata</a> and <a href="#catalog-metadata">§ 4.5 Catalog metadata</a>; schemas for other classes are discussed in <a href="#extending-the-content-model">§ 4.6 Extending the content model</a>.</p>
    <p class="issue" id="issue-e6fcc460"><a class="self-link" href="#issue-e6fcc460"></a> <strong>DP-9 — Identification of the normative shapes.</strong>
 The SHACL shapes in this document are identified by IRIs under <code>http://fairdatapoint.org/</code>, which does not resolve to them.
 Options: (a) publish the shapes under a persistent namespace, e.g. <code>https://w3id.org/fdp/shapes/</code>, resolving to the Turtle files in the specification repository; (b) use document-relative fragment identifiers such as <code>&lt;#FAIRDataPointShape></code>, so the IRIs depend on where the file is published; (c) keep the current IRIs.
 Related: the shared shapes <code>AgentShape</code> and <code>ContactPointShape</code> are currently duplicated in each schema file so that every file is self-contained; under option (a) they could be published once and referenced.
 Proposed default: (a).</p>
-   <h3 class="heading settled" data-level="4.3" id="metadata-record"><span class="secno">4.3. </span><span class="content">FDP Metadata Record: meta-metadata {#metadata-record}</span><a class="self-link" href="#metadata-record"></a></h3>
-   <p>Two levels of description have to be distinguished: the metadata <em>about the entity</em> (e.g., the title, publisher and license of a dataset) and the metadata <em>about the metadata record itself</em> (e.g., when the record was created and last modified in this FDP, and by whom).
+   <h3 class="heading settled" data-level="4.3" id="metadata-record"><span class="secno">4.3. </span><span class="content">FDP Metadata Record: meta-metadata</span><a class="self-link" href="#metadata-record"></a></h3>
+   
+Two levels of description have to be distinguished: the metadata <em>about the entity</em> (e.g., the title, publisher and license of a dataset) and the metadata <em>about the metadata record itself</em> (e.g., when the record was created and last modified in this FDP, and by whom).
 Previous versions of this specification mixed both levels by placing record-level properties (<code>fdp-o:metadataIdentifier</code>, <code>fdp-o:metadataIssued</code>, <code>fdp-o:metadataModified</code>) on the described entity.
-This version separates them.</p>
+This version separates them.
+
+
    <p>Every metadata record served by an FDP <em>MUST</em> have an associated <strong>FDP Metadata Record</strong>, an instance of <code>fdp-o:MetadataRecord</code>, that describes the registration of the entity in the FDP.
-The FDP Metadata Record is itself a resource with its own IRI, retrievable as specified in <a href="#read-metadata-records">§ 5.5 Retrieving FDP Metadata Records {#read-metadata-records}</a>.
+The FDP Metadata Record is itself a resource with its own IRI, retrievable as specified in <a href="#read-metadata-records">§ 5.5 Retrieving FDP Metadata Records</a>.
 It is linked to the metadata record it describes with <code>foaf:primaryTopic</code>, and the metadata record links back to it with <code>foaf:isPrimaryTopicOf</code>.</p>
    <p>When the described entity is an instance of <code>dcat:Resource</code>, the FDP Metadata Record <em>MUST</em> additionally be typed as <code>dcat:CatalogRecord</code> and, if the entity is a member of a catalog, the catalog <em>SHOULD</em> refer to it with <code>dcat:record</code>.
 This makes the FDP Metadata Records of catalogued resources directly usable by DCAT-based harvesters and by DCAT application profiles.
@@ -1085,7 +1139,7 @@ Entities that are not DCAT resources, such as distributions or entities of custo
    </table>
    <p class="issue" id="issue-e57acb4a"><a class="self-link" href="#issue-e57acb4a"></a> <strong>DP-2 — Location of the FDP Metadata Record.</strong>
 Options: (a) the FDP Metadata Record is a separate dereferenceable resource, linked from the metadata record with <code>foaf:isPrimaryTopicOf</code> and advertised in the HTTP response with a <code>Link</code> header, as written in this draft; (b) the FDP Metadata Record is embedded in the representation of the metadata record, as a second subject in the same RDF document, and has no separate URL; (c) both: embedded in the representation and also dereferenceable.
-Proposed default: (a), because it keeps one subject per response, allows caching and conditional requests to be driven by the record’s <code>dcterms:modified</code>, and lets bundles (<a href="#bundle">§ 8 Bundle capability {#bundle}</a>) carry records and their meta-metadata uniformly.</p>
+Proposed default: (a), because it keeps one subject per response, allows caching and conditional requests to be driven by the record’s <code>dcterms:modified</code>, and lets bundles (<a href="#bundle">§ 8 Bundle capability</a>) carry records and their meta-metadata uniformly.</p>
    <p>The FDP Metadata Record schema in SHACL:</p>
 <pre class="highlight include-code"><c- k>@prefix</c-> <c- nn>:</c->        <c- g>&lt;http://fairdatapoint.org/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
@@ -1137,9 +1191,12 @@ Proposed default: (a), because it keeps one subject per response, allows caching
   <c- nn>dcterms</c-><c- p>:</c-><c- f>modified</c-> <c- s>"2020-09-30T11:17:43.008Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>creator</c-> <c- g>&lt;app#publisher></c-> <c- p>.</c->
 </pre>
-   <h3 class="heading settled" data-level="4.4" id="fair-data-point-metadata"><span class="secno">4.4. </span><span class="content">FAIR Data Point metadata {#fair-data-point-metadata}</span><a class="self-link" href="#fair-data-point-metadata"></a></h3>
-   <p>The metadata record of the FDP itself is the only mandatory record of an FDP and the entry point for every client.
-It describes the FDP as a <code>dcat:DataService</code>, and it is the root from which the navigation information (<a href="#navigate">§ 6 Navigate capability {#navigate}</a>) leads to the other records.</p>
+   <h3 class="heading settled" data-level="4.4" id="fair-data-point-metadata"><span class="secno">4.4. </span><span class="content">FAIR Data Point metadata</span><a class="self-link" href="#fair-data-point-metadata"></a></h3>
+   
+The metadata record of the FDP itself is the only mandatory record of an FDP and the entry point for every client.
+It describes the FDP as a <code>dcat:DataService</code>, and it is the root from which the navigation information (<a href="#navigate">§ 6 Navigate capability</a>) leads to the other records.
+
+
    <table class="def">
     <caption>FAIR Data Point metadata schema</caption>
     <thead>
@@ -1425,9 +1482,12 @@ Proposed default: (a), because DCAT 3 defines <code>dcat:contactPoint</code> as 
   <c- p>].</c->
 
 </pre>
-   <h3 class="heading settled" data-level="4.5" id="catalog-metadata"><span class="secno">4.5. </span><span class="content">Catalog metadata {#catalog-metadata}</span><a class="self-link" href="#catalog-metadata"></a></h3>
-   <p>An FDP <em>MAY</em> organise the metadata records of other entities in catalogs.
-When an FDP serves metadata records of instances of <code>dcat:Catalog</code>, these records <em>MUST</em> conform to the following schema (see DP-4 in <a href="#content-model">§ 4.1 Content model {#content-model}</a>).</p>
+   <h3 class="heading settled" data-level="4.5" id="catalog-metadata"><span class="secno">4.5. </span><span class="content">Catalog metadata</span><a class="self-link" href="#catalog-metadata"></a></h3>
+   
+An FDP <em>MAY</em> organise the metadata records of other entities in catalogs.
+When an FDP serves metadata records of instances of <code>dcat:Catalog</code>, these records <em>MUST</em> conform to the following schema (see DP-4 in <a href="#content-model">§ 4.1 Content model</a>).
+
+
    <table class="def">
     <caption>Catalog metadata schema</caption>
     <thead>
@@ -1645,63 +1705,96 @@ When an FDP serves metadata records of instances of <code>dcat:Catalog</code>, t
     <c- nn>sh</c-><c- p>:</c-><c- f>minCount</c-> <c- mi>1</c-> <c- p>;</c->
   <c- p>].</c->
 </pre>
-   <h3 class="heading settled" data-level="4.6" id="extending-the-content-model"><span class="secno">4.6. </span><span class="content">Extending the content model {#extending-the-content-model}</span><a class="self-link" href="#extending-the-content-model"></a></h3>
-   <p>Beyond the FAIR Data Point and Catalog schemas, the metadata structure of an FDP varies from deployment to deployment.
+   <h3 class="heading settled" data-level="4.6" id="extending-the-content-model"><span class="secno">4.6. </span><span class="content">Extending the content model</span><a class="self-link" href="#extending-the-content-model"></a></h3>
+   
+Beyond the FAIR Data Point and Catalog schemas, the metadata structure of an FDP varies from deployment to deployment.
 As the FDP is most commonly used to provide metadata of datasets, implementations typically also provide, following the DCAT model, metadata schemas for <code>dcat:Dataset</code> and <code>dcat:Distribution</code>.
-An FDP <em>MAY</em> replace or complement these with schemas for further classes of its content model, including classes that are not part of DCAT, e.g., semantic artefacts, software or documents, as illustrated in <a href="#publishing-other-types-of-content">§ 2.4 Publishing other types of content {#publishing-other-types-of-content}</a>.
-Every such schema is subject to the requirements of <a href="#metadata-records">§ 4.2 Metadata records and profiles {#metadata-records}</a>: it is identified by a profile IRI, it is expressed in SHACL and it declares its target class.</p>
+An FDP <em>MAY</em> replace or complement these with schemas for further classes of its content model, including classes that are not part of DCAT, e.g., semantic artefacts, software or documents, as illustrated in <a href="#publishing-other-types-of-content">§ 2.4 Publishing other types of content</a>.
+Every such schema is subject to the requirements of <a href="#metadata-records">§ 4.2 Metadata records and profiles</a>: it is identified by a profile IRI, it is expressed in SHACL and it declares its target class.
+
+
    <p class="note" role="note"><span class="marker">Note:</span> The relations between metadata records of different classes are not fixed by this specification.
 For instance, an FDP may organise its content as <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Dataset</code> → <code>Distribution</code>, while another FDP serving metadata about ontologies may organise it as <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Semantic Artefact</code>.
-Whatever the organisation, each metadata record that leads to other metadata records provides the navigation information specified in <a href="#navigate">§ 6 Navigate capability {#navigate}</a>, so that clients can traverse the content without prior knowledge of its structure.</p>
-   <h2 class="heading settled" data-level="5" id="read"><span class="secno">5. </span><span class="content">Read capability {#read}</span><a class="self-link" href="#read"></a></h2>
-   <p>The requirements in this section belong to the <strong>Read</strong> capability and are part of the FDP Core conformance class.
-By providing this capability, an FDP enables client applications to retrieve and interpret its metadata records, metadata schemas and FDP Metadata Records.</p>
-   <h3 class="heading settled" data-level="5.1" id="read-overview"><span class="secno">5.1. </span><span class="content">Overview {#read-overview}</span><a class="self-link" href="#read-overview"></a></h3>
-   <p><em>This section is non-normative.</em></p>
+Whatever the organisation, each metadata record that leads to other metadata records provides the navigation information specified in <a href="#navigate">§ 6 Navigate capability</a>, so that clients can traverse the content without prior knowledge of its structure.</p>
+   <h2 class="heading settled" data-level="5" id="read"><span class="secno">5. </span><span class="content">Read capability</span><a class="self-link" href="#read"></a></h2>
+   
+The requirements in this section belong to the <strong>Read</strong> capability and are part of the FDP Core conformance class.
+By providing this capability, an FDP enables client applications to retrieve and interpret its metadata records, metadata schemas and FDP Metadata Records.
+
+
+   <h3 class="heading settled" data-level="5.1" id="read-overview"><span class="secno">5.1. </span><span class="content">Overview</span><a class="self-link" href="#read-overview"></a></h3>
+   
+<em>This section is non-normative.</em>
+
+
    <p>The API of the FDP follows the REST HATEOAS (Hypermedia as the Engine of Application State) guidelines by providing information so that the client is able to discover the available actions and access the resources it needs.
 The client application is therefore able to navigate through the API and its content from the information available in the content returned in each API call.
-A client only needs the URL of the root of the FDP API: that URL provides the metadata of the FDP itself, and, when the FDP provides the Navigate capability (<a href="#navigate">§ 6 Navigate capability {#navigate}</a>), the navigation information contained in each record leads the client to all other records.</p>
-   <h3 class="heading settled" data-level="5.2" id="read-root"><span class="secno">5.2. </span><span class="content">Root URL {#read-root}</span><a class="self-link" href="#read-root"></a></h3>
-   <p>The root URL of the FDP API <em>MUST</em> return the metadata record of the FDP itself, i.e., a record of an instance of <code>fdp-o:FAIRDataPoint</code> conforming to <a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata {#fair-data-point-metadata}</a>.
-The IRI of the FDP as a described entity <em>SHOULD</em> be the root URL of its API, and the value of <code>dcat:endpointURL</code> in the FDP metadata record <em>MUST</em> be the root URL.</p>
-   <h3 class="heading settled" data-level="5.3" id="read-records"><span class="secno">5.3. </span><span class="content">Retrieving metadata records {#read-records}</span><a class="self-link" href="#read-records"></a></h3>
-   <p>Every metadata record <em>MUST</em> be retrievable by an HTTP GET request on the IRI of the described entity.</p>
+A client only needs the URL of the root of the FDP API: that URL provides the metadata of the FDP itself, and, when the FDP provides the Navigate capability (<a href="#navigate">§ 6 Navigate capability</a>), the navigation information contained in each record leads the client to all other records.</p>
+   <h3 class="heading settled" data-level="5.2" id="read-root"><span class="secno">5.2. </span><span class="content">Root URL</span><a class="self-link" href="#read-root"></a></h3>
+   
+The root URL of the FDP API <em>MUST</em> return the metadata record of the FDP itself, i.e., a record of an instance of <code>fdp-o:FAIRDataPoint</code> conforming to <a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata</a>.
+The IRI of the FDP as a described entity <em>SHOULD</em> be the root URL of its API, and the value of <code>dcat:endpointURL</code> in the FDP metadata record <em>MUST</em> be the root URL.
+
+
+   <h3 class="heading settled" data-level="5.3" id="read-records"><span class="secno">5.3. </span><span class="content">Retrieving metadata records</span><a class="self-link" href="#read-records"></a></h3>
+   
+Every metadata record <em>MUST</em> be retrievable by an HTTP GET request on the IRI of the described entity.
+
+
    <p>The FDP <em>MUST</em> support at least the RDF 1.1 Turtle <a data-link-type="biblio" href="#biblio-turtle" title="RDF 1.1 Turtle">[TURTLE]</a> and JSON-LD <a data-link-type="biblio" href="#biblio-json-ld11" title="JSON-LD 1.1">[JSON-LD11]</a> syntaxes for every metadata record, selected through HTTP content negotiation on the <code>Accept</code> header.
 When the request carries no <code>Accept</code> header, or an <code>Accept</code> header that does not express a preference among supported formats, the FDP <em>MUST</em> return RDF Turtle.
 The FDP <em>MAY</em> support other syntaxes, such as RDF/XML, N-Triples or HTML for human consumption.
 When none of the requested media types is supported, the FDP <em>MUST</em> respond with status code <code>406 Not Acceptable</code>.</p>
    <p>The representation of a metadata record <em>MUST</em> contain all the triples of the record, i.e., all triples whose subject is the IRI of the described entity, together with the description of any blank node reachable from it.
-When the FDP provides the Navigate capability, the representation <em>MUST</em> also contain the navigation information of the record, as specified in <a href="#navigation-information">§ 6.2 Navigation information {#navigation-information}</a>.</p>
+When the FDP provides the Navigate capability, the representation <em>MUST</em> also contain the navigation information of the record, as specified in <a href="#navigation-information">§ 6.2 Navigation information</a>.</p>
    <p>The response <em>SHOULD</em> carry an HTTP <code>Link</code> header with relation type <code>profile</code> <a data-link-type="biblio" href="#biblio-rfc6906" title="The &apos;profile&apos; Link Relation Type">[RFC6906]</a> whose target is the profile IRI of the record, i.e., the value of its <code>dcterms:conformsTo</code> property.
-The response <em>SHOULD</em> carry an HTTP <code>Link</code> header with relation type <code>describedby</code> whose target is the IRI of the FDP Metadata Record of the record (see DP-2 in <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata {#metadata-record}</a>).</p>
+The response <em>SHOULD</em> carry an HTTP <code>Link</code> header with relation type <code>describedby</code> whose target is the IRI of the FDP Metadata Record of the record (see DP-2 in <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata</a>).</p>
    <p>The FDP <em>SHOULD</em> support conditional requests on metadata records: the response <em>SHOULD</em> carry <code>ETag</code> and <code>Last-Modified</code> headers, the latter derived from the <code>dcterms:modified</code> value of the FDP Metadata Record, and the FDP <em>SHOULD</em> honour <code>If-None-Match</code> and <code>If-Modified-Since</code> request headers.</p>
-   <h3 class="heading settled" data-level="5.4" id="read-schemas"><span class="secno">5.4. </span><span class="content">Retrieving metadata schemas {#read-schemas}</span><a class="self-link" href="#read-schemas"></a></h3>
-   <p>Every profile IRI referenced by a metadata record served by the FDP <em>MUST</em> be dereferenceable.
+   <h3 class="heading settled" data-level="5.4" id="read-schemas"><span class="secno">5.4. </span><span class="content">Retrieving metadata schemas</span><a class="self-link" href="#read-schemas"></a></h3>
+   
+Every profile IRI referenced by a metadata record served by the FDP <em>MUST</em> be dereferenceable.
 An HTTP GET request on a profile IRI <em>MUST</em> return the metadata schema as a SHACL shapes graph <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a>, serialised in RDF Turtle by default, and <em>SHOULD</em> also support JSON-LD.
-Profiles <em>MAY</em> be hosted by the FDP itself or elsewhere, e.g., a shared profile registry; in both cases the requirements of this section apply to what the profile IRI returns.</p>
-   <h3 class="heading settled" data-level="5.5" id="read-metadata-records"><span class="secno">5.5. </span><span class="content">Retrieving FDP Metadata Records {#read-metadata-records}</span><a class="self-link" href="#read-metadata-records"></a></h3>
-   <p>The IRI of every FDP Metadata Record (<a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata {#metadata-record}</a>) <em>MUST</em> be dereferenceable, with the same syntax and content negotiation requirements as metadata records (<a href="#read-records">§ 5.3 Retrieving metadata records {#read-records}</a>), and the FDP <em>SHOULD</em> support conditional requests on FDP Metadata Records in the same way.</p>
-   <h3 class="heading settled" data-level="5.6" id="read-errors"><span class="secno">5.6. </span><span class="content">Error responses {#read-errors}</span><a class="self-link" href="#read-errors"></a></h3>
-   <p>A request for an IRI that the FDP does not serve <em>MUST</em> be answered with status code <code>404 Not Found</code>.
+Profiles <em>MAY</em> be hosted by the FDP itself or elsewhere, e.g., a shared profile registry; in both cases the requirements of this section apply to what the profile IRI returns.
+
+
+   <h3 class="heading settled" data-level="5.5" id="read-metadata-records"><span class="secno">5.5. </span><span class="content">Retrieving FDP Metadata Records</span><a class="self-link" href="#read-metadata-records"></a></h3>
+   
+The IRI of every FDP Metadata Record (<a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata</a>) <em>MUST</em> be dereferenceable, with the same syntax and content negotiation requirements as metadata records (<a href="#read-records">§ 5.3 Retrieving metadata records</a>), and the FDP <em>SHOULD</em> support conditional requests on FDP Metadata Records in the same way.
+
+
+   <h3 class="heading settled" data-level="5.6" id="read-errors"><span class="secno">5.6. </span><span class="content">Error responses</span><a class="self-link" href="#read-errors"></a></h3>
+   
+A request for an IRI that the FDP does not serve <em>MUST</em> be answered with status code <code>404 Not Found</code>.
 A request for a metadata record that has been deleted <em>SHOULD</em> be answered with status code <code>410 Gone</code>.
-Requests for unsupported representations are answered with <code>406 Not Acceptable</code>, as specified in <a href="#read-records">§ 5.3 Retrieving metadata records {#read-records}</a>.</p>
+Requests for unsupported representations are answered with <code>406 Not Acceptable</code>, as specified in <a href="#read-records">§ 5.3 Retrieving metadata records</a>.
+
+
    <p class="issue" id="issue-5049a5bd"><a class="self-link" href="#issue-5049a5bd"></a> <strong>DP-10 — Format of error responses.</strong>
 Options: (a) error responses use the Problem Details format <a data-link-type="biblio" href="#biblio-rfc9457" title="Problem Details for HTTP APIs">[RFC9457]</a> (<code>application/problem+json</code>); (b) error responses are RDF documents describing the error, in the same syntaxes as metadata records; (c) the format of error bodies is left unspecified.
 Proposed default: (a), as it is widely supported by HTTP tooling and independent of the RDF syntax negotiated for the records.</p>
-   <h2 class="heading settled" data-level="6" id="navigate"><span class="secno">6. </span><span class="content">Navigate capability {#navigate}</span><a class="self-link" href="#navigate"></a></h2>
-   <p>The requirements in this section belong to the <strong>Navigate</strong> capability and are part of the FDP Core conformance class.
-The Navigate capability depends on the Read capability (<a href="#read">§ 5 Read capability {#read}</a>).
+   <h2 class="heading settled" data-level="6" id="navigate"><span class="secno">6. </span><span class="content">Navigate capability</span><a class="self-link" href="#navigate"></a></h2>
+   
+The requirements in this section belong to the <strong>Navigate</strong> capability and are part of the FDP Core conformance class.
+The Navigate capability depends on the Read capability (<a href="#read">§ 5 Read capability</a>).
 By providing this capability, an FDP enables client applications to discover its whole metadata content starting from the root URL, without prior knowledge of how the content is organised.
-This is what allows, for instance, search engines and metadata aggregators to index the content of an FDP effortlessly.</p>
-   <h3 class="heading settled" data-level="6.1" id="navigate-overview"><span class="secno">6.1. </span><span class="content">Overview {#navigate-overview}</span><a class="self-link" href="#navigate-overview"></a></h3>
-   <p><em>This section is non-normative.</em></p>
+This is what allows, for instance, search engines and metadata aggregators to index the content of an FDP effortlessly.
+
+
+   <h3 class="heading settled" data-level="6.1" id="navigate-overview"><span class="secno">6.1. </span><span class="content">Overview</span><a class="self-link" href="#navigate-overview"></a></h3>
+   
+<em>This section is non-normative.</em>
+
+
    <p>Since the FDP supports the provisioning of metadata describing different types of entities, and the relations among these metadata records can be customised, each FDP deployment may have a different metadata structure.
 For instance, an FDP may have the structure <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Dataset</code> → <code>Distribution</code>.
 Another FDP, serving metadata about ontologies, taxonomies and vocabularies, could have the structure <code>FAIR Data Point</code> → <code>Catalog</code> → <code>Semantic Artefact</code>.
 With this flexibility, a client application would not have a predictable pattern to navigate the metadata content of an FDP unless it followed every IRI in the metadata, which may be extensive.
 Therefore, the FDP describes its own navigation structure, using the containment model of the Linked Data Platform (LDP) <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a>.</p>
-   <h3 class="heading settled" data-level="6.2" id="navigation-information"><span class="secno">6.2. </span><span class="content">Navigation information {#navigation-information}</span><a class="self-link" href="#navigation-information"></a></h3>
-   <p>An FDP <em>MUST</em> describe the structure of its metadata content using LDP Direct Containers.</p>
+   <h3 class="heading settled" data-level="6.2" id="navigation-information"><span class="secno">6.2. </span><span class="content">Navigation information</span><a class="self-link" href="#navigation-information"></a></h3>
+   
+An FDP <em>MUST</em> describe the structure of its metadata content using LDP Direct Containers.
+
+
    <p>Every metadata record that leads to other metadata records <em>MUST</em> provide <strong>navigation information</strong>: for each relation that connects the described entity to member entities whose metadata records the FDP serves, an <code>ldp:DirectContainer</code> such that:</p>
    <ul>
     <li data-md>
@@ -1712,7 +1805,7 @@ Therefore, the FDP describes its own navigation structure, using the containment
      <p>its <code>ldp:contains</code> values are the IRIs of the metadata records of the members.</p>
    </ul>
    <p>A metadata record that does not lead to other metadata records, i.e., a <em>leaf</em> of the content structure, has no navigation information.</p>
-   <p>The navigation information of a record <em>MUST</em> be included in the representation of the record (<a href="#read-records">§ 5.3 Retrieving metadata records {#read-records}</a>), so that a single request suffices to obtain both the record and the containers that lead to its members.
+   <p>The navigation information of a record <em>MUST</em> be included in the representation of the record (<a href="#read-records">§ 5.3 Retrieving metadata records</a>), so that a single request suffices to obtain both the record and the containers that lead to its members.
 The IRI of each container <em>SHOULD</em> be dereferenceable, returning the description of the container.</p>
    <p>The following table defines the schema of a container.</p>
    <table class="def">
@@ -1851,29 +1944,44 @@ The IRI of each container <em>SHOULD</em> be dereferenceable, returning the desc
    <p>In this example, the FDP (<code>&lt;app></code>) has the relation <code>fdp-o:metadataCatalog</code> with its catalogs.
 This is the parent-child relation that a client follows to navigate the metadata structure of the FDP.
 The container <code>&lt;app/catalog/></code> at the bottom of the example makes the navigation structure explicit: it is the container for <code>&lt;app></code> (the value of <code>ldp:membershipResource</code>), it relates <code>&lt;app></code> to its contained members using the relation <code>fdp-o:metadataCatalog</code> (the value of <code>ldp:hasMemberRelation</code>), and it lists the members with <code>ldp:contains</code>.</p>
-   <h3 class="heading settled" data-level="6.3" id="navigate-traversal"><span class="secno">6.3. </span><span class="content">Traversing the content of an FDP {#navigate-traversal}</span><a class="self-link" href="#navigate-traversal"></a></h3>
-   <p>A client traverses the content of an FDP by retrieving the metadata record at the root URL (<a href="#read-root">§ 5.2 Root URL {#read-root}</a>), retrieving the metadata record of every IRI listed in <code>ldp:contains</code> in the navigation information of each record, and repeating the procedure for each retrieved record.
-Every metadata record served by an FDP <em>MUST</em> be reachable from the root URL through the navigation information, so that the traversal discovers the whole metadata content.</p>
+   <h3 class="heading settled" data-level="6.3" id="navigate-traversal"><span class="secno">6.3. </span><span class="content">Traversing the content of an FDP</span><a class="self-link" href="#navigate-traversal"></a></h3>
+   
+A client traverses the content of an FDP by retrieving the metadata record at the root URL (<a href="#read-root">§ 5.2 Root URL</a>), retrieving the metadata record of every IRI listed in <code>ldp:contains</code> in the navigation information of each record, and repeating the procedure for each retrieved record.
+Every metadata record served by an FDP <em>MUST</em> be reachable from the root URL through the navigation information, so that the traversal discovers the whole metadata content.
+
+
    <p>Clients <em>MUST NOT</em> assume a particular content structure, such as a fixed depth or a fixed sequence of classes, and <em>MUST</em> tolerate cycles in the navigation information, e.g., by keeping track of the records already visited.</p>
-   <h3 class="heading settled" data-level="6.4" id="navigate-paging"><span class="secno">6.4. </span><span class="content">Large containers {#navigate-paging}</span><a class="self-link" href="#navigate-paging"></a></h3>
-   <p>A container may list a large number of members.
-An FDP <em>MAY</em> split the representation of such a container in pages, in which case it <em>SHOULD</em> follow LDP Paging <a data-link-type="biblio" href="#biblio-ldp-paging" title="Linked Data Platform Paging 1.0">[LDP-PAGING]</a>.</p>
+   <h3 class="heading settled" data-level="6.4" id="navigate-paging"><span class="secno">6.4. </span><span class="content">Large containers</span><a class="self-link" href="#navigate-paging"></a></h3>
+   
+A container may list a large number of members.
+An FDP <em>MAY</em> split the representation of such a container in pages, in which case it <em>SHOULD</em> follow LDP Paging <a data-link-type="biblio" href="#biblio-ldp-paging" title="Linked Data Platform Paging 1.0">[LDP-PAGING]</a>.
+
+
    <p class="issue" id="issue-3b7305cd"><a class="self-link" href="#issue-3b7305cd"></a> <strong>DP-8 — Paging of large containers.</strong>
-Options: (a) mandate LDP Paging for containers above a size that the FDP chooses; (b) recommend LDP Paging, as written above; (c) leave paging out of the specification and rely on the Bundle capability (<a href="#bundle">§ 8 Bundle capability {#bundle}</a>) for large-scale retrieval.
+Options: (a) mandate LDP Paging for containers above a size that the FDP chooses; (b) recommend LDP Paging, as written above; (c) leave paging out of the specification and rely on the Bundle capability (<a href="#bundle">§ 8 Bundle capability</a>) for large-scale retrieval.
 Proposed default: (b).</p>
-   <h2 class="heading settled" data-level="7" id="write"><span class="secno">7. </span><span class="content">Write capability {#write}</span><a class="self-link" href="#write"></a></h2>
-   <p>The requirements in this section belong to the <strong>Write</strong> capability and form the FDP Write conformance class.
-The Write capability depends on the Read capability (<a href="#read">§ 5 Read capability {#read}</a>).
-By providing this capability, an FDP enables authorised client applications to publish and maintain metadata records and metadata schemas through the FDP API.</p>
+   <h2 class="heading settled" data-level="7" id="write"><span class="secno">7. </span><span class="content">Write capability</span><a class="self-link" href="#write"></a></h2>
+   
+The requirements in this section belong to the <strong>Write</strong> capability and form the FDP Write conformance class.
+The Write capability depends on the Read capability (<a href="#read">§ 5 Read capability</a>).
+By providing this capability, an FDP enables authorised client applications to publish and maintain metadata records and metadata schemas through the FDP API.
+
+
    <p><strong class="advisement"> This section is a first draft.
 Its requirements are proposed for discussion and will be refined before this version of the specification is finalised.</strong></p>
-   <h3 class="heading settled" data-level="7.1" id="write-overview"><span class="secno">7.1. </span><span class="content">Overview {#write-overview}</span><a class="self-link" href="#write-overview"></a></h3>
-   <p><em>This section is non-normative.</em></p>
-   <p>The write operations of an FDP follow the Linked Data Platform (LDP) <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a>: the containers that an FDP exposes as navigation information (<a href="#navigation-information">§ 6.2 Navigation information {#navigation-information}</a>) are LDP Direct Containers, and metadata records are created by posting them to a container, replaced with <code>PUT</code>, modified with <code>PATCH</code> and removed with <code>DELETE</code>.
+   <h3 class="heading settled" data-level="7.1" id="write-overview"><span class="secno">7.1. </span><span class="content">Overview</span><a class="self-link" href="#write-overview"></a></h3>
+   
+<em>This section is non-normative.</em>
+
+
+   <p>The write operations of an FDP follow the Linked Data Platform (LDP) <a data-link-type="biblio" href="#biblio-ldp" title="Linked Data Platform 1.0">[LDP]</a>: the containers that an FDP exposes as navigation information (<a href="#navigation-information">§ 6.2 Navigation information</a>) are LDP Direct Containers, and metadata records are created by posting them to a container, replaced with <code>PUT</code>, modified with <code>PATCH</code> and removed with <code>DELETE</code>.
 This makes an FDP a specialised LDP server, and aligns the FDP with the Solid Protocol <a data-link-type="biblio" href="#biblio-solid-protocol" title="Solid Protocol">[SOLID-PROTOCOL]</a>, which builds on the same operations, and with the ongoing W3C Linked Web Storage work that succeeds it.</p>
-   <h3 class="heading settled" data-level="7.2" id="write-create"><span class="secno">7.2. </span><span class="content">Creating metadata records {#write-create}</span><a class="self-link" href="#write-create"></a></h3>
-   <p>A client creates a metadata record by sending an HTTP <code>POST</code> request to a container whose <code>ldp:hasMemberRelation</code> is the relation that will connect the new record to the container’s membership resource.
-The request body <em>MUST</em> be an RDF document in Turtle or JSON-LD describing the new entity, with a null relative IRI as the subject to be assigned by the FDP.</p>
+   <h3 class="heading settled" data-level="7.2" id="write-create"><span class="secno">7.2. </span><span class="content">Creating metadata records</span><a class="self-link" href="#write-create"></a></h3>
+   
+A client creates a metadata record by sending an HTTP <code>POST</code> request to a container whose <code>ldp:hasMemberRelation</code> is the relation that will connect the new record to the container’s membership resource.
+The request body <em>MUST</em> be an RDF document in Turtle or JSON-LD describing the new entity, with a null relative IRI as the subject to be assigned by the FDP.
+
+
    <p>On a successful creation, the FDP <em>MUST</em>:</p>
    <ul>
     <li data-md>
@@ -1881,188 +1989,245 @@ The request body <em>MUST</em> be an RDF document in Turtle or JSON-LD describin
     <li data-md>
      <p>add the new IRI as an <code>ldp:contains</code> value of the container and add the membership triple connecting the membership resource to the new record through the member relation;</p>
     <li data-md>
-     <p>create the FDP Metadata Record (<a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata {#metadata-record}</a>) of the new record, setting <code>dcterms:issued</code> and <code>dcterms:modified</code> to the time of creation.</p>
+     <p>create the FDP Metadata Record (<a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata</a>) of the new record, setting <code>dcterms:issued</code> and <code>dcterms:modified</code> to the time of creation.</p>
    </ul>
-   <p>Before accepting the record, the FDP <em>MUST</em> validate it as specified in <a href="#write-validation">§ 7.6 Validation {#write-validation}</a>.
+   <p>Before accepting the record, the FDP <em>MUST</em> validate it as specified in <a href="#write-validation">§ 7.6 Validation</a>.
 The FDP <em>MAY</em> honour a <code>Slug</code> header as a hint for the assigned IRI.</p>
-   <h3 class="heading settled" data-level="7.3" id="write-update"><span class="secno">7.3. </span><span class="content">Replacing and modifying metadata records {#write-update}</span><a class="self-link" href="#write-update"></a></h3>
-   <p>A client replaces a metadata record by sending an HTTP <code>PUT</code> request to its IRI, with the complete new record as the body.
+   <h3 class="heading settled" data-level="7.3" id="write-update"><span class="secno">7.3. </span><span class="content">Replacing and modifying metadata records</span><a class="self-link" href="#write-update"></a></h3>
+   
+A client replaces a metadata record by sending an HTTP <code>PUT</code> request to its IRI, with the complete new record as the body.
 A client modifies a metadata record by sending an HTTP <code>PATCH</code> request to its IRI.
-In both cases the FDP <em>MUST</em> validate the resulting record as specified in <a href="#write-validation">§ 7.6 Validation {#write-validation}</a> before applying the change, and <em>MUST</em> update <code>dcterms:modified</code> in the FDP Metadata Record.
-Properties maintained by the FDP, such as the navigation information and the link to the FDP Metadata Record, <em>MUST NOT</em> be modifiable by the client.</p>
+In both cases the FDP <em>MUST</em> validate the resulting record as specified in <a href="#write-validation">§ 7.6 Validation</a> before applying the change, and <em>MUST</em> update <code>dcterms:modified</code> in the FDP Metadata Record.
+Properties maintained by the FDP, such as the navigation information and the link to the FDP Metadata Record, <em>MUST NOT</em> be modifiable by the client.
+
+
    <p>The FDP <em>SHOULD</em> support the <code>If-Match</code> request header on <code>PUT</code> and <code>PATCH</code>, so that a client can avoid overwriting changes made by another client, and <em>MUST</em> then answer <code>412 Precondition Failed</code> when the condition is not met.</p>
    <p class="issue" id="issue-6c677278"><a class="self-link" href="#issue-6c677278"></a> <strong>DP-11 — PATCH format.</strong>
 LDP leaves the <code>PATCH</code> document format to the server.
 Options: (a) a subset of SPARQL 1.1 Update <a data-link-type="biblio" href="#biblio-sparql11-update" title="SPARQL 1.1 Update">[SPARQL11-UPDATE]</a> restricted to <code>INSERT DATA</code> and <code>DELETE DATA</code>, plus <code>DELETE/INSERT ... WHERE</code> on the record’s own triples; (b) N3 Patch, as mandated by the Solid Protocol; (c) LD Patch <a data-link-type="biblio" href="#biblio-ld-patch" title="Linked Data Patch Format">[LD-PATCH]</a>; (d) no <code>PATCH</code> support, only <code>PUT</code>.
 Proposed default: (a), because of its broad tooling support; the FDP would advertise the supported format in the <code>Accept-Patch</code> header.</p>
-   <h3 class="heading settled" data-level="7.4" id="write-delete"><span class="secno">7.4. </span><span class="content">Deleting metadata records {#write-delete}</span><a class="self-link" href="#write-delete"></a></h3>
-   <p>A client deletes a metadata record by sending an HTTP <code>DELETE</code> request to its IRI.
-On a successful deletion, the FDP <em>MUST</em> remove the record, its navigation information and its FDP Metadata Record, remove the <code>ldp:contains</code> and membership triples that referred to it from its parent container and membership resource, and answer subsequent <code>GET</code> requests for the record as specified in <a href="#read-errors">§ 5.6 Error responses {#read-errors}</a>.</p>
+   <h3 class="heading settled" data-level="7.4" id="write-delete"><span class="secno">7.4. </span><span class="content">Deleting metadata records</span><a class="self-link" href="#write-delete"></a></h3>
+   
+A client deletes a metadata record by sending an HTTP <code>DELETE</code> request to its IRI.
+On a successful deletion, the FDP <em>MUST</em> remove the record, its navigation information and its FDP Metadata Record, remove the <code>ldp:contains</code> and membership triples that referred to it from its parent container and membership resource, and answer subsequent <code>GET</code> requests for the record as specified in <a href="#read-errors">§ 5.6 Error responses</a>.
+
+
    <p class="issue" id="issue-a553c962"><a class="self-link" href="#issue-a553c962"></a> <strong>DP-12 — Deleting records that have members.</strong>
 Options: (a) the FDP MUST reject, with <code>409 Conflict</code>, the deletion of a record whose containers still list members; (b) the FDP MUST delete the members recursively; (c) the behaviour is chosen by the implementation and advertised.
 Proposed default: (a), as it prevents accidental loss of large sub-trees.</p>
-   <h3 class="heading settled" data-level="7.5" id="write-schemas"><span class="secno">7.5. </span><span class="content">Managing metadata schemas {#write-schemas}</span><a class="self-link" href="#write-schemas"></a></h3>
-   <p>A profile (<a href="#metadata-records">§ 4.2 Metadata records and profiles {#metadata-records}</a>) hosted by the FDP is a resource that is created, replaced and deleted with the same operations as metadata records, with a SHACL shapes graph as the request body.
-The FDP <em>MUST</em> validate that a submitted schema is a syntactically valid SHACL shapes graph that declares its target class, and <em>MUST</em> reject the deletion of a profile that is still referenced by metadata records it serves, with <code>409 Conflict</code>.</p>
+   <h3 class="heading settled" data-level="7.5" id="write-schemas"><span class="secno">7.5. </span><span class="content">Managing metadata schemas</span><a class="self-link" href="#write-schemas"></a></h3>
+   
+A profile (<a href="#metadata-records">§ 4.2 Metadata records and profiles</a>) hosted by the FDP is a resource that is created, replaced and deleted with the same operations as metadata records, with a SHACL shapes graph as the request body.
+The FDP <em>MUST</em> validate that a submitted schema is a syntactically valid SHACL shapes graph that declares its target class, and <em>MUST</em> reject the deletion of a profile that is still referenced by metadata records it serves, with <code>409 Conflict</code>.
+
+
    <p class="issue" id="issue-72d1b1d3"><a class="self-link" href="#issue-72d1b1d3"></a> <strong>DP-13 — Exposure of the profiles of an FDP.</strong>
 For clients to discover which profiles an FDP hosts and to create new ones, the profiles have to be reachable from the FDP metadata record.
 Options: (a) the FDP metadata record provides a container of its profiles as navigation information, with a dedicated member relation to be added to the FDP ontology; (b) profiles are discovered only through the <code>dcterms:conformsTo</code> values of the records; (c) profiles are listed through the <code>dcat:endpointDescription</code> of the FDP.
 Proposed default: (a).</p>
-   <h3 class="heading settled" data-level="7.6" id="write-validation"><span class="secno">7.6. </span><span class="content">Validation {#write-validation}</span><a class="self-link" href="#write-validation"></a></h3>
-   <p>Before accepting a created, replaced or modified metadata record, the FDP <em>MUST</em> validate the resulting record against the metadata schema identified by the record’s profile, and <em>MUST</em> verify that the profile’s target class is the class of the record.
-When validation fails, the FDP <em>MUST</em> reject the request with status code <code>422 Unprocessable Content</code> <a data-link-type="biblio" href="#biblio-rfc9110" title="HTTP Semantics">[RFC9110]</a> and <em>MUST</em> include in the response body the SHACL validation report <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a> (<code>sh:ValidationReport</code>), serialised in one of the syntaxes of <a href="#read-records">§ 5.3 Retrieving metadata records {#read-records}</a>.</p>
+   <h3 class="heading settled" data-level="7.6" id="write-validation"><span class="secno">7.6. </span><span class="content">Validation</span><a class="self-link" href="#write-validation"></a></h3>
+   
+Before accepting a created, replaced or modified metadata record, the FDP <em>MUST</em> validate the resulting record against the metadata schema identified by the record’s profile, and <em>MUST</em> verify that the profile’s target class is the class of the record.
+When validation fails, the FDP <em>MUST</em> reject the request with status code <code>422 Unprocessable Content</code> <a data-link-type="biblio" href="#biblio-rfc9110" title="HTTP Semantics">[RFC9110]</a> and <em>MUST</em> include in the response body the SHACL validation report <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a> (<code>sh:ValidationReport</code>), serialised in one of the syntaxes of <a href="#read-records">§ 5.3 Retrieving metadata records</a>.
+
+
    <p class="issue" id="issue-132244e9"><a class="self-link" href="#issue-132244e9"></a> <strong>DP-17 — Profiles that a written record may reference.</strong>
-Validation requires the schema identified by the record’s profile; a profile may be hosted by the FDP or elsewhere (<a href="#read-schemas">§ 5.4 Retrieving metadata schemas {#read-schemas}</a>), and dereferencing an arbitrary remote profile during a write operation is a performance and security risk (<a href="#security-privacy">§ 10 Security and privacy considerations {#security-privacy}</a>).
+Validation requires the schema identified by the record’s profile; a profile may be hosted by the FDP or elsewhere (<a href="#read-schemas">§ 5.4 Retrieving metadata schemas</a>), and dereferencing an arbitrary remote profile during a write operation is a performance and security risk (<a href="#security-privacy">§ 10 Security and privacy considerations</a>).
 Options: (a) a written record may only reference profiles hosted by the FDP itself; (b) it may reference any dereferenceable profile, and the FDP MUST cache the schemas it validates against; (c) it may reference profiles on an allow-list configured by the FDP, hosted or remote.
 Proposed default: (c), with (a) as the minimal configuration.</p>
-   <h3 class="heading settled" data-level="7.7" id="write-auth"><span class="secno">7.7. </span><span class="content">Authentication and authorization {#write-auth}</span><a class="self-link" href="#write-auth"></a></h3>
-   <p>The FDP <em>MUST</em> require authentication for every write operation and <em>MUST</em> enforce an authorization policy determining which authenticated agents may perform which operations on which records and schemas.
-A write request without valid credentials <em>MUST</em> be answered with <code>401 Unauthorized</code>; a request by an authenticated agent that is not authorised for the operation <em>MUST</em> be answered with <code>403 Forbidden</code>.</p>
+   <h3 class="heading settled" data-level="7.7" id="write-auth"><span class="secno">7.7. </span><span class="content">Authentication and authorization</span><a class="self-link" href="#write-auth"></a></h3>
+   
+The FDP <em>MUST</em> require authentication for every write operation and <em>MUST</em> enforce an authorization policy determining which authenticated agents may perform which operations on which records and schemas.
+A write request without valid credentials <em>MUST</em> be answered with <code>401 Unauthorized</code>; a request by an authenticated agent that is not authorised for the operation <em>MUST</em> be answered with <code>403 Forbidden</code>.
+
+
    <p class="issue" id="issue-fd8feb13"><a class="self-link" href="#issue-fd8feb13"></a> <strong>DP-5 — Authentication and authorization mechanism.</strong>
 Options: (a) require that a mechanism exists, without mandating one, as written above; (b) mandate a specific mechanism, e.g. OpenID Connect for authentication, possibly Solid-OIDC, and an access control vocabulary such as WAC or ACP for authorization, following the Solid Protocol; (c) recommend a mechanism while allowing others.
 Proposed default: (a) for this version, with a recommendation to align with the Solid Protocol and the Linked Web Storage work as they stabilise.</p>
-   <h2 class="heading settled" data-level="8" id="bundle"><span class="secno">8. </span><span class="content">Bundle capability {#bundle}</span><a class="self-link" href="#bundle"></a></h2>
-   <p>The requirements in this section belong to the <strong>Bundle</strong> capability and form the FDP Bundle Retrieval and FDP Bundle Submission conformance classes (see DP-1 in <a href="#capability-dependencies">§ 3.1 Dependencies between capabilities {#capability-dependencies}</a>).
+   <h2 class="heading settled" data-level="8" id="bundle"><span class="secno">8. </span><span class="content">Bundle capability</span><a class="self-link" href="#bundle"></a></h2>
+   
+The requirements in this section belong to the <strong>Bundle</strong> capability and form the FDP Bundle Retrieval and FDP Bundle Submission conformance classes (see DP-1 in <a href="#capability-dependencies">§ 3.1 Dependencies between capabilities</a>).
 Bundle retrieval depends on the Read and Navigate capabilities; bundle submission depends on the Write capability.
-By providing this capability, an FDP enables bulk harvesting and indexing of its metadata content, bulk publication of metadata and the migration of metadata content between FDPs.</p>
+By providing this capability, an FDP enables bulk harvesting and indexing of its metadata content, bulk publication of metadata and the migration of metadata content between FDPs.
+
+
    <p><strong class="advisement"> This section is a first draft.
 Its requirements are proposed for discussion and will be refined before this version of the specification is finalised.</strong></p>
-   <h3 class="heading settled" data-level="8.1" id="bundle-overview"><span class="secno">8.1. </span><span class="content">Overview {#bundle-overview}</span><a class="self-link" href="#bundle-overview"></a></h3>
-   <p><em>This section is non-normative.</em></p>
+   <h3 class="heading settled" data-level="8.1" id="bundle-overview"><span class="secno">8.1. </span><span class="content">Overview</span><a class="self-link" href="#bundle-overview"></a></h3>
+   
+<em>This section is non-normative.</em>
+
+
    <p>In the core capabilities, client applications interact with metadata records individually, navigating from one record to the next.
 A <strong>bundle</strong> is a set of metadata records, together with their FDP Metadata Records and navigation information, exchanged in a single interaction.
 The bundle of the FDP metadata record therefore comprises the whole metadata content of the FDP.</p>
-   <h3 class="heading settled" data-level="8.2" id="bundle-format"><span class="secno">8.2. </span><span class="content">Bundle representation {#bundle-format}</span><a class="self-link" href="#bundle-format"></a></h3>
-   <p>The bundle of a metadata record comprises the record itself, its FDP Metadata Record (<a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata {#metadata-record}</a>), its navigation information (<a href="#navigation-information">§ 6.2 Navigation information {#navigation-information}</a>) and, recursively, the bundles of all the members listed in its navigation information.
+   <h3 class="heading settled" data-level="8.2" id="bundle-format"><span class="secno">8.2. </span><span class="content">Bundle representation</span><a class="self-link" href="#bundle-format"></a></h3>
+   
+The bundle of a metadata record comprises the record itself, its FDP Metadata Record (<a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata</a>), its navigation information (<a href="#navigation-information">§ 6.2 Navigation information</a>) and, recursively, the bundles of all the members listed in its navigation information.
 A bundle <em>MUST</em> be an RDF document containing the triples of all metadata records, FDP Metadata Records and containers it comprises.
-An FDP <em>MUST</em> support bundles in Turtle and JSON-LD and <em>MAY</em> support TriG <a data-link-type="biblio" href="#biblio-trig" title="RDF 1.1 TriG">[TRIG]</a> or JSON-LD named graphs, with one named graph per metadata record.</p>
+An FDP <em>MUST</em> support bundles in Turtle and JSON-LD and <em>MAY</em> support TriG <a data-link-type="biblio" href="#biblio-trig" title="RDF 1.1 TriG">[TRIG]</a> or JSON-LD named graphs, with one named graph per metadata record.
+
+
    <p class="issue" id="issue-8178b799"><a class="self-link" href="#issue-8178b799"></a> <strong>DP-14 — Discovery and representation of bundles.</strong>
 Options for discovery: (a) the FDP advertises a bundle endpoint for each record that has members through an HTTP <code>Link</code> header on the record, with a relation type to be registered (provisionally the extension relation type <code>https://w3id.org/fdp/rel/bundle</code>), and through a property in the FDP metadata record; (b) bundles are obtained from the record IRI itself with a request parameter or a dedicated media type profile.
 Options for representation: (i) a single RDF graph, which is lossless since records have disjoint subjects; (ii) an RDF dataset with one named graph per record, which preserves record boundaries explicitly.
 Proposed default: (a) and (i), with (ii) optional.</p>
-   <h3 class="heading settled" data-level="8.3" id="bundle-retrieval"><span class="secno">8.3. </span><span class="content">Bundle retrieval {#bundle-retrieval}</span><a class="self-link" href="#bundle-retrieval"></a></h3>
-   <p>An FDP providing bundle retrieval <em>MUST</em> serve the bundle of its own metadata record, i.e., its whole metadata content, and <em>SHOULD</em> serve the bundle of every metadata record that has members.
-Retrieval of a bundle is an HTTP <code>GET</code> request on the bundle endpoint, subject to the content negotiation rules of <a href="#read-records">§ 5.3 Retrieving metadata records {#read-records}</a>.</p>
+   <h3 class="heading settled" data-level="8.3" id="bundle-retrieval"><span class="secno">8.3. </span><span class="content">Bundle retrieval</span><a class="self-link" href="#bundle-retrieval"></a></h3>
+   
+An FDP providing bundle retrieval <em>MUST</em> serve the bundle of its own metadata record, i.e., its whole metadata content, and <em>SHOULD</em> serve the bundle of every metadata record that has members.
+Retrieval of a bundle is an HTTP <code>GET</code> request on the bundle endpoint, subject to the content negotiation rules of <a href="#read-records">§ 5.3 Retrieving metadata records</a>.
+
+
    <p>The FDP <em>SHOULD</em> support incremental retrieval, returning only the records whose FDP Metadata Record has a <code>dcterms:modified</code> value later than an instant given by the client.</p>
    <p class="issue" id="issue-58d3d117"><a class="self-link" href="#issue-58d3d117"></a> <strong>DP-15 — Incremental retrieval and deleted records.</strong>
 Incremental retrieval is only complete if a client can also learn which records were deleted since the given instant.
 Options: (a) the FDP keeps a tombstone FDP Metadata Record for deleted records for a period it chooses, and includes them in incremental bundles; (b) incremental bundles only carry created and modified records and clients periodically perform a full retrieval; (c) incremental retrieval is not specified.
 Proposed default: (a).</p>
-   <h3 class="heading settled" data-level="8.4" id="bundle-submission"><span class="secno">8.4. </span><span class="content">Bundle submission {#bundle-submission}</span><a class="self-link" href="#bundle-submission"></a></h3>
-   <p>An FDP providing bundle submission <em>MUST</em> accept an HTTP <code>POST</code> request with a bundle as its body on the bundle endpoint of a record that has members, and <em>MUST</em> create or replace the metadata records contained in the bundle as members of that record, applying the rules of <a href="#write">§ 7 Write capability {#write}</a> to each of them, including validation (<a href="#write-validation">§ 7.6 Validation {#write-validation}</a>) and authorization (<a href="#write-auth">§ 7.7 Authentication and authorization {#write-auth}</a>).
-FDP Metadata Records and navigation information contained in a submitted bundle are informative: the FDP <em>MUST</em> generate the FDP Metadata Records and the navigation information of the created or replaced records itself, as specified in <a href="#write-create">§ 7.2 Creating metadata records {#write-create}</a> and <a href="#write-update">§ 7.3 Replacing and modifying metadata records {#write-update}</a>, and <em>MAY</em> use the submitted values of <code>dcterms:issued</code> to record the original creation time.</p>
+   <h3 class="heading settled" data-level="8.4" id="bundle-submission"><span class="secno">8.4. </span><span class="content">Bundle submission</span><a class="self-link" href="#bundle-submission"></a></h3>
+   
+An FDP providing bundle submission <em>MUST</em> accept an HTTP <code>POST</code> request with a bundle as its body on the bundle endpoint of a record that has members, and <em>MUST</em> create or replace the metadata records contained in the bundle as members of that record, applying the rules of <a href="#write">§ 7 Write capability</a> to each of them, including validation (<a href="#write-validation">§ 7.6 Validation</a>) and authorization (<a href="#write-auth">§ 7.7 Authentication and authorization</a>).
+FDP Metadata Records and navigation information contained in a submitted bundle are informative: the FDP <em>MUST</em> generate the FDP Metadata Records and the navigation information of the created or replaced records itself, as specified in <a href="#write-create">§ 7.2 Creating metadata records</a> and <a href="#write-update">§ 7.3 Replacing and modifying metadata records</a>, and <em>MAY</em> use the submitted values of <code>dcterms:issued</code> to record the original creation time.
+
+
    <p>The response <em>MUST</em> be a report listing, for every metadata record in the bundle, whether it was created, replaced or rejected, and, for rejected records, the SHACL validation report or the reason for rejection.</p>
    <p class="issue" id="issue-bc4060f6"><a class="self-link" href="#issue-bc4060f6"></a> <strong>DP-16 — Atomicity of bundle submission.</strong>
 Options: (a) a bundle is applied atomically: if any record is rejected, no record is created or replaced; (b) a bundle is applied record by record, and the report states the outcome of each; (c) the client chooses between (a) and (b) with a request parameter.
 Proposed default: (c), with (b) as the default behaviour.</p>
-   <h2 class="heading settled" data-level="9" id="conformance"><span class="secno">9. </span><span class="content">Conformance {#conformance}</span><a class="self-link" href="#conformance"></a></h2>
-   <p>This section defines the conformance classes of this specification and the criteria of each class.
+   <h2 class="heading settled" data-level="9" id="conformance"><span class="secno">9. </span><span class="content">Conformance</span><a class="self-link" href="#conformance"></a></h2>
+   
+This section defines the conformance classes of this specification and the criteria of each class.
 An application is a <strong>FAIR Data Point</strong> if and only if it conforms to the FDP Core conformance class.
-An application <em>MAY</em> additionally claim conformance to any of the other conformance classes for which it satisfies all criteria, provided that it also conforms to the classes they depend on (<a href="#capability-dependencies">§ 3.1 Dependencies between capabilities {#capability-dependencies}</a>).</p>
-   <h3 class="heading settled" data-level="9.1" id="conformance-classes"><span class="secno">9.1. </span><span class="content">Conformance classes {#conformance-classes}</span><a class="self-link" href="#conformance-classes"></a></h3>
-   <h4 class="heading settled" data-level="9.1.1" id="conformance-core"><span class="secno">9.1.1. </span><span class="content">FDP Core {#conformance-core}</span><a class="self-link" href="#conformance-core"></a></h4>
-   <p>The FDP Core conformance class comprises the Read (<a href="#read">§ 5 Read capability {#read}</a>) and Navigate (<a href="#navigate">§ 6 Navigate capability {#navigate}</a>) capabilities.
+An application <em>MAY</em> additionally claim conformance to any of the other conformance classes for which it satisfies all criteria, provided that it also conforms to the classes they depend on (<a href="#capability-dependencies">§ 3.1 Dependencies between capabilities</a>).
+
+
+   <h3 class="heading settled" data-level="9.1" id="conformance-classes"><span class="secno">9.1. </span><span class="content">Conformance classes</span><a class="self-link" href="#conformance-classes"></a></h3>
+   <h4 class="heading settled" data-level="9.1.1" id="conformance-core"><span class="secno">9.1.1. </span><span class="content">FDP Core</span><a class="self-link" href="#conformance-core"></a></h4>
+   
+The FDP Core conformance class comprises the Read (<a href="#read">§ 5 Read capability</a>) and Navigate (<a href="#navigate">§ 6 Navigate capability</a>) capabilities.
 It has no prerequisites.
-An application conforms to FDP Core if it satisfies all of the following criteria:</p>
+An application conforms to FDP Core if it satisfies all of the following criteria:
+
+
    <ol>
     <li data-md>
-     <p>Its root URL provides its own metadata record, conforming to the FAIR Data Point metadata schema (<a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata {#fair-data-point-metadata}</a>), as specified in <a href="#read-root">§ 5.2 Root URL {#read-root}</a>.</p>
+     <p>Its root URL provides its own metadata record, conforming to the FAIR Data Point metadata schema (<a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata</a>), as specified in <a href="#read-root">§ 5.2 Root URL</a>.</p>
     <li data-md>
-     <p>Every metadata record is retrievable in at least RDF Turtle and JSON-LD, with RDF Turtle as the default, as specified in <a href="#read-records">§ 5.3 Retrieving metadata records {#read-records}</a>.</p>
+     <p>Every metadata record is retrievable in at least RDF Turtle and JSON-LD, with RDF Turtle as the default, as specified in <a href="#read-records">§ 5.3 Retrieving metadata records</a>.</p>
     <li data-md>
-     <p>Every metadata record states the class of the described entity, and the most specific class of the content model it specialises, as specified in <a href="#content-model">§ 4.1 Content model {#content-model}</a>.</p>
+     <p>Every metadata record states the class of the described entity, and the most specific class of the content model it specialises, as specified in <a href="#content-model">§ 4.1 Content model</a>.</p>
     <li data-md>
-     <p>Every metadata record references its profile, and every profile resolves to a metadata schema in SHACL whose target class is a class of the content model, as specified in <a href="#metadata-records">§ 4.2 Metadata records and profiles {#metadata-records}</a> and <a href="#read-schemas">§ 5.4 Retrieving metadata schemas {#read-schemas}</a>.</p>
+     <p>Every metadata record references its profile, and every profile resolves to a metadata schema in SHACL whose target class is a class of the content model, as specified in <a href="#metadata-records">§ 4.2 Metadata records and profiles</a> and <a href="#read-schemas">§ 5.4 Retrieving metadata schemas</a>.</p>
     <li data-md>
-     <p>Every metadata record has a retrievable FDP Metadata Record, as specified in <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata {#metadata-record}</a> and <a href="#read-metadata-records">§ 5.5 Retrieving FDP Metadata Records {#read-metadata-records}</a>.</p>
+     <p>Every metadata record has a retrievable FDP Metadata Record, as specified in <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata</a> and <a href="#read-metadata-records">§ 5.5 Retrieving FDP Metadata Records</a>.</p>
     <li data-md>
-     <p>Every metadata record of a catalog, if any, conforms to the catalog metadata schema (<a href="#catalog-metadata">§ 4.5 Catalog metadata {#catalog-metadata}</a>).</p>
+     <p>Every metadata record of a catalog, if any, conforms to the catalog metadata schema (<a href="#catalog-metadata">§ 4.5 Catalog metadata</a>).</p>
     <li data-md>
-     <p>Every metadata record that leads to other metadata records provides navigation information, as specified in <a href="#navigation-information">§ 6.2 Navigation information {#navigation-information}</a>.</p>
+     <p>Every metadata record that leads to other metadata records provides navigation information, as specified in <a href="#navigation-information">§ 6.2 Navigation information</a>.</p>
     <li data-md>
-     <p>Every metadata record is reachable from the root URL through the navigation information, as specified in <a href="#navigate-traversal">§ 6.3 Traversing the content of an FDP {#navigate-traversal}</a>.</p>
+     <p>Every metadata record is reachable from the root URL through the navigation information, as specified in <a href="#navigate-traversal">§ 6.3 Traversing the content of an FDP</a>.</p>
     <li data-md>
-     <p>Requests that cannot be served are answered as specified in <a href="#read-errors">§ 5.6 Error responses {#read-errors}</a>.</p>
+     <p>Requests that cannot be served are answered as specified in <a href="#read-errors">§ 5.6 Error responses</a>.</p>
    </ol>
-   <h4 class="heading settled" data-level="9.1.2" id="conformance-write"><span class="secno">9.1.2. </span><span class="content">FDP Write {#conformance-write}</span><a class="self-link" href="#conformance-write"></a></h4>
-   <p>The FDP Write conformance class comprises the Write capability (<a href="#write">§ 7 Write capability {#write}</a>).
+   <h4 class="heading settled" data-level="9.1.2" id="conformance-write"><span class="secno">9.1.2. </span><span class="content">FDP Write</span><a class="self-link" href="#conformance-write"></a></h4>
+   
+The FDP Write conformance class comprises the Write capability (<a href="#write">§ 7 Write capability</a>).
 Its prerequisite is FDP Core.
-An application conforms to FDP Write if it satisfies all of the following criteria:</p>
+An application conforms to FDP Write if it satisfies all of the following criteria:
+
+
    <ol>
     <li data-md>
-     <p>Metadata records can be created, replaced, modified and deleted as specified in <a href="#write-create">§ 7.2 Creating metadata records {#write-create}</a>, <a href="#write-update">§ 7.3 Replacing and modifying metadata records {#write-update}</a> and <a href="#write-delete">§ 7.4 Deleting metadata records {#write-delete}</a>.</p>
+     <p>Metadata records can be created, replaced, modified and deleted as specified in <a href="#write-create">§ 7.2 Creating metadata records</a>, <a href="#write-update">§ 7.3 Replacing and modifying metadata records</a> and <a href="#write-delete">§ 7.4 Deleting metadata records</a>.</p>
     <li data-md>
-     <p>Metadata schemas hosted by the application can be managed as specified in <a href="#write-schemas">§ 7.5 Managing metadata schemas {#write-schemas}</a>.</p>
+     <p>Metadata schemas hosted by the application can be managed as specified in <a href="#write-schemas">§ 7.5 Managing metadata schemas</a>.</p>
     <li data-md>
-     <p>Every written record is validated against its metadata schema, and rejected with a validation report when invalid, as specified in <a href="#write-validation">§ 7.6 Validation {#write-validation}</a>.</p>
+     <p>Every written record is validated against its metadata schema, and rejected with a validation report when invalid, as specified in <a href="#write-validation">§ 7.6 Validation</a>.</p>
     <li data-md>
-     <p>The FDP Metadata Record of every written record is maintained as specified in <a href="#write-create">§ 7.2 Creating metadata records {#write-create}</a> and <a href="#write-update">§ 7.3 Replacing and modifying metadata records {#write-update}</a>.</p>
+     <p>The FDP Metadata Record of every written record is maintained as specified in <a href="#write-create">§ 7.2 Creating metadata records</a> and <a href="#write-update">§ 7.3 Replacing and modifying metadata records</a>.</p>
     <li data-md>
-     <p>Write operations are authenticated and authorised as specified in <a href="#write-auth">§ 7.7 Authentication and authorization {#write-auth}</a>.</p>
+     <p>Write operations are authenticated and authorised as specified in <a href="#write-auth">§ 7.7 Authentication and authorization</a>.</p>
    </ol>
-   <h4 class="heading settled" data-level="9.1.3" id="conformance-bundle-retrieval"><span class="secno">9.1.3. </span><span class="content">FDP Bundle Retrieval {#conformance-bundle-retrieval}</span><a class="self-link" href="#conformance-bundle-retrieval"></a></h4>
-   <p>The FDP Bundle Retrieval conformance class comprises the retrieval half of the Bundle capability (<a href="#bundle">§ 8 Bundle capability {#bundle}</a>).
+   <h4 class="heading settled" data-level="9.1.3" id="conformance-bundle-retrieval"><span class="secno">9.1.3. </span><span class="content">FDP Bundle Retrieval</span><a class="self-link" href="#conformance-bundle-retrieval"></a></h4>
+   
+The FDP Bundle Retrieval conformance class comprises the retrieval half of the Bundle capability (<a href="#bundle">§ 8 Bundle capability</a>).
 Its prerequisite is FDP Core.
-An application conforms to FDP Bundle Retrieval if it satisfies all of the following criteria:</p>
+An application conforms to FDP Bundle Retrieval if it satisfies all of the following criteria:
+
+
    <ol>
     <li data-md>
-     <p>The bundle of its own metadata record is retrievable as specified in <a href="#bundle-retrieval">§ 8.3 Bundle retrieval {#bundle-retrieval}</a>, in the representations specified in <a href="#bundle-format">§ 8.2 Bundle representation {#bundle-format}</a>.</p>
+     <p>The bundle of its own metadata record is retrievable as specified in <a href="#bundle-retrieval">§ 8.3 Bundle retrieval</a>, in the representations specified in <a href="#bundle-format">§ 8.2 Bundle representation</a>.</p>
     <li data-md>
-     <p>The bundle endpoints are discoverable as specified in <a href="#bundle-format">§ 8.2 Bundle representation {#bundle-format}</a>.</p>
+     <p>The bundle endpoints are discoverable as specified in <a href="#bundle-format">§ 8.2 Bundle representation</a>.</p>
    </ol>
-   <h4 class="heading settled" data-level="9.1.4" id="conformance-bundle-submission"><span class="secno">9.1.4. </span><span class="content">FDP Bundle Submission {#conformance-bundle-submission}</span><a class="self-link" href="#conformance-bundle-submission"></a></h4>
-   <p>The FDP Bundle Submission conformance class comprises the submission half of the Bundle capability (<a href="#bundle">§ 8 Bundle capability {#bundle}</a>).
+   <h4 class="heading settled" data-level="9.1.4" id="conformance-bundle-submission"><span class="secno">9.1.4. </span><span class="content">FDP Bundle Submission</span><a class="self-link" href="#conformance-bundle-submission"></a></h4>
+   
+The FDP Bundle Submission conformance class comprises the submission half of the Bundle capability (<a href="#bundle">§ 8 Bundle capability</a>).
 Its prerequisites are FDP Core and FDP Write.
-An application conforms to FDP Bundle Submission if it satisfies all of the following criteria:</p>
+An application conforms to FDP Bundle Submission if it satisfies all of the following criteria:
+
+
    <ol>
     <li data-md>
-     <p>Bundles are accepted, validated and applied as specified in <a href="#bundle-submission">§ 8.4 Bundle submission {#bundle-submission}</a>.</p>
+     <p>Bundles are accepted, validated and applied as specified in <a href="#bundle-submission">§ 8.4 Bundle submission</a>.</p>
     <li data-md>
-     <p>Every submission is answered with a report as specified in <a href="#bundle-submission">§ 8.4 Bundle submission {#bundle-submission}</a>.</p>
+     <p>Every submission is answered with a report as specified in <a href="#bundle-submission">§ 8.4 Bundle submission</a>.</p>
    </ol>
-   <h3 class="heading settled" data-level="9.2" id="claiming-conformance"><span class="secno">9.2. </span><span class="content">Claiming conformance {#claiming-conformance}</span><a class="self-link" href="#claiming-conformance"></a></h3>
-   <p>An FDP declares the conformance classes it claims in its own metadata record, with the property <code>fdp-o:conformsToFdpSpec</code> (<a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata {#fair-data-point-metadata}</a>).</p>
+   <h3 class="heading settled" data-level="9.2" id="claiming-conformance"><span class="secno">9.2. </span><span class="content">Claiming conformance</span><a class="self-link" href="#claiming-conformance"></a></h3>
+   
+An FDP declares the conformance classes it claims in its own metadata record, with the property <code>fdp-o:conformsToFdpSpec</code> (<a href="#fair-data-point-metadata">§ 4.4 FAIR Data Point metadata</a>).
+
+
    <p class="issue" id="issue-a21de37f"><a class="self-link" href="#issue-a21de37f"></a> **DP-6 — Values of <code>fdp-o:conformsToFdpSpec</code>.**
 Version 1.2 required a single value: a URL containing the version of the specification the FDP conforms to.
 With several conformance classes, one value no longer suffices.
 Options: (a) one value per claimed conformance class, being the IRI of the class in a versioned copy of this document, e.g. <code>https://specs.fairdatapoint.org/v2.0/#conformance-core</code>; (b) one value, the versioned URL of the specification, implying only FDP Core, and a separate property for the additional classes; (c) one value per class, using IRIs defined in the FDP ontology.
 Proposed default: (a).</p>
-   <h3 class="heading settled" data-level="9.3" id="client-conformance"><span class="secno">9.3. </span><span class="content">Client conformance {#client-conformance}</span><a class="self-link" href="#client-conformance"></a></h3>
-   <p>A <strong>FAIR Data Point client</strong> is an application that consumes the metadata content of FDPs, such as a harvester, a search engine or a metadata editor.
-This specification does not define a conformance class for clients, but a client that follows this specification:</p>
+   <h3 class="heading settled" data-level="9.3" id="client-conformance"><span class="secno">9.3. </span><span class="content">Client conformance</span><a class="self-link" href="#client-conformance"></a></h3>
+   
+A <strong>FAIR Data Point client</strong> is an application that consumes the metadata content of FDPs, such as a harvester, a search engine or a metadata editor.
+This specification does not define a conformance class for clients, but a client that follows this specification:
+
+
    <ul>
     <li data-md>
-     <p>starts from the root URL of an FDP and discovers its content through the navigation information, as specified in <a href="#navigate-traversal">§ 6.3 Traversing the content of an FDP {#navigate-traversal}</a>, without assuming a particular content structure;</p>
+     <p>starts from the root URL of an FDP and discovers its content through the navigation information, as specified in <a href="#navigate-traversal">§ 6.3 Traversing the content of an FDP</a>, without assuming a particular content structure;</p>
     <li data-md>
      <p>accepts RDF Turtle and <em>SHOULD</em> accept JSON-LD;</p>
     <li data-md>
      <p>ignores properties and classes it does not understand, rather than rejecting the record;</p>
     <li data-md>
-     <p>honours the caching and conditional request mechanisms of <a href="#read-records">§ 5.3 Retrieving metadata records {#read-records}</a>.</p>
+     <p>honours the caching and conditional request mechanisms of <a href="#read-records">§ 5.3 Retrieving metadata records</a>.</p>
    </ul>
-   <h2 class="heading settled" data-level="10" id="security-privacy"><span class="secno">10. </span><span class="content">Security and privacy considerations {#security-privacy}</span><a class="self-link" href="#security-privacy"></a></h2>
-   <p><em>This section is non-normative.</em></p>
+   <h2 class="heading settled" data-level="10" id="security-privacy"><span class="secno">10. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-privacy"></a></h2>
+   
+<em>This section is non-normative.</em>
+
+
    <p>An FDP publishes metadata, which is intended to be openly discoverable.
 Publishers should nevertheless be aware that metadata can reveal sensitive information about the described entities, for instance the existence of a dataset about a small population or the identity of a contact person, and should apply the access rights they express with <code>dcterms:accessRights</code> to the metadata records themselves where appropriate.</p>
-   <p>The Write capability (<a href="#write">§ 7 Write capability {#write}</a>) exposes the content of an FDP to modification.
-Implementations providing it should protect the write operations with the authentication and authorization measures of <a href="#write-auth">§ 7.7 Authentication and authorization {#write-auth}</a>, should validate every submitted record (<a href="#write-validation">§ 7.6 Validation {#write-validation}</a>) and should treat submitted RDF as untrusted input, in particular when it is later rendered for humans or used to construct queries.</p>
+   <p>The Write capability (<a href="#write">§ 7 Write capability</a>) exposes the content of an FDP to modification.
+Implementations providing it should protect the write operations with the authentication and authorization measures of <a href="#write-auth">§ 7.7 Authentication and authorization</a>, should validate every submitted record (<a href="#write-validation">§ 7.6 Validation</a>) and should treat submitted RDF as untrusted input, in particular when it is later rendered for humans or used to construct queries.</p>
    <p>Metadata records and schemas refer to external IRIs, e.g., profiles hosted elsewhere.
 Implementations that dereference such IRIs, for instance to validate a record against a remote schema, should guard against unavailable, slow or malicious remote resources.</p>
-   <h2 class="heading settled" data-level="11" id="changes"><span class="secno">11. </span><span class="content">Changes since version 1.2 {#changes}</span><a class="self-link" href="#changes"></a></h2>
-   <p><em>This appendix is non-normative.</em></p>
+   <h2 class="heading settled" data-level="11" id="changes"><span class="secno">11. </span><span class="content">Changes since version 1.2</span><a class="self-link" href="#changes"></a></h2>
+   
+<em>This appendix is non-normative.</em>
+
+
    <ul>
     <li data-md>
-     <p>The specification is organised in <strong>capabilities</strong> (Read, Navigate, Write, Bundle) with a <strong>conformance class</strong> for each (<a href="#capabilities">§ 3 Capabilities {#capabilities}</a>, <a href="#conformance">§ 9 Conformance {#conformance}</a>).
+     <p>The specification is organised in <strong>capabilities</strong> (Read, Navigate, Write, Bundle) with a <strong>conformance class</strong> for each (<a href="#capabilities">§ 3 Capabilities</a>, <a href="#conformance">§ 9 Conformance</a>).
 The former compliance criteria became the criteria of the FDP Core conformance class.</p>
     <li data-md>
      <p>The record-level properties <code>fdp-o:metadataIdentifier</code>, <code>fdp-o:metadataIssued</code> and <code>fdp-o:metadataModified</code> were removed from the metadata schemas.
-Meta-metadata is now carried by the <strong>FDP Metadata Record</strong> (<code>fdp-o:MetadataRecord</code>, also typed <code>dcat:CatalogRecord</code> for DCAT resources), see <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata {#metadata-record}</a>.</p>
+Meta-metadata is now carried by the <strong>FDP Metadata Record</strong> (<code>fdp-o:MetadataRecord</code>, also typed <code>dcat:CatalogRecord</code> for DCAT resources), see <a href="#metadata-record">§ 4.3 FDP Metadata Record: meta-metadata</a>.</p>
     <li data-md>
-     <p>The requirement that every FDP exposes at least one catalog was relaxed; the catalog schema applies when catalogs are exposed (<a href="#catalog-metadata">§ 4.5 Catalog metadata {#catalog-metadata}</a>, DP-4).</p>
+     <p>The requirement that every FDP exposes at least one catalog was relaxed; the catalog schema applies when catalogs are exposed (<a href="#catalog-metadata">§ 4.5 Catalog metadata</a>, DP-4).</p>
     <li data-md>
-     <p>The requirement that the target class of a metadata schema is a subclass of <code>dcat:Resource</code> was replaced by the requirement that it is a class of the content model, which includes <code>dcat:Distribution</code> and custom classes (<a href="#metadata-records">§ 4.2 Metadata records and profiles {#metadata-records}</a>).</p>
+     <p>The requirement that the target class of a metadata schema is a subclass of <code>dcat:Resource</code> was replaced by the requirement that it is a class of the content model, which includes <code>dcat:Distribution</code> and custom classes (<a href="#metadata-records">§ 4.2 Metadata records and profiles</a>).</p>
     <li data-md>
-     <p>Metadata records must state the most specific class of the content model that they specialise (<a href="#content-model">§ 4.1 Content model {#content-model}</a>, DP-3).</p>
+     <p>Metadata records must state the most specific class of the content model that they specialise (<a href="#content-model">§ 4.1 Content model</a>, DP-3).</p>
     <li data-md>
      <p>The profile reference (<code>dcterms:conformsTo</code>) on metadata records is now required, resolving an inconsistency between the former compliance criteria and the schemas.</p>
     <li data-md>
@@ -2071,7 +2236,7 @@ Meta-metadata is now carried by the <strong>FDP Metadata Record</strong> (<code>
      <p>The SHACL schemas were made consistent with the tables and were corrected: missing prefixes, an invalid empty <code>sh:maxCount</code>, a duplicated property shape, an undefined shape reference and invalid <code>sh:nodeKind</code> values were fixed.
 Cross-record constraints (<code>sh:node</code> and <code>sh:class</code> on the IRIs of member records) were replaced by <code>sh:nodeKind sh:IRI</code>, since the members' triples are not part of the record being validated; the expected classes of members are stated in the tables.</p>
     <li data-md>
-     <p>The container schema for the navigation information was generalised from the FAIR Data Point’s catalog container to any container (<a href="#navigation-information">§ 6.2 Navigation information {#navigation-information}</a>).</p>
+     <p>The container schema for the navigation information was generalised from the FAIR Data Point’s catalog container to any container (<a href="#navigation-information">§ 6.2 Navigation information</a>).</p>
     <li data-md>
      <p>The metadata model figure was redrawn for DCAT 3 and the classes introduced in this version.</p>
     <li data-md>
@@ -2131,8 +2296,8 @@ Options: (a) one class, FDP Bundle; (b) two classes, FDP Bundle Retrieval and FD
 Proposed default: (b), as reflected in this draft. <a class="issue-return" href="#issue-4bd46687" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-4 — Catalogs no longer mandatory.</strong>
 Version 1.2 required every FDP to expose at least one <code>dcat:Catalog</code>, directly related to the FDP through <code>fdp-o:metadataCatalog</code>.
-Since the navigation information (<a href="#navigate">§ 6 Navigate capability {#navigate}</a>) already tells a client which relation leads from a record to its members, the core does not need to hardcode the catalog as the first level of the content structure, and a minimal FDP that only publishes its own metadata is still useful, e.g., when newly deployed.
-Options: (a) keep at least one catalog mandatory, as in version 1.2; (b) catalogs are optional, but when an FDP exposes catalogs they must conform to <a href="#catalog-metadata">§ 4.5 Catalog metadata {#catalog-metadata}</a>; (c) catalogs are optional and their schema is left entirely to the deployment.
+Since the navigation information (<a href="#navigate">§ 6 Navigate capability</a>) already tells a client which relation leads from a record to its members, the core does not need to hardcode the catalog as the first level of the content structure, and a minimal FDP that only publishes its own metadata is still useful, e.g., when newly deployed.
+Options: (a) keep at least one catalog mandatory, as in version 1.2; (b) catalogs are optional, but when an FDP exposes catalogs they must conform to <a href="#catalog-metadata">§ 4.5 Catalog metadata</a>; (c) catalogs are optional and their schema is left entirely to the deployment.
 Proposed default: (b), as reflected in this draft. <a class="issue-return" href="#issue-b8236b40" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-3 — Explicit DCAT parent classes.</strong>
 Without the rule above, a client only learns that an <code>fdp-o:FAIRDataPoint</code> is also a <code>dcat:DataService</code> (and a <code>dcat:Resource</code>) through inference over the FDP ontology, which plain SHACL validation and plain SPARQL queries do not perform.
@@ -2146,7 +2311,7 @@ Related: the shared shapes <code>AgentShape</code> and <code>ContactPointShape</
 Proposed default: (a). <a class="issue-return" href="#issue-e6fcc460" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-2 — Location of the FDP Metadata Record.</strong>
 Options: (a) the FDP Metadata Record is a separate dereferenceable resource, linked from the metadata record with <code>foaf:isPrimaryTopicOf</code> and advertised in the HTTP response with a <code>Link</code> header, as written in this draft; (b) the FDP Metadata Record is embedded in the representation of the metadata record, as a second subject in the same RDF document, and has no separate URL; (c) both: embedded in the representation and also dereferenceable.
-Proposed default: (a), because it keeps one subject per response, allows caching and conditional requests to be driven by the record’s <code>dcterms:modified</code>, and lets bundles (<a href="#bundle">§ 8 Bundle capability {#bundle}</a>) carry records and their meta-metadata uniformly. <a class="issue-return" href="#issue-e57acb4a" title="Jump to section">↵</a></div>
+Proposed default: (a), because it keeps one subject per response, allows caching and conditional requests to be driven by the record’s <code>dcterms:modified</code>, and lets bundles (<a href="#bundle">§ 8 Bundle capability</a>) carry records and their meta-metadata uniformly. <a class="issue-return" href="#issue-e57acb4a" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-7 — Contact point on the FAIR Data Point.</strong>
 <code>dcat:contactPoint</code> with a <code>vcard:Kind</code> value is the only property in the FDP schema that requires the vCard vocabulary.
 Options: (a) keep it, with the <code>ContactPointShape</code> below; (b) drop it in favour of the publisher’s contact information; (c) keep it without constraining the shape of the value.
@@ -2155,7 +2320,7 @@ Proposed default: (a), because DCAT 3 defines <code>dcat:contactPoint</code> as 
 Options: (a) error responses use the Problem Details format <a data-link-type="biblio" href="#biblio-rfc9457" title="Problem Details for HTTP APIs">[RFC9457]</a> (<code>application/problem+json</code>); (b) error responses are RDF documents describing the error, in the same syntaxes as metadata records; (c) the format of error bodies is left unspecified.
 Proposed default: (a), as it is widely supported by HTTP tooling and independent of the RDF syntax negotiated for the records. <a class="issue-return" href="#issue-5049a5bd" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-8 — Paging of large containers.</strong>
-Options: (a) mandate LDP Paging for containers above a size that the FDP chooses; (b) recommend LDP Paging, as written above; (c) leave paging out of the specification and rely on the Bundle capability (<a href="#bundle">§ 8 Bundle capability {#bundle}</a>) for large-scale retrieval.
+Options: (a) mandate LDP Paging for containers above a size that the FDP chooses; (b) recommend LDP Paging, as written above; (c) leave paging out of the specification and rely on the Bundle capability (<a href="#bundle">§ 8 Bundle capability</a>) for large-scale retrieval.
 Proposed default: (b). <a class="issue-return" href="#issue-3b7305cd" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-11 — PATCH format.</strong>
 LDP leaves the <code>PATCH</code> document format to the server.
@@ -2169,7 +2334,7 @@ For clients to discover which profiles an FDP hosts and to create new ones, the 
 Options: (a) the FDP metadata record provides a container of its profiles as navigation information, with a dedicated member relation to be added to the FDP ontology; (b) profiles are discovered only through the <code>dcterms:conformsTo</code> values of the records; (c) profiles are listed through the <code>dcat:endpointDescription</code> of the FDP.
 Proposed default: (a). <a class="issue-return" href="#issue-72d1b1d3" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-17 — Profiles that a written record may reference.</strong>
-Validation requires the schema identified by the record’s profile; a profile may be hosted by the FDP or elsewhere (<a href="#read-schemas">§ 5.4 Retrieving metadata schemas {#read-schemas}</a>), and dereferencing an arbitrary remote profile during a write operation is a performance and security risk (<a href="#security-privacy">§ 10 Security and privacy considerations {#security-privacy}</a>).
+Validation requires the schema identified by the record’s profile; a profile may be hosted by the FDP or elsewhere (<a href="#read-schemas">§ 5.4 Retrieving metadata schemas</a>), and dereferencing an arbitrary remote profile during a write operation is a performance and security risk (<a href="#security-privacy">§ 10 Security and privacy considerations</a>).
 Options: (a) a written record may only reference profiles hosted by the FDP itself; (b) it may reference any dereferenceable profile, and the FDP MUST cache the schemas it validates against; (c) it may reference profiles on an allow-list configured by the FDP, hosted or remote.
 Proposed default: (c), with (a) as the minimal configuration. <a class="issue-return" href="#issue-132244e9" title="Jump to section">↵</a></div>
    <div class="issue"> <strong>DP-5 — Authentication and authorization mechanism.</strong>

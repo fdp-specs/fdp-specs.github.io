@@ -1,12 +1,10 @@
-# Navigate capability {#navigate}
-
+# Navigate capability # {#navigate}
 The requirements in this section belong to the **Navigate** capability and are part of the FDP Core conformance class.
 The Navigate capability depends on the Read capability ([[#read]]).
 By providing this capability, an FDP enables client applications to discover its whole metadata content starting from the root URL, without prior knowledge of how the content is organised.
 This is what allows, for instance, search engines and metadata aggregators to index the content of an FDP effortlessly.
 
-## Overview {#navigate-overview}
-
+## Overview ## {#navigate-overview}
 *This section is non-normative.*
 
 Since the FDP supports the provisioning of metadata describing different types of entities, and the relations among these metadata records can be customised, each FDP deployment may have a different metadata structure.
@@ -15,8 +13,7 @@ Another FDP, serving metadata about ontologies, taxonomies and vocabularies, cou
 With this flexibility, a client application would not have a predictable pattern to navigate the metadata content of an FDP unless it followed every IRI in the metadata, which may be extensive.
 Therefore, the FDP describes its own navigation structure, using the containment model of the Linked Data Platform (LDP) [[!LDP]].
 
-## Navigation information {#navigation-information}
-
+## Navigation information ## {#navigation-information}
 An FDP *MUST* describe the structure of its metadata content using LDP Direct Containers.
 
 Every metadata record that leads to other metadata records *MUST* provide **navigation information**: for each relation that connects the described entity to member entities whose metadata records the FDP serves, an `ldp:DirectContainer` such that:
@@ -54,15 +51,13 @@ In this example, the FDP (`<app>`) has the relation `fdp-o:metadataCatalog` with
 This is the parent-child relation that a client follows to navigate the metadata structure of the FDP.
 The container `<app/catalog/>` at the bottom of the example makes the navigation structure explicit: it is the container for `<app>` (the value of `ldp:membershipResource`), it relates `<app>` to its contained members using the relation `fdp-o:metadataCatalog` (the value of `ldp:hasMemberRelation`), and it lists the members with `ldp:contains`.
 
-## Traversing the content of an FDP {#navigate-traversal}
-
+## Traversing the content of an FDP ## {#navigate-traversal}
 A client traverses the content of an FDP by retrieving the metadata record at the root URL ([[#read-root]]), retrieving the metadata record of every IRI listed in `ldp:contains` in the navigation information of each record, and repeating the procedure for each retrieved record.
 Every metadata record served by an FDP *MUST* be reachable from the root URL through the navigation information, so that the traversal discovers the whole metadata content.
 
 Clients *MUST NOT* assume a particular content structure, such as a fixed depth or a fixed sequence of classes, and *MUST* tolerate cycles in the navigation information, e.g., by keeping track of the records already visited.
 
-## Large containers {#navigate-paging}
-
+## Large containers ## {#navigate-paging}
 A container may list a large number of members.
 An FDP *MAY* split the representation of such a container in pages, in which case it *SHOULD* follow LDP Paging [[LDP-PAGING]].
 

@@ -1,5 +1,4 @@
-# Changes since version 1.2 {#changes}
-
+# Changes since version 1.2 # {#changes}
 *This appendix is non-normative.*
 
 - The specification is organised in **capabilities** (Read, Navigate, Write, Bundle) with a **conformance class** for each ([[#capabilities]], [[#conformance]]).

@@ -1,5 +1,4 @@
-# Metadata model {#metadata-model}
-
+# Metadata model # {#metadata-model}
 The requirements in this section apply to every metadata record served by an FDP.
 They belong to the Read capability ([[#read]]) and are therefore part of the FDP Core conformance class.
 
@@ -17,8 +16,7 @@ Consequently, the first entity to provide metadata about is the FDP itself.
 When a client interacts with a service, it should know what it is dealing with.
 Therefore, the FDP provides metadata about itself and, from that point on, the client can navigate its metadata content to discover the other metadata records.
 
-## Content model {#content-model}
-
+## Content model ## {#content-model}
 The FDP uses the W3C Data Catalog Vocabulary (DCAT) as the basis for its metadata content.
 This version of the FDP specification adopts DCAT version 3 [[!VOCAB-DCAT-3]].
 Figure 4.1 depicts the DCAT 3 classes and properties used by the FDP and the FDP extensions to the DCAT model.
@@ -73,8 +71,7 @@ The FDP Reference Implementation already states the parent classes explicitly.
 Options: (a) records MUST state the most specific DCAT class in addition to the specialised class, as written above; (b) records MUST state the complete chain of parent classes up to `dcat:Resource`; (c) records SHOULD state the parent classes; (d) leave it to inference.
 Proposed default: (a).
 
-## Metadata records and profiles {#metadata-records}
-
+## Metadata records and profiles ## {#metadata-records}
 A **metadata record** is the RDF description of one entity of the content model.
 It is identified by the IRI of the described entity and is retrievable by dereferencing that IRI, as specified in [[#read]].
 
@@ -93,8 +90,7 @@ Options: (a) publish the shapes under a persistent namespace, e.g. `https://w3id
 Related: the shared shapes `AgentShape` and `ContactPointShape` are currently duplicated in each schema file so that every file is self-contained; under option (a) they could be published once and referenced.
 Proposed default: (a).
 
-## FDP Metadata Record: meta-metadata {#metadata-record}
-
+## FDP Metadata Record: meta-metadata ## {#metadata-record}
 Two levels of description have to be distinguished: the metadata *about the entity* (e.g., the title, publisher and license of a dataset) and the metadata *about the metadata record itself* (e.g., when the record was created and last modified in this FDP, and by whom).
 Previous versions of this specification mixed both levels by placing record-level properties (`fdp-o:metadataIdentifier`, `fdp-o:metadataIssued`, `fdp-o:metadataModified`) on the described entity.
 This version separates them.
@@ -133,8 +129,7 @@ path: rdf/example-metadata-record.ttl
 highlight: turtle
 </pre>
 
-## FAIR Data Point metadata {#fair-data-point-metadata}
-
+## FAIR Data Point metadata ## {#fair-data-point-metadata}
 The metadata record of the FDP itself is the only mandatory record of an FDP and the entry point for every client.
 It describes the FDP as a `dcat:DataService`, and it is the root from which the navigation information ([[#navigate]]) leads to the other records.
 
@@ -154,8 +149,7 @@ path: rdf/shacl-fdp.ttl
 highlight: turtle
 </pre>
 
-## Catalog metadata {#catalog-metadata}
-
+## Catalog metadata ## {#catalog-metadata}
 An FDP *MAY* organise the metadata records of other entities in catalogs.
 When an FDP serves metadata records of instances of `dcat:Catalog`, these records *MUST* conform to the following schema (see DP-4 in [[#content-model]]).
 
@@ -170,8 +164,7 @@ path: rdf/shacl-catalog.ttl
 highlight: turtle
 </pre>
 
-## Extending the content model {#extending-the-content-model}
-
+## Extending the content model ## {#extending-the-content-model}
 Beyond the FAIR Data Point and Catalog schemas, the metadata structure of an FDP varies from deployment to deployment.
 As the FDP is most commonly used to provide metadata of datasets, implementations typically also provide, following the DCAT model, metadata schemas for `dcat:Dataset` and `dcat:Distribution`.
 An FDP *MAY* replace or complement these with schemas for further classes of its content model, including classes that are not part of DCAT, e.g., semantic artefacts, software or documents, as illustrated in [[#publishing-other-types-of-content]].

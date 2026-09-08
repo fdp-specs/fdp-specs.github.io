@@ -1,5 +1,4 @@
-# Capabilities {#capabilities}
-
+# Capabilities # {#capabilities}
 *This section is non-normative, except for [[#capability-dependencies]].*
 
 The behaviour of a FAIR Data Point is organised in **capabilities**.
@@ -25,8 +24,7 @@ This specification defines four capabilities:
 :: The FDP exchanges bundles of metadata records in a single interaction, both for retrieval and for submission.
     By providing this capability an FDP enables bulk harvesting, bulk publication and the migration of metadata content between FDPs.
 
-## Dependencies between capabilities {#capability-dependencies}
-
+## Dependencies between capabilities ## {#capability-dependencies}
 Capabilities build on each other.
 An FDP that provides a capability *MUST* also provide the capabilities it depends on, as listed in the following table and depicted in Figure 3.1.
 
@@ -78,15 +76,13 @@ Should Bundle be a single conformance class, requiring an FDP to provide both re
 Options: (a) one class, FDP Bundle; (b) two classes, FDP Bundle Retrieval and FDP Bundle Submission.
 Proposed default: (b), as reflected in this draft.
 
-## Relation to the conformance classes {#capabilities-and-conformance}
-
+## Relation to the conformance classes ## {#capabilities-and-conformance}
 An application is a FAIR Data Point if it conforms to the **FDP Core** conformance class, i.e., if it provides the Read and Navigate capabilities.
 Read alone is deliberately not sufficient: serving individual records with content negotiation is what any linked data publisher does, while the navigation information is what makes the whole metadata content of an FDP discoverable in a predictable way.
 An FDP may additionally claim conformance to any of the other conformance classes for which it satisfies the requirements.
 The conformance classes and their criteria are defined in [[#conformance]].
 
-## Implementations {#implementations}
-
+## Implementations ## {#implementations}
 This specification describes the expected behaviour of a FAIR Data Point and is independent of any particular implementation.
 The <a href="https://github.com/FAIRDataTeam/FAIRDataPoint">FDP Reference Implementation (FDP-RI)</a> is one particular implementation of this specification, developed and maintained by the FAIR Data Team.
 Documentation about the FDP-RI, including its internal architecture and deployment instructions, is available at the <a href="https://fairdatapoint.readthedocs.io/">FDP-RI documentation</a>.

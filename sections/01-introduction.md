@@ -1,5 +1,4 @@
-# Introduction {#introduction}
-
+# Introduction # {#introduction}
 *This section is non-normative.*
 
 The FAIR Data Point (FDP) is a metadata service that provides access to metadata following the FAIR principles [[FAIR-principles]] [[FDP]].
@@ -23,8 +22,7 @@ An FDP has the following goals:
 - Allow consumers and users to discover information about digital objects they are interested in;
 - Provide meaningful information about digital objects for both humans and software agents.
 
-## Purpose and scope {#purpose}
-
+## Purpose and scope ## {#purpose}
 The purpose of this specification is to define the expected behaviour of a FAIR Data Point, i.e., the behaviour an application must exhibit in order to be considered an FDP.
 The specification is implementation-agnostic: it is primarily intended as a reference for developers willing to add FDP functionality to their existing applications or to develop their own FAIR Data Point implementation.
 It does not prescribe how a particular FDP implementation should be internally designed or engineered.
@@ -37,16 +35,14 @@ The remaining capabilities are optional.
 
 In order to better understand this specification, knowledge of RDF, LDP, SHACL and REST APIs is required.
 
-## Open decision points {#decision-points}
-
+## Open decision points ## {#decision-points}
 This draft deliberately leaves a number of design decisions open for review.
 They are marked in the text as numbered **decision points** (DP-*n*) in issue blocks, each stating the question, the options considered and, where there is one, a proposed default.
 The normative text surrounding a decision point is written for the proposed default, so that the document remains complete and readable; the issue block describes what would change under the other options.
 All decision points are collected in the Issues Index at the end of this document.
 Comments are welcome in the <a href="https://github.com/fdp-specs/fdp-specs.github.io/issues">issue tracker</a>.
 
-## Document conventions {#document-conventions}
-
+## Document conventions ## {#document-conventions}
 Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the normative parts of this document are to be interpreted as described in RFC 2119. [[!RFC2119]]
 

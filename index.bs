@@ -8,6 +8,7 @@ Level: none
 !Version: 2.0
 ED: https://specs.fairdatapoint.org/
 Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
+Editor: Dennis van , Health-RI, https://www.health-ri.nl/
 Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
 Former Editor: Rajaram Kaliyaperumal, LUMC, https://www.lumc.nl/
 Abstract: This document specifies the FAIR Data Point (FDP), a metadata service that exposes machine-actionable metadata following the FAIR principles.

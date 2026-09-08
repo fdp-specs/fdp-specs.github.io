@@ -1,5 +1,4 @@
-# Security and privacy considerations {#security-privacy}
-
+# Security and privacy considerations # {#security-privacy}
 *This section is non-normative.*
 
 An FDP publishes metadata, which is intended to be openly discoverable.
