@@ -1,9 +1,9 @@
-@base            <https://fairdatapoint.org/> .
+@base            <https://example.fairdatapoint.org/fdp-api/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix prof:    <http://www.w3.org/ns/dx/prof/> .
 @prefix role:    <http://www.w3.org/ns/dx/prof/role/> .
 
-<app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c>
+<profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c>
   a prof:Profile ;
   dcterms:title "FAIR Data Point metadata profile"@en ;
   dcterms:description "Constraints on the metadata record of a FAIR Data Point, as defined by the FDP specification version 2.0."@en ;
@@ -11,7 +11,7 @@
   prof:hasResource [
     a prof:ResourceDescriptor ;
     prof:hasRole role:validation ;
-    prof:hasArtifact <app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c/shacl> ;
+    prof:hasArtifact <profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c/shacl> ;
     dcterms:conformsTo <https://www.w3.org/TR/shacl/> ;
     dcterms:format <https://www.iana.org/assignments/media-types/text/turtle> ;
   ] , [

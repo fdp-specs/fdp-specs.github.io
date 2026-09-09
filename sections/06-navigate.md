@@ -50,9 +50,9 @@ path: rdf/example-metadataservice.ttl
 highlight: turtle
 </pre>
 
-In this example, the FDP (`<app>`) has the relation `fdp-o:metadataCatalog` with its catalogs.
+In this example, the base IRI `https://example.fairdatapoint.org/fdp-api/` is the root URL of the FDP, and the other IRIs are written relative to it. The FDP, written as `<>`, has the relation `fdp-o:metadataCatalog` with its catalogs.
 This is the parent-child relation that a client follows to navigate the metadata structure of the FDP.
-The container `<app/catalog/>` at the bottom of the example makes the navigation structure explicit: it is the container for `<app>` (the value of `ldp:membershipResource`), it relates `<app>` to its contained members using the relation `fdp-o:metadataCatalog` (the value of `ldp:hasMemberRelation`), and it lists the members with `ldp:contains`.
+The container `<catalog/>` at the bottom of the example makes the navigation structure explicit: it is the container for the FDP (the value of `ldp:membershipResource`), it relates the FDP to its contained members using the relation `fdp-o:metadataCatalog` (the value of `ldp:hasMemberRelation`), and it lists the members with `ldp:contains`.
 
 ## Traversing the content of an FDP ## {#navigate-traversal}
 A client traverses the content of an FDP by retrieving the metadata record at the root URL ([[#read-root]]), retrieving the metadata record of every IRI listed in `ldp:contains` in the navigation information of each record, and repeating the procedure for each retrieved record.

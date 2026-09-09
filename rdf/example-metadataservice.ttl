@@ -1,4 +1,5 @@
-@base            <https://fairdatapoint.org/> .
+@base            <https://example.fairdatapoint.org/fdp-api/> .
+# Relative IRIs resolve against the base IRI. <> denotes the base IRI itself, the root URL of this FDP.
 @prefix dcat:    <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
@@ -6,37 +7,37 @@
 @prefix ldp:     <http://www.w3.org/ns/ldp#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
-<app>
+<>
   a fdp-o:FAIRDataPoint , dcat:DataService ;
   dcterms:title "Demonstration FAIR Data Point"@en ;
   dcterms:description "This FAIR Data Point deployment is used for demonstration of the application and to allow the navigation through its metadata content. The metadata presented here is also for demonstration purposes only and does not necessarily describe properly the related resources."@en ;
-  dcterms:publisher <app#publisher> ;
+  dcterms:publisher <#publisher> ;
   dcterms:license <https://creativecommons.org/licenses/by-nc-nd/4.0/> ;
   dcterms:issued "2020-05-29T09:55:08.580Z"^^xsd:dateTime ;
   dcterms:modified "2020-09-30T11:17:43.008Z"^^xsd:dateTime ;
-  dcterms:conformsTo <app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c> ;
-  dcat:endpointURL <app> ;
-  fdp-o:hasMetadata <app/record> ;
+  dcterms:conformsTo <profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c> ;
+  dcat:endpointURL <> ;
+  fdp-o:hasMetadata <record> ;
   fdp-o:conformsToFdpSpec <https://specs.fairdatapoint.org/v2.0/#conformance-core> ;
   fdp-o:metadataCatalog
-    <app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8> ,
-    <app/catalog/508d3c96-8106-49d2-910c-13706aca75e3> ,
-    <app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af> ,
-    <app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47> ,
-    <app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1> .
+    <catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8> ,
+    <catalog/508d3c96-8106-49d2-910c-13706aca75e3> ,
+    <catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af> ,
+    <catalog/a46aa445-3be0-4db8-8968-3338d1061a47> ,
+    <catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1> .
 
-<app#publisher>
+<#publisher>
   a foaf:Agent ;
   foaf:name "Demonstration FAIR Data Point team" .
 
-<app/catalog/>
+<catalog/>
   a ldp:DirectContainer ;
   dcterms:title "Catalogs"@en ;
-  ldp:membershipResource <app> ;
+  ldp:membershipResource <> ;
   ldp:hasMemberRelation fdp-o:metadataCatalog ;
   ldp:contains
-    <app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8> ,
-    <app/catalog/508d3c96-8106-49d2-910c-13706aca75e3> ,
-    <app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af> ,
-    <app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47> ,
-    <app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1> .
+    <catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8> ,
+    <catalog/508d3c96-8106-49d2-910c-13706aca75e3> ,
+    <catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af> ,
+    <catalog/a46aa445-3be0-4db8-8968-3338d1061a47> ,
+    <catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1> .

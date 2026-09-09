@@ -271,7 +271,7 @@ wheels = [
 
 [[package]]
 name = "fdp-specs"
-version = "2.0.0"
+version = "1.2.0"
 source = { virtual = "." }
 
 [package.dev-dependencies]
@@ -282,7 +282,7 @@ dev = [
 [package.metadata]
 
 [package.metadata.requires-dev]
-dev = [{ name = "bikeshed", specifier = ">=7.0.7" }]
+dev = [{ name = "bikeshed", specifier = ">=7.1.2" }]
 
 [[package]]
 name = "frozenlist"

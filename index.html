@@ -8,7 +8,7 @@
   <meta content="Bikeshed version ac92c2f0d, updated Fri Aug 21 16:01:29 2026 -0700" name="generator">
   <link href="https://specs.fairdatapoint.org/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="dd9a4eb38709db290020964a443475559fc571f5" name="revision">
+  <meta content="86dc078ce8593f475b9ae5127dc6577acde8ee57" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -569,7 +569,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </p>
    <h1 class="no-ref p-name" id="title">FAIR Data Point</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>,
-    <time class="dt-updated" datetime="2026-09-08">8 September 2026</time></p>
+    <time class="dt-updated" datetime="2026-09-09">9 September 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1183,12 +1183,12 @@ An FDP <em>MUST</em> provide a profile, and thereby a metadata schema, for every
   <c- p>].</c->
 </pre>
    <p>Example of the profile description referenced by the FAIR Data Point metadata record of <a href="#navigation-information">§ 6.2 Navigation information</a>:</p>
-<pre class="highlight include-code"><c- k>@base</c->            <c- g>&lt;https://fairdatapoint.org/></c-> <c- p>.</c->
+<pre class="highlight include-code"><c- k>@base</c->            <c- g>&lt;https://example.fairdatapoint.org/fdp-api/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>prof:</c->    <c- g>&lt;http://www.w3.org/ns/dx/prof/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>role:</c->    <c- g>&lt;http://www.w3.org/ns/dx/prof/role/></c-> <c- p>.</c->
 
-<c- g>&lt;app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c></c->
+<c- g>&lt;profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c></c->
   <c- b>a</c-> <c- nn>prof</c-><c- p>:</c-><c- f>Profile</c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>title</c-> <c- s>"FAIR Data Point metadata profile"</c-><c- o>@</c->en <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>description</c-> <c- s>"Constraints on the metadata record of a FAIR Data Point, as defined by the FDP specification version 2.0."</c-><c- o>@</c->en <c- p>;</c->
@@ -1196,7 +1196,7 @@ An FDP <em>MUST</em> provide a profile, and thereby a metadata schema, for every
   <c- nn>prof</c-><c- p>:</c-><c- f>hasResource</c-> <c- p>[</c->
     <c- b>a</c-> <c- nn>prof</c-><c- p>:</c-><c- f>ResourceDescriptor</c-> <c- p>;</c->
     <c- nn>prof</c-><c- p>:</c-><c- f>hasRole</c-> <c- nn>role</c-><c- p>:</c-><c- f>validation</c-> <c- p>;</c->
-    <c- nn>prof</c-><c- p>:</c-><c- f>hasArtifact</c-> <c- g>&lt;app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c/shacl></c-> <c- p>;</c->
+    <c- nn>prof</c-><c- p>:</c-><c- f>hasArtifact</c-> <c- g>&lt;profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c/shacl></c-> <c- p>;</c->
     <c- nn>dcterms</c-><c- p>:</c-><c- f>conformsTo</c-> <c- g>&lt;https://www.w3.org/TR/shacl/></c-> <c- p>;</c->
     <c- nn>dcterms</c-><c- p>:</c-><c- f>format</c-> <c- g>&lt;https://www.iana.org/assignments/media-types/text/turtle></c-> <c- p>;</c->
   <c- p>]</c-> <c- p>,</c-> <c- p>[</c->
@@ -1335,20 +1335,21 @@ Proposed default: (a) for both.</p>
   <c- p>].</c->
 </pre>
    <p>Example of the FDP Metadata Record of a FAIR Data Point:</p>
-<pre class="highlight include-code"><c- k>@base</c->            <c- g>&lt;https://fairdatapoint.org/></c-> <c- p>.</c->
+<pre class="highlight include-code"><c- k>@base</c->            <c- g>&lt;https://example.fairdatapoint.org/fdp-api/></c-> <c- p>.</c->
+<c- c># Relative IRIs resolve against the base IRI. &lt;> denotes the base IRI itself, the root URL of this FDP.</c->
 <c- k>@prefix</c-> <c- nn>dcat:</c->    <c- g>&lt;http://www.w3.org/ns/dcat#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>fdp-o:</c->   <c- g>&lt;https://w3id.org/fdp/fdp-o#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>foaf:</c->    <c- g>&lt;http://xmlns.com/foaf/0.1/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>xsd:</c->     <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
 
-<c- g>&lt;app/record></c->
+<c- g>&lt;record></c->
   <c- b>a</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>MetadataRecord</c-> <c- p>,</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>CatalogRecord</c-> <c- p>;</c->
-  <c- nn>fdp-o</c-><c- p>:</c-><c- f>isMetadataOf</c-> <c- g>&lt;app></c-> <c- p>;</c->
-  <c- nn>foaf</c-><c- p>:</c-><c- f>primaryTopic</c-> <c- g>&lt;app></c-> <c- p>;</c->
+  <c- nn>fdp-o</c-><c- p>:</c-><c- f>isMetadataOf</c-> <c- g>&lt;></c-> <c- p>;</c->
+  <c- nn>foaf</c-><c- p>:</c-><c- f>primaryTopic</c-> <c- g>&lt;></c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>issued</c-> <c- s>"2020-05-29T09:55:08.580Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>modified</c-> <c- s>"2020-09-30T11:17:43.008Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
-  <c- nn>dcterms</c-><c- p>:</c-><c- f>creator</c-> <c- g>&lt;app#publisher></c-> <c- p>.</c->
+  <c- nn>dcterms</c-><c- p>:</c-><c- f>creator</c-> <c- g>&lt;#publisher></c-> <c- p>.</c->
 </pre>
    <h3 class="heading settled" data-level="4.4" id="fair-data-point-metadata"><span class="secno">4.4. </span><span class="content">FAIR Data Point metadata</span><a class="self-link" href="#fair-data-point-metadata"></a></h3>
    
@@ -2069,7 +2070,8 @@ The IRI of each container <em>SHOULD</em> be dereferenceable, returning the desc
   <c- p>].</c->
 </pre>
    <p>The following RDF Turtle code shows an example of a FAIR Data Point metadata record with its navigation information.</p>
-<pre class="highlight include-code"><c- k>@base</c->            <c- g>&lt;https://fairdatapoint.org/></c-> <c- p>.</c->
+<pre class="highlight include-code"><c- k>@base</c->            <c- g>&lt;https://example.fairdatapoint.org/fdp-api/></c-> <c- p>.</c->
+<c- c># Relative IRIs resolve against the base IRI. &lt;> denotes the base IRI itself, the root URL of this FDP.</c->
 <c- k>@prefix</c-> <c- nn>dcat:</c->    <c- g>&lt;http://www.w3.org/ns/dcat#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>dcterms:</c-> <c- g>&lt;http://purl.org/dc/terms/></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>fdp-o:</c->   <c- g>&lt;https://w3id.org/fdp/fdp-o#></c-> <c- p>.</c->
@@ -2077,40 +2079,40 @@ The IRI of each container <em>SHOULD</em> be dereferenceable, returning the desc
 <c- k>@prefix</c-> <c- nn>ldp:</c->     <c- g>&lt;http://www.w3.org/ns/ldp#></c-> <c- p>.</c->
 <c- k>@prefix</c-> <c- nn>xsd:</c->     <c- g>&lt;http://www.w3.org/2001/XMLSchema#></c-> <c- p>.</c->
 
-<c- g>&lt;app></c->
+<c- g>&lt;></c->
   <c- b>a</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>FAIRDataPoint</c-> <c- p>,</c-> <c- nn>dcat</c-><c- p>:</c-><c- f>DataService</c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>title</c-> <c- s>"Demonstration FAIR Data Point"</c-><c- o>@</c->en <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>description</c-> <c- s>"This FAIR Data Point deployment is used for demonstration of the application and to allow the navigation through its metadata content. The metadata presented here is also for demonstration purposes only and does not necessarily describe properly the related resources."</c-><c- o>@</c->en <c- p>;</c->
-  <c- nn>dcterms</c-><c- p>:</c-><c- f>publisher</c-> <c- g>&lt;app#publisher></c-> <c- p>;</c->
+  <c- nn>dcterms</c-><c- p>:</c-><c- f>publisher</c-> <c- g>&lt;#publisher></c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>license</c-> <c- g>&lt;https://creativecommons.org/licenses/by-nc-nd/4.0/></c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>issued</c-> <c- s>"2020-05-29T09:55:08.580Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>modified</c-> <c- s>"2020-09-30T11:17:43.008Z"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>dateTime</c-> <c- p>;</c->
-  <c- nn>dcterms</c-><c- p>:</c-><c- f>conformsTo</c-> <c- g>&lt;app/profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c></c-> <c- p>;</c->
-  <c- nn>dcat</c-><c- p>:</c-><c- f>endpointURL</c-> <c- g>&lt;app></c-> <c- p>;</c->
-  <c- nn>fdp-o</c-><c- p>:</c-><c- f>hasMetadata</c-> <c- g>&lt;app/record></c-> <c- p>;</c->
+  <c- nn>dcterms</c-><c- p>:</c-><c- f>conformsTo</c-> <c- g>&lt;profile/77aaad6a-0136-4c6e-88b9-07ffccd0ee4c></c-> <c- p>;</c->
+  <c- nn>dcat</c-><c- p>:</c-><c- f>endpointURL</c-> <c- g>&lt;></c-> <c- p>;</c->
+  <c- nn>fdp-o</c-><c- p>:</c-><c- f>hasMetadata</c-> <c- g>&lt;record></c-> <c- p>;</c->
   <c- nn>fdp-o</c-><c- p>:</c-><c- f>conformsToFdpSpec</c-> <c- g>&lt;https://specs.fairdatapoint.org/v2.0/#conformance-core></c-> <c- p>;</c->
   <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataCatalog</c->
-    <c- g>&lt;app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8></c-> <c- p>,</c->
-    <c- g>&lt;app/catalog/508d3c96-8106-49d2-910c-13706aca75e3></c-> <c- p>,</c->
-    <c- g>&lt;app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af></c-> <c- p>,</c->
-    <c- g>&lt;app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47></c-> <c- p>,</c->
-    <c- g>&lt;app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1></c-> <c- p>.</c->
+    <c- g>&lt;catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8></c-> <c- p>,</c->
+    <c- g>&lt;catalog/508d3c96-8106-49d2-910c-13706aca75e3></c-> <c- p>,</c->
+    <c- g>&lt;catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af></c-> <c- p>,</c->
+    <c- g>&lt;catalog/a46aa445-3be0-4db8-8968-3338d1061a47></c-> <c- p>,</c->
+    <c- g>&lt;catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1></c-> <c- p>.</c->
 
-<c- g>&lt;app#publisher></c->
+<c- g>&lt;#publisher></c->
   <c- b>a</c-> <c- nn>foaf</c-><c- p>:</c-><c- f>Agent</c-> <c- p>;</c->
   <c- nn>foaf</c-><c- p>:</c-><c- f>name</c-> <c- s>"Demonstration FAIR Data Point team"</c-> <c- p>.</c->
 
-<c- g>&lt;app/catalog/></c->
+<c- g>&lt;catalog/></c->
   <c- b>a</c-> <c- nn>ldp</c-><c- p>:</c-><c- f>DirectContainer</c-> <c- p>;</c->
   <c- nn>dcterms</c-><c- p>:</c-><c- f>title</c-> <c- s>"Catalogs"</c-><c- o>@</c->en <c- p>;</c->
-  <c- nn>ldp</c-><c- p>:</c-><c- f>membershipResource</c-> <c- g>&lt;app></c-> <c- p>;</c->
+  <c- nn>ldp</c-><c- p>:</c-><c- f>membershipResource</c-> <c- g>&lt;></c-> <c- p>;</c->
   <c- nn>ldp</c-><c- p>:</c-><c- f>hasMemberRelation</c-> <c- nn>fdp-o</c-><c- p>:</c-><c- f>metadataCatalog</c-> <c- p>;</c->
   <c- nn>ldp</c-><c- p>:</c-><c- f>contains</c->
-    <c- g>&lt;app/catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8></c-> <c- p>,</c->
-    <c- g>&lt;app/catalog/508d3c96-8106-49d2-910c-13706aca75e3></c-> <c- p>,</c->
-    <c- g>&lt;app/catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af></c-> <c- p>,</c->
-    <c- g>&lt;app/catalog/a46aa445-3be0-4db8-8968-3338d1061a47></c-> <c- p>,</c->
-    <c- g>&lt;app/catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1></c-> <c- p>.</c->
+    <c- g>&lt;catalog/3dde263d-0a7c-4f2a-9813-ccb3a51f70a8></c-> <c- p>,</c->
+    <c- g>&lt;catalog/508d3c96-8106-49d2-910c-13706aca75e3></c-> <c- p>,</c->
+    <c- g>&lt;catalog/6e43c568-c6fa-41c8-a88a-7ee4c85035af></c-> <c- p>,</c->
+    <c- g>&lt;catalog/a46aa445-3be0-4db8-8968-3338d1061a47></c-> <c- p>,</c->
+    <c- g>&lt;catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1></c-> <c- p>.</c->
 </pre>
    <p>In this example, the FDP (<code>&lt;app></code>) has the relation <code>fdp-o:metadataCatalog</code> with its catalogs.
 This is the parent-child relation that a client follows to navigate the metadata structure of the FDP.
