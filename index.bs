@@ -2,7 +2,9 @@
 Title: FAIR Data Point
 Shortname: fdp
 Org: W3C
-Status: UD
+Group: fdpcg
+Status: CG-DRAFT
+Level: none
 ED: https://specs.fairdatapoint.org/
 Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
 Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
