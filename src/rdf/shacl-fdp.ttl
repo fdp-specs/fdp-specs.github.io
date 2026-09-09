@@ -1,55 +1,47 @@
-@prefix      : <http://fairdatapoint.org/> .
-@prefix  dcat: <http://www.w3.org/ns/dcat#> .
-@prefix   dct: <http://purl.org/dc/terms/> .
-@prefix fdp-o: <https://w3id.org/fdp/fdp-o#> .
-@prefix  foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix   ldp: <http://www.w3.org/ns/ldp#> .
-@prefix    sh: <http://www.w3.org/ns/shacl#> .
-@prefix   xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix :        <http://fairdatapoint.org/> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix ldp:     <http://www.w3.org/ns/ldp#> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 :FAIRDataPointShape a sh:NodeShape ;
   sh:targetClass fdp-o:FAIRDataPoint ;
   sh:property [
-    sh:path dct:title ;
+    sh:path dcterms:title ;
     sh:nodeKind sh:Literal ;
     sh:minCount 1 ;
   ], [
-    sh:path dct:hasVersion ;
-    sh:nodeKind sh:Literal ;
-    sh:maxCount ;
-  ], [
-    sh:path dct:description ;
+    sh:path dcterms:description ;
     sh:nodeKind sh:Literal ;
   ], [
-    sh:path fdp-o:metadataCatalog ;
-    sh:node :CatalogShape ;
-    sh:minCount 1;
-  ], [
-    sh:path dct:publisher ;
+    sh:path dcterms:publisher ;
     sh:node :AgentShape ;
     sh:minCount 1;
   ], [
-    sh:path dct:language ;
+    sh:path dcterms:language ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dct:license ;
+    sh:path dcterms:license ;
     sh:nodeKind sh:IRI ;
     sh:minCount 1;
     sh:maxCount 1 ;
   ], [
-    sh:path dct:conformsTo ;
+    sh:path dcterms:conformsTo ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
     sh:minCount 1;
   ], [
-    sh:path dct:rights ;
+    sh:path dcterms:rights ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dct:accessRights ;
+    sh:path dcterms:accessRights ;
     sh:nodeKind sh:IRI ;
   ], [
     sh:path dcat:contactPoint ;
-    sh:node sh:ContactPointShape ;
+    sh:node :ContactPointShape ;
   ], [
     sh:path dcat:keyword ;
     sh:nodeKind sh:Literal ;
@@ -57,18 +49,13 @@
     sh:path dcat:theme ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dcat:endPointURL ;
+    sh:path dcat:endpointURL ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path fdp-o:startDate ;
-    sh:datatype xsd:date ;
-    sh:maxCount 1 ;
-  ], [
-    sh:path fdp-o:endDate ;
-    sh:datatype xsd:date ;
-    sh:maxCount 1 ;
+    sh:path dcat:endpointDescription ;
+    sh:nodeKind sh:IRI ;
   ], [
     sh:path fdp-o:metadataIdentifier ;
     sh:nodeKind sh:IRI ;
@@ -76,19 +63,41 @@
     sh:minCount 1 ;
   ], [
     sh:path fdp-o:metadataIssued ;
+    sh:nodeKind sh:Literal ;
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path fdp-o:metadataIdentifier ;
+    sh:path fdp-o:metadataModified ;
+    sh:nodeKind sh:Literal ;
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path dct:conformsToFdpSpec ;
+    sh:path fdp-o:startDate ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path fdp-o:endDate ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path fdp-o:uiLanguage ;
+    sh:nodeKind sh:IRI ;
+  ], [
+    sh:path fdp-o:hasSoftwareVersion ;
+    sh:nodeKind sh:Literal ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path fdp-o:conformsToFdpSpec ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
     sh:minCount 1;
+  ], [
+    sh:path fdp-o:metadataCatalog ;
+    sh:node :CatalogShape ;
   ].
 
 :AgentShape a sh:NodeShape ;
@@ -114,7 +123,7 @@
   sh:property [
     sh:name "title" ;
     sh:description "Name identifying the member resources" ;
-    sh:path dct:title ;
+    sh:path dcterms:title ;
     sh:nodeKind sh:Literal ;
     sh:minCount 1 ;
     sh:uniqueLang true ;

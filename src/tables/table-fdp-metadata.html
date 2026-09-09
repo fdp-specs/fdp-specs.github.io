@@ -20,56 +20,56 @@
         </tr>
         <tr>
             <td>DC terms</td>
-            <td>dct:title</td>
+            <td>dcterms:title</td>
             <td>String</td>
             <td>1..*</td>
             <td>Name of the FAIR Data Point with the language tag.</td>
         </tr>
         <tr>
             <td></td>
-            <td>dct:description</td>
+            <td>dcterms:description</td>
             <td>String</td>
             <td>0..*</td>
             <td>Description of the FAIR Data Point with the language tag.</td>
         </tr>
         <tr>
             <td></td>
-            <td>dct:publisher</td>
+            <td>dcterms:publisher</td>
             <td><code>foaf:Agent</code></td>
             <td>1..*</td>
             <td>The entity or entities (person or organization) responsible for the FAIR Data Point.</td>
         </tr>
         <tr>
             <td></td>
-            <td>dct:language</td>
+            <td>dcterms:language</td>
             <td>IRI</td>
             <td>0..*</td>
             <td>The language(s) used in the metadata record.</td>
         </tr>
         <tr>
             <td></td>
-            <td>dct:license</td>
+            <td>dcterms:license</td>
             <td>IRI</td>
             <td>1</td>
             <td>The reference to the usage license of the FAIR Data Point.</td>
         </tr>
         <tr>
             <td></td>
-            <td>dct:conformsTo</td>
+            <td>dcterms:conformsTo</td>
             <td>IRI</td>
             <td>1</td>
             <td>This property points to a profile that contains the specification of the FAIR Data Point's metadata schema (in <code>SHACL</code>).</td>
         </tr>
         <tr>
             <td></td>
-            <td>dct:rights</td>
+            <td>dcterms:rights</td>
             <td>IRI</td>
             <td>0..*</td>
             <td></td>
         </tr>
         <tr>
             <td></td>
-            <td>dct:accessRights</td>
+            <td>dcterms:accessRights</td>
             <td>IRI</td>
             <td>0..*</td>
             <td></td>
@@ -101,14 +101,14 @@
         </tr>
         <tr>
             <td></td>
-            <td>dcat:endPointURL</td>
+            <td>dcat:endpointURL</td>
             <td>IRI</td>
             <td>1</td>
             <td>The URL of the FDP API endpoint.</td>
         </tr>
         <tr>
             <td></td>
-            <td>dcat:endPointDescription</td>
+            <td>dcat:endpointDescription</td>
             <td>IRI</td>
             <td>0..*</td>
             <td>
@@ -156,7 +156,7 @@
             <td>fdp-o:uiLanguage</td>
             <td>IRI</td>
             <td>0..*</td>
-            <td>The user interface language(s) of the FAIR Data Point, which is different from the <code>dcat:Resource</code> property of <code>dct:language</code> that relates to the language of the metadata record.</td>
+            <td>The user interface language(s) of the FAIR Data Point, which is different from the <code>dcat:Resource</code> property of <code>dcterms:language</code> that relates to the language of the metadata record.</td>
         </tr>
         <tr>
             <td></td>
@@ -171,6 +171,13 @@
             <td>IRI</td>
             <td>1</td>
             <td>The relation should point to a URI that contains the version of the FDP specifications which this instance of the FDP conforms to.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:metadataCatalog</td>
+            <td></td>
+            <td>0..*</td>
+            <td>This relation points to a <code>dcat:Catalog</code>.</td>
         </tr>
     </tbody>
 </table>
