@@ -8,7 +8,7 @@
   <meta content="Bikeshed version ac92c2f0d, updated Fri Aug 21 16:01:29 2026 -0700" name="generator">
   <link href="https://specs.fairdatapoint.org/" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="86dc078ce8593f475b9ae5127dc6577acde8ee57" name="revision">
+  <meta content="676ab01a13441e5220cdb9b24b6239e4eeb07ba4" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -2114,9 +2114,9 @@ The IRI of each container <em>SHOULD</em> be dereferenceable, returning the desc
     <c- g>&lt;catalog/a46aa445-3be0-4db8-8968-3338d1061a47></c-> <c- p>,</c->
     <c- g>&lt;catalog/a91d3db7-fe83-4de1-b678-fe1b0c82f2f1></c-> <c- p>.</c->
 </pre>
-   <p>In this example, the FDP (<code>&lt;app></code>) has the relation <code>fdp-o:metadataCatalog</code> with its catalogs.
+   <p>In this example, the base IRI <code>https://example.fairdatapoint.org/fdp-api/</code> is the root URL of the FDP, and the other IRIs are written relative to it. The FDP, written as <code>&lt;></code>, has the relation <code>fdp-o:metadataCatalog</code> with its catalogs.
 This is the parent-child relation that a client follows to navigate the metadata structure of the FDP.
-The container <code>&lt;app/catalog/></code> at the bottom of the example makes the navigation structure explicit: it is the container for <code>&lt;app></code> (the value of <code>ldp:membershipResource</code>), it relates <code>&lt;app></code> to its contained members using the relation <code>fdp-o:metadataCatalog</code> (the value of <code>ldp:hasMemberRelation</code>), and it lists the members with <code>ldp:contains</code>.</p>
+The container <code>&lt;catalog/></code> at the bottom of the example makes the navigation structure explicit: it is the container for the FDP (the value of <code>ldp:membershipResource</code>), it relates the FDP to its contained members using the relation <code>fdp-o:metadataCatalog</code> (the value of <code>ldp:hasMemberRelation</code>), and it lists the members with <code>ldp:contains</code>.</p>
    <h3 class="heading settled" data-level="6.3" id="navigate-traversal"><span class="secno">6.3. </span><span class="content">Traversing the content of an FDP</span><a class="self-link" href="#navigate-traversal"></a></h3>
    
 A client traverses the content of an FDP by retrieving the metadata record at the root URL (<a href="#read-root">§ 5.2 Root URL</a>), retrieving the metadata record of every IRI listed in <code>ldp:contains</code> in the navigation information of each record, and repeating the procedure for each retrieved record.
