@@ -1,68 +1,69 @@
-@prefix     : <http://fairdatapoint.org/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix  dct: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix   sh: <http://www.w3.org/ns/shacl#> .
-@prefix  xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix :        <http://fairdatapoint.org/> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 :CatalogShape a sh:NodeShape ;
   sh:targetClass dcat:Catalog ;
   sh:property [
-    sh:path dct:title ;
+    sh:path dcterms:title ;
     sh:nodeKind sh:Literal ;
     sh:minCount 1 ;
   ], [
-    sh:path dct:hasVersion ;
+    sh:path dcterms:hasVersion ;
     sh:nodeKind sh:Literal ;
-    sh:maxCount ;
+    sh:maxCount 1;
   ], [
-    sh:path dct:description ;
+    sh:path dcterms:description ;
     sh:nodeKind sh:Literal ;
   ], [
-    sh:path dct:publisher ;
+    sh:path dcterms:publisher ;
     sh:node :AgentShape ;
     sh:minCount 1;
   ], [
-    sh:path dct:language ;
+    sh:path dcterms:language ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dct:license ;
+    sh:path dcterms:license ;
     sh:nodeKind sh:IRI ;
     sh:minCount 1;
     sh:maxCount 1 ;
   ], [
-    sh:path dct:conformsTo ;
+    sh:path dcterms:issued ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:modified ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:conformsTo ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1;
     sh:minCount 1;
   ], [
-    sh:path dct:rights ;
+    sh:path dcterms:rights ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dct:accessRights ;
+    sh:path dcterms:accessRights ;
     sh:nodeKind sh:IRI ;
   ], [
-    sh:path dct:hasPart ;
-    sh:node sh:ContactPointShape ;
+    sh:path dcterms:hasPart ;
+    sh:class dcat:Resource ;
   ], [
-    sh:path dcat:keyword ;
-    sh:nodeKind sh:Literal ;
-  ], [
-    sh:path dcat:theme ;
-    sh:nodeKind sh:IRI ;
-  ], [
-    sh:path dcat:endpointURL ;
+    sh:path dcterms:isPartOf ;
     sh:nodeKind sh:IRI ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path fdp-o:startDate ;
-    sh:datatype xsd:date ;
+    sh:path dcat:themeTaxonomy ;
+    sh:nodeKind sh:IRI ;
     sh:maxCount 1 ;
-  ], [
-    sh:path fdp-o:endDate ;
-    sh:datatype xsd:date ;
-    sh:maxCount 1 ;
+    sh:minCount 1 ;
   ], [
     sh:path fdp-o:metadataIdentifier ;
     sh:nodeKind sh:IRI ;
@@ -74,25 +75,19 @@
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
-    sh:path fdp-o:metadataIdentifier ;
+    sh:path fdp-o:metadataModified ;
     sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
+  ], [
+    sh:path foaf:homepage ;
+    sh:nodeKind sh:IRI ;
   ].
 
 :AgentShape a sh:NodeShape ;
   sh:targetClass foaf:Agent ;
   sh:property [
     sh:path foaf:name ;
-    sh:nodeKind sh:Literal ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ].
-
-:ContactPointShape a sh:NodeShape ;
-  sh:targetClass vcard:Kind ;
-  sh:property [
-    sh:path vcard:hasEmail ;
     sh:nodeKind sh:Literal ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
