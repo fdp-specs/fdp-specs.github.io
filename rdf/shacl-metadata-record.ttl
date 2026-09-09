@@ -1,0 +1,38 @@
+@prefix :        <https://w3id.org/fdp/specs-examples/v2.0/shacl-metadata-record.ttl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+:MetadataRecordShape a sh:NodeShape ;
+  sh:targetClass fdp-o:MetadataRecord ;
+  sh:property [
+    sh:path fdp-o:isMetadataOf ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
+    sh:path foaf:primaryTopic ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:issued ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
+    sh:path dcterms:modified ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
+    sh:path dcterms:conformsTo ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:creator ;
+    sh:nodeKind sh:IRI ;
+  ].

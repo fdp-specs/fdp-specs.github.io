@@ -1,0 +1,53 @@
+@prefix :        <https://w3id.org/fdp/specs-examples/v2.0/shacl-profile.ttl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prof:    <http://www.w3.org/ns/dx/prof/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix role:    <http://www.w3.org/ns/dx/prof/role/> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+:ProfileShape a sh:NodeShape ;
+  sh:targetClass prof:Profile ;
+  sh:property [
+    sh:path dcterms:title ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:minCount 1 ;
+  ], [
+    sh:path dcterms:description ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+  ], [
+    sh:path prof:isProfileOf ;
+    sh:nodeKind sh:IRI ;
+  ], [
+    sh:path prof:hasResource ;
+    sh:node :ResourceDescriptorShape ;
+    sh:minCount 1 ;
+  ], [
+    sh:path prof:hasResource ;
+    sh:qualifiedValueShape [
+      sh:property [
+        sh:path prof:hasRole ;
+        sh:hasValue role:validation ;
+      ] ;
+    ] ;
+    sh:qualifiedMinCount 1 ;
+  ].
+
+:ResourceDescriptorShape a sh:NodeShape ;
+  sh:property [
+    sh:path prof:hasRole ;
+    sh:nodeKind sh:IRI ;
+    sh:minCount 1 ;
+  ], [
+    sh:path prof:hasArtifact ;
+    sh:nodeKind sh:IRI ;
+    sh:minCount 1 ;
+  ], [
+    sh:path dcterms:conformsTo ;
+    sh:nodeKind sh:IRI ;
+  ], [
+    sh:path dcterms:format ;
+    sh:nodeKind sh:IRI ;
+  ].

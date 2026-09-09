@@ -16,19 +16,19 @@
             <td>IRI</td>
             <td>1</td>
             <td>The type of the object described by the metadata record, which, in this case, is a FAIR Data Point.
-                The value <em class="rfc2119">MUST</em> be <code>fdp-o:FAIRDataPoint</code>.</td>
+                The value <em class="rfc2119">MUST</em> be <code>fdp-o:FAIRDataPoint</code> and, additionally, <code>dcat:DataService</code> (see DP-3).</td>
         </tr>
         <tr>
             <td>DC terms</td>
             <td>dcterms:title</td>
-            <td>String</td>
+            <td><code>rdf:langString</code></td>
             <td>1..*</td>
             <td>Name of the FAIR Data Point with the language tag.</td>
         </tr>
         <tr>
             <td></td>
             <td>dcterms:description</td>
-            <td>String</td>
+            <td><code>rdf:langString</code></td>
             <td>0..*</td>
             <td>Description of the FAIR Data Point with the language tag.</td>
         </tr>
@@ -52,6 +52,20 @@
             <td>IRI</td>
             <td>1</td>
             <td>The reference to the usage license of the FAIR Data Point.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcterms:issued</td>
+            <td><code>xsd:dateTime</code></td>
+            <td>0..1</td>
+            <td>Date of formal issuance of the FAIR Data Point itself, e.g., its deployment date. The dates of its metadata record are given in the FDP Metadata Record.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcterms:modified</td>
+            <td><code>xsd:dateTime</code></td>
+            <td>0..1</td>
+            <td>Most recent date on which the FAIR Data Point itself was changed. The dates of its metadata record are given in the FDP Metadata Record.</td>
         </tr>
         <tr>
             <td></td>
@@ -84,7 +98,7 @@
         <tr>
             <td></td>
             <td>dcat:keyword</td>
-            <td>String</td>
+            <td><code>xsd:string</code> or <code>rdf:langString</code></td>
             <td>0..*</td>
             <td>Keyword(s) describing the FAIR Data Point.</td>
         </tr>
@@ -117,28 +131,7 @@
             </td>
         </tr>
         <tr>
-            <td>FDP ontology</td>
-            <td>fdp-o:metadataIdentifier</td>
-            <td><code>IRI</code></td>
-            <td>1</td>
-            <td>Identifier of the metadata entry.</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>fdp-o:metadataIssued</td>
-            <td><code>xsd:dateTime</code></td>
-            <td>1</td>
-            <td>Creation data of the metadata entry.</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>fdp-o:metadataModified</td>
-            <td><code>xsd:dateTime</code></td>
-            <td>1</td>
-            <td>Last modified data of the metadata entry.</td>
-        </tr>
-        <tr>
-            <td></td>
+            <td>FDP Ontology</td>
             <td>fdp-o:startDate</td>
             <td>xsd:date</td>
             <td>0..1</td>
@@ -161,7 +154,7 @@
         <tr>
             <td></td>
             <td>fdp-o:hasSoftwareVersion</td>
-            <td>String</td>
+            <td><code>xsd:string</code></td>
             <td>0..1</td>
             <td>Version of the metadata service software that exposes the FDP behaviour.</td>
         </tr>
@@ -170,14 +163,21 @@
             <td>fdp-o:conformsToFdpSpec</td>
             <td>IRI</td>
             <td>1</td>
-            <td>The relation should point to a URI that contains the version of the FDP specifications which this instance of the FDP conforms to.</td>
+            <td>The conformance classes of this specification that the FAIR Data Point claims: one IRI per claimed conformance class, being the IRI of the class in a versioned copy of this specification (see DP-6 in the conformance section).</td>
         </tr>
         <tr>
             <td></td>
             <td>fdp-o:metadataCatalog</td>
-            <td></td>
+            <td>IRI</td>
             <td>0..*</td>
-            <td>This relation points to a <code>dcat:Catalog</code>.</td>
+            <td>This relation points to a <code>dcat:Catalog</code> whose metadata record the FAIR Data Point serves. When present, the FAIR Data Point metadata record provides the corresponding navigation information.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>fdp-o:hasMetadata</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The FDP Metadata Record of this metadata record.</td>
         </tr>
     </tbody>
 </table>
