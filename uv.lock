@@ -160,7 +160,7 @@ wheels = [
 
 [[package]]
 name = "bikeshed"
-version = "7.1.2"
+version = "7.1.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "about-time" },
@@ -183,7 +183,7 @@ dependencies = [
     { name = "tenacity" },
     { name = "widlparser" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0e/a9/4798a7edceaec472fac0dc6535629e2a2a3b01449048783f527d8ba6d5d9/bikeshed-7.1.2.tar.gz", hash = "sha256:63f0639fbf5b2cfa38b519c0d7af181edfe9a72f048e427bb10fa404c8dc720a", size = 16816626, upload-time = "2026-08-21T23:01:44.892Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/a1/12a438df89ed62a41a47637ab1b0f7c53931a1ae2be77566ccd03404c1d0/bikeshed-7.1.3.tar.gz", hash = "sha256:78cedba5e33dc8c3ade6d60ad30574ee5ecb4bafb33e7bf4bf771c1cabd7ac44", size = 16827017, upload-time = "2026-09-18T20:20:27.282Z" }
 
 [[package]]
 name = "cddlparser"
@@ -282,7 +282,7 @@ dev = [
 [package.metadata]
 
 [package.metadata.requires-dev]
-dev = [{ name = "bikeshed", specifier = ">=7.0.7" }]
+dev = [{ name = "bikeshed", specifier = ">=7.1.2" }]
 
 [[package]]
 name = "frozenlist"
