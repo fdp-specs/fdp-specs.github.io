@@ -1,0 +1,36 @@
+@prefix :        <https://w3id.org/fdp/specs-examples/v2.0/shacl-container.ttl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ldp:     <http://www.w3.org/ns/ldp#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+
+:ContainerShape a sh:NodeShape ;
+  sh:targetClass ldp:DirectContainer ;
+  sh:property [
+    sh:name "title" ;
+    sh:description "Name identifying the member resources" ;
+    sh:path dcterms:title ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
+    sh:minCount 1 ;
+    sh:uniqueLang true ;
+  ], [
+    sh:name "membership resource" ;
+    sh:description "The metadata record that leads to the members of this container." ;
+    sh:path ldp:membershipResource ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
+    sh:name "has member relation" ;
+    sh:description "The relation that connects the membership resource to each member." ;
+    sh:path ldp:hasMemberRelation ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+  ], [
+    sh:name "contains" ;
+    sh:description "The IRIs of the metadata records of the members." ;
+    sh:path ldp:contains ;
+    sh:nodeKind sh:IRI ;
+  ].

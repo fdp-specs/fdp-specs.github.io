@@ -1,5 +1,8 @@
 # Build and validate the spec using bikeshed
 #
+# The FDP specification is a single Bikeshed document (index.bs) whose sections
+# are included from the sections/ directory.
+#
 # TODO: publish to github pages on release
 #
 # based on https://w3c.github.io/spec-prod/#examples
@@ -22,3 +25,4 @@ jobs:
       - uses: w3c/spec-prod@v2
         with:
           TOOLCHAIN: bikeshed
+          SOURCE: index.bs

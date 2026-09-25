@@ -1,0 +1,15 @@
+@base            <https://example.fairdatapoint.org/fdp-api/> .
+# Relative IRIs resolve against the base IRI. <> denotes the base IRI itself, the root URL of this FDP.
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+<record>
+  a fdp-o:MetadataRecord , dcat:CatalogRecord ;
+  fdp-o:isMetadataOf <> ;
+  foaf:primaryTopic <> ;
+  dcterms:issued "2020-05-29T09:55:08.580Z"^^xsd:dateTime ;
+  dcterms:modified "2020-09-30T11:17:43.008Z"^^xsd:dateTime ;
+  dcterms:creator <#publisher> .

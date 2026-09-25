@@ -1,0 +1,49 @@
+<table class="def">
+    <caption>Profile description schema</caption>
+    <thead>
+        <tr>
+            <th>Ontology</th>
+            <th>Property name</th>
+            <th>Datatype</th>
+            <th>Cardinality</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RDF</td>
+            <td>rdf:type</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The type of the profile. The value <em class="rfc2119">MUST</em> be <code>prof:Profile</code>.</td>
+        </tr>
+        <tr>
+            <td>DC terms</td>
+            <td>dcterms:title</td>
+            <td><code>rdf:langString</code></td>
+            <td>1..*</td>
+            <td>Name of the profile with the language tag.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dcterms:description</td>
+            <td><code>rdf:langString</code></td>
+            <td>0..*</td>
+            <td>Description of the profile with the language tag.</td>
+        </tr>
+        <tr>
+            <td>PROF</td>
+            <td>prof:isProfileOf</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td>The specifications or base profiles that this profile constrains, e.g., DCAT 3 or a community profile of it.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>prof:hasResource</td>
+            <td><code>prof:ResourceDescriptor</code></td>
+            <td>1..*</td>
+            <td>The resources of the profile. At least one resource descriptor <em class="rfc2119">MUST</em> have the role <code>role:validation</code>; its <code>prof:hasArtifact</code> is the IRI of the metadata schema in SHACL, its <code>dcterms:conformsTo</code> <em class="rfc2119">SHOULD</em> be the SHACL specification and its <code>dcterms:format</code> <em class="rfc2119">SHOULD</em> give the media type of the artifact.</td>
+        </tr>
+    </tbody>
+</table>
