@@ -60,6 +60,9 @@
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ], [
+    sh:path dcat:theme ;
+    sh:nodeKind sh:IRI ;
+  ], [
     sh:path dcat:themeTaxonomy ;
     sh:nodeKind sh:IRI ;
   ], [
