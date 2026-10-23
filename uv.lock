@@ -160,7 +160,7 @@ wheels = [
 
 [[package]]
 name = "bikeshed"
-version = "7.1.3"
+version = "7.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "about-time" },
@@ -183,7 +183,7 @@ dependencies = [
     { name = "tenacity" },
     { name = "widlparser" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d6/a1/12a438df89ed62a41a47637ab1b0f7c53931a1ae2be77566ccd03404c1d0/bikeshed-7.1.3.tar.gz", hash = "sha256:78cedba5e33dc8c3ade6d60ad30574ee5ecb4bafb33e7bf4bf771c1cabd7ac44", size = 16827017, upload-time = "2026-09-18T20:20:27.282Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9d/b6/a451296ac45f8c78638186ebf0f60683dadb89db7f85801492d1e28606a6/bikeshed-7.2.0.tar.gz", hash = "sha256:7efa19083c2a621a13566b9055b536790539609209ef327153e92ca6c8f7d00b", size = 16945873, upload-time = "2026-10-13T21:28:31.631Z" }
 
 [[package]]
 name = "cddlparser"
