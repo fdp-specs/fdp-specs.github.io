@@ -5,12 +5,15 @@ Org: W3C
 Group: fdpcg
 Status: CG-DRAFT
 Level: none
+!Version: 2.0
 ED: https://specs.fairdatapoint.org/
 Editor: Luiz Olavo Bonino da Silva Santos, UTwente, https://www.utwente.nl/en/eemcs/scs/
+Editor: Dennis van Gerwen, LUMC, https://www.lumc.nl/
 Editor: Kees Burger, Health-RI, https://www.health-ri.nl/
 Former Editor: Rajaram Kaliyaperumal, LUMC, https://www.lumc.nl/
-Abstract: This document provides specifications for the FAIR Data Point (FDP).
-  The document includes architecture of the core component, metadata structure and schema, API and validation rules.
+Abstract: This document specifies the FAIR Data Point (FDP), a metadata service that exposes machine-actionable metadata following the FAIR principles.
+  The document defines the FDP metadata model and the FDP capabilities, Read, Navigate, Write and Bundle, together with the conformance criteria that an application can claim for each of these capabilities.
+  An application is a FAIR Data Point if it conforms to the Core conformance class, which comprises the Read and Navigate capabilities.
 Canonical URL: https://specs.fairdatapoint.org/
 Previous Version: https://specs.fairdatapoint.org/v1.2/fdp-specs-v1.2.html
 Date: now
@@ -20,29 +23,45 @@ Boilerplate: conformance off
 </pre>
 
 <pre class=include>
-path: src/intro.md
+path: sections/01-introduction.md
 </pre>
 
 <pre class=include>
-path: src/overall.md
+path: sections/02-usage-scenarios.md
 </pre>
 
 <pre class=include>
-path: src/architecture.md
+path: sections/03-capabilities.md
 </pre>
 
 <pre class=include>
-path: src/metadata.md
+path: sections/04-metadata-model.md
 </pre>
 
 <pre class=include>
-path: src/api.md
+path: sections/05-read.md
 </pre>
 
 <pre class=include>
-path: src/compliance.md
+path: sections/06-navigate.md
 </pre>
 
-<!-- hidden reference to [FDP] (todo: remove in next version) -->
-<span hidden>[[FDP]]</span>
+<pre class=include>
+path: sections/07-write.md
+</pre>
 
+<pre class=include>
+path: sections/08-bundle.md
+</pre>
+
+<pre class=include>
+path: sections/09-conformance.md
+</pre>
+
+<pre class=include>
+path: sections/10-security-privacy.md
+</pre>
+
+<pre class=include>
+path: sections/A-changes.md
+</pre>

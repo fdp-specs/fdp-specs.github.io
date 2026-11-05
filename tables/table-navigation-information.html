@@ -1,0 +1,61 @@
+<table class="def">
+    <caption>Navigation information (container) schema</caption>
+    <thead>
+        <tr>
+            <th>Ontology</th>
+            <th>Property name</th>
+            <th>Datatype</th>
+            <th>Cardinality</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RDF</td>
+            <td>rdf:type</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>
+                The type of the navigation information segment.
+                The value <em class="rfc2119">MUST</em> be <code>ldp:DirectContainer</code>.
+            </td>
+        </tr>
+        <tr>
+            <td>DC terms</td>
+            <td>dcterms:title</td>
+            <td><code>rdf:langString</code></td>
+            <td>1..*</td>
+            <td>Name of the container, e.g., "Catalogs" for the container of the catalogs of a FAIR Data Point.</td>
+        </tr>
+        <tr>
+            <td>LDP</td>
+            <td>ldp:membershipResource</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>
+                The metadata record that this container belongs to, i.e., the record that leads to the members.
+                The value <em class="rfc2119">MUST</em> be the IRI of the described entity of that record; for the container of the catalogs of a FAIR Data Point, the IRI of the FAIR Data Point.
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ldp:hasMemberRelation</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>
+                The relation that connects the membership resource to each member.
+                For the container of the catalogs of a FAIR Data Point, the value <em class="rfc2119">MUST</em> be <code>fdp-o:metadataCatalog</code>; for the container of the members of a catalog, <code>dcterms:hasPart</code>.
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ldp:contains</td>
+            <td>IRI</td>
+            <td>0..*</td>
+            <td>
+                The IRIs of the metadata records of the members.
+                Each value <em class="rfc2119">MUST</em> be the IRI of a metadata record served by the FAIR Data Point, of the class expected by the member relation; for the container of the catalogs of a FAIR Data Point, an instance of <code>dcat:Catalog</code>.
+            </td>
+        </tr>
+    </tbody>
+</table>

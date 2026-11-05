@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1580" height="1080" viewBox="0 0 1580 1080" font-family="Helvetica, Arial, sans-serif">
+<title>FDP metadata model based on DCAT 3</title>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/></marker>
+  <marker id="sub" viewBox="0 0 12 12" refX="12" refY="6" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 12 6 L 0 12 z" fill="#fff" stroke="#333" stroke-width="1.2"/></marker>
+</defs>
+<rect width="1580" height="1080" fill="#fff"/>
+<rect x="900" y="100" width="260" height="574" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="900" y1="134" x2="1160" y2="134" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="1030.0" y="123" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c" font-style="italic">dcat:Resource</text>
+<text x="910" y="149" font-size="13" fill="#174f7c">dcat:contactPoint</text>
+<text x="910" y="169" font-size="13" fill="#174f7c">dcat:keyword</text>
+<text x="910" y="189" font-size="13" fill="#174f7c">dcat:landingPage</text>
+<text x="910" y="209" font-size="13" fill="#174f7c">dcat:theme</text>
+<text x="910" y="229" font-size="13" fill="#174f7c">dcat:hasVersion</text>
+<text x="910" y="249" font-size="13" fill="#174f7c">dcat:version</text>
+<text x="910" y="269" font-size="13" fill="#174f7c">dcat:versionNotes</text>
+<text x="910" y="289" font-size="13" fill="#174f7c">dcat:hasCurrentVersion</text>
+<text x="910" y="309" font-size="13" fill="#174f7c">dcat:previousVersion</text>
+<text x="910" y="329" font-size="13" fill="#174f7c">dcat:qualifiedRelation</text>
+<text x="910" y="349" font-size="13" fill="#174f7c">dcterms:accessRights</text>
+<text x="910" y="369" font-size="13" fill="#174f7c">dcterms:conformsTo</text>
+<text x="910" y="389" font-size="13" fill="#174f7c">dcterms:creator</text>
+<text x="910" y="409" font-size="13" fill="#174f7c">dcterms:description</text>
+<text x="910" y="429" font-size="13" fill="#174f7c">dcterms:identifier</text>
+<text x="910" y="449" font-size="13" fill="#174f7c">dcterms:isReferencedBy</text>
+<text x="910" y="469" font-size="13" fill="#174f7c">dcterms:issued</text>
+<text x="910" y="489" font-size="13" fill="#174f7c">dcterms:language</text>
+<text x="910" y="509" font-size="13" fill="#174f7c">dcterms:license</text>
+<text x="910" y="529" font-size="13" fill="#174f7c">dcterms:modified</text>
+<text x="910" y="549" font-size="13" fill="#174f7c">dcterms:publisher</text>
+<text x="910" y="569" font-size="13" fill="#174f7c">dcterms:relation</text>
+<text x="910" y="589" font-size="13" fill="#174f7c">dcterms:rights</text>
+<text x="910" y="609" font-size="13" fill="#174f7c">dcterms:title</text>
+<text x="910" y="629" font-size="13" fill="#174f7c">dcterms:type</text>
+<text x="910" y="649" font-size="13" fill="#174f7c">odrl:hasPolicy</text>
+<text x="910" y="669" font-size="13" fill="#174f7c">prov:qualifiedAttribution</text>
+<rect x="560" y="60" width="200" height="60" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="560" y1="94" x2="760" y2="94" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="660.0" y="83" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">foaf:Agent</text>
+<rect x="600" y="145" width="160" height="60" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="600" y1="179" x2="760" y2="179" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="680.0" y="168" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">skos:Concept</text>
+<rect x="300" y="145" width="200" height="60" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="300" y1="179" x2="500" y2="179" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="400.0" y="168" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">skos:ConceptScheme</text>
+<rect x="1290" y="145" width="190" height="60" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="1290" y1="179" x2="1480" y2="179" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="1385.0" y="168" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">vcard:Kind</text>
+<rect x="1300" y="330" width="220" height="54" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="1300" y1="364" x2="1520" y2="364" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="1410.0" y="353" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">dcat:Relationship</text>
+<text x="1310" y="379" font-size="13" fill="#174f7c">dcat:hadRole</text>
+<rect x="60" y="330" width="260" height="114" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="60" y1="364" x2="320" y2="364" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="190.0" y="353" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">dcat:Catalog</text>
+<text x="70" y="379" font-size="13" fill="#174f7c">foaf:homepage</text>
+<text x="70" y="399" font-size="13" fill="#174f7c">dcat:catalog</text>
+<text x="70" y="419" font-size="13" fill="#174f7c">dcat:service</text>
+<text x="70" y="439" font-size="13" fill="#174f7c">dcat:resource</text>
+<rect x="480" y="380" width="290" height="154" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="480" y1="414" x2="770" y2="414" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="625.0" y="403" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">dcat:Dataset</text>
+<text x="490" y="429" font-size="13" fill="#174f7c">dcat:spatialResolutionInMeters</text>
+<text x="490" y="449" font-size="13" fill="#174f7c">dcat:temporalResolution</text>
+<text x="490" y="469" font-size="13" fill="#174f7c">dcterms:accrualPeriodicity</text>
+<text x="490" y="489" font-size="13" fill="#174f7c">dcterms:spatial</text>
+<text x="490" y="509" font-size="13" fill="#174f7c">dcterms:temporal</text>
+<text x="490" y="529" font-size="13" fill="#174f7c">prov:wasGeneratedBy</text>
+<rect x="560" y="580" width="210" height="60" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="560" y1="614" x2="770" y2="614" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="665.0" y="603" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">dcat:DatasetSeries</text>
+<rect x="480" y="720" width="290" height="294" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="480" y1="754" x2="770" y2="754" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="625.0" y="743" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">dcat:Distribution</text>
+<text x="490" y="769" font-size="13" fill="#174f7c">dcat:accessURL</text>
+<text x="490" y="789" font-size="13" fill="#174f7c">dcat:downloadURL</text>
+<text x="490" y="809" font-size="13" fill="#174f7c">dcat:byteSize</text>
+<text x="490" y="829" font-size="13" fill="#174f7c">dcat:mediaType</text>
+<text x="490" y="849" font-size="13" fill="#174f7c">dcterms:format</text>
+<text x="490" y="869" font-size="13" fill="#174f7c">dcat:compressFormat</text>
+<text x="490" y="889" font-size="13" fill="#174f7c">dcat:packageFormat</text>
+<text x="490" y="909" font-size="13" fill="#174f7c">dcterms:title</text>
+<text x="490" y="929" font-size="13" fill="#174f7c">dcterms:description</text>
+<text x="490" y="949" font-size="13" fill="#174f7c">dcterms:license</text>
+<text x="490" y="969" font-size="13" fill="#174f7c">dcterms:issued</text>
+<text x="490" y="989" font-size="13" fill="#174f7c">dcterms:modified</text>
+<text x="490" y="1009" font-size="13" fill="#174f7c">dcterms:conformsTo</text>
+<rect x="900" y="760" width="220" height="74" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="900" y1="794" x2="1120" y2="794" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="1010.0" y="783" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">dcat:DataService</text>
+<text x="910" y="809" font-size="13" fill="#174f7c">dcat:endpointURL</text>
+<text x="910" y="829" font-size="13" fill="#174f7c">dcat:endpointDescription</text>
+<rect x="60" y="470" width="260" height="134" fill="#cdf3f9" stroke="#78b6c3" stroke-width="1.5"/>
+<line x1="60" y1="504" x2="320" y2="504" stroke="#78b6c3" stroke-width="1.5"/>
+<text x="190.0" y="493" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">dcat:CatalogRecord</text>
+<text x="70" y="519" font-size="13" fill="#174f7c">dcterms:title</text>
+<text x="70" y="539" font-size="13" fill="#174f7c">dcterms:description</text>
+<text x="70" y="559" font-size="13" fill="#174f7c">dcterms:issued</text>
+<text x="70" y="579" font-size="13" fill="#174f7c">dcterms:modified</text>
+<text x="70" y="599" font-size="13" fill="#174f7c">dcterms:conformsTo</text>
+<rect x="1240" y="560" width="250" height="134" fill="#c9f5c3" stroke="#7cbd76" stroke-width="1.5"/>
+<line x1="1240" y1="594" x2="1490" y2="594" stroke="#7cbd76" stroke-width="1.5"/>
+<text x="1365.0" y="583" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">fdp-o:FAIRDataPoint</text>
+<text x="1250" y="609" font-size="13" fill="#174f7c">fdp-o:startDate</text>
+<text x="1250" y="629" font-size="13" fill="#174f7c">fdp-o:endDate</text>
+<text x="1250" y="649" font-size="13" fill="#174f7c">fdp-o:uiLanguage</text>
+<text x="1250" y="669" font-size="13" fill="#174f7c">fdp-o:hasSoftwareVersion</text>
+<text x="1250" y="689" font-size="13" fill="#174f7c">fdp-o:conformsToFdpSpec</text>
+<rect x="1240" y="780" width="250" height="60" fill="#c9f5c3" stroke="#7cbd76" stroke-width="1.5"/>
+<line x1="1240" y1="814" x2="1490" y2="814" stroke="#7cbd76" stroke-width="1.5"/>
+<text x="1365.0" y="803" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">fdp-o:MetadataService</text>
+<rect x="60" y="880" width="260" height="114" fill="#c9f5c3" stroke="#7cbd76" stroke-width="1.5"/>
+<line x1="60" y1="914" x2="320" y2="914" stroke="#7cbd76" stroke-width="1.5"/>
+<text x="190.0" y="903" text-anchor="middle" font-size="14" font-weight="bold" fill="#174f7c">fdp-o:MetadataRecord</text>
+<text x="70" y="929" font-size="13" fill="#174f7c">dcterms:issued</text>
+<text x="70" y="949" font-size="13" fill="#174f7c">dcterms:modified</text>
+<text x="70" y="969" font-size="13" fill="#174f7c">dcterms:conformsTo</text>
+<text x="70" y="989" font-size="13" fill="#174f7c">dcterms:creator</text>
+<polyline points="1030,100 1030,40 660,40 660,60" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="700" y="32" font-size="13" fill="#222" text-anchor="start">dcterms:publisher</text>
+<polyline points="900,118 760,118" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="775" y="112" font-size="13" fill="#222" text-anchor="start">dcterms:creator</text>
+<polyline points="900,175 760,175" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="790" y="168" font-size="13" fill="#222" text-anchor="start">dcat:theme</text>
+<text x="770" y="190" font-size="13" fill="#222">0..*</text>
+<polyline points="600,175 500,175" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="505" y="168" font-size="13" fill="#222" text-anchor="start">skos:inScheme</text>
+<polyline points="1160,175 1290,175" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="1165" y="168" font-size="13" fill="#222" text-anchor="start">dcat:contactPoint</text>
+<text x="1170" y="190" font-size="13" fill="#222">0..*</text>
+<polyline points="1160,360 1300,360" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="1163" y="378" font-size="13" fill="#222" text-anchor="start">dcat:qualifiedRelation</text>
+<polyline points="1410,330 1410,300 1160,300" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="1175" y="293" font-size="13" fill="#222" text-anchor="start">dcterms:relation</text>
+<polyline points="310,330 310,205" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="318" y="270" font-size="13" fill="#222" text-anchor="start">dcat:themeTaxonomy</text>
+<text x="318" y="222" font-size="13" fill="#222">1</text>
+<polyline points="150,330 150,240 900,240" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="760" y="233" font-size="13" fill="#222" text-anchor="start">dcterms:hasPart</text>
+<text x="870" y="256" font-size="13" fill="#222">0..*</text>
+<polyline points="250,330 250,290 600,290 600,380" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="510" y="283" font-size="13" fill="#222" text-anchor="start">dcat:dataset</text>
+<text x="608" y="372" font-size="13" fill="#222">0..*</text>
+<polyline points="320,400 480,400" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#sub)"/>
+<text x="340" y="393" font-size="13" fill="#222" text-anchor="start">rdfs:subClassOf</text>
+<polyline points="770,400 900,400" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#sub)"/>
+<text x="780" y="393" font-size="13" fill="#222" text-anchor="start">rdfs:subClassOf</text>
+<polyline points="190,444 190,470" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="198" y="462" font-size="13" fill="#222" text-anchor="start">dcat:record</text>
+<text x="150" y="462" font-size="13" fill="#222">0..*</text>
+<polyline points="620,580 620,534" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#sub)"/>
+<text x="612" y="565" font-size="13" fill="#222" text-anchor="end">rdfs:subClassOf</text>
+<polyline points="720,534 720,580" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="712" y="565" font-size="13" fill="#222" text-anchor="end">dcat:inSeries</text>
+<text x="726" y="572" font-size="13" fill="#222">0..*</text>
+<polyline points="515,534 515,720" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="410" y="630" font-size="13" fill="#222" text-anchor="start">dcat:distribution</text>
+<text x="470" y="645" font-size="13" fill="#222">0..*</text>
+<polyline points="770,800 900,800" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="776" y="793" font-size="13" fill="#222" text-anchor="start">dcat:accessService</text>
+<text x="860" y="815" font-size="13" fill="#222">0..*</text>
+<polyline points="950,760 950,688 800,688 800,520 770,520" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="808" y="682" font-size="13" fill="#222" text-anchor="start">dcat:servesDataset</text>
+<text x="808" y="610" font-size="13" fill="#222">0..*</text>
+<polyline points="1010,760 1010,674" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#sub)"/>
+<text x="1018" y="722" font-size="13" fill="#222" text-anchor="start">rdfs:subClassOf</text>
+<polyline points="1240,810 1120,810" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#sub)"/>
+<text x="1128" y="803" font-size="13" fill="#222" text-anchor="start">rdfs:subClassOf</text>
+<polyline points="1365,694 1365,780" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#sub)"/>
+<text x="1373" y="742" font-size="13" fill="#222" text-anchor="start">rdfs:subClassOf</text>
+<polyline points="1490,620 1540,620 1540,15 40,15 40,370 60,370" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="48" y="322" font-size="13" fill="#222" text-anchor="start">fdp-o:metadataCatalog</text>
+<text x="45" y="362" font-size="13" fill="#222">0..*</text>
+<text transform="translate(1553,470) rotate(-90)" font-size="13" fill="#222">fdp-o:metadataCatalog</text>
+<polyline points="190,994 190,1050 1520,1050 1520,85 1100,85 1100,100" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="200" y="1068" font-size="13" fill="#222" text-anchor="start">fdp-o:isMetadataOf (inverse fdp-o:hasMetadata). The described metadata record is a dcat:Resource, a dcat:Distribution or an entity of any other class of the content model.</text>
+<text x="1108" y="97" font-size="13" fill="#222">1</text>
+<polyline points="1490,810 1500,810 1500,1028 250,1028 250,994" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="800" y="1022" font-size="13" fill="#222" text-anchor="start">fdp-o:servesMetadata</text>
+<text x="262" y="1010" font-size="13" fill="#222">0..*</text>
+<polyline points="190,604 190,880" fill="none" stroke="#333" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="200" y="735" font-size="13" fill="#222" text-anchor="start">typed additionally as dcat:CatalogRecord</text>
+<text x="200" y="750" font-size="13" fill="#222" text-anchor="start">when the topic is a dcat:Resource</text>
+<rect x="1180" y="870" width="300" height="150" fill="#fff" stroke="#999"/>
+<rect x="1192" y="884" width="26" height="16" fill="#cdf3f9" stroke="#78b6c3"/>
+<text x="1228" y="897" font-size="13" fill="#222">DCAT 3 and other standard vocabularies</text>
+<rect x="1192" y="910" width="26" height="16" fill="#c9f5c3" stroke="#7cbd76"/>
+<text x="1228" y="923" font-size="13" fill="#222">FDP ontology (fdp-o)</text>
+<line x1="1192" y1="946" x2="1218" y2="946" stroke="#333" stroke-width="1.4" marker-end="url(#sub)"/>
+<text x="1228" y="950" font-size="13" fill="#222">rdfs:subClassOf</text>
+<line x1="1192" y1="970" x2="1218" y2="970" stroke="#333" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="1228" y="974" font-size="13" fill="#222">property (domain → range)</text>
+<text x="1192" y="994" font-size="11" fill="#555">Italics: abstract class.</text>
+<text x="1192" y="1010" font-size="11" fill="#555">Only terms used in this specification are shown.</text>
+</svg>
