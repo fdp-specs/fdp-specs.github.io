@@ -217,7 +217,7 @@ wheels = [
 
 [[package]]
 name = "bikeshed"
-version = "7.2.1"
+version = "8.0.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiofiles" },
@@ -239,7 +239,10 @@ dependencies = [
     { name = "tenacity" },
     { name = "widlparser" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ec/b1/2550dcc22689751d80c2692d402d5d76d3ac80d9c8f21be5a100a80f6fbd/bikeshed-7.2.1.tar.gz", hash = "sha256:4328a31cb43c1c2210a4b9024f00add191cb7f9fd1629e8da9d52b302eba9899", size = 16964495, upload-time = "2026-11-02T23:24:09.838Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0e/38/7671a3ba4771aabf981a5b5c7c71a7122608abfba0caf1e7da67dbe42d6e/bikeshed-8.0.3.tar.gz", hash = "sha256:52fb0df4ea7101f9a87d143f55b44c72a965a9519a72ab809667ff22ec7c3802", size = 9433621, upload-time = "2026-11-20T03:15:24.993Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1c/5c/9dfc4b13edbd33a39f973c3764e244619e9f710a1b61da8e2ca902f22bbc/bikeshed-8.0.3-py3-none-any.whl", hash = "sha256:72abfbfe0fd3fa205b4ffb2f9e15c95958a9de18062096b695ed21d9148564de", size = 10593510, upload-time = "2026-11-20T03:15:21.221Z" },
+]
 
 [[package]]
 name = "cddlparser"
