@@ -23,21 +23,21 @@
         <tr>
             <td>DC terms</td>
             <td>dcterms:title</td>
-            <td>String</td>
+            <td><code>rdf:langString</code></td>
             <td>1..*</td>
             <td>Name of the catalog with the language tag.</td>
         </tr>
         <tr>
             <td></td>
             <td>dcterms:hasVersion</td>
-            <td>String</td>
+            <td><code>xsd:string</code></td>
             <td>0..1</td>
             <td>Version of the catalog.</td>
         </tr>
         <tr>
             <td></td>
             <td>dcterms:description</td>
-            <td>String</td>
+            <td><code>rdf:langString</code></td>
             <td>0..*</td>
             <td>Description of the catalog with the language tag.</td>
         </tr>
@@ -65,16 +65,16 @@
         <tr>
             <td></td>
             <td>dcterms:issued</td>
-            <td>DateTime</td>
+            <td><code>xsd:dateTime</code></td>
             <td>0..1</td>
-            <td>The creation date of the catalog metadata record.</td>
+            <td>Date of formal issuance of the catalog itself. The dates of its metadata record are given in the FDP Metadata Record.</td>
         </tr>
         <tr>
             <td></td>
             <td>dcterms:modified</td>
-            <td>DateTime</td>
+            <td><code>xsd:dateTime</code></td>
             <td>0..1</td>
-            <td>The last modified date of the catalog metadata record.</td>
+            <td>Most recent date on which the catalog itself was changed. The dates of its metadata record are given in the FDP Metadata Record.</td>
         </tr>
         <tr>
             <td></td>
@@ -129,32 +129,18 @@
             </td>
         </tr>
         <tr>
-            <td>FDP ontology</td>
-            <td>fdp-o:metadataIdentifier</td>
-            <td><code>IRI</code></td>
-            <td>1</td>
-            <td>Identifier of the metadata entry.</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>fdp-o:metadataIssued</td>
-            <td><code>xsd:dateTime</code></td>
-            <td>1</td>
-            <td>Creation date of the metadata entry.</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>fdp-o:metadataModified</td>
-            <td><code>xsd:dateTime</code></td>
-            <td>1</td>
-            <td>Last modified date of the metadata entry.</td>
-        </tr>
-        <tr>
             <td>FOAF</td>
             <td>foaf:homepage</td>
             <td>IRI</td>
             <td>0..1</td>
             <td>The URL of the catalog HTML version.</td>
+        </tr>
+        <tr>
+            <td>FDP Ontology</td>
+            <td>fdp-o:hasMetadata</td>
+            <td>IRI</td>
+            <td>1</td>
+            <td>The FDP Metadata Record of this metadata record.</td>
         </tr>
     </tbody>
 </table>

@@ -1,38 +1,54 @@
-@prefix :        <http://fairdatapoint.org/> .
+@prefix :        <https://w3id.org/fdp/specs-examples/v2.0/shacl-fdp.ttl#> .
 @prefix dcat:    <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix fdp-o:   <https://w3id.org/fdp/fdp-o#> .
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix ldp:     <http://www.w3.org/ns/ldp#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 :FAIRDataPointShape a sh:NodeShape ;
   sh:targetClass fdp-o:FAIRDataPoint ;
   sh:property [
+    sh:path rdf:type ;
+    sh:hasValue dcat:DataService ;
+  ], [
     sh:path dcterms:title ;
     sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
     sh:minCount 1 ;
   ], [
     sh:path dcterms:description ;
     sh:nodeKind sh:Literal ;
+    sh:datatype rdf:langString ;
   ], [
     sh:path dcterms:publisher ;
     sh:node :AgentShape ;
-    sh:minCount 1;
+    sh:minCount 1 ;
   ], [
     sh:path dcterms:language ;
     sh:nodeKind sh:IRI ;
   ], [
     sh:path dcterms:license ;
     sh:nodeKind sh:IRI ;
-    sh:minCount 1;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:issued ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
+    sh:maxCount 1 ;
+  ], [
+    sh:path dcterms:modified ;
+    sh:nodeKind sh:Literal ;
+    sh:datatype xsd:dateTime ;
     sh:maxCount 1 ;
   ], [
     sh:path dcterms:conformsTo ;
     sh:nodeKind sh:IRI ;
-    sh:maxCount 1;
-    sh:minCount 1;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
   ], [
     sh:path dcterms:rights ;
     sh:nodeKind sh:IRI ;
@@ -45,6 +61,7 @@
   ], [
     sh:path dcat:keyword ;
     sh:nodeKind sh:Literal ;
+    sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ;
   ], [
     sh:path dcat:theme ;
     sh:nodeKind sh:IRI ;
@@ -56,23 +73,6 @@
   ], [
     sh:path dcat:endpointDescription ;
     sh:nodeKind sh:IRI ;
-  ], [
-    sh:path fdp-o:metadataIdentifier ;
-    sh:nodeKind sh:IRI ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ], [
-    sh:path fdp-o:metadataIssued ;
-    sh:nodeKind sh:Literal ;
-    sh:datatype xsd:dateTime ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ], [
-    sh:path fdp-o:metadataModified ;
-    sh:nodeKind sh:Literal ;
-    sh:datatype xsd:dateTime ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
   ], [
     sh:path fdp-o:startDate ;
     sh:nodeKind sh:Literal ;
@@ -89,15 +89,21 @@
   ], [
     sh:path fdp-o:hasSoftwareVersion ;
     sh:nodeKind sh:Literal ;
+    sh:datatype xsd:string ;
     sh:maxCount 1 ;
   ], [
     sh:path fdp-o:conformsToFdpSpec ;
     sh:nodeKind sh:IRI ;
-    sh:maxCount 1;
-    sh:minCount 1;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
   ], [
     sh:path fdp-o:metadataCatalog ;
-    sh:node :CatalogShape ;
+    sh:nodeKind sh:IRI ;
+  ], [
+    sh:path fdp-o:hasMetadata ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
   ].
 
 :AgentShape a sh:NodeShape ;
@@ -105,6 +111,7 @@
   sh:property [
     sh:path foaf:name ;
     sh:nodeKind sh:Literal ;
+    sh:datatype xsd:string ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
   ].
@@ -118,32 +125,3 @@
     sh:minCount 1 ;
   ].
 
-:FAIRDataPointContainerShape a sh:NodeShape ;
-  sh:targetClass ldp:DirectContainer ;
-  sh:property [
-    sh:name "title" ;
-    sh:description "Name identifying the member resources" ;
-    sh:path dcterms:title ;
-    sh:nodeKind sh:Literal ;
-    sh:minCount 1 ;
-    sh:uniqueLang true ;
-  ], [
-    sh:name "membership resource" ;
-    sh:description "" ;
-    sh:path ldp:membershipResource ;
-    sh:nodeKind fdp-o:FAIRDataPoint ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ], [
-    sh:name "has member relation" ;
-    sh:description "The predicate used in the metadata to relate the FAIR Data Point with its member catalogs." ;
-    sh:path ldp:hasMemberRelation ;
-    sh:nodeKind fdp-o:metadataCatalog ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
-  ], [
-    sh:name "contains" ;
-    sh:description "A set of triples, maintained by the LDP container, that lists documents created by the LDP container." ;
-    sh:path ldp:contains ;
-    sh:node :CatalogShape ;
-  ].
